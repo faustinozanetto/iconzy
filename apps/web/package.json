@@ -16,9 +16,9 @@
     "ui": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
     "eslint": "8.31.0",
     "eslint-config-custom": "*",
+    "eslint-define-config": "latest",
     "tsconfig": "*",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",

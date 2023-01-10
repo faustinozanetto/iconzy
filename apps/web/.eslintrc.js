@@ -1,4 +1,7 @@
-module.exports = {
+// @ts-check
+const { defineConfig } = require('eslint-define-config');
+
+module.exports = defineConfig({
   root: true,
-  extends: ["custom"],
-};
+  extends: ['custom', 'airbnb-base'],
+});

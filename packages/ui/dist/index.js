@@ -34,6 +34,10 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -50,31 +54,14 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 
 // src/index.tsx
 var src_exports = {};
+__export(src_exports, {
+  Button: () => Button
+});
 module.exports = __toCommonJS(src_exports);
 
-// ../../node_modules/clsx/dist/clsx.m.js
-function r(e) {
-  var t, f, n = "";
-  if ("string" == typeof e || "number" == typeof e)
-    n += e;
-  else if ("object" == typeof e)
-    if (Array.isArray(e))
-      for (t = 0; t < e.length; t++)
-        e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
-    else
-      for (t in e)
-        e[t] && (n && (n += " "), n += t);
-  return n;
-}
-function clsx() {
-  for (var e, t, f = 0, n = ""; f < arguments.length; )
-    (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
-  return n;
-}
-var clsx_m_default = clsx;
-
 // src/button.tsx
-var import_react = __toESM(require("react"));
+var import_clsx = __toESM(require("clsx"));
+var React = __toESM(require("react"));
 var import_jsx_runtime = require("react/jsx-runtime");
 var PARSED_COLOR_SCHEMES = {
   primary: {
@@ -118,7 +105,7 @@ var PARSED_COLOR_SCHEMES = {
     solid: "bg-purple-200 text-purple-800 hover:bg-purple-300 focus:ring-purple-300"
   }
 };
-var Button = import_react.default.forwardRef(
+var Button = React.forwardRef(
   (props, ref) => {
     const _a = props, {
       children,
@@ -156,7 +143,7 @@ var Button = import_react.default.forwardRef(
       __spreadProps(__spreadValues({
         ref,
         type: "button",
-        className: clsx_m_default(
+        className: (0, import_clsx.default)(
           `inline-flex items-center justify-center rounded-lg text-base font-semibold transition-all focus:outline-none focus:ring-4`,
           getButtonSizes(),
           getButtonVariants(),
@@ -173,3 +160,7 @@ var Button = import_react.default.forwardRef(
   }
 );
 Button.displayName = "Button";
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  Button
+});

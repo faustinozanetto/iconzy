@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 
 type AvailableColorSchemes =
   | 'primary'
@@ -81,7 +81,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   colorScheme?: AvailableColorSchemes;
 };
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       children,
@@ -144,5 +144,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-
-export default Button;

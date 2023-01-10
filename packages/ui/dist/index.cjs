@@ -1,7 +1,12 @@
+"use strict";
+var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
@@ -29,11 +34,55 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/index.tsx
+var src_exports = {};
+__export(src_exports, {
+  Button: () => Button
+});
+module.exports = __toCommonJS(src_exports);
+
+// ../../node_modules/clsx/dist/clsx.m.js
+function r(e) {
+  var t, f, n = "";
+  if ("string" == typeof e || "number" == typeof e)
+    n += e;
+  else if ("object" == typeof e)
+    if (Array.isArray(e))
+      for (t = 0; t < e.length; t++)
+        e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+    else
+      for (t in e)
+        e[t] && (n && (n += " "), n += t);
+  return n;
+}
+function clsx() {
+  for (var e, t, f = 0, n = ""; f < arguments.length; )
+    (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
+  return n;
+}
+var clsx_m_default = clsx;
 
 // src/button.tsx
-import clsx from "clsx";
-import * as React from "react";
-import { jsx, jsxs } from "react/jsx-runtime";
+var import_react = __toESM(require("react"), 1);
+var import_jsx_runtime = require("react/jsx-runtime");
 var PARSED_COLOR_SCHEMES = {
   primary: {
     outline: "hover:bg-primary-300 hover:text-primary-800 focus:ring-primary-300",
@@ -76,7 +125,7 @@ var PARSED_COLOR_SCHEMES = {
     solid: "bg-purple-200 text-purple-800 hover:bg-purple-300 focus:ring-purple-300"
   }
 };
-var Button = React.forwardRef(
+var Button = import_react.default.forwardRef(
   (props, ref) => {
     const _a = props, {
       children,
@@ -109,12 +158,12 @@ var Button = React.forwardRef(
       return variant === "solid" ? PARSED_COLOR_SCHEMES[colorScheme].solid : PARSED_COLOR_SCHEMES[colorScheme].outline;
     };
     const _b = rest, { className } = _b, excludedRest = __objRest(_b, ["className"]);
-    return /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
       "button",
       __spreadProps(__spreadValues({
         ref,
         type: "button",
-        className: clsx(
+        className: clsx_m_default(
           `inline-flex items-center justify-center rounded-lg text-base font-semibold transition-all focus:outline-none focus:ring-4`,
           getButtonSizes(),
           getButtonVariants(),
@@ -122,15 +171,16 @@ var Button = React.forwardRef(
         )
       }, excludedRest), {
         children: [
-          leftIcon && /* @__PURE__ */ jsx("div", { className: "inline-flex shrink-0 self-center pr-1", children: leftIcon }),
+          leftIcon && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "inline-flex shrink-0 self-center pr-1", children: leftIcon }),
           children,
-          rightIcon && /* @__PURE__ */ jsx("div", { className: "inline-flex shrink-0 self-center pl-1", children: rightIcon })
+          rightIcon && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "inline-flex shrink-0 self-center pl-1", children: rightIcon })
         ]
       })
     );
   }
 );
 Button.displayName = "Button";
-export {
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
   Button
-};
+});

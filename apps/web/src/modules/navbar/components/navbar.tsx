@@ -9,11 +9,11 @@ const Navbar: React.FC<NavbarProps> = (props) => {
   const {} = props;
 
   return (
-    <nav className="relative w-full flex h-20 items-center justify-center bg-neutral-50 drop-shadow-lg p-4 dark:bg-neutral-800 sm:justify-between">
+    <nav className="relative flex h-20 items-center justify-center bg-neutral-50 drop-shadow-lg p-4 dark:bg-neutral-800 sm:justify-between z-50">
       {/* Logo */}
       <Logo />
       {/* Buttons */}
-      <div className="flex ml-auto mr-4 items-center justify-center space-x-2">
+      <div className="flex ml-auto mr-4 items-center justify-center space-x-4">
         <NavbarLink href="/">Home</NavbarLink>
         <NavbarLink href="/icons">Icons</NavbarLink>
       </div>

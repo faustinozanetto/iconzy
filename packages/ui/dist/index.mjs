@@ -115,6 +115,28 @@ var Button = React.forwardRef((props, ref) => {
   );
 });
 Button.displayName = "Button";
+
+// src/card/card.tsx
+import clsx2 from "clsx";
+import React2 from "react";
+import { jsx as jsx2 } from "react/jsx-runtime";
+var Card = React2.forwardRef((props, ref) => {
+  const _a = props, { children, variant = "portrait" } = _a, rest = __objRest(_a, ["children", "variant"]);
+  return /* @__PURE__ */ jsx2(
+    "div",
+    __spreadProps(__spreadValues({
+      className: clsx2(
+        `group cursor-pointer overflow-hidden rounded-lg bg-neutral-50 shadow-lg dark:bg-neutral-800 ${rest.className}`,
+        variant === "portrait" && "w-full md:max-w-sm",
+        variant === "landscape" && "grid grid-cols-2"
+      )
+    }, rest), {
+      children: /* @__PURE__ */ jsx2("div", { className: "flex w-full flex-col space-y-1 p-4 text-neutral-900 dark:text-neutral-100", children })
+    })
+  );
+});
+Card.displayName = "Card";
 export {
-  Button
+  Button,
+  Card
 };

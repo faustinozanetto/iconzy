@@ -1,31 +1,57 @@
 import * as React from 'react';
+import React__default from 'react';
 
-type AvailableColorSchemes = 'primary' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'blue' | 'indigo' | 'purple' | 'pink';
+type AvailableColorSchemes =
+  | 'primary'
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'teal'
+  | 'blue'
+  | 'indigo'
+  | 'purple'
+  | 'pink';
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    children?: React.ReactNode;
-    /** Optional: Left icon of the button. */
-    leftIcon?: JSX.Element;
-    /** Optional: Right icon of the button. */
-    rightIcon?: JSX.Element;
-    /** Optional: Size of the button, defaults to md. */
-    size?: 'sm' | 'md' | 'lg';
-    /** Optional: Variant of the button, defaults to solid. */
-    variant?: 'outline' | 'solid';
-    /** Optional: Color scheme of the button, defaults to primary. */
-    colorScheme?: AvailableColorSchemes;
+  children?: React.ReactNode;
+  /** Optional: Left icon of the button. */
+  leftIcon?: JSX.Element;
+  /** Optional: Right icon of the button. */
+  rightIcon?: JSX.Element;
+  /** Optional: Size of the button, defaults to md. */
+  size?: 'sm' | 'md' | 'lg';
+  /** Optional: Variant of the button, defaults to solid. */
+  variant?: 'outline' | 'solid';
+  /** Optional: Color scheme of the button, defaults to primary. */
+  colorScheme?: AvailableColorSchemes;
 };
-declare const Button: React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement> & {
+declare const Button: React.ForwardRefExoticComponent<
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children?: React.ReactNode;
     /** Optional: Left icon of the button. */
     leftIcon?: JSX.Element | undefined;
     /** Optional: Right icon of the button. */
     rightIcon?: JSX.Element | undefined;
     /** Optional: Size of the button, defaults to md. */
-    size?: "sm" | "md" | "lg" | undefined;
+    size?: 'sm' | 'md' | 'lg' | undefined;
     /** Optional: Variant of the button, defaults to solid. */
-    variant?: "outline" | "solid" | undefined;
+    variant?: 'outline' | 'solid' | undefined;
     /** Optional: Color scheme of the button, defaults to primary. */
     colorScheme?: AvailableColorSchemes | undefined;
-} & React.RefAttributes<HTMLButtonElement>>;
+  } & React.RefAttributes<HTMLButtonElement>
+>;
 
-export { Button, ButtonProps };
+type CardProps = React__default.HTMLAttributes<HTMLDivElement> & {
+  children: React__default.ReactNode;
+  /** Optional: Variant of the project card. */
+  variant?: 'landscape' | 'portrait';
+};
+declare const Card: React__default.ForwardRefExoticComponent<
+  React__default.HTMLAttributes<HTMLDivElement> & {
+    children: React__default.ReactNode;
+    /** Optional: Variant of the project card. */
+    variant?: 'landscape' | 'portrait' | undefined;
+  } & React__default.RefAttributes<HTMLAnchorElement>
+>;
+
+export { Button, ButtonProps, Card, CardProps };

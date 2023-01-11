@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Feather Icons",
+    "slug": "feather",
+    "source": "https://github.com/feathericons/feather"
+  },
+  {
+    "name": "Hero Icons",
+    "slug": "hero",
+    "source": "https://github.com/tailwindlabs/heroicons"
+  }
+]

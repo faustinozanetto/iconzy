@@ -9,25 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.1.1",
     "@next/font": "^13.1.1",
+    "html-react-parser": "^3.0.7",
+    "next": "13.1.1",
     "react": "^18.2.0",
-    "react-icons": "^4.7.1",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
     "ui": "*"
   },
   "devDependencies": {
-    "eslint": "8.31.0",
-    "eslint-config-custom": "*",
-    "eslint-define-config": "latest",
-    "tsconfig": "*",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
-    "typescript": "^4.9.4",
+    "autoprefixer": "^10.4.13",
+    "eslint": "8.31.0",
+    "eslint-config-custom": "*",
+    "eslint-define-config": "latest",
     "postcss": "^8.4.21",
     "tailwind-config": "*",
     "tailwindcss": "^3.2.4",
-    "autoprefixer": "^10.4.13"
+    "tsconfig": "*",
+    "typescript": "^4.9.4"
   }
 }

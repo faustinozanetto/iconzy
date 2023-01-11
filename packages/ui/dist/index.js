@@ -59,6 +59,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, '__esModule', { value: tru
 var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
+  Card: () => Card,
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -185,8 +186,41 @@ var Button = React.forwardRef((props, ref) => {
   );
 });
 Button.displayName = 'Button';
+
+// src/card/card.tsx
+var import_clsx2 = __toESM(require('clsx'));
+var import_react = __toESM(require('react'));
+var import_jsx_runtime2 = require('react/jsx-runtime');
+var Card = import_react.default.forwardRef((props, ref) => {
+  const _a = props,
+    { children, variant = 'portrait' } = _a,
+    rest = __objRest(_a, ['children', 'variant']);
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+    'div',
+    __spreadProps(
+      __spreadValues(
+        {
+          className: (0, import_clsx2.default)(
+            `group cursor-pointer overflow-hidden rounded-lg bg-neutral-50 shadow-lg dark:bg-neutral-800 ${rest.className}`,
+            variant === 'portrait' && 'w-full md:max-w-sm',
+            variant === 'landscape' && 'grid grid-cols-2'
+          ),
+        },
+        rest
+      ),
+      {
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)('div', {
+          className: 'flex w-full flex-col space-y-1 p-4 text-neutral-900 dark:text-neutral-100',
+          children,
+        }),
+      }
+    )
+  );
+});
+Card.displayName = 'Card';
 // Annotate the CommonJS export names for ESM import in node:
 0 &&
   (module.exports = {
     Button,
+    Card,
   });

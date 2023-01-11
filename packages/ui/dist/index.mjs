@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// src/button.tsx
+// src/button/button.tsx
 import clsx from "clsx";
 import * as React from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
@@ -76,60 +76,44 @@ var PARSED_COLOR_SCHEMES = {
     solid: "bg-purple-200 text-purple-800 hover:bg-purple-300 focus:ring-purple-300"
   }
 };
-var Button = React.forwardRef(
-  (props, ref) => {
-    const _a = props, {
-      children,
-      leftIcon,
-      rightIcon,
-      colorScheme = "primary",
-      size = "md",
-      variant = "solid"
-    } = _a, rest = __objRest(_a, [
-      "children",
-      "leftIcon",
-      "rightIcon",
-      "colorScheme",
-      "size",
-      "variant"
-    ]);
-    const getButtonSizes = () => {
-      switch (size) {
-        case "sm":
-          return "py-2.5 px-3 text-base";
-        case "md":
-          return "px-5 py-2.5 text-md";
-        case "lg":
-          return "px-10 py-3.5 text-lg";
-        default:
-          return "py-3 px-2.5 text-base";
-      }
-    };
-    const getButtonVariants = () => {
-      return variant === "solid" ? PARSED_COLOR_SCHEMES[colorScheme].solid : PARSED_COLOR_SCHEMES[colorScheme].outline;
-    };
-    const _b = rest, { className } = _b, excludedRest = __objRest(_b, ["className"]);
-    return /* @__PURE__ */ jsxs(
-      "button",
-      __spreadProps(__spreadValues({
-        ref,
-        type: "button",
-        className: clsx(
-          `inline-flex items-center justify-center rounded-lg text-base font-semibold transition-all focus:outline-none focus:ring-4`,
-          getButtonSizes(),
-          getButtonVariants(),
-          rest.className
-        )
-      }, excludedRest), {
-        children: [
-          leftIcon && /* @__PURE__ */ jsx("div", { className: "inline-flex shrink-0 self-center pr-1", children: leftIcon }),
-          children,
-          rightIcon && /* @__PURE__ */ jsx("div", { className: "inline-flex shrink-0 self-center pl-1", children: rightIcon })
-        ]
-      })
-    );
-  }
-);
+var Button = React.forwardRef((props, ref) => {
+  const _a = props, { children, leftIcon, rightIcon, colorScheme = "primary", size = "md", variant = "solid" } = _a, rest = __objRest(_a, ["children", "leftIcon", "rightIcon", "colorScheme", "size", "variant"]);
+  const getButtonSizes = () => {
+    switch (size) {
+      case "sm":
+        return "py-2.5 px-3 text-base";
+      case "md":
+        return "px-5 py-2.5 text-md";
+      case "lg":
+        return "px-10 py-3.5 text-lg";
+      default:
+        return "py-3 px-2.5 text-base";
+    }
+  };
+  const getButtonVariants = () => {
+    return variant === "solid" ? PARSED_COLOR_SCHEMES[colorScheme].solid : PARSED_COLOR_SCHEMES[colorScheme].outline;
+  };
+  const _b = rest, { className } = _b, excludedRest = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ jsxs(
+    "button",
+    __spreadProps(__spreadValues({
+      ref,
+      type: "button",
+      className: clsx(
+        `inline-flex items-center justify-center rounded-lg text-base font-semibold transition-all focus:outline-none focus:ring-4`,
+        getButtonSizes(),
+        getButtonVariants(),
+        rest.className
+      )
+    }, excludedRest), {
+      children: [
+        leftIcon && /* @__PURE__ */ jsx("div", { className: "inline-flex shrink-0 self-center pr-1", children: leftIcon }),
+        children,
+        rightIcon && /* @__PURE__ */ jsx("div", { className: "inline-flex shrink-0 self-center pl-1", children: rightIcon })
+      ]
+    })
+  );
+});
 Button.displayName = "Button";
 export {
   Button

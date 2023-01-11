@@ -1,16 +1,16 @@
 import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticProps } from 'next';
 import { Icon, IconPack, IconPackWithFeatured } from '@modules/icons/typings/editor.typings';
-import { useIconsContext } from '@modules/icons/context/theme-context';
+import { useIconsContext } from '@modules/icons/context/icons-context';
 import React from 'react';
 import IconPackCard from '@modules/icons/components/icon-pack/icon-pack-card';
 import { getAllIconPacks, getFeaturedIconsFromIconPack } from '@modules/icons/lib/icons-utils';
 
-type IconsPageProps = {
+type IconPacksPageProps = {
   iconPacks: IconPackWithFeatured[];
 };
 
-const IconsPage: React.FC<IconsPageProps> = (props) => {
+const IconPacksPage: React.FC<IconPacksPageProps> = (props) => {
   const { iconPacks } = props;
   const { dispatch } = useIconsContext();
 
@@ -47,4 +47,4 @@ export const getStaticProps: GetStaticProps = (context) => {
   };
 };
 
-export default IconsPage;
+export default IconPacksPage;

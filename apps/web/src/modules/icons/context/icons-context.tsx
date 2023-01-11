@@ -22,7 +22,8 @@ type ThemeProviderProps = {
 const IconsProvider: React.FC<ThemeProviderProps> = (props) => {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, {
-    iconPack: 'feather',
+    iconPack: null,
+    icons: [],
   });
 
   return <IconsContext.Provider value={{ state, dispatch }}>{children}</IconsContext.Provider>;

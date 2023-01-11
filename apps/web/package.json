@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "dependencies": {
     "@next/font": "^13.1.1",
     "html-react-parser": "^3.0.7",
@@ -15,6 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-virtuoso": "^4.0.3",
     "ui": "*"
   },
   "devDependencies": {

@@ -1,5 +1,7 @@
 import path from 'path';
-import fs from 'fs';
+import * as fs from 'fs';
+import parse from 'html-react-parser';
+import { Element } from 'html-react-parser';
 
 import iconPacksData from '@modules/icons/lib/icon-packs.json';
 
@@ -8,7 +10,19 @@ import { ICONS_DIR } from './constants';
 
 const iconsData = iconPacksData as IconPack[];
 
-const getIconsFromIconPack = (iconPack: IconPack, take?: number): Icon[] => {
+export const getSVGSourceIntoComponent = (svgSource: string, className?: string) => {
+  return parse(svgSource, {
+    replace: (domNode) => {
+      const domElement: Element = domNode as Element;
+
+      domElement.attribs = { ...domElement.attribs, className: className || '' };
+
+      return domElement;
+    },
+  });
+};
+
+export const getIconsFromIconPack = (iconPack: IconPack, take?: number): Icon[] => {
   const iconPackFolder = ICONS_DIR + iconPack.slug;
   try {
     const files: string[] = fs.readdirSync(iconPackFolder, 'utf8');

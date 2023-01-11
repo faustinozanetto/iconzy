@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         primary: colors.indigo,
       },
+
       fontFamily: {
         sans: ['var(--font-sans)'],
       },

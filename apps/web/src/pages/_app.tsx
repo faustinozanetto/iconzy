@@ -7,7 +7,7 @@ import { Open_Sans } from '@next/font/google';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import ThemeProvider from '@modules/theming/context/theme-context';
-import IconsProvider from '@modules/icons/context/theme-context';
+import IconsProvider from '@modules/icons/context/icons-context';
 
 const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-sans' });
 

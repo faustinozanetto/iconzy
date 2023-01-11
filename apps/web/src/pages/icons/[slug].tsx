@@ -2,15 +2,36 @@ import IconPackEditor from '@modules/icons/components/icon-pack-editor';
 import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import iconPacks from '@modules/icons/lib/icon-packs.json';
-import { IconPack } from '@modules/icons/typings/editor.typings';
-import { getIconPackBySlug } from '@modules/icons/lib/icons-utils';
+import { Icon, IconPack } from '@modules/icons/typings/editor.typings';
+import { getIconPackBySlug, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
+import { useIconsContext } from '@modules/icons/context/icons-context';
+import { useEffect } from 'react';
+import { IconsActionType } from '@modules/icons/context/types';
 
-type EditorPageProps = {
+type IconPackPagePageProps = {
   iconPack: IconPack;
+  icons: Icon[];
 };
 
-const EditorPage: React.FC<EditorPageProps> = (props) => {
-  const { iconPack } = props;
+const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
+  const { iconPack, icons } = props;
+  const { dispatch } = useIconsContext();
+
+  useEffect(() => {
+    dispatch({
+      type: IconsActionType.SET_ICON_PACK,
+      payload: {
+        iconPack: iconPack,
+      },
+    });
+    dispatch({
+      type: IconsActionType.SET_ICONS,
+      payload: {
+        icons,
+      },
+    });
+  }, []);
+
   return (
     <BaseLayout
       headProps={{
@@ -44,9 +65,11 @@ export const getStaticProps: GetStaticProps = (context) => {
   const slug: string = context?.params?.slug as string;
   try {
     const iconPack = getIconPackBySlug(slug);
+    const icons = getIconsFromIconPack(iconPack);
     return {
       props: {
         iconPack,
+        icons,
       },
     };
   } catch (err) {
@@ -56,4 +79,4 @@ export const getStaticProps: GetStaticProps = (context) => {
   }
 };
 
-export default EditorPage;
+export default IconPackPage;

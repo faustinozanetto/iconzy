@@ -8,5 +8,11 @@ export const reducer = (state: IconsState, action: IconsActions): IconsState => 
         iconPack: action.payload.iconPack,
       };
     }
+    case IconsActionType.SET_ICONS: {
+      return {
+        ...state,
+        icons: action.payload.icons,
+      };
+    }
   }
 };

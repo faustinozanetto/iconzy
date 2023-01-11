@@ -20,3 +20,17 @@ p,
 span {
   @apply text-black dark:text-white;
 }
+
+.grid-icon {
+  margin: 0px auto;
+  width: 35px;
+  height: 35px;
+}
+
+.grid-icon-wrapper {
+  @apply relative rounded-md cursor-pointer bg-neutral-50 border-neutral-300 border-[1px] dark:bg-neutral-800 dark:border-neutral-700 pt-[100%] overflow-hidden;
+}
+
+.grid-icon-container {
+  @apply absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2;
+}

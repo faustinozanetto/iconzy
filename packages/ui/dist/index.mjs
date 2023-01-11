@@ -136,7 +136,57 @@ var Card = React2.forwardRef((props, ref) => {
   );
 });
 Card.displayName = "Card";
+
+// src/forms/select-input.tsx
+import React3 from "react";
+import { jsx as jsx3, jsxs as jsxs2 } from "react/jsx-runtime";
+var SelectInput = React3.forwardRef((props, ref) => {
+  const _a = props, { id, label, children } = _a, rest = __objRest(_a, ["id", "label", "children"]);
+  return /* @__PURE__ */ jsxs2("div", { children: [
+    /* @__PURE__ */ jsx3("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: label }),
+    /* @__PURE__ */ jsx3(
+      "select",
+      __spreadProps(__spreadValues({
+        id,
+        ref,
+        className: "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+      }, rest), {
+        children
+      })
+    )
+  ] });
+});
+SelectInput.displayName = "Select Input";
+
+// src/forms/text-input.tsx
+import React4 from "react";
+import { jsx as jsx4, jsxs as jsxs3 } from "react/jsx-runtime";
+var TextInput = React4.forwardRef((props, ref) => {
+  const _a = props, { id, label } = _a, rest = __objRest(_a, ["id", "label"]);
+  return /* @__PURE__ */ jsxs3("div", { children: [
+    /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: label }),
+    /* @__PURE__ */ jsx4(
+      "input",
+      __spreadValues({
+        id,
+        ref,
+        className: "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+      }, rest)
+    )
+  ] });
+});
+TextInput.displayName = "Text Input";
+
+// src/common/separator.tsx
+import { jsx as jsx5 } from "react/jsx-runtime";
+var Separator = (props) => {
+  const rest = __objRest(props, []);
+  return /* @__PURE__ */ jsx5("hr", __spreadValues({ className: "h-[1px] border-none bg-neutral-200 dark:bg-neutral-700 mt-2" }, rest));
+};
 export {
   Button,
-  Card
+  Card,
+  SelectInput,
+  Separator,
+  TextInput
 };

@@ -1,6 +1,6 @@
-import { IconPackWithFeatured } from '@modules/icons/typings/editor.typings';
 import React from 'react';
 import Link from 'next/link';
+import { IconPackWithFeatured } from '@modules/icons/typings/editor.typings';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 
 type IconPackCardProps = {
@@ -18,11 +18,10 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
       >
         <h2 className="text-xl font-semibold">{iconPack.metadata.name}</h2>
         <div className="grid grid-cols-5 gap-4 p-2 bg-neutral-100 dark:bg-neutral-900 border-neutral-300 border-[1px] dark:border-neutral-700 rounded-md place-items-center w-fit">
-          {iconPack.featuredIcons.map((iconSource) =>
-            getSVGSourceIntoComponent(iconSource, 'stroke-black dark:stroke-white')
+          {iconPack.featuredIcons.map((icon) =>
+            getSVGSourceIntoComponent(icon.source, 'stroke-black dark:stroke-white')
           )}
         </div>
-        {/* Metadata */}
         <div className="w-full space-y-4">
           <div className="flex justify-between font-semibold">
             <p>Icon Count</p>

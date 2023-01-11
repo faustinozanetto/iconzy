@@ -8,13 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
-  },
   "dependencies": {
     "@next/font": "^13.1.1",
+    "clsx": "^1.2.1",
     "html-react-parser": "^3.0.7",
     "next": "13.1.1",
     "react": "^18.2.0",

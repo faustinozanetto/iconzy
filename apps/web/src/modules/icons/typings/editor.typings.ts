@@ -5,9 +5,17 @@ export type IconPack = {
   source: string;
 };
 
-export type Icon = string;
+export type Icon = {
+  name: string;
+  source: string;
+};
 
 export type IconPackWithFeatured = {
   metadata: IconPack;
   featuredIcons: Icon[];
+};
+
+export type IconPackWithAll = {
+  metadata: IconPack;
+  icons: Icon[];
 };

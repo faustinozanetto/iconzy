@@ -1,6 +1,6 @@
 import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticProps } from 'next';
-import { Icon, IconPack, IconPackWithFeatured } from '@modules/icons/typings/editor.typings';
+import { IconPackWithFeatured } from '@modules/icons/typings/editor.typings';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import React from 'react';
 import IconPackCard from '@modules/icons/components/icon-pack/icon-pack-card';

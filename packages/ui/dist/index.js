@@ -60,6 +60,9 @@ var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
   Card: () => Card,
+  SelectInput: () => SelectInput,
+  Separator: () => Separator,
+  TextInput: () => TextInput,
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -218,9 +221,89 @@ var Card = import_react.default.forwardRef((props, ref) => {
   );
 });
 Card.displayName = 'Card';
+
+// src/forms/select-input.tsx
+var import_react2 = __toESM(require('react'));
+var import_jsx_runtime3 = require('react/jsx-runtime');
+var SelectInput = import_react2.default.forwardRef((props, ref) => {
+  const _a = props,
+    { id, label, children } = _a,
+    rest = __objRest(_a, ['id', 'label', 'children']);
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)('div', {
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)('label', {
+        htmlFor: id,
+        className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
+        children: label,
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+        'select',
+        __spreadProps(
+          __spreadValues(
+            {
+              id,
+              ref,
+              className:
+                'bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
+            },
+            rest
+          ),
+          {
+            children,
+          }
+        )
+      ),
+    ],
+  });
+});
+SelectInput.displayName = 'Select Input';
+
+// src/forms/text-input.tsx
+var import_react3 = __toESM(require('react'));
+var import_jsx_runtime4 = require('react/jsx-runtime');
+var TextInput = import_react3.default.forwardRef((props, ref) => {
+  const _a = props,
+    { id, label } = _a,
+    rest = __objRest(_a, ['id', 'label']);
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)('div', {
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('label', {
+        htmlFor: id,
+        className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
+        children: label,
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+        'input',
+        __spreadValues(
+          {
+            id,
+            ref,
+            className:
+              'bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
+          },
+          rest
+        )
+      ),
+    ],
+  });
+});
+TextInput.displayName = 'Text Input';
+
+// src/common/separator.tsx
+var import_jsx_runtime5 = require('react/jsx-runtime');
+var Separator = (props) => {
+  const rest = __objRest(props, []);
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+    'hr',
+    __spreadValues({ className: 'h-[1px] border-none bg-neutral-200 dark:bg-neutral-700 mt-2' }, rest)
+  );
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 &&
   (module.exports = {
     Button,
     Card,
+    SelectInput,
+    Separator,
+    TextInput,
   });

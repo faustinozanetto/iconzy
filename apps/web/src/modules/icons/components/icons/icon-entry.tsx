@@ -12,7 +12,8 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
   return (
     <div className="grid-icon-wrapper">
       <div className="grid-icon-container">
-        {getSVGSourceIntoComponent(icon, 'grid-icon stroke-black dark:stroke-white')}
+        {getSVGSourceIntoComponent(icon.source, 'grid-icon stroke-black dark:stroke-white')}
+        <span className="text-center mx-auto pt-2 opacity-80">{icon.name}</span>
       </div>
     </div>
   );

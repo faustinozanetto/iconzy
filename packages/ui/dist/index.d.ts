@@ -54,4 +54,38 @@ declare const Card: React__default.ForwardRefExoticComponent<
   } & React__default.RefAttributes<HTMLAnchorElement>
 >;
 
-export { Button, ButtonProps, Card, CardProps };
+type SelectInputProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName'> & {
+  children: React__default.ReactNode;
+  label: string;
+};
+declare const SelectInput: React__default.ForwardRefExoticComponent<
+  Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName'> & {
+    children: React__default.ReactNode;
+    label: string;
+  } & React__default.RefAttributes<HTMLSelectElement>
+>;
+
+type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName'> & {
+  label: string;
+};
+declare const TextInput: React__default.ForwardRefExoticComponent<
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName'> & {
+    label: string;
+  } & React__default.RefAttributes<HTMLInputElement>
+>;
+
+type SeparatorProps = React__default.HTMLAttributes<HTMLHRElement> & {};
+declare const Separator: React__default.FC<SeparatorProps>;
+
+export {
+  Button,
+  ButtonProps,
+  Card,
+  CardProps,
+  SelectInput,
+  SelectInputProps,
+  Separator,
+  SeparatorProps,
+  TextInput,
+  TextInputInputProps,
+};

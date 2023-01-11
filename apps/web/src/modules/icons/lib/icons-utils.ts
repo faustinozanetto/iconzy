@@ -29,7 +29,11 @@ export const getIconsFromIconPack = (iconPack: IconPack, take?: number): Icon[] 
     let selectedFiles = files;
     if (take) selectedFiles = files.slice(0, take);
     const iconFileContents: Icon[] = selectedFiles.map((file) => {
-      return fs.readFileSync(path.join(iconPackFolder, file), 'utf8');
+      const source = fs.readFileSync(path.join(iconPackFolder, file), 'utf8');
+      return {
+        source,
+        name: file.replace(/\.svg$/, ''),
+      };
     });
     return iconFileContents;
   } catch (error) {

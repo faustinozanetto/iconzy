@@ -7,9 +7,9 @@ const IconsFeed: React.FC = () => {
 
   return (
     <div
-      className="grid gap-6 p-6"
+      className="grid gap-4 p-4 overflow-y-auto w-full sm:ml-auto"
       style={{
-        gridTemplateColumns: 'repeat(auto-fill, minmax(135px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
       }}
     >
       {state.icons

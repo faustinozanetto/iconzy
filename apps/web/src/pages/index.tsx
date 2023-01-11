@@ -14,7 +14,9 @@ const HomePage: React.FC = () => {
       <div className="flex flex-col items-center justify-center">
         <h1>Web hello</h1>
         <Button variant="solid">Hello World</Button>
-        <Button variant="outline">Hello World</Button>
+        <Button variant="outline" colorScheme="primary">
+          Hello World
+        </Button>
         <Button variant="solid" colorScheme="red">
           Hello World
         </Button>

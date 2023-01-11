@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from 'ui';
 import { useThemeContext } from '../context/theme-context';
 import { FiMoon, FiSun } from 'react-icons/fi';
+import { Button } from 'ui';
 
 const ThemeToggler: React.FC = () => {
   const { theme, toggle } = useThemeContext();
@@ -16,7 +16,7 @@ const ThemeToggler: React.FC = () => {
   };
 
   return (
-    <Button className="h-10 w-10" aria-label="Toggle Theme" colorScheme="indigo" onClick={toggle}>
+    <Button className="h-10 w-10" aria-label="Toggle Theme" onClick={toggle}>
       <div className="inline-flex self-center">{themeIcon()}</div>
     </Button>
   );

@@ -11,17 +11,5 @@ module.exports = defineConfig({
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
     'react/jsx-key': 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        endOfLine: 'auto',
-      },
-    ],
-    'no-empty-pattern': 'off',
-    'no-console': 'off',
-    'consistent-return': 'off',
-    'no-param-reassign': 'off',
-    'class-methods-use-this': 'off',
   },
 });

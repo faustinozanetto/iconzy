@@ -4,3 +4,10 @@ export type IconPack = {
   iconsCount: number;
   source: string;
 };
+
+export type Icon = string;
+
+export type IconPackWithFeatured = {
+  metadata: IconPack;
+  featuredIcons: Icon[];
+};

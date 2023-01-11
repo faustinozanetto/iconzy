@@ -3,6 +3,7 @@ import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import iconPacks from '@modules/icons/lib/icon-packs.json';
 import { IconPack } from '@modules/icons/typings/editor.typings';
+import { getIconPackBySlug } from '@modules/icons/lib/icons-utils';
 
 type EditorPageProps = {
   iconPack: IconPack;
@@ -41,12 +42,18 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 export const getStaticProps: GetStaticProps = (context) => {
   const slug: string = context?.params?.slug as string;
-  const iconPack = (iconPacks as IconPack[]).find((pack) => pack.slug === slug);
-  return {
-    props: {
-      iconPack,
-    },
-  };
+  try {
+    const iconPack = getIconPackBySlug(slug);
+    return {
+      props: {
+        iconPack,
+      },
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export default EditorPage;

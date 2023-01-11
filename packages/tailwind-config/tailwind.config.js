@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.sky,
+        primary: colors.indigo,
       },
       fontFamily: {
         sans: ['var(--font-sans)'],

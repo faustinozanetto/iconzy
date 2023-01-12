@@ -1,13 +1,14 @@
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { IconsActionType } from '@modules/icons/context/types';
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { TextInput } from 'ui';
 import IconEntry from '../icons/icon-entry';
 
 const IconsEditorFeed: React.FC = () => {
   const { state, dispatch } = useIconsContext();
   const [filter, setFilter] = useState('');
+  const [iconsLoaded, setIconsLoaded] = useState(false);
 
   const handleIconSelected = (icon: IconWithElement) => {
     dispatch({
@@ -18,10 +19,14 @@ const IconsEditorFeed: React.FC = () => {
     });
   };
 
+  useEffect(() => {
+    setIconsLoaded(state.icons.length ? true : false);
+  }, [state.icons]);
+
   const filteredIcons = useMemo(() => {
     if (filter === '') return state.icons;
     return state.icons.filter((icon) => icon.name.includes(filter));
-  }, [filter]);
+  }, [filter, state.icons]);
 
   return (
     <div className="flex flex-col w-full">
@@ -62,20 +67,22 @@ const IconsEditorFeed: React.FC = () => {
           gridTemplateColumns: 'repeat(auto-fill, minmax(135px, 1fr))',
         }}
       >
-        {filteredIcons
-          ? filteredIcons.map((icon, index) => {
-              return (
-                <IconEntry
-                  key={`icon-${index}`}
-                  icon={icon}
-                  customization={state.iconCustomization}
-                  onIconSelected={(iconElement: JSX.Element) => {
-                    handleIconSelected({ ...icon, element: iconElement });
-                  }}
-                />
-              );
-            })
-          : null}
+        {iconsLoaded ? (
+          filteredIcons.map((icon, index) => {
+            return (
+              <IconEntry
+                key={`icon-${index}`}
+                icon={icon}
+                customization={state.iconCustomization}
+                onIconSelected={(iconElement: JSX.Element) => {
+                  handleIconSelected({ ...icon, element: iconElement });
+                }}
+              />
+            );
+          })
+        ) : (
+          <span>loading</span>
+        )}
       </div>
     </div>
   );

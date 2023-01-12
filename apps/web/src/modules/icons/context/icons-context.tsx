@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createContext, useContext, useReducer } from 'react';
 import { reducer } from './reducer';
 import { IconsActions, IconsState } from './types';
@@ -29,7 +29,11 @@ const IconsProvider: React.FC<ThemeProviderProps> = (props) => {
     iconCustomization: { size: 35, color: '#000', width: 2 },
   });
 
-  return <IconsContext.Provider value={{ state, dispatch }}>{children}</IconsContext.Provider>;
+  const memoizedValue = useMemo(() => {
+    return { state, dispatch };
+  }, [state]);
+
+  return <IconsContext.Provider value={memoizedValue}>{children}</IconsContext.Provider>;
 };
 
 export default IconsProvider;

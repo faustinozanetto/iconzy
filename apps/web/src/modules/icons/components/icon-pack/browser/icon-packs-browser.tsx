@@ -2,7 +2,7 @@ import useFilter, { Filter, Sort } from '@modules/common/hooks/use-filter';
 import { IconPack, IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import React, { useState } from 'react';
 import { SelectInput, TextInput } from 'ui';
-import IconPackCard from '../icon-pack/icon-pack-card';
+import IconPackCard from '../icon-pack-card';
 
 type IconPacksBrowserTypes = {
   iconPacks: IconPackWithFeatured[];
@@ -40,7 +40,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
   };
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col h-full">
       <div className="flex items-center space-x-4 p-4 bg-neutral-50 border-b-[1px] border-neutral-200 dark:border-neutral-700 dark:bg-neutral-800">
         <TextInput
           id="search-pack"
@@ -60,7 +60,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
           <option value="iconsCount">Icon Count</option>
         </SelectInput>
       </div>
-      <div className="flex gap-4 p-4">
+      <div className="flex gap-4 p-4 justify-center">
         {filteredIconPacks.map((iconPack) => {
           const pack = iconPacks.find((p) => p.metadata.slug === iconPack.slug);
           if (pack) return <IconPackCard key={pack.metadata.slug} iconPack={pack} />;

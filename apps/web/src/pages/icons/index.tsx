@@ -4,7 +4,7 @@ import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import React from 'react';
 import { getAllIconPacks, getFeaturedIconsFromIconPack } from '@modules/icons/lib/icons-utils';
-import IconPacksBrowser from '@modules/icons/components/browser/icon-packs-browser';
+import IconPacksBrowser from '@modules/icons/components/icon-pack/browser/icon-packs-browser';
 
 type IconPacksPageProps = {
   iconPacks: IconPackWithFeatured[];

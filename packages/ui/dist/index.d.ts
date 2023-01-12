@@ -71,7 +71,7 @@ type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElem
   onValueChanged: (value: string) => void;
 };
 declare const TextInput: React__default.ForwardRefExoticComponent<
-  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label?: string | undefined;
     icon?: JSX.Element | undefined;
     onValueChanged: (value: string) => void;

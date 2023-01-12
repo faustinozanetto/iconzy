@@ -1,13 +1,13 @@
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import React from 'react';
-import { VirtuosoGrid } from 'react-virtuoso';
-import IconEntry from './icon-entry';
+import IconEntry from '../icons/icon-entry';
 
-const IconsFeed: React.FC = () => {
+const IconsEditorFeed: React.FC = () => {
   const { state } = useIconsContext();
 
   return (
     // <VirtuosoGrid
+    //   className="virtuoso-scroller"
     //   totalCount={state.icons.length}
     //   itemContent={(index) => (
     //     <IconEntry key={`icon-${index}`} icon={state.icons[index]} customization={state.iconCustomization} />
@@ -21,7 +21,7 @@ const IconsFeed: React.FC = () => {
     <div
       className="grid gap-4 p-4 overflow-y-auto w-full sm:ml-auto"
       style={{
-        gridTemplateColumns: 'repeat(auto-fill, minmax(125px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(135px, 1fr))',
       }}
     >
       {state.icons
@@ -33,4 +33,4 @@ const IconsFeed: React.FC = () => {
   );
 };
 
-export default IconsFeed;
+export default IconsEditorFeed;

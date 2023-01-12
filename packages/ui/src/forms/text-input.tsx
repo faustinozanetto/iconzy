@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useDebounce from '../hooks/use-debounce';
 
 export type TextInputInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
-  label: string;
+  label?: string;
   onValueChanged: (value: string) => void;
 };
 
@@ -23,9 +23,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputInputProps>
 
   return (
     <div>
-      <label htmlFor={id} className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
-        {label}
-      </label>
+      {label ? (
+        <label htmlFor={id} className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+          {label}
+        </label>
+      ) : null}
       <input
         id={id}
         ref={ref}

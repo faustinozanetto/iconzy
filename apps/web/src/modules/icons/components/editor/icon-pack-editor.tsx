@@ -1,7 +1,7 @@
 import React from 'react';
-import { useIconsContext } from '../context/icons-context';
+import { useIconsContext } from '@modules/icons/context/icons-context';
 import IconsCustomization from './customization/icons-customization';
-import IconsFeed from './icons/icons-feed';
+import IconsEditorFeed from './icons-editor-feed';
 
 const IconPackEditor: React.FC = () => {
   const { state } = useIconsContext();
@@ -10,12 +10,11 @@ const IconPackEditor: React.FC = () => {
     <div
       className="flex overflow-hidden"
       style={{
-        // gridTemplateColumns: 'auto 1fr',
         height: 'calc(100vh - 80px)',
       }}
     >
       <IconsCustomization />
-      <IconsFeed />
+      <IconsEditorFeed />
     </div>
   );
 };

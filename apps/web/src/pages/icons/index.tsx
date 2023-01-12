@@ -3,8 +3,8 @@ import { GetStaticProps } from 'next';
 import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import React from 'react';
-import IconPackCard from '@modules/icons/components/icon-pack/icon-pack-card';
 import { getAllIconPacks, getFeaturedIconsFromIconPack } from '@modules/icons/lib/icons-utils';
+import IconPacksBrowser from '@modules/icons/components/browser/icon-packs-browser';
 
 type IconPacksPageProps = {
   iconPacks: IconPackWithFeatured[];
@@ -23,11 +23,7 @@ const IconPacksPage: React.FC<IconPacksPageProps> = (props) => {
         canonicalUrl: 'https://iconozen.app',
       }}
     >
-      <div className="flex gap-4 p-4">
-        {iconPacks.map((iconPack) => {
-          return <IconPackCard key={iconPack.metadata.slug} iconPack={iconPack} />;
-        })}
-      </div>
+      <IconPacksBrowser iconPacks={iconPacks} />
     </BaseLayout>
   );
 };

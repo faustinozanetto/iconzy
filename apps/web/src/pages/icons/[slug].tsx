@@ -1,12 +1,12 @@
-import IconPackEditor from '@modules/icons/components/icon-pack-editor';
 import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import iconPacks from '@modules/icons/lib/icon-packs.json';
-import { Icon, IconPack, IconPackWithAll } from '@modules/icons/typings/icon.typings';
+import { IconPack, IconPackWithAll } from '@modules/icons/typings/icon.typings';
 import { getIconPackBySlug, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { useEffect } from 'react';
 import { IconsActionType } from '@modules/icons/context/types';
+import IconPackEditor from '@modules/icons/components/editor/icon-pack-editor';
 
 type IconPackPagePageProps = {
   iconPack: IconPackWithAll;

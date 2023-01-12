@@ -189,7 +189,7 @@ var TextInput = React4.forwardRef((props, ref) => {
     onValueChanged(value);
   }, [debouncedValue]);
   return /* @__PURE__ */ jsxs3("div", { children: [
-    /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: label }),
+    label ? /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: label }) : null,
     /* @__PURE__ */ jsx4(
       "input",
       __spreadValues({

@@ -66,12 +66,12 @@ declare const SelectInput: React__default.ForwardRefExoticComponent<
 >;
 
 type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
-  label: string;
+  label?: string;
   onValueChanged: (value: string) => void;
 };
 declare const TextInput: React__default.ForwardRefExoticComponent<
-  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
-    label: string;
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
+    label?: string | undefined;
     onValueChanged: (value: string) => void;
   } & React__default.RefAttributes<HTMLInputElement>
 >;
@@ -84,7 +84,7 @@ type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
   onValueChanged: (value: number) => void;
 };
 declare const RangeInput: React__default.ForwardRefExoticComponent<
-  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label: string;
     onValueChanged: (value: number) => void;
   } & React__default.RefAttributes<HTMLInputElement>
@@ -95,7 +95,7 @@ type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
   onValueChanged: (value: string) => void;
 };
 declare const ColorInput: React__default.ForwardRefExoticComponent<
-  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label: string;
     onValueChanged: (value: string) => void;
   } & React__default.RefAttributes<HTMLInputElement>

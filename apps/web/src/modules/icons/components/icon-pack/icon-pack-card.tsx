@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import clsx from 'clsx';
 
 type IconPackCardProps = {
   iconPack: IconPackWithFeatured;
@@ -22,11 +23,11 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
             getSVGSourceIntoComponent(
               icon.source,
               {
-                size: 35,
-                color: '#000',
-                width: 2,
+                size: 25,
+                color: '#fff',
+                width: iconPack.metadata.defaultWidth,
               },
-              'stroke-black dark:stroke-white'
+              clsx('stroke-neutral-800 dark:stroke-neutral-100 fill-none')
             )
           )}
         </div>

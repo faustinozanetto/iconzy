@@ -19,7 +19,7 @@ const IconsCustomization: React.FC = () => {
     <section
       className={clsx(
         panelToggled ? 'hidden' : 'flex flex-col',
-        'w-[280px] overflow-y-auto h-full bg-neutral-50 border-l-neutral-300 border-l-[1px] dark:bg-neutral-800 dark:border-l-neutral-700 p-4'
+        'w-[280px] overflow-y-auto h-full bg-neutral-50 border-r-neutral-300 border-r-[1px] dark:bg-neutral-800 dark:border-r-neutral-700 p-4'
       )}
     >
       <h3 className="font-semibold text-lg">Customize Icons</h3>

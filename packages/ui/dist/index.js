@@ -294,11 +294,13 @@ var TextInput = import_react4.default.forwardRef((props, ref) => {
   }, [debouncedValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)('div', {
     children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('label', {
-        htmlFor: id,
-        className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
-        children: label,
-      }),
+      label
+        ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('label', {
+            htmlFor: id,
+            className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
+            children: label,
+          })
+        : null,
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
         'input',
         __spreadValues(

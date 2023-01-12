@@ -3,6 +3,7 @@ export type IconPack = {
   slug: string;
   iconsCount: number;
   source: string;
+  defaultWidth: number;
 };
 
 export type Icon = {

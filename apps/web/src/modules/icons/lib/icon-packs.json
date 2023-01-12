@@ -2,11 +2,13 @@
   {
     "name": "Feather Icons",
     "slug": "feather",
+    "defaultWidth": 2,
     "source": "https://github.com/feathericons/feather"
   },
   {
     "name": "Hero Icons",
     "slug": "hero",
+    "defaultWidth": 2,
     "source": "https://github.com/tailwindlabs/heroicons"
   }
 ]

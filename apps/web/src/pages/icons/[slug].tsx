@@ -2,7 +2,7 @@ import IconPackEditor from '@modules/icons/components/icon-pack-editor';
 import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import iconPacks from '@modules/icons/lib/icon-packs.json';
-import { Icon, IconPack, IconPackWithAll } from '@modules/icons/typings/editor.typings';
+import { Icon, IconPack, IconPackWithAll } from '@modules/icons/typings/icon.typings';
 import { getIconPackBySlug, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { useEffect } from 'react';

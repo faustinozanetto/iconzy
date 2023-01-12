@@ -183,9 +183,91 @@ var Separator = (props) => {
   const rest = __objRest(props, []);
   return /* @__PURE__ */ jsx5("hr", __spreadValues({ className: "h-[1px] border-none bg-neutral-200 dark:bg-neutral-700 mt-2" }, rest));
 };
+
+// src/forms/range-input.tsx
+import React5, { useState } from "react";
+import { jsx as jsx6, jsxs as jsxs4 } from "react/jsx-runtime";
+var RangeInput = React5.forwardRef((props, ref) => {
+  const _a = props, { id, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
+  const [value, setValue] = useState(Number(rest.placeholder) || 0);
+  const handleChange = (event) => {
+    const { value: value2 } = event.target;
+    setValue(value2);
+    onValueChanged(value2);
+  };
+  return /* @__PURE__ */ jsxs4("div", { className: "", children: [
+    /* @__PURE__ */ jsx6("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsx6("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: label }) }),
+    /* @__PURE__ */ jsxs4("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsx6(
+        "input",
+        __spreadValues({
+          id,
+          ref,
+          className: "w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer dark:bg-neutral-700",
+          type: "range",
+          value,
+          onChange: handleChange
+        }, rest)
+      ),
+      /* @__PURE__ */ jsx6(
+        "input",
+        __spreadValues({
+          id,
+          className: "max-w-[50px] ml-4 text-center rounded-lg h-9 font-bold border-neutral-300 border-[1px] dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300",
+          type: "text",
+          value,
+          onChange: handleChange
+        }, rest)
+      )
+    ] })
+  ] });
+});
+RangeInput.displayName = "Range Input";
+
+// src/forms/color-input.tsx
+import React6, { useState as useState2 } from "react";
+import { jsx as jsx7, jsxs as jsxs5 } from "react/jsx-runtime";
+var ColorInput = React6.forwardRef((props, ref) => {
+  const _a = props, { id, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
+  const [value, setValue] = useState2(rest.placeholder || "");
+  const handleChange = (event) => {
+    const { value: value2 } = event.target;
+    setValue(value2);
+    onValueChanged(value2);
+  };
+  return /* @__PURE__ */ jsxs5("div", { className: "", children: [
+    /* @__PURE__ */ jsx7("div", { className: "flex items-center justify-between mb-2", children: /* @__PURE__ */ jsx7("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: label }) }),
+    /* @__PURE__ */ jsxs5("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsx7(
+        "input",
+        __spreadValues({
+          className: "w-11 h-12 border-none cursor-pointer appearance-none color-input",
+          id,
+          ref,
+          type: "color",
+          value,
+          onChange: handleChange
+        }, rest)
+      ),
+      /* @__PURE__ */ jsx7(
+        "input",
+        __spreadValues({
+          id,
+          className: "max-w-[120px] text-start p-2 rounded-md h-10 font-bold border-neutral-300 border-[1px] dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300",
+          type: "text",
+          value,
+          onChange: handleChange
+        }, rest)
+      )
+    ] })
+  ] });
+});
+ColorInput.displayName = "Color Input";
 export {
   Button,
   Card,
+  ColorInput,
+  RangeInput,
   SelectInput,
   Separator,
   TextInput

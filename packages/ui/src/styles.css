@@ -1,3 +1,17 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.color-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+}
+
+.color-input::-webkit-color-swatch {
+  @apply rounded-md border-none;
+}
+
+.color-input::-moz-color-swatch {
+  @apply rounded-md border-none;
+}

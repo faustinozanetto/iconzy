@@ -60,6 +60,8 @@ var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
   Card: () => Card,
+  ColorInput: () => ColorInput,
+  RangeInput: () => RangeInput,
   SelectInput: () => SelectInput,
   Separator: () => Separator,
   TextInput: () => TextInput,
@@ -298,11 +300,137 @@ var Separator = (props) => {
     __spreadValues({ className: 'h-[1px] border-none bg-neutral-200 dark:bg-neutral-700 mt-2' }, rest)
   );
 };
+
+// src/forms/range-input.tsx
+var import_react4 = __toESM(require('react'));
+var import_jsx_runtime6 = require('react/jsx-runtime');
+var RangeInput = import_react4.default.forwardRef((props, ref) => {
+  const _a = props,
+    { id, label, onValueChanged } = _a,
+    rest = __objRest(_a, ['id', 'label', 'onValueChanged']);
+  const [value, setValue] = (0, import_react4.useState)(Number(rest.placeholder) || 0);
+  const handleChange = (event) => {
+    const { value: value2 } = event.target;
+    setValue(value2);
+    onValueChanged(value2);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)('div', {
+    className: '',
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)('div', {
+        className: 'flex items-center justify-between',
+        children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)('label', {
+          htmlFor: id,
+          className: 'block font-semibold text-gray-900 dark:text-white',
+          children: label,
+        }),
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)('div', {
+        className: 'flex items-center justify-between',
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            'input',
+            __spreadValues(
+              {
+                id,
+                ref,
+                className: 'w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer dark:bg-neutral-700',
+                type: 'range',
+                value,
+                onChange: handleChange,
+              },
+              rest
+            )
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            'input',
+            __spreadValues(
+              {
+                id,
+                className:
+                  'max-w-[50px] ml-4 text-center rounded-lg h-9 font-bold border-neutral-300 border-[1px] dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300',
+                type: 'text',
+                value,
+                onChange: handleChange,
+              },
+              rest
+            )
+          ),
+        ],
+      }),
+    ],
+  });
+});
+RangeInput.displayName = 'Range Input';
+
+// src/forms/color-input.tsx
+var import_react5 = __toESM(require('react'));
+var import_jsx_runtime7 = require('react/jsx-runtime');
+var ColorInput = import_react5.default.forwardRef((props, ref) => {
+  const _a = props,
+    { id, label, onValueChanged } = _a,
+    rest = __objRest(_a, ['id', 'label', 'onValueChanged']);
+  const [value, setValue] = (0, import_react5.useState)(rest.placeholder || '');
+  const handleChange = (event) => {
+    const { value: value2 } = event.target;
+    setValue(value2);
+    onValueChanged(value2);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)('div', {
+    className: '',
+    children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)('div', {
+        className: 'flex items-center justify-between mb-2',
+        children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)('label', {
+          htmlFor: id,
+          className: 'block font-semibold text-gray-900 dark:text-white',
+          children: label,
+        }),
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)('div', {
+        className: 'flex items-center justify-between',
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+            'input',
+            __spreadValues(
+              {
+                className: 'w-11 h-12 border-none cursor-pointer appearance-none color-input',
+                id,
+                ref,
+                type: 'color',
+                value,
+                onChange: handleChange,
+              },
+              rest
+            )
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+            'input',
+            __spreadValues(
+              {
+                id,
+                className:
+                  'max-w-[120px] text-start p-2 rounded-md h-10 font-bold border-neutral-300 border-[1px] dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300',
+                type: 'text',
+                value,
+                onChange: handleChange,
+              },
+              rest
+            )
+          ),
+        ],
+      }),
+    ],
+  });
+});
+ColorInput.displayName = 'Color Input';
 // Annotate the CommonJS export names for ESM import in node:
 0 &&
   (module.exports = {
     Button,
     Card,
+    ColorInput,
+    RangeInput,
     SelectInput,
     Separator,
     TextInput,

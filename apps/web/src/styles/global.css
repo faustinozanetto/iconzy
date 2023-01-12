@@ -23,8 +23,6 @@ span {
 
 .grid-icon {
   margin: 0px auto;
-  width: 35px;
-  height: 35px;
 }
 
 .grid-icon-wrapper {
@@ -33,4 +31,10 @@ span {
 
 .grid-icon-container {
   @apply absolute items-center flex flex-col top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2;
+}
+
+.virtuoso-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
 }

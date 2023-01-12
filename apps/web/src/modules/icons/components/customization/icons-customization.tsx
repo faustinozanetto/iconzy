@@ -1,12 +1,15 @@
 import useMediaQuery from '@modules/common/hooks/use-media-query';
+import { useIconsContext } from '@modules/icons/context/icons-context';
+import { IconsActionType } from '@modules/icons/context/types';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import theme from 'tailwindcss/defaultTheme';
-import { Separator } from 'ui';
+import { ColorInput, RangeInput, Separator } from 'ui';
 
 const IconsCustomization: React.FC = () => {
   const isSmallDevice = useMediaQuery(`(max-width: ${theme.screens.sm}`);
   const [panelToggled, setPanelToggled] = useState(false);
+  const { state, dispatch } = useIconsContext();
 
   useEffect(() => {
     setPanelToggled(isSmallDevice);
@@ -16,11 +19,34 @@ const IconsCustomization: React.FC = () => {
     <section
       className={clsx(
         panelToggled ? 'hidden' : 'flex flex-col',
-        'w-[250px] overflow-y-auto h-full bg-neutral-50 border-l-neutral-300 border-l-[1px] dark:bg-neutral-800 dark:border-l-neutral-700 p-2'
+        'w-[280px] overflow-y-auto h-full bg-neutral-50 border-l-neutral-300 border-l-[1px] dark:bg-neutral-800 dark:border-l-neutral-700 p-4'
       )}
     >
-      <h3 className="font-semibold text-base">Customize Icons</h3>
+      <h3 className="font-semibold text-lg">Customize Icons</h3>
       <Separator />
+      <div className="flex flex-col space-y-4 mt-2">
+        <RangeInput
+          id="icon-size"
+          label="Size"
+          min={5}
+          max={60}
+          placeholder={String(state.iconCustomization.size)}
+          onValueChanged={(value) => dispatch({ type: IconsActionType.SET_ICON_SIZE, payload: { size: value } })}
+        />
+        <ColorInput
+          id="icon-color"
+          label="Color"
+          placeholder="#000000"
+          onValueChanged={(color) => {
+            dispatch({
+              type: IconsActionType.SET_ICON_COLOR,
+              payload: {
+                color,
+              },
+            });
+          }}
+        />
+      </div>
     </section>
   );
 };

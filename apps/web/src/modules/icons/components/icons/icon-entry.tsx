@@ -1,18 +1,19 @@
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
-import { Icon } from '@modules/icons/typings/editor.typings';
+import { Icon, IconCustomization } from '@modules/icons/typings/icon.typings';
 import React from 'react';
 
 type IconEntryProps = {
   icon: Icon;
+  customization: IconCustomization;
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
-  const { icon } = props;
+  const { icon, customization } = props;
 
   return (
     <div className="grid-icon-wrapper">
       <div className="grid-icon-container">
-        {getSVGSourceIntoComponent(icon.source, 'grid-icon stroke-black dark:stroke-white')}
+        {getSVGSourceIntoComponent(icon.source, customization, 'grid-icon')}
         <span className="text-center mx-auto pt-2 opacity-80">{icon.name}</span>
       </div>
     </div>

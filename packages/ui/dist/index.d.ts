@@ -77,11 +77,37 @@ declare const TextInput: React__default.ForwardRefExoticComponent<
 type SeparatorProps = React__default.HTMLAttributes<HTMLHRElement> & {};
 declare const Separator: React__default.FC<SeparatorProps>;
 
+type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+  label: string;
+  onValueChanged: (value: number) => void;
+};
+declare const RangeInput: React__default.ForwardRefExoticComponent<
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+    label: string;
+    onValueChanged: (value: number) => void;
+  } & React__default.RefAttributes<HTMLInputElement>
+>;
+
+type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+  label: string;
+  onValueChanged: (value: string) => void;
+};
+declare const ColorInput: React__default.ForwardRefExoticComponent<
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+    label: string;
+    onValueChanged: (value: string) => void;
+  } & React__default.RefAttributes<HTMLInputElement>
+>;
+
 export {
   Button,
   ButtonProps,
   Card,
   CardProps,
+  ColorInput,
+  ColorInputProps,
+  RangeInput,
+  RangeInputProps,
   SelectInput,
   SelectInputProps,
   Separator,

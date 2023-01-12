@@ -5,17 +5,27 @@ import { Element } from 'html-react-parser';
 
 import iconPacksData from '@modules/icons/lib/icon-packs.json';
 
-import { Icon, IconPack } from '../typings/editor.typings';
+import { Icon, IconCustomization, IconPack } from '../typings/icon.typings';
 import { ICONS_DIR } from './constants';
 
 const iconsData = iconPacksData as IconPack[];
 
-export const getSVGSourceIntoComponent = (svgSource: string, className?: string) => {
+export const getSVGSourceIntoComponent = (
+  svgSource: string,
+  iconCustomization: IconCustomization,
+  className?: string
+) => {
   return parse(svgSource, {
     replace: (domNode) => {
       const domElement: Element = domNode as Element;
 
-      domElement.attribs = { ...domElement.attribs, className: className || '' };
+      domElement.attribs = {
+        ...domElement.attribs,
+        className: className || '',
+        width: `${iconCustomization.size}`,
+        height: `${iconCustomization.size}`,
+        stroke: `${iconCustomization.color}`,
+      };
 
       return domElement;
     },

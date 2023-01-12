@@ -10,6 +10,11 @@ export type Icon = {
   source: string;
 };
 
+export type IconCustomization = {
+  size: number;
+  color: string;
+};
+
 export type IconPackWithFeatured = {
   metadata: IconPack;
   featuredIcons: Icon[];

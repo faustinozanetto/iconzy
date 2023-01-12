@@ -236,7 +236,7 @@ var SelectInput = import_react2.default.forwardRef((props, ref) => {
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)('label', {
         htmlFor: id,
         className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
-        children: label,
+        children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)('span', { children: label }),
       }),
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
         'select',
@@ -261,6 +261,7 @@ var SelectInput = import_react2.default.forwardRef((props, ref) => {
 SelectInput.displayName = 'Select Input';
 
 // src/forms/text-input.tsx
+var import_clsx3 = __toESM(require('clsx'));
 var import_react4 = __toESM(require('react'));
 
 // src/hooks/use-debounce.ts
@@ -281,9 +282,9 @@ var use_debounce_default = useDebounce;
 var import_jsx_runtime4 = require('react/jsx-runtime');
 var TextInput = import_react4.default.forwardRef((props, ref) => {
   const _a = props,
-    { id, label, onValueChanged } = _a,
-    rest = __objRest(_a, ['id', 'label', 'onValueChanged']);
-  const [value, setValue] = (0, import_react4.useState)(rest.placeholder || '');
+    { id, icon, label, onValueChanged } = _a,
+    rest = __objRest(_a, ['id', 'icon', 'label', 'onValueChanged']);
+  const [value, setValue] = (0, import_react4.useState)('');
   const debouncedValue = use_debounce_default(value, 100);
   const handleChange = (event) => {
     const { value: value2 } = event.target;
@@ -293,12 +294,19 @@ var TextInput = import_react4.default.forwardRef((props, ref) => {
     onValueChanged(value);
   }, [debouncedValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)('div', {
+    className: 'relative',
     children: [
+      icon
+        ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('div', {
+            className: 'absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none',
+            children: icon,
+          })
+        : null,
       label
         ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('label', {
             htmlFor: id,
             className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
-            children: label,
+            children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('span', { children: label }),
           })
         : null,
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
@@ -307,8 +315,10 @@ var TextInput = import_react4.default.forwardRef((props, ref) => {
           {
             id,
             ref,
-            className:
+            className: (0, import_clsx3.default)(
               'bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
+              icon ? 'pl-10' : ''
+            ),
             value,
             onChange: handleChange,
           },
@@ -354,7 +364,7 @@ var RangeInput = import_react5.default.forwardRef((props, ref) => {
         children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)('label', {
           htmlFor: id,
           className: 'block font-semibold text-gray-900 dark:text-white',
-          children: label,
+          children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)('span', { children: label }),
         }),
       }),
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)('div', {

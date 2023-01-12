@@ -14,6 +14,12 @@ export const reducer = (state: IconsState, action: IconsActions): IconsState => 
         icons: action.payload.icons,
       };
     }
+    case IconsActionType.SET_SELECTED_ICON: {
+      return {
+        ...state,
+        selectedIcon: action.payload.icon,
+      };
+    }
     case IconsActionType.SET_ICON_SIZE: {
       return {
         ...state,

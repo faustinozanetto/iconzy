@@ -143,7 +143,7 @@ import { jsx as jsx3, jsxs as jsxs2 } from "react/jsx-runtime";
 var SelectInput = React3.forwardRef((props, ref) => {
   const _a = props, { id, label, children } = _a, rest = __objRest(_a, ["id", "label", "children"]);
   return /* @__PURE__ */ jsxs2("div", { children: [
-    /* @__PURE__ */ jsx3("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: label }),
+    /* @__PURE__ */ jsx3("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx3("span", { children: label }) }),
     /* @__PURE__ */ jsx3(
       "select",
       __spreadProps(__spreadValues({
@@ -159,6 +159,7 @@ var SelectInput = React3.forwardRef((props, ref) => {
 SelectInput.displayName = "Select Input";
 
 // src/forms/text-input.tsx
+import clsx3 from "clsx";
 import React4, { useEffect as useEffect2, useState as useState2 } from "react";
 
 // src/hooks/use-debounce.ts
@@ -178,8 +179,8 @@ var use_debounce_default = useDebounce;
 // src/forms/text-input.tsx
 import { jsx as jsx4, jsxs as jsxs3 } from "react/jsx-runtime";
 var TextInput = React4.forwardRef((props, ref) => {
-  const _a = props, { id, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = useState2(rest.placeholder || "");
+  const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
+  const [value, setValue] = useState2("");
   const debouncedValue = use_debounce_default(value, 100);
   const handleChange = (event) => {
     const { value: value2 } = event.target;
@@ -188,14 +189,18 @@ var TextInput = React4.forwardRef((props, ref) => {
   useEffect2(() => {
     onValueChanged(value);
   }, [debouncedValue]);
-  return /* @__PURE__ */ jsxs3("div", { children: [
-    label ? /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: label }) : null,
+  return /* @__PURE__ */ jsxs3("div", { className: "relative", children: [
+    icon ? /* @__PURE__ */ jsx4("div", { className: "absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none", children: icon }) : null,
+    label ? /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx4("span", { children: label }) }) : null,
     /* @__PURE__ */ jsx4(
       "input",
       __spreadValues({
         id,
         ref,
-        className: "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        className: clsx3(
+          "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+          icon ? "pl-10" : ""
+        ),
         value,
         onChange: handleChange
       }, rest)
@@ -226,7 +231,7 @@ var RangeInput = React5.forwardRef((props, ref) => {
     onValueChanged(value);
   }, [debouncedValue]);
   return /* @__PURE__ */ jsxs4("div", { className: "", children: [
-    /* @__PURE__ */ jsx6("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsx6("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: label }) }),
+    /* @__PURE__ */ jsx6("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsx6("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx6("span", { children: label }) }) }),
     /* @__PURE__ */ jsxs4("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsx6(
         "input",

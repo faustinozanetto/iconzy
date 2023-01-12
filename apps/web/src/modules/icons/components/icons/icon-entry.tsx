@@ -5,25 +5,16 @@ import React from 'react';
 type IconEntryProps = {
   icon: Icon;
   customization: IconCustomization;
+  onIconSelected: (iconElement: JSX.Element) => void;
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
-  const { icon, customization } = props;
+  const { icon, customization, onIconSelected } = props;
 
   const iconSVG: JSX.Element = getSVGSourceIntoComponent(icon.source, customization, 'grid-icon');
-  const iconSVGSource = convertJSXToString(iconSVG);
-
-  const handleSourceCopy = async () => {
-    try {
-      const svgSource: string = iconSVGSource;
-      await navigator.clipboard.writeText(svgSource);
-    } catch (error) {
-      console.error('An error ocurred while trying to copy to cplipboard', error);
-    }
-  };
 
   return (
-    <div className="grid-icon-wrapper" onClick={handleSourceCopy}>
+    <div className="grid-icon-wrapper" onClick={() => onIconSelected(iconSVG)}>
       <div className="grid-icon-container">
         {iconSVG}
         <div className="grid-icon-name">{icon.name}</div>

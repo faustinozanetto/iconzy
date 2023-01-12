@@ -6,7 +6,7 @@ import { getIconPackBySlug, getIconsFromIconPack } from '@modules/icons/lib/icon
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { useEffect } from 'react';
 import { IconsActionType } from '@modules/icons/context/types';
-import IconPackEditor from '@modules/icons/components/editor/icon-pack-editor';
+import IconPackEditor from '@modules/icons/components/editor/icons-pack-editor';
 
 type IconPackPagePageProps = {
   iconPack: IconPackWithAll;

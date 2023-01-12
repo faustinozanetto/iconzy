@@ -11,7 +11,7 @@ export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>
   return (
     <div>
       <label htmlFor={id} className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
-        {label}
+        <span>{label}</span>
       </label>
       <select
         id={id}

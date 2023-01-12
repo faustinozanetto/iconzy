@@ -42,7 +42,12 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
   return (
     <div className="flex flex-col space-y-4">
       <div className="flex items-center space-x-4 p-4 bg-neutral-50 border-b-[1px] border-neutral-200 dark:border-neutral-700 dark:bg-neutral-800">
-        <TextInput id="search-pack" label="Browse by Name" onValueChanged={handleNameFilterChanged} />
+        <TextInput
+          id="search-pack"
+          label="Browse by Name"
+          placeholder="Feather Icons"
+          onValueChanged={handleNameFilterChanged}
+        />
         <SelectInput
           id="sort-pack"
           label="Sort By"

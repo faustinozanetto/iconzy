@@ -25,7 +25,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
     <div className="">
       <div className="flex items-center justify-between">
         <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white">
-          {label}
+          <span>{label}</span>
         </label>
       </div>
       <div className="flex items-center justify-between">

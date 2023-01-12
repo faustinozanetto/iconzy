@@ -25,6 +25,7 @@ const IconsProvider: React.FC<ThemeProviderProps> = (props) => {
   const [state, dispatch] = useReducer(reducer, {
     iconPack: null,
     icons: [],
+    selectedIcon: null,
     iconCustomization: { size: 35, color: '#000', width: 2 },
   });
 

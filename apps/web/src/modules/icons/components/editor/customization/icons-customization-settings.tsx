@@ -3,7 +3,7 @@ import { IconsActionType } from '@modules/icons/context/types';
 import { Separator, RangeInput, ColorInput } from 'ui';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 
-const IconCustomizationSettings: React.FC = () => {
+const IconsCustomizationSettings: React.FC = () => {
   const { state, dispatch } = useIconsContext();
   return (
     <div className="flex flex-col">
@@ -45,4 +45,4 @@ const IconCustomizationSettings: React.FC = () => {
   );
 };
 
-export default IconCustomizationSettings;
+export default IconsCustomizationSettings;

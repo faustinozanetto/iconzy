@@ -11,6 +11,8 @@ export type Icon = {
   source: string;
 };
 
+export type IconWithElement = Icon & { element: JSX.Element };
+
 export type IconCustomization = {
   size: number;
   width: number;

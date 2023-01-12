@@ -1,73 +1,68 @@
-# Turborepo starter
+<h1 align="center">Welcome to my Iconzy</h1>
 
-This is an official Yarn v1 starter turborepo.
+<div align="center">
+  <img src="assets/images/iconzy-showcase.png" />
+  <p>
+    <a href="https://www.npmjs.com/package/iconzy" target="_blank">
+      <img alt="Version" src="https://img.shields.io/npm/v/portfolio.svg">
+    </a>
+    <a href="https://github.com/faustinozanetto/iconzy#readme" target="_blank">
+      <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+    </a>
+    <a href="https://github.com/faustinozanetto/iconzy/graphs/commit-activity" target="_blank">
+      <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+    </a>
+    <a href="https://github.com/faustinozanetto/iconzy/blob/master/LICENSE" target="_blank">
+      <img alt="License: MIT" src="https://img.shields.io/github/license/faustinozanetto/iconzy" />
+    </a>
+    <a href="https://twitter.com/faustinozanetto" target="_blank">
+      <img alt="Twitter: faustinozanetto" src="https://img.shields.io/twitter/follow/faustinozanetto.svg?style=social" />
+    </a>
+  </p>
+</div>
 
-## What's inside?
+## ✨ About
 
-This turborepo uses [Yarn](https://classic.yarnpkg.com/) as a package manager. It includes the following packages/apps:
+Iconzy is a personal project for customizing and browsing free icon packs for your personla projects.
 
-### Apps and Packages
+## 🚀 Installation and Usage
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-yarn run build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-yarn run dev
+```sh
+git clone https://github.com/faustinozanetto/iconzy # First clone the repo in your folder of choice.
+cd iconzy # Move into the recently cloned repo.
+yarn install # Install using yarn or npm.
+yarn dev # Boot up the project using the following command.
 ```
 
-### Remote Caching
+## 🛠️ Technologies
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+The project is being developed with the latest technlogoies used in the industry like:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+- TurboRepo
+- NextJS
+- Typescript
+- TailwindCSS
+- Husky
+- ESLint
+- Prettier
+- React
+- And more :)
 
-```
-cd my-turborepo
-npx turbo login
-```
+## 🎛️ Project Structure
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+The project is a structured in a mono repo so it consists of multiple separated projects. It has two main folders called `apps` and `packages` where the core tools are built.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
+- `apps/web`: the main [Next.js](https://nextjs.org/) app containing the frontend
+- `packages/tsconfig`: the main tsconfig has some files that describe how typescript should work for each app
+- `packages/tailwind-config`: the base config for the different uses of tailwindcss across the project
+- `packages/eslint-config-custom`: the custom eslint configuration for the project
+- `packages/ui`: a React component library containing common UI components like Buttons, Inputs and more
 
-```
-npx turbo link
-```
+## 👤 Author
 
-## Useful Links
+**Faustino Zanetto**
 
-Learn more about the power of Turborepo:
-
-- [Pipelines](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- Website: [@faustinozanetto](https://faustinozanetto.vercel.app)
+- Twitter: [@faustinozanetto](https://twitter.com/faustinozanetto)
+- Github: [@faustinozanetto](https://github.com/faustinozanetto)
+- LinkedIn: [@faustinozanetto](https://linkedin.com/in/faustino-zanetto-4294a3213)

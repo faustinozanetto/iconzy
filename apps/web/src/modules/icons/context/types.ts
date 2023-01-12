@@ -22,6 +22,7 @@ export enum IconsActionType {
   SET_ICONS,
   SET_ICON_SIZE,
   SET_ICON_COLOR,
+  SET_ICON_WIDTH,
 }
 
 type IconsPayload = {
@@ -36,6 +37,9 @@ type IconsPayload = {
   };
   [IconsActionType.SET_ICON_COLOR]: {
     color: string;
+  };
+  [IconsActionType.SET_ICON_WIDTH]: {
+    width: number;
   };
 };
 

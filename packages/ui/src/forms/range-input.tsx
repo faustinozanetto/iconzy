@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import useDebounce from '../hooks/use-debounce';
 
 export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
@@ -8,13 +9,17 @@ export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
 export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((props, ref) => {
   const { id, label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<number>(Number(rest.placeholder) || 0);
+  const debouncedValue = useDebounce<number>(value, 100);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // @ts-ignore
     const { value } = event.target as HTMLInputElement;
     setValue(value);
-    onValueChanged(value);
   };
+
+  useEffect(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
 
   return (
     <div className="">

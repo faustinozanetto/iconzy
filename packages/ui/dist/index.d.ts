@@ -65,12 +65,14 @@ declare const SelectInput: React__default.ForwardRefExoticComponent<
   } & React__default.RefAttributes<HTMLSelectElement>
 >;
 
-type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName'> & {
+type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
+  onValueChanged: (value: string) => void;
 };
 declare const TextInput: React__default.ForwardRefExoticComponent<
-  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName'> & {
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
     label: string;
+    onValueChanged: (value: string) => void;
   } & React__default.RefAttributes<HTMLInputElement>
 >;
 

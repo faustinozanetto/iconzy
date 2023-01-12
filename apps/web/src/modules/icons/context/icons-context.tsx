@@ -24,7 +24,7 @@ const IconsProvider: React.FC<ThemeProviderProps> = (props) => {
   const [state, dispatch] = useReducer(reducer, {
     iconPack: null,
     icons: [],
-    iconCustomization: { size: 35, color: '#000' },
+    iconCustomization: { size: 35, color: '#000', width: 2 },
   });
 
   return <IconsContext.Provider value={{ state, dispatch }}>{children}</IconsContext.Provider>;

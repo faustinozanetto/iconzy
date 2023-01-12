@@ -12,6 +12,7 @@ export type Icon = {
 
 export type IconCustomization = {
   size: number;
+  width: number;
   color: string;
 };
 

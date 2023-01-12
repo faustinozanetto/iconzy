@@ -33,6 +33,15 @@ const IconsCustomization: React.FC = () => {
           placeholder={String(state.iconCustomization.size)}
           onValueChanged={(value) => dispatch({ type: IconsActionType.SET_ICON_SIZE, payload: { size: value } })}
         />
+        <RangeInput
+          id="stroke-width"
+          label="Width"
+          min={0.1}
+          max={3}
+          step={0.01}
+          placeholder={String(state.iconCustomization.width)}
+          onValueChanged={(value) => dispatch({ type: IconsActionType.SET_ICON_WIDTH, payload: { width: value } })}
+        />
         <ColorInput
           id="icon-color"
           label="Color"

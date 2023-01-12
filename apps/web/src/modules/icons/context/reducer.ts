@@ -32,5 +32,14 @@ export const reducer = (state: IconsState, action: IconsActions): IconsState => 
         },
       };
     }
+    case IconsActionType.SET_ICON_WIDTH: {
+      return {
+        ...state,
+        iconCustomization: {
+          ...state.iconCustomization,
+          width: action.payload.width,
+        },
+      };
+    }
   }
 };

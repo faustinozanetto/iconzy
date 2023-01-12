@@ -261,12 +261,37 @@ var SelectInput = import_react2.default.forwardRef((props, ref) => {
 SelectInput.displayName = 'Select Input';
 
 // src/forms/text-input.tsx
-var import_react3 = __toESM(require('react'));
+var import_react4 = __toESM(require('react'));
+
+// src/hooks/use-debounce.ts
+var import_react3 = require('react');
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = (0, import_react3.useState)(value);
+  (0, import_react3.useEffect)(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay || 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [value, delay]);
+  return debouncedValue;
+}
+var use_debounce_default = useDebounce;
+
+// src/forms/text-input.tsx
 var import_jsx_runtime4 = require('react/jsx-runtime');
-var TextInput = import_react3.default.forwardRef((props, ref) => {
+var TextInput = import_react4.default.forwardRef((props, ref) => {
   const _a = props,
-    { id, label } = _a,
-    rest = __objRest(_a, ['id', 'label']);
+    { id, label, onValueChanged } = _a,
+    rest = __objRest(_a, ['id', 'label', 'onValueChanged']);
+  const [value, setValue] = (0, import_react4.useState)(rest.placeholder || '');
+  const debouncedValue = use_debounce_default(value, 100);
+  const handleChange = (event) => {
+    const { value: value2 } = event.target;
+    setValue(value2);
+  };
+  (0, import_react4.useEffect)(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)('div', {
     children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('label', {
@@ -282,6 +307,8 @@ var TextInput = import_react3.default.forwardRef((props, ref) => {
             ref,
             className:
               'bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
+            value,
+            onChange: handleChange,
           },
           rest
         )
@@ -302,18 +329,21 @@ var Separator = (props) => {
 };
 
 // src/forms/range-input.tsx
-var import_react4 = __toESM(require('react'));
+var import_react5 = __toESM(require('react'));
 var import_jsx_runtime6 = require('react/jsx-runtime');
-var RangeInput = import_react4.default.forwardRef((props, ref) => {
+var RangeInput = import_react5.default.forwardRef((props, ref) => {
   const _a = props,
     { id, label, onValueChanged } = _a,
     rest = __objRest(_a, ['id', 'label', 'onValueChanged']);
-  const [value, setValue] = (0, import_react4.useState)(Number(rest.placeholder) || 0);
+  const [value, setValue] = (0, import_react5.useState)(Number(rest.placeholder) || 0);
+  const debouncedValue = use_debounce_default(value, 100);
   const handleChange = (event) => {
     const { value: value2 } = event.target;
     setValue(value2);
-    onValueChanged(value2);
   };
+  (0, import_react5.useEffect)(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)('div', {
     className: '',
     children: [
@@ -364,18 +394,21 @@ var RangeInput = import_react4.default.forwardRef((props, ref) => {
 RangeInput.displayName = 'Range Input';
 
 // src/forms/color-input.tsx
-var import_react5 = __toESM(require('react'));
+var import_react6 = __toESM(require('react'));
 var import_jsx_runtime7 = require('react/jsx-runtime');
-var ColorInput = import_react5.default.forwardRef((props, ref) => {
+var ColorInput = import_react6.default.forwardRef((props, ref) => {
   const _a = props,
     { id, label, onValueChanged } = _a,
     rest = __objRest(_a, ['id', 'label', 'onValueChanged']);
-  const [value, setValue] = (0, import_react5.useState)(rest.placeholder || '');
+  const [value, setValue] = (0, import_react6.useState)(rest.placeholder || '');
+  const debouncedValue = use_debounce_default(value, 100);
   const handleChange = (event) => {
     const { value: value2 } = event.target;
     setValue(value2);
-    onValueChanged(value2);
   };
+  (0, import_react6.useEffect)(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)('div', {
     className: '',
     children: [

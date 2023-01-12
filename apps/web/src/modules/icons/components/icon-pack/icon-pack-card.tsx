@@ -24,6 +24,7 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
               {
                 size: 35,
                 color: '#000',
+                width: 2,
               },
               'stroke-black dark:stroke-white'
             )

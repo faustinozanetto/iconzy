@@ -159,10 +159,35 @@ var SelectInput = React3.forwardRef((props, ref) => {
 SelectInput.displayName = "Select Input";
 
 // src/forms/text-input.tsx
-import React4 from "react";
+import React4, { useEffect as useEffect2, useState as useState2 } from "react";
+
+// src/hooks/use-debounce.ts
+import { useEffect, useState } from "react";
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay || 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [value, delay]);
+  return debouncedValue;
+}
+var use_debounce_default = useDebounce;
+
+// src/forms/text-input.tsx
 import { jsx as jsx4, jsxs as jsxs3 } from "react/jsx-runtime";
 var TextInput = React4.forwardRef((props, ref) => {
-  const _a = props, { id, label } = _a, rest = __objRest(_a, ["id", "label"]);
+  const _a = props, { id, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
+  const [value, setValue] = useState2(rest.placeholder || "");
+  const debouncedValue = use_debounce_default(value, 100);
+  const handleChange = (event) => {
+    const { value: value2 } = event.target;
+    setValue(value2);
+  };
+  useEffect2(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
   return /* @__PURE__ */ jsxs3("div", { children: [
     /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: label }),
     /* @__PURE__ */ jsx4(
@@ -170,7 +195,9 @@ var TextInput = React4.forwardRef((props, ref) => {
       __spreadValues({
         id,
         ref,
-        className: "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+        className: "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        value,
+        onChange: handleChange
       }, rest)
     )
   ] });
@@ -185,16 +212,19 @@ var Separator = (props) => {
 };
 
 // src/forms/range-input.tsx
-import React5, { useState } from "react";
+import React5, { useEffect as useEffect3, useState as useState3 } from "react";
 import { jsx as jsx6, jsxs as jsxs4 } from "react/jsx-runtime";
 var RangeInput = React5.forwardRef((props, ref) => {
   const _a = props, { id, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = useState(Number(rest.placeholder) || 0);
+  const [value, setValue] = useState3(Number(rest.placeholder) || 0);
+  const debouncedValue = use_debounce_default(value, 100);
   const handleChange = (event) => {
     const { value: value2 } = event.target;
     setValue(value2);
-    onValueChanged(value2);
   };
+  useEffect3(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
   return /* @__PURE__ */ jsxs4("div", { className: "", children: [
     /* @__PURE__ */ jsx6("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsx6("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: label }) }),
     /* @__PURE__ */ jsxs4("div", { className: "flex items-center justify-between", children: [
@@ -225,16 +255,19 @@ var RangeInput = React5.forwardRef((props, ref) => {
 RangeInput.displayName = "Range Input";
 
 // src/forms/color-input.tsx
-import React6, { useState as useState2 } from "react";
+import React6, { useEffect as useEffect4, useState as useState4 } from "react";
 import { jsx as jsx7, jsxs as jsxs5 } from "react/jsx-runtime";
 var ColorInput = React6.forwardRef((props, ref) => {
   const _a = props, { id, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = useState2(rest.placeholder || "");
+  const [value, setValue] = useState4(rest.placeholder || "");
+  const debouncedValue = use_debounce_default(value, 100);
   const handleChange = (event) => {
     const { value: value2 } = event.target;
     setValue(value2);
-    onValueChanged(value2);
   };
+  useEffect4(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
   return /* @__PURE__ */ jsxs5("div", { className: "", children: [
     /* @__PURE__ */ jsx7("div", { className: "flex items-center justify-between mb-2", children: /* @__PURE__ */ jsx7("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: label }) }),
     /* @__PURE__ */ jsxs5("div", { className: "flex items-center justify-between", children: [

@@ -25,6 +25,7 @@ export const getSVGSourceIntoComponent = (
         width: `${iconCustomization.size}`,
         height: `${iconCustomization.size}`,
         stroke: `${iconCustomization.color}`,
+        strokeWidth: `${iconCustomization.width}`,
       };
 
       return domElement;

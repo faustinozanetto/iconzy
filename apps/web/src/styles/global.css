@@ -26,11 +26,11 @@ span {
 }
 
 .grid-icon-wrapper {
-  @apply relative rounded-md cursor-pointer bg-neutral-50 border-neutral-300 border-[1px] dark:bg-neutral-800 dark:border-neutral-700 pt-[100%] overflow-hidden;
+  @apply rounded-md cursor-pointer bg-neutral-50 border-neutral-300 border-[1px] dark:bg-neutral-800 dark:border-neutral-700 h-[150px] overflow-hidden hover:border-primary-500 hover:border-2 dark:hover:border-primary-200;
 }
 
 .grid-icon-container {
-  @apply absolute items-center flex flex-col top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2;
+  @apply flex flex-col items-center h-full justify-center;
 }
 
 .virtuoso-grid-list {

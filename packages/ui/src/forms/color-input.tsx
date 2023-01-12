@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import useDebounce from '../hooks/use-debounce';
 
 export type ColorInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
@@ -8,13 +9,17 @@ export type ColorInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
 export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((props, ref) => {
   const { id, label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<string>(rest.placeholder || '');
+  const debouncedValue = useDebounce<string>(value, 100);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // @ts-ignore
     const { value } = event.target as HTMLInputElement;
     setValue(value);
-    onValueChanged(value);
   };
+
+  useEffect(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
 
   return (
     <div className="">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from '..';
 import useDebounce from '../hooks/use-debounce';
 
 export type ColorInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
@@ -23,10 +24,20 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
 
   return (
     <div className="">
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center justify-between">
         <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white">
-          {label}
+          <span>{label}</span>
         </label>
+        <Button
+          size="xs"
+          colorScheme="red"
+          variant="ghost"
+          onClick={() => {
+            setValue(rest.placeholder || '#000000');
+          }}
+        >
+          Reset
+        </Button>
       </div>
       <div className="flex items-center justify-between">
         <input

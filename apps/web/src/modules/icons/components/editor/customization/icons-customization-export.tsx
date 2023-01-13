@@ -39,10 +39,10 @@ const IconsCustomizationExport: React.FC = () => {
       <h3 className="font-semibold text-lg">Export Settings</h3>
       <Separator />
       <div className="flex flex-row space-x-2 mt-2">
-        <Button className="w-full" onClick={handleExport}>
+        <Button className="w-full" colorScheme="sky" onClick={handleExport}>
           Export
         </Button>
-        <Button className="w-full" onClick={handleCopy}>
+        <Button className="w-full" colorScheme="rose" onClick={handleCopy}>
           Copy
         </Button>
       </div>

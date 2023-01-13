@@ -1,5 +1,4 @@
 import path from 'path';
-
 import * as fs from 'fs';
 import * as ReactDOMServer from 'react-dom/server';
 
@@ -45,13 +44,26 @@ export const getSVGSourceIntoComponent = (
   return parsed;
 };
 
+const removeAttributes = (element: string, attributes: string[]): string => {
+  const parser = new DOMParser();
+  const svgDoc = parser.parseFromString(element, 'image/svg+xml');
+  const svgElement = svgDoc.documentElement;
+  attributes.forEach((attribute) => {
+    svgElement.removeAttribute(attribute);
+  });
+  return new XMLSerializer().serializeToString(svgDoc);
+};
+
 /**
  * Function that converts a JSX Element to its source as string.
  * @param element The element to convert.
  * @returns The string containing the source.
  */
 export const convertJSXToString = (element: JSX.Element): string => {
-  return ReactDOMServer.renderToString(element);
+  const source = ReactDOMServer.renderToStaticMarkup(element);
+  const cleaned = removeAttributes(source, ['class']);
+
+  return cleaned;
 };
 
 /**

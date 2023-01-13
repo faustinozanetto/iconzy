@@ -1,7 +1,8 @@
-import Link, { LinkProps } from 'next/link';
+import Link from 'next/link';
 import React from 'react';
 
-type NavbarLinkProps = LinkProps & {
+type NavbarLinkProps = {
+  href: string;
   children: React.ReactNode;
 };
 

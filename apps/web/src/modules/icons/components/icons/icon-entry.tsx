@@ -1,23 +1,19 @@
-import { useIconsContext } from '@modules/icons/context/icons-context';
-import { convertJSXToString, getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
-import { Icon, IconCustomization } from '@modules/icons/typings/icon.typings';
+import React from 'react';
 import clsx from 'clsx';
-import React, { memo } from 'react';
+
+import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import { IconWithCustomization } from '@modules/icons/typings/icon.typings';
 
 type IconEntryProps = {
-  icon: Icon;
-  customization: IconCustomization;
-
+  icon: IconWithCustomization;
+  isSelected: boolean;
   onIconSelected: (iconElement: JSX.Element) => void;
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
-  const { icon, customization, onIconSelected } = props;
-  const { state } = useIconsContext();
+  const { icon, isSelected, onIconSelected } = props;
 
-  const iconSVG: JSX.Element = getSVGSourceIntoComponent(icon.source, customization, 'grid-icon');
-
-  const isSelected = state.selectedIcon && state.selectedIcon.name === icon.name;
+  const iconSVG: JSX.Element = getSVGSourceIntoComponent(icon.source, icon.customization, 'grid-icon');
 
   return (
     <div
@@ -35,4 +31,4 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
   );
 };
 
-export default memo(IconEntry);
+export default IconEntry;

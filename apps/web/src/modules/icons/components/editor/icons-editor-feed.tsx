@@ -1,9 +1,23 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { TextInput } from 'ui';
+
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { IconsActionType } from '@modules/icons/context/types';
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
-import React, { useEffect, useMemo, useState } from 'react';
-import { TextInput } from 'ui';
-import IconEntry from '../icons/icon-entry';
+
+const LoadingIcon = () => {
+  return (
+    <div className="flex items-center justify-center rounded-md bg-neutral-50 border-neutral-300 border-[2px] dark:bg-neutral-800 dark:border-neutral-700 h-[150px] font-bold text-xl text-neutral-600 dark:text-neutral-200">
+      Loading
+    </div>
+  );
+};
+
+const IconEntry = dynamic(() => import('../icons/icon-entry'), {
+  ssr: false,
+  loading: () => <LoadingIcon />,
+});
 
 const IconsEditorFeed: React.FC = () => {
   const { state, dispatch } = useIconsContext();
@@ -32,7 +46,7 @@ const IconsEditorFeed: React.FC = () => {
     <div className="flex flex-col w-full">
       <div className="flex justify-between items-center mb-4 p-3.5 border-b-neutral-300 border-b-[1px] dark:bg-neutral-800 dark:border-b-neutral-700">
         <h2 className="font-medium text-xl">
-          Browsing <span className="font-bold text-primary-600 dark:text-primary-300">{filteredIcons.length} </span>
+          Browsing <span className="font-bold text-primary-600 dark:text-primary-300">{filteredIcons.length}</span>{' '}
           icons
         </h2>
         <TextInput
@@ -72,8 +86,8 @@ const IconsEditorFeed: React.FC = () => {
             return (
               <IconEntry
                 key={`icon-${index}`}
-                icon={icon}
-                customization={state.iconCustomization}
+                icon={{ ...icon, customization: state.iconCustomization }}
+                isSelected={state.selectedIcon !== null && state.selectedIcon.name === icon.name}
                 onIconSelected={(iconElement: JSX.Element) => {
                   handleIconSelected({ ...icon, element: iconElement });
                 }}

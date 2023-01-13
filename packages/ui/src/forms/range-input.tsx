@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from '../button/button';
 import useDebounce from '../hooks/use-debounce';
 
 export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
@@ -22,11 +23,21 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
   }, [debouncedValue]);
 
   return (
-    <div className="">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
         <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white">
           <span>{label}</span>
         </label>
+        <Button
+          size="xs"
+          colorScheme="red"
+          variant="ghost"
+          onClick={() => {
+            setValue(Number(rest.placeholder) || 0);
+          }}
+        >
+          Reset
+        </Button>
       </div>
       <div className="flex items-center justify-between">
         <input

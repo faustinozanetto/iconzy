@@ -13,6 +13,8 @@ export type Icon = {
 
 export type IconWithElement = Icon & { element: JSX.Element };
 
+export type IconWithCustomization = Icon & { customization: IconCustomization };
+
 export type IconCustomization = {
   size: number;
   width: number;

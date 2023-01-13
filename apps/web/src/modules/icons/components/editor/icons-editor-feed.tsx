@@ -5,6 +5,7 @@ import { TextInput } from 'ui';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { IconsActionType } from '@modules/icons/context/types';
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
+import { VirtuosoGrid } from 'react-virtuoso';
 
 const LoadingIcon = () => {
   return (
@@ -19,7 +20,13 @@ const IconEntry = dynamic(() => import('../icons/icon-entry'), {
   loading: () => <LoadingIcon />,
 });
 
-const IconsEditorFeed: React.FC = () => {
+interface Column {
+  key: string;
+  name: string;
+  width: number;
+}
+
+const IconsEditorFeed: React.FC<{ columns: Column[] }> = ({ columns }) => {
   const { state, dispatch } = useIconsContext();
   const [filter, setFilter] = useState('');
   const [iconsLoaded, setIconsLoaded] = useState(false);
@@ -33,14 +40,14 @@ const IconsEditorFeed: React.FC = () => {
     });
   };
 
-  useEffect(() => {
-    setIconsLoaded(state.icons.length ? true : false);
-  }, [state.icons]);
-
   const filteredIcons = useMemo(() => {
     if (filter === '') return state.icons;
     return state.icons.filter((icon) => icon.name.includes(filter));
   }, [filter, state.icons]);
+
+  useEffect(() => {
+    setIconsLoaded(state.icons.length ? true : false);
+  }, [state.icons]);
 
   return (
     <div className="flex flex-col w-full">
@@ -75,29 +82,23 @@ const IconsEditorFeed: React.FC = () => {
           onValueChanged={setFilter}
         />
       </div>
-      <div
-        className="grid gap-4 px-4 pb-4 overflow-y-auto w-full sm:ml-auto"
-        style={{
-          gridTemplateColumns: 'repeat(auto-fill, minmax(135px, 1fr))',
+      <VirtuosoGrid
+        style={{ height: '100%' }}
+        totalCount={filteredIcons.length}
+        overscan={10}
+        data={filteredIcons}
+        itemContent={(index, icon) => {
+          return (
+            <IconEntry
+              icon={{ ...icon, customization: state.iconCustomization }}
+              isSelected={state.selectedIcon !== null && state.selectedIcon.name === icon.name}
+              onIconSelected={(iconElement: JSX.Element) => {
+                handleIconSelected({ ...icon, element: iconElement });
+              }}
+            />
+          );
         }}
-      >
-        {iconsLoaded ? (
-          filteredIcons.map((icon, index) => {
-            return (
-              <IconEntry
-                key={`icon-${index}`}
-                icon={{ ...icon, customization: state.iconCustomization }}
-                isSelected={state.selectedIcon !== null && state.selectedIcon.name === icon.name}
-                onIconSelected={(iconElement: JSX.Element) => {
-                  handleIconSelected({ ...icon, element: iconElement });
-                }}
-              />
-            );
-          })
-        ) : (
-          <span>loading</span>
-        )}
-      </div>
+      />
     </div>
   );
 };

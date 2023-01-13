@@ -13,7 +13,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = (props) => {
   const { children, headProps } = props;
 
   return (
-    <div className="flex min-h-screen flex-col overflow-hidden subpixel-antialiased transition-all">
+    <div className="flex min-h-screen flex-col overflow-hidden subpixel-antialiased">
       {/* HEAD */}
       <BaseLayoutHead {...headProps} />
 

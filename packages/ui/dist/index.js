@@ -550,7 +550,7 @@ var Button = React.forwardRef((props, ref) => {
           ref,
           type: 'button',
           className: (0, import_clsx.default)(
-            `inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none focus:ring-4`,
+            `inline-flex items-center justify-center rounded-lg font-medium focus:outline-none focus:ring-4`,
             getButtonSizes(),
             getButtonVariants(),
             rest.className

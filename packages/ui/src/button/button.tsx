@@ -222,7 +222,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
       ref={ref}
       type="button"
       className={clsx(
-        `inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none focus:ring-4`,
+        `inline-flex items-center justify-center rounded-lg font-medium focus:outline-none focus:ring-4`,
         getButtonSizes(),
         getButtonVariants(),
         rest.className

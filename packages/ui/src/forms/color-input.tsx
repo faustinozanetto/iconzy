@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '..';
 import useDebounce from '../hooks/use-debounce';
+import { InputWrapper } from './input-wrapper';
 
 export type ColorInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
@@ -8,7 +9,7 @@ export type ColorInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
 };
 
 export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((props, ref) => {
-  const { id, label, onValueChanged, ...rest } = props;
+  const { id = 'default-id', label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<string>(rest.placeholder || '');
   const debouncedValue = useDebounce<string>(value, 100);
 
@@ -23,22 +24,13 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
   }, [debouncedValue]);
 
   return (
-    <div className="">
-      <div className="flex items-center justify-between">
-        <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white">
-          <span>{label}</span>
-        </label>
-        <Button
-          size="xs"
-          colorScheme="red"
-          variant="ghost"
-          onClick={() => {
-            setValue(rest.placeholder || '#000000');
-          }}
-        >
-          Reset
-        </Button>
-      </div>
+    <InputWrapper
+      id={id}
+      label={label}
+      onInputReseted={() => {
+        setValue(rest.placeholder || '#a781ee');
+      }}
+    >
       <div className="flex items-center justify-between">
         <input
           className="w-11 h-12 border-none cursor-pointer appearance-none color-input"
@@ -59,7 +51,7 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
           {...rest}
         />
       </div>
-    </div>
+    </InputWrapper>
   );
 });
 ColorInput.displayName = 'Color Input';

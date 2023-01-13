@@ -8,6 +8,6 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "target": "es6"
+    "target": "ES2015"
   }
 }

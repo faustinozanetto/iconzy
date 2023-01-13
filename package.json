@@ -16,8 +16,8 @@
   "devDependencies": {
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
-    "@commitlint/cli": "^17.4.1",
-    "@commitlint/config-conventional": "^17.4.0",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "lint-staged": "^13.1.0",
     "prettier": "latest",
     "turbo": "latest"

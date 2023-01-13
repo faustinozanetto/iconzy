@@ -281,6 +281,7 @@ declare const defaultColors: {
 };
 
 type ButtonVariants = 'outline' | 'solid' | 'ghost';
+type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg';
 type ColorSchemes = keyof typeof defaultColors;
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: React.ReactNode;
@@ -289,7 +290,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Optional: Right icon of the button. */
   rightIcon?: JSX.Element;
   /** Optional: Size of the button, defaults to md. */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: ButtonSizes;
   /** Optional: Variant of the button, defaults to solid. */
   variant?: ButtonVariants;
   /** Optional: Color scheme of the button, defaults to primary. */
@@ -303,7 +304,7 @@ declare const Button: React.ForwardRefExoticComponent<
     /** Optional: Right icon of the button. */
     rightIcon?: JSX.Element | undefined;
     /** Optional: Size of the button, defaults to md. */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | undefined;
+    size?: ButtonSizes | undefined;
     /** Optional: Variant of the button, defaults to solid. */
     variant?: ButtonVariants | undefined;
     /** Optional: Color scheme of the button, defaults to primary. */
@@ -380,7 +381,7 @@ type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
   onValueChanged: (value: number) => void;
 };
 declare const RangeInput: React__default.ForwardRefExoticComponent<
-  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label: string;
     onValueChanged: (value: number) => void;
   } & React__default.RefAttributes<HTMLInputElement>
@@ -391,7 +392,7 @@ type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
   onValueChanged: (value: string) => void;
 };
 declare const ColorInput: React__default.ForwardRefExoticComponent<
-  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+  Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label: string;
     onValueChanged: (value: string) => void;
   } & React__default.RefAttributes<HTMLInputElement>
@@ -400,10 +401,13 @@ declare const ColorInput: React__default.ForwardRefExoticComponent<
 export {
   Button,
   ButtonProps,
+  ButtonSizes,
+  ButtonVariants,
   Card,
   CardProps,
   ColorInput,
   ColorInputProps,
+  ColorSchemes,
   RangeInput,
   RangeInputProps,
   SelectInput,
@@ -412,4 +416,5 @@ export {
   SeparatorProps,
   TextInput,
   TextInputInputProps,
+  defaultColors,
 };

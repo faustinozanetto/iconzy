@@ -44,7 +44,7 @@ const IconsEditorFeed: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="flex justify-between items-center mb-4 p-3.5 border-b-neutral-300 border-b-[1px] dark:bg-neutral-800 dark:border-b-neutral-700">
+      <div className="flex justify-between items-center mb-4 p-4 border-b-neutral-300 border-b-[1px] dark:bg-neutral-800 dark:border-b-neutral-700">
         <h2 className="font-medium text-xl">
           Browsing <span className="font-bold text-primary-600 dark:text-primary-300">{filteredIcons.length}</span>{' '}
           icons

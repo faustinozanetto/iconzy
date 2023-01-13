@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '../button/button';
 import useDebounce from '../hooks/use-debounce';
+import { InputWrapper } from './input-wrapper';
 
 export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
@@ -8,7 +8,7 @@ export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
 };
 
 export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((props, ref) => {
-  const { id, label, onValueChanged, ...rest } = props;
+  const { id = 'default-id', label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<number>(Number(rest.placeholder) || 0);
   const debouncedValue = useDebounce<number>(value, 100);
 
@@ -23,22 +23,13 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
   }, [debouncedValue]);
 
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between">
-        <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white">
-          <span>{label}</span>
-        </label>
-        <Button
-          size="xs"
-          colorScheme="red"
-          variant="ghost"
-          onClick={() => {
-            setValue(Number(rest.placeholder) || 0);
-          }}
-        >
-          Reset
-        </Button>
-      </div>
+    <InputWrapper
+      id={id}
+      label={label}
+      onInputReseted={() => {
+        setValue(Number(rest.placeholder) || 0);
+      }}
+    >
       <div className="flex items-center justify-between">
         <input
           id={id}
@@ -58,7 +49,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
           {...rest}
         />
       </div>
-    </div>
+    </InputWrapper>
   );
 });
 RangeInput.displayName = 'Range Input';

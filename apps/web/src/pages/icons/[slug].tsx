@@ -1,12 +1,13 @@
 import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import iconPacks from '@modules/icons/lib/icon-packs.json';
-import { IconPack, IconPackWithAll } from '@modules/icons/typings/icon.typings';
-import { getIconPackBySlug, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
+import { IconPackWithAll } from '@modules/icons/typings/icon.typings';
+import { getIconPackByName, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { useEffect } from 'react';
 import { IconsActionType } from '@modules/icons/context/types';
 import IconPackEditor from '@modules/icons/components/editor/icons-pack-editor';
+
+import { ICONS, IconPackRaw } from 'icons-fetching';
 
 type IconPackPagePageProps = {
   iconPack: IconPackWithAll;
@@ -36,8 +37,8 @@ const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
       headProps={{
         title: `Browsing ${iconPack.metadata.name} | Iconozen`,
         description: 'Iconozen is a page for downloading and customizing svg icons for your projects.',
-        url: `https://iconzy.vercel.app/icons/${iconPack.metadata.slug}`,
-        canonicalUrl: `https://iconzy.vercel.app/icons/${iconPack.metadata.slug}`,
+        url: `https://iconzy.vercel.app/icons/${iconPack.metadata.name}`,
+        canonicalUrl: `https://iconzy.vercel.app/icons/${iconPack.metadata.name}`,
       }}
     >
       <IconPackEditor />
@@ -46,10 +47,10 @@ const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = (iconPacks as IconPack[]).map((pack) => {
+  const paths = (ICONS as IconPackRaw[]).map((pack) => {
     return {
       params: {
-        slug: pack.slug,
+        slug: pack.name,
       },
     };
   });
@@ -63,7 +64,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps: GetStaticProps = (context) => {
   const slug: string = context?.params?.slug as string;
   try {
-    const metadata = getIconPackBySlug(slug);
+    const metadata = getIconPackByName(slug);
     const icons = getIconsFromIconPack(metadata);
     const iconPack: IconPackWithAll = { metadata, icons };
     return {

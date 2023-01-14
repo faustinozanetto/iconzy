@@ -46,9 +46,7 @@ const IconsFeed: React.FC = () => {
     updateFilter({ property: 'name', value, enabled: true });
   };
 
-  const handleSortChanged = (value: keyof Icon, criteria: 'asc' | 'desc') => {
-    console.log({ value, criteria });
-
+  const handleSortChanged = (value: keyof Icon, criteria: 'asc' | 'des') => {
     updateSort({ property: value, ascending: criteria === 'asc' });
   };
 

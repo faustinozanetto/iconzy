@@ -743,50 +743,15 @@ ColorInput.displayName = "Color Input";
 import { useRef, useState as useState6 } from "react";
 import { jsx as jsx9, jsxs as jsxs7 } from "react/jsx-runtime";
 var SelectInputSort = (props) => {
-  const selectInputRef = useRef(null);
   const _a = props, { id, label, children, initialSortCriteria, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "children", "initialSortCriteria", "onValueChanged"]);
+  const selectInputRef = useRef(null);
   const [sortCriteria, setSortCriteria] = useState6(initialSortCriteria);
   const handleSortCriteria = () => {
-    setSortCriteria((prev) => prev === "asc" ? "desc" : "asc");
+    setSortCriteria((prev) => prev === "asc" ? "des" : "asc");
     if (selectInputRef.current) {
       const selectValue = selectInputRef.current.value;
       handleSelectChanged(selectValue);
     }
-  };
-  const renderButtonIcon = () => {
-    if (sortCriteria === "asc")
-      return /* @__PURE__ */ jsxs7(
-        "svg",
-        {
-          xmlns: "http://www.w3.org/2000/svg",
-          className: "stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4",
-          strokeLinejoin: "round",
-          strokeLinecap: "round",
-          strokeWidth: "2",
-          fill: "none",
-          viewBox: "0 0 24 24",
-          children: [
-            /* @__PURE__ */ jsx9("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-            /* @__PURE__ */ jsx9("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
-          ]
-        }
-      );
-    return /* @__PURE__ */ jsxs7(
-      "svg",
-      {
-        xmlns: "http://www.w3.org/2000/svg",
-        className: "stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4",
-        strokeLinejoin: "round",
-        strokeLinecap: "round",
-        strokeWidth: "2",
-        fill: "none",
-        viewBox: "0 0 24 24",
-        children: [
-          /* @__PURE__ */ jsx9("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-          /* @__PURE__ */ jsx9("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
-        ]
-      }
-    );
   };
   const handleSelectChanged = (value) => {
     onValueChanged(value, sortCriteria);
@@ -815,7 +780,37 @@ var SelectInputSort = (props) => {
           "aria-label": "Change Criteria",
           colorScheme: "stone",
           onClick: handleSortCriteria,
-          children: renderButtonIcon()
+          children: sortCriteria === "asc" ? /* @__PURE__ */ jsxs7(
+            "svg",
+            {
+              xmlns: "http://www.w3.org/2000/svg",
+              className: "stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4",
+              strokeLinejoin: "round",
+              strokeLinecap: "round",
+              strokeWidth: "2",
+              fill: "none",
+              viewBox: "0 0 24 24",
+              children: [
+                /* @__PURE__ */ jsx9("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+                /* @__PURE__ */ jsx9("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
+              ]
+            }
+          ) : /* @__PURE__ */ jsxs7(
+            "svg",
+            {
+              xmlns: "http://www.w3.org/2000/svg",
+              className: "stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4",
+              strokeLinejoin: "round",
+              strokeLinecap: "round",
+              strokeWidth: "2",
+              fill: "none",
+              viewBox: "0 0 24 24",
+              children: [
+                /* @__PURE__ */ jsx9("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+                /* @__PURE__ */ jsx9("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
+              ]
+            }
+          )
         }
       )
     ] })

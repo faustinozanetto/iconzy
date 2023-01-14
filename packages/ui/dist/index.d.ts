@@ -398,7 +398,7 @@ declare const ColorInput: React__default.ForwardRefExoticComponent<
   } & React__default.RefAttributes<HTMLInputElement>
 >;
 
-type SortCriteria = 'asc' | 'desc';
+type SortCriteria = 'asc' | 'des';
 type SelectInputSortProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
   label?: string;
   children: React__default.ReactNode;

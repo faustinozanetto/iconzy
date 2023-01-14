@@ -1,0 +1,26 @@
+{
+  "name": "icons-fetching",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist"
+  },
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "build-fetcher": "tsup src/fetcher/icon-fetching.ts --format esm,cjs --dts",
+    "fetcher": "node dist/icon-fetching.js",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
+  }
+}

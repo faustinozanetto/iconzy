@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 
 /**
  * The `Filter` type is used to define a filter that can be applied to a data set.
@@ -36,42 +36,8 @@ export type Sort<TData> = {
 
  */
 const useFilter = <TData>(data: TData[], initialFilters: Filter<TData>[], initialSort: Sort<TData>) => {
-  // const [filteredData, setFilteredData] = useState<TData[]>(data);
   const [filters, setFilters] = useState<Filter<TData>[]>(initialFilters);
   const [sort, setSort] = useState<Sort<TData>>(initialSort);
-
-  /*
-  useEffect(() => {
-    let filteredData = data;
-    for (const filter of filters) {
-      if (filter.enabled) {
-        filteredData = filteredData.filter((item) => {
-          if (typeof item[filter.property] === 'string') {
-            // @ts-ignore
-            return item[filter.property].includes(filter.value);
-          } else {
-            return item[filter.property] === filter.value;
-          }
-        });
-      }
-    }
-    setFilteredData(filteredData);
-  }, [filters]);
-
-  useEffect(() => {
-    let lfilteredData = [...filteredData];
-    lfilteredData.sort((a, b) => {
-      if (a[sort.property] < b[sort.property]) {
-        return sort.ascending ? -1 : 1;
-      }
-      if (a[sort.property] > b[sort.property]) {
-        return sort.ascending ? 1 : -1;
-      }
-      return 0;
-    });
-    setFilteredData(lfilteredData);
-  }, [sort]);
-  */
 
   const filteredData = useMemo(() => {
     let filteredData = data;

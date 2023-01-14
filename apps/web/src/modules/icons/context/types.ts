@@ -1,4 +1,5 @@
-import { Icon, IconCustomization, IconPack, IconWithElement } from '../typings/icon.typings';
+import { IconPackRaw } from 'icons-fetching';
+import { Icon, IconCustomization, IconWithElement } from '../typings/icon.typings';
 
 export type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -12,7 +13,7 @@ export type ActionMap<M extends { [index: string]: any }> = {
 };
 
 export type IconsState = {
-  iconPack: IconPack | null;
+  iconPack: IconPackRaw | null;
   icons: Icon[];
   iconCustomization: IconCustomization;
   selectedIcon: IconWithElement | null;
@@ -29,7 +30,7 @@ export enum IconsActionType {
 
 type IconsPayload = {
   [IconsActionType.SET_ICON_PACK]: {
-    iconPack: IconPack;
+    iconPack: IconPackRaw;
   };
   [IconsActionType.SET_ICONS]: {
     icons: Icon[];

@@ -1,10 +1,4 @@
-export type IconPack = {
-  name: string;
-  slug: string;
-  iconsCount: number;
-  source: string;
-  defaultWidth: number;
-};
+import { IconPackRaw } from 'icons-fetching';
 
 export type Icon = {
   name: string;
@@ -22,11 +16,11 @@ export type IconCustomization = {
 };
 
 export type IconPackWithFeatured = {
-  metadata: IconPack;
+  metadata: IconPackRaw;
   featuredIcons: Icon[];
 };
 
 export type IconPackWithAll = {
-  metadata: IconPack;
+  metadata: IconPackRaw;
   icons: Icon[];
 };

@@ -1,5 +1,6 @@
 import useFilter, { Filter, Sort } from '@modules/common/hooks/use-filter';
-import { IconPack, IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
+import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
+import { IconPackRaw } from 'icons-fetching';
 import React, { useState } from 'react';
 import { SelectInput, TextInput } from 'ui';
 import IconPackCard from '../icon-pack-card';
@@ -8,33 +9,33 @@ type IconPacksBrowserTypes = {
   iconPacks: IconPackWithFeatured[];
 };
 
-const initialFilters: Filter<IconPack>[] = [
-  { property: 'slug', value: '', enabled: true },
+const initialFilters: Filter<IconPackRaw>[] = [
+  { property: 'name', value: '', enabled: true },
   { property: 'iconsCount', value: 0, enabled: false },
 ];
 
-const initialSort: Sort<IconPack> = {
+const initialSort: Sort<IconPackRaw> = {
   property: 'iconsCount',
   ascending: false,
 };
 
 const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
   const { iconPacks } = props;
-  const mappedPacks: IconPack[] = iconPacks.map((pack) => {
+  const mappedPacks: IconPackRaw[] = iconPacks.map((pack) => {
     return {
       ...pack.metadata,
     };
   });
-  const { filteredData, updateFilter } = useFilter<IconPack>(mappedPacks, initialFilters, initialSort);
+  const { filteredData, updateFilter } = useFilter<IconPackRaw>(mappedPacks, initialFilters, initialSort);
 
   const handleNameFilterChanged = (filter: string) => {
     // const newFilters = [...filters];
     // newFilters[0] = { ...newFilters[0], property: 'name', value: filter };
     // setFilters(newFilters);
-    updateFilter({ property: 'slug', value: filter, enabled: true });
+    updateFilter({ property: 'name', value: filter, enabled: true });
   };
 
-  const handleSortFilterChanged = (filter: keyof IconPack) => {};
+  const handleSortFilterChanged = (filter: keyof IconPackRaw) => {};
 
   return (
     <div className="flex flex-col h-full">
@@ -50,17 +51,22 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
           label="Sort By"
           placeholder="Name"
           onChange={(event) => {
-            handleSortFilterChanged(event.target.value as keyof IconPack);
+            handleSortFilterChanged(event.target.value as keyof IconPackRaw);
           }}
         >
           <option value="name">Name</option>
           <option value="iconsCount">Icon Count</option>
         </SelectInput>
       </div>
-      <div className="flex gap-4 p-4 justify-center">
+      <div
+        className="grid gap-4 p-4 w-full sm:ml-auto items-center"
+        style={{
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+        }}
+      >
         {filteredData.map((iconPack) => {
-          const pack = iconPacks.find((p) => p.metadata.slug === iconPack.slug);
-          if (pack) return <IconPackCard key={pack.metadata.slug} iconPack={pack} />;
+          const pack = iconPacks.find((p) => p.metadata.name === iconPack.name);
+          if (pack) return <IconPackCard key={`pack-${pack.metadata.name}`} iconPack={pack} />;
         })}
       </div>
     </div>

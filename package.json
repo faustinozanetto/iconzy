@@ -10,8 +10,10 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "prepare": "husky install",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "build-icons-fetching": "turbo run build --scope=icons-fecthing",
+    "run-icons-fetch": "yarn workspace icons-fetching fetcher",
+    "prepare": "husky install && yarn build-icons-fetching && yarn run-icons-fetch"
   },
   "devDependencies": {
     "eslint-config-custom": "*",

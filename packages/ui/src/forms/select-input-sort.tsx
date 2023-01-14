@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Button } from '../button/button';
 
-type SortCriteria = 'asc' | 'desc';
+type SortCriteria = 'asc' | 'des';
 
 export type SelectInputSortProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
   label?: string;
@@ -11,49 +11,17 @@ export type SelectInputSortProps = Omit<React.SelectHTMLAttributes<HTMLSelectEle
 };
 
 export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
-  const selectInputRef = useRef<HTMLSelectElement | null>(null);
   const { id, label, children, initialSortCriteria, onValueChanged, ...rest } = props;
+  const selectInputRef = useRef<HTMLSelectElement | null>(null);
   const [sortCriteria, setSortCriteria] = useState<SortCriteria>(initialSortCriteria);
 
   const handleSortCriteria = () => {
-    setSortCriteria((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    setSortCriteria((prev) => (prev === 'asc' ? 'des' : 'asc'));
     if (selectInputRef.current) {
       // @ts-ignore
       const selectValue = selectInputRef.current.value;
       handleSelectChanged(selectValue);
     }
-  };
-
-  const renderButtonIcon = () => {
-    if (sortCriteria === 'asc')
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          strokeWidth="2"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <line y2="5" x2="12" y1="19" x1="12" width="35" height="35" strokeWidth="2" />
-          <polyline points="5 12 12 5 19 12" width="35" height="35" strokeWidth="2" />
-        </svg>
-      );
-    return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        strokeWidth="2"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <line y2="19" x2="12" y1="5" x1="12" width="35" height="35" strokeWidth="2" />
-        <polyline points="19 12 12 19 5 12" width="35" height="35" strokeWidth="2" />
-      </svg>
-    );
   };
 
   const handleSelectChanged = (value: string) => {
@@ -87,7 +55,33 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
           colorScheme="stone"
           onClick={handleSortCriteria}
         >
-          {renderButtonIcon()}
+          {sortCriteria === 'asc' ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <line y2="5" x2="12" y1="19" x1="12" width="35" height="35" strokeWidth="2" />
+              <polyline points="5 12 12 5 19 12" width="35" height="35" strokeWidth="2" />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <line y2="19" x2="12" y1="5" x1="12" width="35" height="35" strokeWidth="2" />
+              <polyline points="19 12 12 19 5 12" width="35" height="35" strokeWidth="2" />
+            </svg>
+          )}
         </Button>
       </div>
     </div>

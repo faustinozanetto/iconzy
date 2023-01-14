@@ -55,7 +55,7 @@ var __toESM = (mod, isNodeMode, target) => (
 );
 var __toCommonJS = (mod) => __copyProps(__defProp({}, '__esModule', { value: true }), mod);
 
-// src/index.tsx
+// src/index.ts
 var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
@@ -956,72 +956,17 @@ ColorInput.displayName = 'Color Input';
 var import_react8 = require('react');
 var import_jsx_runtime9 = require('react/jsx-runtime');
 var SelectInputSort = (props) => {
-  const selectInputRef = (0, import_react8.useRef)(null);
   const _a = props,
     { id, label, children, initialSortCriteria, onValueChanged } = _a,
     rest = __objRest(_a, ['id', 'label', 'children', 'initialSortCriteria', 'onValueChanged']);
+  const selectInputRef = (0, import_react8.useRef)(null);
   const [sortCriteria, setSortCriteria] = (0, import_react8.useState)(initialSortCriteria);
   const handleSortCriteria = () => {
-    setSortCriteria((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    setSortCriteria((prev) => (prev === 'asc' ? 'des' : 'asc'));
     if (selectInputRef.current) {
       const selectValue = selectInputRef.current.value;
       handleSelectChanged(selectValue);
     }
-  };
-  const renderButtonIcon = () => {
-    if (sortCriteria === 'asc')
-      return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('svg', {
-        xmlns: 'http://www.w3.org/2000/svg',
-        className: 'stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4',
-        strokeLinejoin: 'round',
-        strokeLinecap: 'round',
-        strokeWidth: '2',
-        fill: 'none',
-        viewBox: '0 0 24 24',
-        children: [
-          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('line', {
-            y2: '5',
-            x2: '12',
-            y1: '19',
-            x1: '12',
-            width: '35',
-            height: '35',
-            strokeWidth: '2',
-          }),
-          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('polyline', {
-            points: '5 12 12 5 19 12',
-            width: '35',
-            height: '35',
-            strokeWidth: '2',
-          }),
-        ],
-      });
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('svg', {
-      xmlns: 'http://www.w3.org/2000/svg',
-      className: 'stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4',
-      strokeLinejoin: 'round',
-      strokeLinecap: 'round',
-      strokeWidth: '2',
-      fill: 'none',
-      viewBox: '0 0 24 24',
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('line', {
-          y2: '19',
-          x2: '12',
-          y1: '5',
-          x1: '12',
-          width: '35',
-          height: '35',
-          strokeWidth: '2',
-        }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('polyline', {
-          points: '19 12 12 19 5 12',
-          width: '35',
-          height: '35',
-          strokeWidth: '2',
-        }),
-      ],
-    });
   };
   const handleSelectChanged = (value) => {
     onValueChanged(value, sortCriteria);
@@ -1065,7 +1010,60 @@ var SelectInputSort = (props) => {
             'aria-label': 'Change Criteria',
             colorScheme: 'stone',
             onClick: handleSortCriteria,
-            children: renderButtonIcon(),
+            children:
+              sortCriteria === 'asc'
+                ? /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('svg', {
+                    xmlns: 'http://www.w3.org/2000/svg',
+                    className: 'stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4',
+                    strokeLinejoin: 'round',
+                    strokeLinecap: 'round',
+                    strokeWidth: '2',
+                    fill: 'none',
+                    viewBox: '0 0 24 24',
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('line', {
+                        y2: '5',
+                        x2: '12',
+                        y1: '19',
+                        x1: '12',
+                        width: '35',
+                        height: '35',
+                        strokeWidth: '2',
+                      }),
+                      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('polyline', {
+                        points: '5 12 12 5 19 12',
+                        width: '35',
+                        height: '35',
+                        strokeWidth: '2',
+                      }),
+                    ],
+                  })
+                : /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('svg', {
+                    xmlns: 'http://www.w3.org/2000/svg',
+                    className: 'stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4',
+                    strokeLinejoin: 'round',
+                    strokeLinecap: 'round',
+                    strokeWidth: '2',
+                    fill: 'none',
+                    viewBox: '0 0 24 24',
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('line', {
+                        y2: '19',
+                        x2: '12',
+                        y1: '5',
+                        x1: '12',
+                        width: '35',
+                        height: '35',
+                        strokeWidth: '2',
+                      }),
+                      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('polyline', {
+                        points: '19 12 12 19 5 12',
+                        width: '35',
+                        height: '35',
+                        strokeWidth: '2',
+                      }),
+                    ],
+                  }),
           }),
         ],
       }),

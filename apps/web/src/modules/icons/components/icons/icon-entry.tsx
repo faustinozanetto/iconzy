@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import { IconWithCustomization } from '@modules/icons/typings/icon.typings';
+import { useIconsContext } from '@modules/icons/context/icons-context';
 
 type IconEntryProps = {
   icon: IconWithCustomization;
@@ -12,8 +13,14 @@ type IconEntryProps = {
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
   const { icon, isSelected, onIconSelected } = props;
+  const { state } = useIconsContext();
 
-  const iconSVG: JSX.Element = getSVGSourceIntoComponent(icon.source, icon.customization, 'grid-icon');
+  const iconSVG: JSX.Element = getSVGSourceIntoComponent(
+    icon.source,
+    state.iconPack?.requiresFill || false,
+    icon.customization,
+    'grid-icon'
+  );
 
   return (
     <div

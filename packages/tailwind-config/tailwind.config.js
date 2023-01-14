@@ -1,9 +1,8 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['src/**/*.{js,ts,jsx,tsx}', '../../packages/**/*.{js,ts,jsx,tsx}'],
+  content: [`src/**/*.{js,ts,jsx,tsx}`, '../../packages/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -15,4 +14,5 @@ module.exports = {
       },
     },
   },
+  plugins: [],
 };

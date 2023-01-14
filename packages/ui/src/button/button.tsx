@@ -203,7 +203,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
       case 'xs':
         return 'p-[4px] text-[10px]';
       case 'sm':
-        return 'py-[4px] px-[8px] text-[12px]';
+        return 'px-[5px] py-[4px] text-[12px]';
       case 'md':
         return 'px-5 py-2.5 text-md';
       case 'lg':

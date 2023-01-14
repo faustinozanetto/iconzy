@@ -351,12 +351,12 @@ declare const Card: React__default.ForwardRefExoticComponent<
 
 type SelectInputProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName'> & {
   children: React__default.ReactNode;
-  label: string;
+  label?: string;
 };
 declare const SelectInput: React__default.ForwardRefExoticComponent<
   Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName'> & {
     children: React__default.ReactNode;
-    label: string;
+    label?: string | undefined;
   } & React__default.RefAttributes<HTMLSelectElement>
 >;
 
@@ -398,6 +398,15 @@ declare const ColorInput: React__default.ForwardRefExoticComponent<
   } & React__default.RefAttributes<HTMLInputElement>
 >;
 
+type SortCriteria = 'asc' | 'desc';
+type SelectInputSortProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
+  label?: string;
+  children: React__default.ReactNode;
+  initialSortCriteria: SortCriteria;
+  onValueChanged: (value: string, criteria: SortCriteria) => void;
+};
+declare const SelectInputSort: React__default.FC<SelectInputSortProps>;
+
 export {
   Button,
   ButtonProps,
@@ -412,6 +421,8 @@ export {
   RangeInputProps,
   SelectInput,
   SelectInputProps,
+  SelectInputSort,
+  SelectInputSortProps,
   Separator,
   SeparatorProps,
   TextInput,

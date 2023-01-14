@@ -7,7 +7,7 @@ import IconsCustomizationExport from './icons-customization-export';
 import IconsCustomizationSettings from './icons-customization-settings';
 
 const IconsCustomization: React.FC = () => {
-  const isSmallDevice = useMediaQuery(`(max-width: ${theme.screens.sm}`);
+  const isSmallDevice = useMediaQuery(`(max-width: ${theme.screens.md}`);
   const [panelToggled, setPanelToggled] = useState(false);
 
   useEffect(() => {

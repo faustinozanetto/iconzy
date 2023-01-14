@@ -9,7 +9,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
   const {} = props;
 
   return (
-    <nav className="relative flex h-20 items-center justify-center bg-neutral-50 border-neutral-300 border-[1px] dark:border-neutral-700 p-4 dark:bg-neutral-800 sm:justify-between z-50">
+    <nav className="relative flex h-20 items-center justify-center bg-neutral-50 border-neutral-300 border-[1px] dark:border-neutral-700 p-4 dark:bg-neutral-800 md:justify-between z-50">
       {/* Logo */}
       <Logo />
       {/* Buttons */}
@@ -19,7 +19,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
       </div>
 
       {/* Theme Toggler */}
-      <div className="sm:flex">
+      <div className="md:flex">
         <ThemeToggler />
       </div>
     </nav>

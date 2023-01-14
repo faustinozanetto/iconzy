@@ -7,3 +7,4 @@ export { TextInput, type TextInputInputProps } from './forms/text-input';
 export { Separator, type SeparatorProps } from './common/separator';
 export { RangeInput, type RangeInputProps } from './forms/range-input';
 export { ColorInput, type ColorInputProps } from './forms/color-input';
+export { SelectInputSort, type SelectInputSortProps } from './forms/select-input-sort';

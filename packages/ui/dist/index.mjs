@@ -438,7 +438,7 @@ var Button = React.forwardRef((props, ref) => {
       case "xs":
         return "p-[4px] text-[10px]";
       case "sm":
-        return "py-[4px] px-[8px] text-[12px]";
+        return "px-[5px] py-[4px] text-[12px]";
       case "md":
         return "px-5 py-2.5 text-md";
       case "lg":
@@ -497,8 +497,8 @@ import React3 from "react";
 import { jsx as jsx3, jsxs as jsxs2 } from "react/jsx-runtime";
 var SelectInput = React3.forwardRef((props, ref) => {
   const _a = props, { id, label, children } = _a, rest = __objRest(_a, ["id", "label", "children"]);
-  return /* @__PURE__ */ jsxs2("div", { children: [
-    /* @__PURE__ */ jsx3("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx3("span", { children: label }) }),
+  return /* @__PURE__ */ jsxs2("div", { className: "relative", children: [
+    label ? /* @__PURE__ */ jsx3("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx3("span", { children: label }) }) : null,
     /* @__PURE__ */ jsx3(
       "select",
       __spreadProps(__spreadValues({
@@ -623,7 +623,17 @@ var InputWrapper = (props) => {
       /* @__PURE__ */ jsx6("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx6("span", { children: label }) }),
       /* @__PURE__ */ jsxs4("div", { className: "flex space-x-1 items-center", children: [
         /* @__PURE__ */ jsx6(Button, { size: "sm", "aria-label": "Reset Input", colorScheme: "red", onClick: onInputReseted, children: "Reset" }),
-        /* @__PURE__ */ jsx6(Button, { size: "xs", "aria-label": "Collapse Input", colorScheme: "stone", onClick: handleInputCollapse, children: renderButtonIcon() })
+        /* @__PURE__ */ jsx6(
+          Button,
+          {
+            className: "!p-[5px]",
+            size: "sm",
+            "aria-label": "Collapse Input",
+            colorScheme: "stone",
+            onClick: handleInputCollapse,
+            children: renderButtonIcon()
+          }
+        )
       ] })
     ] }),
     !inputCollapsed ? children : null
@@ -728,12 +738,96 @@ var ColorInput = React7.forwardRef((props, ref) => {
   );
 });
 ColorInput.displayName = "Color Input";
+
+// src/forms/select-input-sort.tsx
+import { useRef, useState as useState6 } from "react";
+import { jsx as jsx9, jsxs as jsxs7 } from "react/jsx-runtime";
+var SelectInputSort = (props) => {
+  const selectInputRef = useRef(null);
+  const _a = props, { id, label, children, initialSortCriteria, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "children", "initialSortCriteria", "onValueChanged"]);
+  const [sortCriteria, setSortCriteria] = useState6(initialSortCriteria);
+  const handleSortCriteria = () => {
+    setSortCriteria((prev) => prev === "asc" ? "desc" : "asc");
+    if (selectInputRef.current) {
+      const selectValue = selectInputRef.current.value;
+      handleSelectChanged(selectValue);
+    }
+  };
+  const renderButtonIcon = () => {
+    if (sortCriteria === "asc")
+      return /* @__PURE__ */ jsxs7(
+        "svg",
+        {
+          xmlns: "http://www.w3.org/2000/svg",
+          className: "stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4",
+          strokeLinejoin: "round",
+          strokeLinecap: "round",
+          strokeWidth: "2",
+          fill: "none",
+          viewBox: "0 0 24 24",
+          children: [
+            /* @__PURE__ */ jsx9("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+            /* @__PURE__ */ jsx9("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
+          ]
+        }
+      );
+    return /* @__PURE__ */ jsxs7(
+      "svg",
+      {
+        xmlns: "http://www.w3.org/2000/svg",
+        className: "stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4",
+        strokeLinejoin: "round",
+        strokeLinecap: "round",
+        strokeWidth: "2",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        children: [
+          /* @__PURE__ */ jsx9("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+          /* @__PURE__ */ jsx9("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
+        ]
+      }
+    );
+  };
+  const handleSelectChanged = (value) => {
+    onValueChanged(value, sortCriteria);
+  };
+  return /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
+    label ? /* @__PURE__ */ jsx9("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx9("span", { children: label }) }) : null,
+    /* @__PURE__ */ jsxs7("div", { className: "flex space-x-1 items-center", children: [
+      /* @__PURE__ */ jsx9(
+        "select",
+        __spreadProps(__spreadValues({
+          id,
+          ref: selectInputRef,
+          className: "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+          onChange: (event) => {
+            handleSelectChanged(event.target.value);
+          }
+        }, rest), {
+          children
+        })
+      ),
+      /* @__PURE__ */ jsx9(
+        Button,
+        {
+          className: "!p-[6px] !h-[41px]",
+          size: "sm",
+          "aria-label": "Change Criteria",
+          colorScheme: "stone",
+          onClick: handleSortCriteria,
+          children: renderButtonIcon()
+        }
+      )
+    ] })
+  ] });
+};
 export {
   Button,
   Card,
   ColorInput,
   RangeInput,
   SelectInput,
+  SelectInputSort,
   Separator,
   TextInput,
   defaultColors

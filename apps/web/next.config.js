@@ -13,5 +13,5 @@ module.exports = {
   },
   poweredByHeader: false,
   compress: true,
-  transpilePackages: ['ui'],
+  // transpilePackages: ['ui'],
 };

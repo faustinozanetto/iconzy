@@ -2,17 +2,19 @@ import React from 'react';
 
 export type SelectInputProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'classsName'> & {
   children: React.ReactNode;
-  label: string;
+  label?: string;
 };
 
 export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>((props, ref) => {
   const { id, label, children, ...rest } = props;
 
   return (
-    <div>
-      <label htmlFor={id} className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
-        <span>{label}</span>
-      </label>
+    <div className="relative">
+      {label ? (
+        <label htmlFor={id} className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+          <span>{label}</span>
+        </label>
+      ) : null}
       <select
         id={id}
         ref={ref}

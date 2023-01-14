@@ -63,6 +63,7 @@ __export(src_exports, {
   ColorInput: () => ColorInput,
   RangeInput: () => RangeInput,
   SelectInput: () => SelectInput,
+  SelectInputSort: () => SelectInputSort,
   Separator: () => Separator,
   TextInput: () => TextInput,
   defaultColors: () => defaultColors,
@@ -529,7 +530,7 @@ var Button = React.forwardRef((props, ref) => {
       case 'xs':
         return 'p-[4px] text-[10px]';
       case 'sm':
-        return 'py-[4px] px-[8px] text-[12px]';
+        return 'px-[5px] py-[4px] text-[12px]';
       case 'md':
         return 'px-5 py-2.5 text-md';
       case 'lg':
@@ -618,12 +619,15 @@ var SelectInput = import_react2.default.forwardRef((props, ref) => {
     { id, label, children } = _a,
     rest = __objRest(_a, ['id', 'label', 'children']);
   return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)('div', {
+    className: 'relative',
     children: [
-      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)('label', {
-        htmlFor: id,
-        className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
-        children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)('span', { children: label }),
-      }),
+      label
+        ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)('label', {
+            htmlFor: id,
+            className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
+            children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)('span', { children: label }),
+          })
+        : null,
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
         'select',
         __spreadProps(
@@ -815,7 +819,8 @@ var InputWrapper = (props) => {
                 children: 'Reset',
               }),
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, {
-                size: 'xs',
+                className: '!p-[5px]',
+                size: 'sm',
                 'aria-label': 'Collapse Input',
                 colorScheme: 'stone',
                 onClick: handleInputCollapse,
@@ -946,6 +951,127 @@ var ColorInput = import_react7.default.forwardRef((props, ref) => {
   });
 });
 ColorInput.displayName = 'Color Input';
+
+// src/forms/select-input-sort.tsx
+var import_react8 = require('react');
+var import_jsx_runtime9 = require('react/jsx-runtime');
+var SelectInputSort = (props) => {
+  const selectInputRef = (0, import_react8.useRef)(null);
+  const _a = props,
+    { id, label, children, initialSortCriteria, onValueChanged } = _a,
+    rest = __objRest(_a, ['id', 'label', 'children', 'initialSortCriteria', 'onValueChanged']);
+  const [sortCriteria, setSortCriteria] = (0, import_react8.useState)(initialSortCriteria);
+  const handleSortCriteria = () => {
+    setSortCriteria((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    if (selectInputRef.current) {
+      const selectValue = selectInputRef.current.value;
+      handleSelectChanged(selectValue);
+    }
+  };
+  const renderButtonIcon = () => {
+    if (sortCriteria === 'asc')
+      return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('svg', {
+        xmlns: 'http://www.w3.org/2000/svg',
+        className: 'stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4',
+        strokeLinejoin: 'round',
+        strokeLinecap: 'round',
+        strokeWidth: '2',
+        fill: 'none',
+        viewBox: '0 0 24 24',
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('line', {
+            y2: '5',
+            x2: '12',
+            y1: '19',
+            x1: '12',
+            width: '35',
+            height: '35',
+            strokeWidth: '2',
+          }),
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('polyline', {
+            points: '5 12 12 5 19 12',
+            width: '35',
+            height: '35',
+            strokeWidth: '2',
+          }),
+        ],
+      });
+    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('svg', {
+      xmlns: 'http://www.w3.org/2000/svg',
+      className: 'stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4',
+      strokeLinejoin: 'round',
+      strokeLinecap: 'round',
+      strokeWidth: '2',
+      fill: 'none',
+      viewBox: '0 0 24 24',
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('line', {
+          y2: '19',
+          x2: '12',
+          y1: '5',
+          x1: '12',
+          width: '35',
+          height: '35',
+          strokeWidth: '2',
+        }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('polyline', {
+          points: '19 12 12 19 5 12',
+          width: '35',
+          height: '35',
+          strokeWidth: '2',
+        }),
+      ],
+    });
+  };
+  const handleSelectChanged = (value) => {
+    onValueChanged(value, sortCriteria);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('div', {
+    className: 'relative',
+    children: [
+      label
+        ? /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('label', {
+            htmlFor: id,
+            className: 'block mb-1 text-sm font-semibold text-gray-900 dark:text-white',
+            children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)('span', { children: label }),
+          })
+        : null,
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)('div', {
+        className: 'flex space-x-1 items-center',
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+            'select',
+            __spreadProps(
+              __spreadValues(
+                {
+                  id,
+                  ref: selectInputRef,
+                  className:
+                    'bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
+                  onChange: (event) => {
+                    handleSelectChanged(event.target.value);
+                  },
+                },
+                rest
+              ),
+              {
+                children,
+              }
+            )
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, {
+            className: '!p-[6px] !h-[41px]',
+            size: 'sm',
+            'aria-label': 'Change Criteria',
+            colorScheme: 'stone',
+            onClick: handleSortCriteria,
+            children: renderButtonIcon(),
+          }),
+        ],
+      }),
+    ],
+  });
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 &&
   (module.exports = {
@@ -954,6 +1080,7 @@ ColorInput.displayName = 'Color Input';
     ColorInput,
     RangeInput,
     SelectInput,
+    SelectInputSort,
     Separator,
     TextInput,
     defaultColors,

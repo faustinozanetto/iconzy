@@ -20,24 +20,21 @@ const initialSort: Sort<IconPack> = {
 
 const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
   const { iconPacks } = props;
-  const [filters, setFilters] = useState(initialFilters);
-  const [sort, setSort] = useState<Sort<IconPack>>(initialSort);
   const mappedPacks: IconPack[] = iconPacks.map((pack) => {
     return {
       ...pack.metadata,
     };
   });
-  const filteredIconPacks = useFilter<IconPack>(mappedPacks, filters, sort);
+  const { filteredData, updateFilter } = useFilter<IconPack>(mappedPacks, initialFilters, initialSort);
 
   const handleNameFilterChanged = (filter: string) => {
-    const newFilters = [...filters];
-    newFilters[0] = { ...newFilters[0], property: 'name', value: filter };
-    setFilters(newFilters);
+    // const newFilters = [...filters];
+    // newFilters[0] = { ...newFilters[0], property: 'name', value: filter };
+    // setFilters(newFilters);
+    updateFilter({ property: 'slug', value: filter, enabled: true });
   };
 
-  const handleSortFilterChanged = (filter: keyof IconPack) => {
-    setSort({ property: filter, ascending: false });
-  };
+  const handleSortFilterChanged = (filter: keyof IconPack) => {};
 
   return (
     <div className="flex flex-col h-full">
@@ -61,7 +58,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
         </SelectInput>
       </div>
       <div className="flex gap-4 p-4 justify-center">
-        {filteredIconPacks.map((iconPack) => {
+        {filteredData.map((iconPack) => {
           const pack = iconPacks.find((p) => p.metadata.slug === iconPack.slug);
           if (pack) return <IconPackCard key={pack.metadata.slug} iconPack={pack} />;
         })}

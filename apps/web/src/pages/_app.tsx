@@ -8,7 +8,7 @@ import React from 'react';
 import ThemeProvider from '@modules/theming/context/theme-context';
 import IconsProvider from '@modules/icons/context/icons-context';
 
-const openSans = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 type PortfolioProps = AppProps;
 
@@ -18,7 +18,7 @@ const IconozenApp: React.FC<PortfolioProps> = (props) => {
   return (
     <ThemeProvider>
       <IconsProvider>
-        <main className={`${openSans.variable} font-sans`}>
+        <main className={`${inter.variable} font-sans`}>
           <Component {...pageProps} />
         </main>
       </IconsProvider>

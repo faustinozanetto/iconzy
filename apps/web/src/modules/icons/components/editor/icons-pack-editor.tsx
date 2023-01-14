@@ -1,17 +1,6 @@
 import React from 'react';
 import IconsCustomization from './customization/icons-customization';
-import IconsEditorFeed from './icons-editor-feed';
-
-const generateColumns = (count: number) => {
-  return new Array(count).fill(0).map((_, i) => {
-    const key: string = i.toString();
-    return {
-      key,
-      name: `Column ${i}`,
-      width: 150,
-    };
-  });
-};
+import IconsFeed from './feed/icons-feed';
 
 const IconPackEditor: React.FC = () => {
   return (
@@ -22,7 +11,7 @@ const IconPackEditor: React.FC = () => {
       }}
     >
       <IconsCustomization />
-      <IconsEditorFeed columns={generateColumns(5000)} />
+      <IconsFeed />
     </div>
   );
 };

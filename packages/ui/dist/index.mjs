@@ -545,21 +545,23 @@ var TextInput = React4.forwardRef((props, ref) => {
     onValueChanged(value);
   }, [debouncedValue]);
   return /* @__PURE__ */ jsxs3("div", { className: "relative", children: [
-    icon ? /* @__PURE__ */ jsx4("div", { className: "absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none", children: icon }) : null,
     label ? /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block mb-1 text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx4("span", { children: label }) }) : null,
-    /* @__PURE__ */ jsx4(
-      "input",
-      __spreadValues({
-        id,
-        ref,
-        className: clsx3(
-          "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
-          icon ? "pl-10" : ""
-        ),
-        value,
-        onChange: handleChange
-      }, rest)
-    )
+    /* @__PURE__ */ jsxs3("div", { className: "relative", children: [
+      icon ? /* @__PURE__ */ jsx4("div", { className: "absolute inset-y-0 flex items-center pl-3 pointer-events-none", children: icon }) : null,
+      /* @__PURE__ */ jsx4(
+        "input",
+        __spreadValues({
+          id,
+          ref,
+          className: clsx3(
+            "bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+            icon ? "pl-10" : ""
+          ),
+          value,
+          onChange: handleChange
+        }, rest)
+      )
+    ] })
   ] });
 });
 TextInput.displayName = "Text Input";
@@ -578,7 +580,7 @@ import React6, { useEffect as useEffect3, useState as useState4 } from "react";
 import { useState as useState3 } from "react";
 import { jsx as jsx6, jsxs as jsxs4 } from "react/jsx-runtime";
 var InputWrapper = (props) => {
-  const { id, label, onInputReseted, children, initiallyCollapsed = false } = props;
+  const { id, label, disabled, onInputReseted, children, initiallyCollapsed = false } = props;
   const [inputCollapsed, setInputCollapsed] = useState3(initiallyCollapsed);
   const handleInputCollapse = () => {
     setInputCollapsed((prev) => !prev);
@@ -622,7 +624,7 @@ var InputWrapper = (props) => {
     /* @__PURE__ */ jsxs4("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsx6("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx6("span", { children: label }) }),
       /* @__PURE__ */ jsxs4("div", { className: "flex space-x-1 items-center", children: [
-        /* @__PURE__ */ jsx6(Button, { size: "sm", "aria-label": "Reset Input", colorScheme: "red", onClick: onInputReseted, children: "Reset" }),
+        /* @__PURE__ */ jsx6(Button, { size: "sm", "aria-label": "Reset Input", colorScheme: "red", disabled, onClick: onInputReseted, children: "Reset" }),
         /* @__PURE__ */ jsx6(
           Button,
           {
@@ -658,6 +660,7 @@ var RangeInput = React6.forwardRef((props, ref) => {
     {
       id,
       label,
+      disabled: rest.disabled || false,
       onInputReseted: () => {
         setValue(Number(rest.placeholder) || 0);
       },
@@ -708,6 +711,7 @@ var ColorInput = React7.forwardRef((props, ref) => {
     {
       id,
       label,
+      disabled: rest.disabled || false,
       onInputReseted: () => {
         setValue(rest.placeholder || "#a781ee");
       },

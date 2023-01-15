@@ -1,4 +1,6 @@
-import { IconPackRaw } from 'icons-fetching';
+import { IconPack } from 'icons-fetching';
+
+export type IconCustomizationLimits = { min: number; max: number };
 
 export type Icon = {
   name: string;
@@ -16,11 +18,11 @@ export type IconCustomization = {
 };
 
 export type IconPackWithFeatured = {
-  metadata: IconPackRaw;
+  metadata: IconPack;
   featuredIcons: Icon[];
 };
 
 export type IconPackWithAll = {
-  metadata: IconPackRaw;
+  metadata: IconPack;
   icons: Icon[];
 };

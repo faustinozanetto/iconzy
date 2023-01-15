@@ -5,45 +5,54 @@ import * as ReactDOMServer from 'react-dom/server';
 import DOMPurify from 'isomorphic-dompurify';
 import parse, { Element } from 'html-react-parser';
 
-import { ICONS, IconPackRaw } from 'icons-fetching';
+import { ICONS, IconPack } from 'icons-fetching';
 import { Icon, IconCustomization } from '../typings/icon.typings';
-import { ICONS_DIR } from './constants';
+import { FEATURED_ICONS_COUNT, ICONS_DIR } from './constants';
 
 /**
  * Function to convert a svg source into a JSX Element.
  * @param svgSource The source of the svg.
- * @param iconCustomization The customization of the icon.
+ * @param customization The customization of the icon.
  * @param className Optional: Custom classnames to style the element.
  * @returns The JSX Element if successful.
  */
 export const getSVGSourceIntoComponent = (
   svgSource: string,
   requiresFill: boolean,
-  iconCustomization: IconCustomization,
+  customization: IconCustomization,
   className?: string
 ) => {
   const clean = DOMPurify.sanitize(svgSource);
-  let parsed = parse(clean, {
+
+  const parsed = parse(clean, {
     replace: (domNode) => {
-      const domElement: Element = domNode as Element;
+      if (domNode instanceof Element && domNode.attribs) {
+        if (domNode.name !== 'svg') return;
 
-      domElement.attribs = {
-        ...domElement.attribs,
-        className: className || '',
-        width: `${iconCustomization.size}`,
-        height: `${iconCustomization.size}`,
-        stroke: !requiresFill ? `${iconCustomization.color}` : 'none',
-        fill: requiresFill ? `${iconCustomization.color}` : 'none',
-        strokeWidth: `${iconCustomization.width}`,
-      };
+        domNode.attribs = {
+          ...domNode.attribs,
+          className: className || '',
+          width: `${customization.size}`,
+          height: `${customization.size}`,
+          stroke: !requiresFill ? `${customization.color}` : 'none',
+          fill: requiresFill ? `${customization.color}` : 'none',
+          strokeWidth: `${customization.width}`,
+        };
 
-      return domElement;
+        return domNode;
+      }
     },
   }) as JSX.Element;
 
   return parsed;
 };
 
+/**
+ * Removes attributes of a jsx element represented as a string.
+ * @param element The source of the element.
+ * @param attributes The array of attributes to remove.
+ * @returns The modified element source.
+ */
 const removeAttributes = (element: string, attributes: string[]): string => {
   const parser = new DOMParser();
   const svgDoc = parser.parseFromString(element, 'image/svg+xml');
@@ -72,7 +81,7 @@ export const convertJSXToString = (element: JSX.Element): string => {
  * @param take Optional: The amount of icons to take.
  * @returns The icons array if successful.
  */
-export const getIconsFromIconPack = (iconPack: IconPackRaw, take?: number): Icon[] => {
+export const getIconsFromIconPack = (iconPack: IconPack, take?: number): Icon[] => {
   const iconPackFolder = ICONS_DIR + iconPack.name;
   try {
     const files: string[] = fs.readdirSync(iconPackFolder, 'utf8');
@@ -96,7 +105,7 @@ export const getIconsFromIconPack = (iconPack: IconPackRaw, take?: number): Icon
  * @param iconPack The icon pack to get the amount.
  * @returns The amount of icons.
  */
-export const getIconsCountFromIconPack = (iconPack: IconPackRaw): number => {
+export const getIconsCountFromIconPack = (iconPack: IconPack): number => {
   const iconPackFolder = ICONS_DIR + iconPack.name;
   try {
     return fs.readdirSync(iconPackFolder, 'utf8').length;
@@ -112,8 +121,8 @@ export const getIconsCountFromIconPack = (iconPack: IconPackRaw): number => {
  * @param slug The slug to find.
  * @returns The icon pack if found.
  */
-export const getIconPackByName = (name: IconPackRaw['name']): IconPackRaw => {
-  const iconPack: IconPackRaw | undefined = ICONS.find((pack) => pack.name === name);
+export const getIconPackByName = (name: IconPack['name']): IconPack => {
+  const iconPack: IconPack | undefined = ICONS.find((pack) => pack.name === name);
   if (!iconPack) throw new Error('Could not find icon pack by name: ' + name);
   return { ...iconPack, iconsCount: getIconsCountFromIconPack(iconPack) };
 };
@@ -123,16 +132,16 @@ export const getIconPackByName = (name: IconPackRaw['name']): IconPackRaw => {
  * @param iconPack The icon pack to get the icons.
  * @returns The array of featured icons.
  */
-export const getFeaturedIconsFromIconPack = (iconPack: IconPackRaw): Icon[] => {
-  return getIconsFromIconPack(iconPack, 10);
+export const getFeaturedIconsFromIconPack = (iconPack: IconPack): Icon[] => {
+  return getIconsFromIconPack(iconPack, FEATURED_ICONS_COUNT);
 };
 
 /**
  * Function that gets all the icon packs in the project.
  * @returns The array of icon packs.
  */
-export const getAllIconPacks = (): IconPackRaw[] => {
-  const iconPacks: IconPackRaw[] = ICONS.map((iconPack) => {
+export const getAllIconPacks = (): IconPack[] => {
+  const iconPacks: IconPack[] = ICONS.map((iconPack) => {
     return { ...iconPack, iconsCount: getIconsCountFromIconPack(iconPack) };
   });
   return iconPacks;

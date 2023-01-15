@@ -1,1 +1,1 @@
-export { ICONS, type IconPackRaw } from './utils';
+export { ICONS, type IconPack } from './utils';

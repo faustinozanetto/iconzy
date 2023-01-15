@@ -1,7 +1,6 @@
 import BaseLayout from '@modules/layouts/components/base/base-layout';
 import { GetStaticProps } from 'next';
 import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
-import { useIconsContext } from '@modules/icons/context/icons-context';
 import React from 'react';
 import { getAllIconPacks, getFeaturedIconsFromIconPack } from '@modules/icons/lib/icons-utils';
 import IconPacksBrowser from '@modules/icons/components/icon-pack/browser/icon-packs-browser';
@@ -12,7 +11,6 @@ type IconPacksPageProps = {
 
 const IconPacksPage: React.FC<IconPacksPageProps> = (props) => {
   const { iconPacks } = props;
-  const { dispatch } = useIconsContext();
 
   return (
     <BaseLayout

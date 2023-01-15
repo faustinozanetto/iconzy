@@ -1,8 +1,10 @@
-declare const ICONS: IconPackRaw[];
-type IconPackRaw = {
+declare const ICONS: IconPack[];
+
+type IconPack = {
     name: string;
     requiresFill: boolean;
     iconsCount?: number;
+    defaultWidth: number;
     source: {
         url: string;
         branch: string;
@@ -11,4 +13,4 @@ type IconPackRaw = {
     };
 };
 
-export { ICONS, IconPackRaw };
+export { ICONS, IconPack };

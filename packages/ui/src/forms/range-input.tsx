@@ -4,6 +4,12 @@ import { InputWrapper } from './input-wrapper';
 
 export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
+
+  /**
+   * Callback function called when the value changes.
+   * @param value New value
+   * ;@returns void.
+   */
   onValueChanged: (value: number) => void;
 };
 
@@ -26,6 +32,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
     <InputWrapper
       id={id}
       label={label}
+      disabled={rest.disabled || false}
       onInputReseted={() => {
         setValue(Number(rest.placeholder) || 0);
       }}

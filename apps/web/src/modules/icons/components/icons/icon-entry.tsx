@@ -25,14 +25,14 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
   return (
     <div
       className={clsx(
-        'grid-icon-wrapper',
-        isSelected ? '!border-primary-600 dark:border-primary-200 !border-[3px]' : ''
+        'relative flex justify-center h-[175px] p-4 rounded-md transition-colors cursor-pointer group bg-neutral-50 border-neutral-300 border-2 dark:bg-neutral-800 dark:border-neutral-700 overflow-hidden hover:border-primary-400 hover:border-2 dark:hover:border-primary-500',
+        isSelected ? 'dark:!border-primary-500 !border-primary-400' : ''
       )}
       onClick={() => onIconSelected(iconSVG)}
     >
-      <div className="grid-icon-container">
-        {iconSVG}
-        <div className="grid-icon-name">{icon.name}</div>
+      <div className="flex flex-col self-stretch">
+        <div className="flex items-center justify-center flex-1 mx-auto">{iconSVG}</div>
+        <span className="text-center font-medium mb-1.5">{icon.name}</span>
       </div>
     </div>
   );

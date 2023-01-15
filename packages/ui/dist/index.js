@@ -686,12 +686,6 @@ var TextInput = import_react4.default.forwardRef((props, ref) => {
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)('div', {
     className: 'relative',
     children: [
-      icon
-        ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('div', {
-            className: 'absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none',
-            children: icon,
-          })
-        : null,
       label
         ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('label', {
             htmlFor: id,
@@ -699,22 +693,33 @@ var TextInput = import_react4.default.forwardRef((props, ref) => {
             children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('span', { children: label }),
           })
         : null,
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-        'input',
-        __spreadValues(
-          {
-            id,
-            ref,
-            className: (0, import_clsx3.default)(
-              'bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
-              icon ? 'pl-10' : ''
-            ),
-            value,
-            onChange: handleChange,
-          },
-          rest
-        )
-      ),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)('div', {
+        className: 'relative',
+        children: [
+          icon
+            ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)('div', {
+                className: 'absolute inset-y-0 flex items-center pl-3 pointer-events-none',
+                children: icon,
+              })
+            : null,
+          /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+            'input',
+            __spreadValues(
+              {
+                id,
+                ref,
+                className: (0, import_clsx3.default)(
+                  'bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500',
+                  icon ? 'pl-10' : ''
+                ),
+                value,
+                onChange: handleChange,
+              },
+              rest
+            )
+          ),
+        ],
+      }),
     ],
   });
 });
@@ -737,7 +742,7 @@ var import_react6 = __toESM(require('react'));
 var import_react5 = require('react');
 var import_jsx_runtime6 = require('react/jsx-runtime');
 var InputWrapper = (props) => {
-  const { id, label, onInputReseted, children, initiallyCollapsed = false } = props;
+  const { id, label, disabled, onInputReseted, children, initiallyCollapsed = false } = props;
   const [inputCollapsed, setInputCollapsed] = (0, import_react5.useState)(initiallyCollapsed);
   const handleInputCollapse = () => {
     setInputCollapsed((prev) => !prev);
@@ -815,6 +820,7 @@ var InputWrapper = (props) => {
                 size: 'sm',
                 'aria-label': 'Reset Input',
                 colorScheme: 'red',
+                disabled,
                 onClick: onInputReseted,
                 children: 'Reset',
               }),
@@ -853,6 +859,7 @@ var RangeInput = import_react6.default.forwardRef((props, ref) => {
   return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(InputWrapper, {
     id,
     label,
+    disabled: rest.disabled || false,
     onInputReseted: () => {
       setValue(Number(rest.placeholder) || 0);
     },
@@ -912,6 +919,7 @@ var ColorInput = import_react7.default.forwardRef((props, ref) => {
   return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(InputWrapper, {
     id,
     label,
+    disabled: rest.disabled || false,
     onInputReseted: () => {
       setValue(rest.placeholder || '#a781ee');
     },

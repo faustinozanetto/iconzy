@@ -1,12 +1,33 @@
 import React from 'react';
 import Link from 'next/link';
-import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
+import { Icon, IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import clsx from 'clsx';
 import { Button } from 'ui';
 
 type IconPackCardProps = {
   iconPack: IconPackWithFeatured;
+};
+
+type FeaturedIconProps = {
+  icon: Icon;
+  requiresFill: boolean;
+  defaultWidth: number;
+};
+
+const FeaturedIcon: React.FC<FeaturedIconProps> = (props) => {
+  const { icon, requiresFill, defaultWidth } = props;
+
+  return getSVGSourceIntoComponent(
+    icon.source,
+    requiresFill,
+    {
+      size: 25,
+      color: '#000',
+      width: defaultWidth,
+    },
+    clsx(requiresFill ? 'featured-icon-fill' : 'featured-icon')
+  );
 };
 
 const IconPackCard: React.FC<IconPackCardProps> = (props) => {
@@ -27,20 +48,14 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
       className="flex rounded-lg justify-center items-center flex-col p-4 space-y-2 bg-neutral-50 border-neutral-300 border-[1px] dark:bg-neutral-800 dark:border-neutral-700 hover:scale-105 transition-transform"
     >
       <h2 className="text-xl font-semibold">{generateIconPackTitle()}</h2>
-      <div className="grid grid-cols-5 gap-4 p-2 bg-neutral-100 dark:bg-neutral-900 border-neutral-300 border-[1px] dark:border-neutral-700 rounded-md place-items-center">
+      <div className="grid gap-4 p-2 bg-neutral-100 dark:bg-neutral-900 border-neutral-300 border-[1px] dark:border-neutral-700 rounded-md grid-cols-7">
         {iconPack.featuredIcons.map((icon, index) => (
-          <span key={`icon-${index}`}>
-            {getSVGSourceIntoComponent(
-              icon.source,
-              iconPack.metadata.requiresFill,
-              {
-                size: 25,
-                color: '#fff',
-                width: 2,
-              },
-              clsx('stroke-neutral-800 dark:stroke-neutral-100 fill-none')
-            )}
-          </span>
+          <FeaturedIcon
+            key={`icon-${index}`}
+            icon={icon}
+            requiresFill={iconPack.metadata.requiresFill}
+            defaultWidth={iconPack.metadata.defaultWidth}
+          />
         ))}
       </div>
       <div className="w-full space-y-4">

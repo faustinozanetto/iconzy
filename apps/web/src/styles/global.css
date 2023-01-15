@@ -18,7 +18,7 @@ h5,
 h6,
 p,
 span {
-  @apply text-black dark:text-white;
+  @apply text-neutral-900 dark:text-neutral-100;
 }
 
 .grid-icon {
@@ -41,4 +41,12 @@ span {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 16px;
+}
+
+.featured-icon {
+  @apply stroke-neutral-800 dark:stroke-neutral-100;
+}
+
+.featured-icon-fill {
+  @apply fill-neutral-800 dark:fill-neutral-100;
 }

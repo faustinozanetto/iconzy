@@ -1,7 +1,7 @@
 import useFilter, { Filter, Sort } from '@modules/common/hooks/use-filter';
 import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
-import { IconPackRaw } from 'icons-fetching';
-import React, { useState } from 'react';
+import { IconPack } from 'icons-fetching';
+import React from 'react';
 import { SelectInput, TextInput } from 'ui';
 import IconPackCard from '../icon-pack-card';
 
@@ -9,24 +9,47 @@ type IconPacksBrowserTypes = {
   iconPacks: IconPackWithFeatured[];
 };
 
-const initialFilters: Filter<IconPackRaw>[] = [
+const initialFilters: Filter<IconPack>[] = [
   { property: 'name', value: '', enabled: true },
   { property: 'iconsCount', value: 0, enabled: false },
 ];
 
-const initialSort: Sort<IconPackRaw> = {
+const initialSort: Sort<IconPack> = {
   property: 'iconsCount',
   ascending: false,
 };
 
+const SearchIcon: React.FC = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      height="35"
+      width="35"
+      className="w-5 h-5 stroke-gray-500 dark:stroke-gray-400"
+      strokeWidth="2"
+    >
+      <path
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        strokeWidth="2"
+        d="M21 21L15.8033 15.8033M15.8033 15.8033C17.1605 14.4461 18 12.5711 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18C12.5711 18 14.4461 17.1605 15.8033 15.8033Z"
+        width="35"
+        height="35"
+      />
+    </svg>
+  );
+};
+
 const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
   const { iconPacks } = props;
-  const mappedPacks: IconPackRaw[] = iconPacks.map((pack) => {
+  const mappedPacks: IconPack[] = iconPacks.map((pack) => {
     return {
       ...pack.metadata,
     };
   });
-  const { filteredData, updateFilter } = useFilter<IconPackRaw>(mappedPacks, initialFilters, initialSort);
+  const { filteredData, updateFilter } = useFilter<IconPack>(mappedPacks, initialFilters, initialSort);
 
   const handleNameFilterChanged = (filter: string) => {
     // const newFilters = [...filters];
@@ -35,7 +58,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
     updateFilter({ property: 'name', value: filter, enabled: true });
   };
 
-  const handleSortFilterChanged = (filter: keyof IconPackRaw) => {};
+  const handleSortFilterChanged = (filter: keyof IconPack) => {};
 
   return (
     <div className="flex flex-col h-full">
@@ -44,6 +67,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
           id="search-pack"
           label="Browse by Name"
           placeholder="Feather Icons"
+          icon={<SearchIcon />}
           onValueChanged={handleNameFilterChanged}
         />
         <SelectInput
@@ -51,7 +75,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
           label="Sort By"
           placeholder="Name"
           onChange={(event) => {
-            handleSortFilterChanged(event.target.value as keyof IconPackRaw);
+            handleSortFilterChanged(event.target.value as keyof IconPack);
           }}
         >
           <option value="name">Name</option>

@@ -363,12 +363,22 @@ declare const SelectInput: React__default.ForwardRefExoticComponent<
 type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label?: string;
   icon?: JSX.Element;
+  /**
+   * Callback function called when the value changes.
+   * @param value New value
+   * @returns void.
+   */
   onValueChanged: (value: string) => void;
 };
 declare const TextInput: React__default.ForwardRefExoticComponent<
   Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label?: string | undefined;
     icon?: JSX.Element | undefined;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * @returns void.
+     */
     onValueChanged: (value: string) => void;
   } & React__default.RefAttributes<HTMLInputElement>
 >;
@@ -378,22 +388,42 @@ declare const Separator: React__default.FC<SeparatorProps>;
 
 type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
+  /**
+   * Callback function called when the value changes.
+   * @param value New value
+   * ;@returns void.
+   */
   onValueChanged: (value: number) => void;
 };
 declare const RangeInput: React__default.ForwardRefExoticComponent<
   Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label: string;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * ;@returns void.
+     */
     onValueChanged: (value: number) => void;
   } & React__default.RefAttributes<HTMLInputElement>
 >;
 
 type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
+  /**
+   * Callback function called when the value changes.
+   * @param value New value
+   * @returns void.
+   */
   onValueChanged: (value: string) => void;
 };
 declare const ColorInput: React__default.ForwardRefExoticComponent<
   Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'classsName'> & {
     label: string;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * @returns void.
+     */
     onValueChanged: (value: string) => void;
   } & React__default.RefAttributes<HTMLInputElement>
 >;
@@ -402,7 +432,14 @@ type SortCriteria = 'asc' | 'des';
 type SelectInputSortProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
   label?: string;
   children: React__default.ReactNode;
+  /** Initial value of the crtieria. */
   initialSortCriteria: SortCriteria;
+  /**
+   * Callback function called when the value changes.
+   * @param value New value
+   * @param criteria Criteria of the input, asc or des
+   * @returns void.
+   */
   onValueChanged: (value: string, criteria: SortCriteria) => void;
 };
 declare const SelectInputSort: React__default.FC<SelectInputSortProps>;

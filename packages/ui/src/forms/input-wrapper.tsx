@@ -8,8 +8,12 @@ type InputWrapperProps = {
   id: string;
   /**
    * Label of the input element
-   *  */
+   */
   label: string;
+  /**
+   * Wether the input is disabled or not
+   */
+  disabled: boolean;
   /**
    * Optional: Wether the input should by initially collapsed or not */
   initiallyCollapsed?: boolean;
@@ -21,7 +25,7 @@ type InputWrapperProps = {
 };
 
 export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
-  const { id, label, onInputReseted, children, initiallyCollapsed = false } = props;
+  const { id, label, disabled, onInputReseted, children, initiallyCollapsed = false } = props;
   const [inputCollapsed, setInputCollapsed] = useState(initiallyCollapsed);
 
   const handleInputCollapse = () => {
@@ -67,7 +71,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
           <span>{label}</span>
         </label>
         <div className="flex space-x-1 items-center">
-          <Button size="sm" aria-label="Reset Input" colorScheme="red" onClick={onInputReseted}>
+          <Button size="sm" aria-label="Reset Input" colorScheme="red" disabled={disabled} onClick={onInputReseted}>
             Reset
           </Button>
           <Button

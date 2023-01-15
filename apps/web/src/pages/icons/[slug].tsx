@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { IconsActionType } from '@modules/icons/context/types';
 import IconPackEditor from '@modules/icons/components/editor/icons-pack-editor';
 
-import { ICONS, IconPackRaw } from 'icons-fetching';
+import { ICONS, IconPack } from 'icons-fetching';
 
 type IconPackPagePageProps = {
   iconPack: IconPackWithAll;
@@ -47,7 +47,7 @@ const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = (ICONS as IconPackRaw[]).map((pack) => {
+  const paths = (ICONS as IconPack[]).map((pack) => {
     return {
       params: {
         slug: pack.name,

@@ -6,7 +6,14 @@ type SortCriteria = 'asc' | 'des';
 export type SelectInputSortProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
   label?: string;
   children: React.ReactNode;
+  /** Initial value of the crtieria. */
   initialSortCriteria: SortCriteria;
+  /**
+   * Callback function called when the value changes.
+   * @param value New value
+   * @param criteria Criteria of the input, asc or des
+   * @returns void.
+   */
   onValueChanged: (value: string, criteria: SortCriteria) => void;
 };
 

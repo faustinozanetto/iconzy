@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '..';
 import useDebounce from '../hooks/use-debounce';
 import { InputWrapper } from './input-wrapper';
 
 export type ColorInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
+  /**
+   * Callback function called when the value changes.
+   * @param value New value
+   * @returns void.
+   */
   onValueChanged: (value: string) => void;
 };
 
@@ -27,6 +31,7 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
     <InputWrapper
       id={id}
       label={label}
+      disabled={rest.disabled || false}
       onInputReseted={() => {
         setValue(rest.placeholder || '#a781ee');
       }}

@@ -1,6 +1,7 @@
 import Navbar from '@modules/navbar/components/navbar';
 import type { ReactNode } from 'react';
 import React from 'react';
+
 import BaseLayoutHead from './head/base-layout-head';
 
 type BaseLayoutProps = {

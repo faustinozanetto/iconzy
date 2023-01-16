@@ -11,14 +11,14 @@ export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>
   return (
     <div className="relative">
       {label ? (
-        <label htmlFor={id} className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+        <label htmlFor={id} className="mb-1 block text-sm font-semibold text-gray-900 dark:text-white">
           <span>{label}</span>
         </label>
       ) : null}
       <select
         id={id}
         ref={ref}
-        className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+        className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400"
         {...rest}
       >
         {children}

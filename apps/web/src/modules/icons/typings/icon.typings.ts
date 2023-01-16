@@ -1,4 +1,4 @@
-import { IconPack } from 'icons-fetching';
+import type { IconPack } from 'icons-fetching';
 
 export type IconCustomizationLimits = { min: number; max: number };
 

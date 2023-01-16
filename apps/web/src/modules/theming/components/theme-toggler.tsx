@@ -1,13 +1,14 @@
 import React from 'react';
-import { useThemeContext } from '../context/theme-context';
 import { Button } from 'ui';
+
+import { useThemeContext } from '../context/theme-context';
 
 const ThemeToggler: React.FC = () => {
   const { theme, toggle } = useThemeContext();
 
   const renderLightModeIcon = (
     <svg
-      className="w-5 h-5"
+      className="h-5 w-5"
       xmlns="http://www.w3.org/2000/svg"
       strokeLinejoin="round"
       strokeLinecap="round"
@@ -33,7 +34,7 @@ const ThemeToggler: React.FC = () => {
   const renderDarkModeIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5"
+      className="h-5 w-5"
       strokeLinejoin="round"
       strokeLinecap="round"
       strokeWidth="2"

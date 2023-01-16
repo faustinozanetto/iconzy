@@ -25,10 +25,11 @@ const IconsCustomizationExport: React.FC = () => {
     }
   };
 
-  const handleCopy = async () => {
-    if (!elementSource) return;
+  const handleCopy = () => {
     try {
-      await navigator.clipboard.writeText(elementSource);
+      if (elementSource) {
+        void navigator.clipboard.writeText(elementSource);
+      }
     } catch (err) {
       console.error('Failed to copy svg: ', err);
     }
@@ -36,9 +37,9 @@ const IconsCustomizationExport: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      <h3 className="font-semibold text-lg">Export Settings</h3>
+      <h3 className="text-lg font-semibold">Export Settings</h3>
       <Separator />
-      <div className="flex flex-row space-x-2 mt-2">
+      <div className="mt-2 flex flex-row space-x-2">
         <Button className="w-full" colorScheme="sky" onClick={handleExport}>
           Export
         </Button>

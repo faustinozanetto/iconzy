@@ -1,16 +1,17 @@
-import React from 'react';
-import dynamic from 'next/dynamic';
-
+import type { Filter, Sort } from '@modules/common/hooks/use-filter';
+import useFilter from '@modules/common/hooks/use-filter';
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { IconsActionType } from '@modules/icons/context/types';
-import { Icon, IconWithElement } from '@modules/icons/typings/icon.typings';
+import type { Icon, IconWithElement } from '@modules/icons/typings/icon.typings';
+import dynamic from 'next/dynamic';
+import React from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
-import useFilter, { Filter, Sort } from '@modules/common/hooks/use-filter';
+
 import IconsFeedFiltering from './icons-feed-filtering';
 
 const LoadingIcon = () => {
   return (
-    <div className="flex items-center justify-center rounded-md bg-neutral-50 border-neutral-300 border-[2px] dark:bg-neutral-800 dark:border-neutral-700 h-[150px] font-bold text-xl text-neutral-600 dark:text-neutral-200">
+    <div className="flex h-[175px] animate-pulse items-center justify-center rounded-md border-[2px] border-neutral-300 bg-neutral-50 text-xl font-bold text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
       Loading
     </div>
   );
@@ -51,15 +52,15 @@ const IconsFeed: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex flex-col space-y-2 md:!flex-row md:justify-between md:!space-y-0 md:items-center mb-4 p-4 border-b-neutral-300 border-b-[1px] dark:bg-neutral-800 dark:border-b-neutral-700">
-        <h2 className="font-medium text-xl">
-          Browsing <span className="font-bold text-primary-600 dark:text-primary-300">{filteredData.length}</span> icons
+    <div className="flex w-full flex-col">
+      <div className="grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800 md:grid-cols-2">
+        <h2 className="text-xl font-medium">
+          Browsing <span className="text-primary-600 dark:text-primary-300 font-bold">{filteredData.length}</span> icons
         </h2>
         <IconsFeedFiltering onNameChanged={handleNameFilterChanged} onSortChanged={handleSortChanged} />
       </div>
       <VirtuosoGrid
-        style={{ height: '100%', margin: '0 0 0 1rem' }}
+        style={{ height: '100%', margin: '1rem' }}
         totalCount={filteredData.length}
         overscan={10}
         data={filteredData}

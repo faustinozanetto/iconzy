@@ -1,9 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
 
-type LogoProps = {};
-
-const Logo: React.FC<LogoProps> = (props) => {
+const Logo: React.FC = (props) => {
   const {} = props;
 
   // return <Image src="/images/marketing/logo.svg" priority width={125} height={50} alt="Logo" style={{ fill: 'red' }} />;

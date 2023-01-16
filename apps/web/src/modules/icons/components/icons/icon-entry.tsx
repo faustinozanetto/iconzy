@@ -1,9 +1,8 @@
-import React from 'react';
-import clsx from 'clsx';
-
-import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
-import { IconWithCustomization } from '@modules/icons/typings/icon.typings';
 import { useIconsContext } from '@modules/icons/context/icons-context';
+import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import type { IconWithCustomization } from '@modules/icons/typings/icon.typings';
+import clsx from 'clsx';
+import React from 'react';
 
 type IconEntryProps = {
   icon: IconWithCustomization;
@@ -25,14 +24,14 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
   return (
     <div
       className={clsx(
-        'relative flex justify-center h-[175px] p-4 rounded-md transition-colors cursor-pointer group bg-neutral-50 border-neutral-300 border-2 dark:bg-neutral-800 dark:border-neutral-700 overflow-hidden hover:border-primary-400 hover:border-2 dark:hover:border-primary-500',
-        isSelected ? 'dark:!border-primary-500 !border-primary-400' : ''
+        'hover:border-primary-400 dark:hover:border-primary-500 group relative flex h-[175px] cursor-pointer justify-center overflow-hidden rounded-md border-2 border-neutral-300 bg-neutral-50 p-4 transition-colors hover:border-4 dark:border-neutral-700 dark:bg-neutral-800',
+        isSelected ? 'dark:border-primary-500 border-primary-400' : ''
       )}
       onClick={() => onIconSelected(iconSVG)}
     >
       <div className="flex flex-col self-stretch">
-        <div className="flex items-center justify-center flex-1 mx-auto">{iconSVG}</div>
-        <span className="text-center font-medium mb-1.5">{icon.name}</span>
+        <div className="mx-auto flex flex-1 items-center justify-center">{iconSVG}</div>
+        <span className="mb-1.5 text-center font-medium">{icon.name}</span>
       </div>
     </div>
   );

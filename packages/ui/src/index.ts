@@ -1,10 +1,8 @@
-import * as React from 'react';
+export { type ButtonProps, type ButtonSizes, type ButtonVariants, type ColorSchemes, Button } from './button/button';
+export { type SeparatorProps, Separator } from './common/separator';
+export { type ColorInputProps, ColorInput } from './forms/color-input';
+export { type RangeInputProps, RangeInput } from './forms/range-input';
+export { type SelectInputProps, SelectInput } from './forms/select-input';
+export { type SelectInputSortProps, SelectInputSort } from './forms/select-input-sort';
+export { type TextInputInputProps, TextInput } from './forms/text-input';
 export { defaultColors } from './utils';
-export { Button, type ButtonSizes, type ColorSchemes, type ButtonVariants, type ButtonProps } from './button/button';
-export { Card, type CardProps } from './card/card';
-export { SelectInput, type SelectInputProps } from './forms/select-input';
-export { TextInput, type TextInputInputProps } from './forms/text-input';
-export { Separator, type SeparatorProps } from './common/separator';
-export { RangeInput, type RangeInputProps } from './forms/range-input';
-export { ColorInput, type ColorInputProps } from './forms/color-input';
-export { SelectInputSort, type SelectInputSortProps } from './forms/select-input-sort';

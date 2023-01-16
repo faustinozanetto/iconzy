@@ -1,6 +1,4 @@
-import { IconPack } from '../utils';
-
-export const ICONS: IconPack[] = [
+export const ICONS = [
   {
     name: 'circum-icons',
     requiresFill: true,
@@ -90,4 +88,48 @@ export const ICONS: IconPack[] = [
       iconsFolder: 'icons/',
     },
   },
-];
+  {
+    name: 'jam-icons',
+    requiresFill: true,
+    defaultWidth: 1.5,
+    source: {
+      url: 'https://github.com/michaelampr/jam',
+      branch: 'master',
+      commitHash: 'c8501b14e0480c8becac58a626e72502bca90084',
+      iconsFolder: 'icons/',
+    },
+  },
+  {
+    name: 'eva-icons',
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: 'https://github.com/akveo/eva-icons',
+      branch: 'master',
+      commitHash: '70d2471ff88ab1385d3310b93a406243377b53d5',
+      iconsFolder: 'package/icons/fill/svg',
+    },
+  },
+  {
+    name: 'fontawesome-icons',
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: 'https://github.com/FortAwesome/Font-Awesome',
+      branch: '6.x',
+      commitHash: '96cafbd73ec4339b8c73c36673ce1518db82cc5c',
+      iconsFolder: 'svgs/solid/',
+    },
+  },
+  {
+    name: 'ant-design-icons',
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: 'https://github.com/ant-design/ant-design-icons',
+      branch: 'master',
+      commitHash: '2758f1c614979acc588ffa151805e75266cd5777',
+      iconsFolder: 'packages/icons-svg/svg/filled/',
+    },
+  },
+] as const;

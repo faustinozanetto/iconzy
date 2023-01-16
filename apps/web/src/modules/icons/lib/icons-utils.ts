@@ -1,12 +1,12 @@
-import path from 'path';
 import * as fs from 'fs';
+import parse, { Element } from 'html-react-parser';
+import type { IconPack } from 'icons-fetching';
+import { ICONS } from 'icons-fetching';
+import DOMPurify from 'isomorphic-dompurify';
+import path from 'path';
 import * as ReactDOMServer from 'react-dom/server';
 
-import DOMPurify from 'isomorphic-dompurify';
-import parse, { Element } from 'html-react-parser';
-
-import { ICONS, IconPack } from 'icons-fetching';
-import { Icon, IconCustomization } from '../typings/icon.typings';
+import type { Icon, IconCustomization } from '../typings/icon.typings';
 import { FEATURED_ICONS_COUNT, ICONS_DIR } from './constants';
 
 /**

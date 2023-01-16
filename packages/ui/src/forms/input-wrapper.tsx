@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Button } from '../button/button';
 
 type InputWrapperProps = {
@@ -37,7 +38,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
+          className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
           strokeLinejoin="round"
           strokeLinecap="round"
           strokeWidth="2"
@@ -51,7 +52,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
+        className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
         strokeLinejoin="round"
         strokeLinecap="round"
         strokeWidth="2"
@@ -70,12 +71,12 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
         <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white">
           <span>{label}</span>
         </label>
-        <div className="flex space-x-1 items-center">
+        <div className="flex items-center space-x-1">
           <Button size="sm" aria-label="Reset Input" colorScheme="red" disabled={disabled} onClick={onInputReseted}>
             Reset
           </Button>
           <Button
-            className="!p-[5px]"
+            className="p-[5px]"
             size="sm"
             aria-label="Collapse Input"
             colorScheme="stone"

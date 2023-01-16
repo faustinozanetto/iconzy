@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import useDebounce from '../hooks/use-debounce';
 import { InputWrapper } from './input-wrapper';
 
@@ -19,9 +20,8 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
   const debouncedValue = useDebounce<number>(value, 100);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    const { value } = event.target as HTMLInputElement;
-    setValue(value);
+    const { value: updatedValue } = event.target as HTMLInputElement;
+    setValue(Number(updatedValue));
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
         <input
           id={id}
           ref={ref}
-          className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer dark:bg-neutral-700"
+          className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-neutral-200 dark:bg-neutral-700"
           type="range"
           value={value}
           onChange={handleChange}
@@ -49,7 +49,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
         />
         <input
           id={id}
-          className="max-w-[50px] ml-4 text-center rounded-lg h-9 font-bold border-neutral-300 border-[1px] dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
+          className="ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
           type="text"
           value={value}
           onChange={handleChange}

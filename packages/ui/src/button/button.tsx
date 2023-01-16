@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import { defaultColors } from '../utils';
+import type { defaultColors } from '../utils';
 
 export type ButtonVariants = 'outline' | 'solid' | 'ghost';
 
@@ -10,6 +10,7 @@ export type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg';
 export type ColorSchemes = keyof typeof defaultColors;
 
 export type AvailableColorSchemes = {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   [key in ColorSchemes]: { [key in ButtonVariants]: string };
 };
 
@@ -215,6 +216,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
     return colorSchemesStyles[colorScheme][variant];
   };
 
+  // eslint-disable-next-line unused-imports/no-unused-vars
   const { className, ...excludedRest } = rest;
 
   return (

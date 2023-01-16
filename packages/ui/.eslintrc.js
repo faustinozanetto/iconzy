@@ -6,7 +6,7 @@ module.exports = defineConfig({
   overrides: [
     // Configuration for TypeScript files
     {
-      files: ['**/*.ts', '**/*.tsx'],
+      files: ['src/*.ts', 'src/*.tsx'],
       parser: '@typescript-eslint/parser',
       plugins: ['@typescript-eslint', 'unused-imports', 'tailwindcss', 'simple-import-sort'],
       extends: [
@@ -17,9 +17,10 @@ module.exports = defineConfig({
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       parserOptions: {
-        project: 'tsconfig.json',
-        tsconfigRootDir: __dirname,
-        sourceType: 'module',
+        ecmaVersion: 'latest',
+        project: 'packages/ui/tsconfig.json',
+        parser: '@typescript-eslint/parser',
+        EXPERIMENTAL_useSourceOfProjectReferenceRedirect: true,
       },
       rules: {
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks

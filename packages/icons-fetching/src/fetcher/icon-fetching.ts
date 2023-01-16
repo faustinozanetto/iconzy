@@ -3,7 +3,7 @@ import util from 'node:util';
 import fs from 'fs';
 import { execFile as rawExecFile } from 'node:child_process';
 import Task from './task';
-import { BASE_DIR, ICONS, PACKED_DIR } from '../utils';
+import { BASE_DIR, IconPackNames, ICONS, PACKED_DIR } from '../utils';
 import { ICONS_CUSTOM_PARSERS } from '../data/icon-pack-parsers';
 
 const execFile = util.promisify(rawExecFile);
@@ -14,6 +14,7 @@ const cleanAndGenerateBaseFolder = async () => {
       recursive: true,
       force: true,
     });
+    await fs.promises.rm(PACKED_DIR, { recursive: true, force: true });
     await fs.promises.mkdir(BASE_DIR, {
       recursive: true,
     });
@@ -87,11 +88,11 @@ const parseAndPackIcons = async () => {
 
 const executeCustomParsers = async () => {
   const task = new Task('execute-custom-parsers', async () => {
-    const iconFolders = await fs.promises.readdir(PACKED_DIR);
+    const iconFolders = (await fs.promises.readdir(PACKED_DIR)) as IconPackNames[];
 
     // Read each icon pack folder and try to find its corresponding data.
     for (const folder of iconFolders) {
-      const iconData = ICONS_CUSTOM_PARSERS.find((icon) => icon.name === folder);
+      const iconData = ICONS_CUSTOM_PARSERS[folder];
       if (!iconData) continue;
       if (!iconData.customParser) continue;
       // If found and a valid parser exists, execute the parser.

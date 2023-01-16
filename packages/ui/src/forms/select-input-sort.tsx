@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+
 import { Button } from '../button/button';
 
 type SortCriteria = 'asc' | 'des';
@@ -22,33 +23,31 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
   const selectInputRef = useRef<HTMLSelectElement | null>(null);
   const [sortCriteria, setSortCriteria] = useState<SortCriteria>(initialSortCriteria);
 
+  const handleSelectChanged = (value: string) => {
+    onValueChanged(value, sortCriteria);
+  };
+
   const handleSortCriteria = () => {
     setSortCriteria((prev) => (prev === 'asc' ? 'des' : 'asc'));
     if (selectInputRef.current) {
-      // @ts-ignore
       const selectValue = selectInputRef.current.value;
       handleSelectChanged(selectValue);
     }
   };
 
-  const handleSelectChanged = (value: string) => {
-    onValueChanged(value, sortCriteria);
-  };
-
   return (
     <div className="relative">
       {label ? (
-        <label htmlFor={id} className="block mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+        <label htmlFor={id} className="mb-1 block text-sm font-semibold text-gray-900 dark:text-white">
           <span>{label}</span>
         </label>
       ) : null}
-      <div className="flex space-x-1 items-center">
+      <div className="flex items-center space-x-1">
         <select
           id={id}
           ref={selectInputRef}
-          className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400"
           onChange={(event) => {
-            // @ts-ignore
             handleSelectChanged(event.target.value);
           }}
           {...rest}
@@ -56,7 +55,7 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
           {children}
         </select>
         <Button
-          className="!p-[6px] !h-[41px]"
+          className="h-[41px] p-[6px]"
           size="sm"
           aria-label="Change Criteria"
           colorScheme="stone"
@@ -65,7 +64,7 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
           {sortCriteria === 'asc' ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
+              className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
               strokeLinejoin="round"
               strokeLinecap="round"
               strokeWidth="2"
@@ -78,7 +77,7 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="stroke-neutral-800 dark:stroke-neutral-100 w-4 h-4"
+              className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
               strokeLinejoin="round"
               strokeLinecap="round"
               strokeWidth="2"

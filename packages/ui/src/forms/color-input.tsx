@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import useDebounce from '../hooks/use-debounce';
 import { InputWrapper } from './input-wrapper';
 
@@ -18,9 +19,8 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
   const debouncedValue = useDebounce<string>(value, 100);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    const { value } = event.target as HTMLInputElement;
-    setValue(value);
+    const { value: updatedValue } = event.target as HTMLInputElement;
+    setValue(updatedValue);
   };
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
     >
       <div className="flex items-center justify-between">
         <input
-          className="w-11 h-12 border-none cursor-pointer appearance-none color-input"
+          className="color-input h-12 w-11 cursor-pointer appearance-none border-none"
           id={id}
           ref={ref}
           type="color"
@@ -49,7 +49,7 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
 
         <input
           id={id}
-          className="max-w-[120px] text-start p-2 rounded-md h-10 font-bold border-neutral-300 border-[1px] dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
+          className="h-10 max-w-[120px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
           type="text"
           value={value}
           onChange={handleChange}

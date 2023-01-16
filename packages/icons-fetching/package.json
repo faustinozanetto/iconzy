@@ -17,10 +17,14 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
+    "@types/jsdom": "^20.0.1",
     "eslint": "^8.31.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "jsdom": "^21.0.0"
   }
 }

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import useMediaQuery from '@modules/common/hooks/use-media-query';
 import clsx from 'clsx';
+import React, { useEffect, useState } from 'react';
 import theme from 'tailwindcss/defaultTheme';
 
-import useMediaQuery from '@modules/common/hooks/use-media-query';
 import IconsCustomizationExport from './icons-customization-export';
 import IconsCustomizationSettings from './icons-customization-settings';
 
@@ -18,7 +18,7 @@ const IconsCustomization: React.FC = () => {
     <section
       className={clsx(
         panelToggled ? 'hidden' : 'flex flex-col justify-between',
-        'w-[280px] overflow-y-auto h-full bg-neutral-50 border-r-neutral-300 border-r-[1px] dark:bg-neutral-800 dark:border-r-neutral-700 p-4'
+        'h-full w-[280px] overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-4 dark:border-r-neutral-700 dark:bg-neutral-800'
       )}
     >
       <IconsCustomizationSettings />

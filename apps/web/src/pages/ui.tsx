@@ -1,14 +1,15 @@
 import BaseLayout from '@modules/layouts/components/base/base-layout';
-import { Button, ButtonSizes, ColorSchemes, defaultColors } from 'ui';
+import type { ColorSchemes } from 'ui';
+import { Button, defaultColors } from 'ui';
 
 const UIPage: React.FC = () => {
   const renderButtons = () => {
     return (
-      <div className="flex flex-wrap gap-4 justify-center items-center p-4">
-        <div className="flex flex-wrap gap-4 justify-center items-center p-4">
+      <div className="flex flex-wrap items-center justify-center gap-4 p-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 p-4">
           {Object.keys(defaultColors).map((colorScheme) => {
             return (
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2" key={colorScheme}>
                 <Button size="xs" variant="solid" colorScheme={colorScheme as ColorSchemes}>
                   {colorScheme}
                 </Button>
@@ -22,10 +23,10 @@ const UIPage: React.FC = () => {
             );
           })}
         </div>
-        <div className="flex flex-wrap gap-4 justify-center items-center p-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 p-4">
           {Object.keys(defaultColors).map((colorScheme) => {
             return (
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2" key={colorScheme}>
                 <Button size="sm" variant="solid" colorScheme={colorScheme as ColorSchemes}>
                   {colorScheme}
                 </Button>
@@ -39,10 +40,10 @@ const UIPage: React.FC = () => {
             );
           })}
         </div>
-        <div className="flex flex-wrap gap-4 justify-center items-center p-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 p-4">
           {Object.keys(defaultColors).map((colorScheme) => {
             return (
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2" key={colorScheme}>
                 <Button size="md" variant="solid" colorScheme={colorScheme as ColorSchemes}>
                   {colorScheme}
                 </Button>
@@ -56,10 +57,10 @@ const UIPage: React.FC = () => {
             );
           })}
         </div>
-        <div className="flex flex-wrap gap-4 justify-center items-center p-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 p-4">
           {Object.keys(defaultColors).map((colorScheme) => {
             return (
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2" key={colorScheme}>
                 <Button size="lg" variant="solid" colorScheme={colorScheme as ColorSchemes}>
                   {colorScheme}
                 </Button>

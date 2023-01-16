@@ -1,8 +1,8 @@
-import React from 'react';
-import { IconsActionType } from '@modules/icons/context/types';
-import { Separator, RangeInput, ColorInput } from 'ui';
 import { useIconsContext } from '@modules/icons/context/icons-context';
+import { IconsActionType } from '@modules/icons/context/types';
 import { DEFAULT_ICON_SIZE, ICON_SIZE_LIMITS, ICON_WIDTH_LIMITS } from '@modules/icons/lib/constants';
+import React from 'react';
+import { ColorInput, RangeInput, Separator } from 'ui';
 
 const IconsCustomizationSettings: React.FC = () => {
   const { state, dispatch } = useIconsContext();
@@ -26,9 +26,9 @@ const IconsCustomizationSettings: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      <h3 className="font-semibold text-lg">Customize Icons</h3>
+      <h3 className="text-lg font-semibold">Customize Icons</h3>
       <Separator />
-      <div className="flex flex-col space-y-4 mt-2">
+      <div className="mt-2 flex flex-col space-y-4">
         <RangeInput
           id="icon-size"
           label="Size"

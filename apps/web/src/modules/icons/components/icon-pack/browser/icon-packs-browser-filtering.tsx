@@ -1,4 +1,4 @@
-import type { Icon } from '@modules/icons/typings/icon.typings';
+import type { IconPack } from 'icons-fetching';
 import React from 'react';
 import { SelectInputSort, TextInput } from 'ui';
 
@@ -25,31 +25,37 @@ const SearchIcon: React.FC = () => {
   );
 };
 
-type IconsFeedFilteringProps = {
+type IconPacksBrowserFilteringProps = {
   onNameChanged: (value: string) => void;
-  onSortChanged: (value: keyof Icon, criteria: 'asc' | 'des') => void;
+  onSortChanged: (value: keyof IconPack, criteria: 'asc' | 'des') => void;
 };
 
-const IconsFeedFiltering: React.FC<IconsFeedFilteringProps> = (props) => {
+const IconPacksBrowserFiltering: React.FC<IconPacksBrowserFilteringProps> = (props) => {
   const { onNameChanged, onSortChanged } = props;
 
   return (
     <div className="grid gap-2 md:grid-cols-2">
       {/* Name Filtering */}
-      <TextInput id="search-icon" placeholder="Search Icons" icon={<SearchIcon />} onValueChanged={onNameChanged} />
+      <TextInput
+        id="search-packs"
+        placeholder="Search Icon Packs"
+        icon={<SearchIcon />}
+        onValueChanged={onNameChanged}
+      />
       {/* Sort Filtering */}
       <SelectInputSort
-        id="sort-icon"
-        placeholder="Sort Icons"
+        id="sort-pack"
+        placeholder="Sort Icon Packs"
         initialSortCriteria="asc"
         onValueChanged={(value, criteria) => {
-          onSortChanged(value as keyof Icon, criteria);
+          onSortChanged(value as keyof IconPack, criteria);
         }}
       >
         <option value="name">Name</option>
+        <option value="iconsCount">Icons Count</option>
       </SelectInputSort>
     </div>
   );
 };
 
-export default IconsFeedFiltering;
+export default IconPacksBrowserFiltering;

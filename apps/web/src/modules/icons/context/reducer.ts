@@ -1,4 +1,5 @@
-import { IconsActions, IconsActionType, IconsState } from './types';
+import type { IconsActions, IconsState } from './types';
+import { IconsActionType } from './types';
 
 export const reducer = (state: IconsState, action: IconsActions): IconsState => {
   switch (action.type) {

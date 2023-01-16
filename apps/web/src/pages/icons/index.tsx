@@ -1,9 +1,9 @@
-import BaseLayout from '@modules/layouts/components/base/base-layout';
-import { GetStaticProps } from 'next';
-import { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
-import React from 'react';
-import { getAllIconPacks, getFeaturedIconsFromIconPack } from '@modules/icons/lib/icons-utils';
 import IconPacksBrowser from '@modules/icons/components/icon-pack/browser/icon-packs-browser';
+import { getAllIconPacks, getFeaturedIconsFromIconPack } from '@modules/icons/lib/icons-utils';
+import type { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
+import BaseLayout from '@modules/layouts/components/base/base-layout';
+import type { GetStaticProps } from 'next';
+import React from 'react';
 
 type IconPacksPageProps = {
   iconPacks: IconPackWithFeatured[];
@@ -26,7 +26,7 @@ const IconPacksPage: React.FC<IconPacksPageProps> = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = (context) => {
+export const getStaticProps: GetStaticProps = () => {
   const iconPacks: IconPackWithFeatured[] = getAllIconPacks().map((iconPack) => {
     return {
       metadata: iconPack,

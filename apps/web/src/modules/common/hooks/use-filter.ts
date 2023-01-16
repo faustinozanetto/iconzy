@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 /**
  * The `Filter` type is used to define a filter that can be applied to a data set.
@@ -40,20 +40,20 @@ const useFilter = <TData>(data: TData[], initialFilters: Filter<TData>[], initia
   const [sort, setSort] = useState<Sort<TData>>(initialSort);
 
   const filteredData = useMemo(() => {
-    let filteredData = data;
+    let resultData = data;
     for (const filter of filters) {
       if (filter.enabled) {
-        filteredData = filteredData.filter((item) => {
+        resultData = resultData.filter((item) => {
           if (typeof item[filter.property] === 'string') {
-            // @ts-ignore
-            return item[filter.property].includes(filter.value);
+            const prop = item[filter.property] as unknown[];
+            return prop.includes(filter.value);
           } else {
             return item[filter.property] === filter.value;
           }
         });
       }
     }
-    filteredData.sort((a, b) => {
+    resultData.sort((a, b) => {
       if (a[sort.property] < b[sort.property]) {
         return sort.ascending ? -1 : 1;
       }
@@ -62,17 +62,17 @@ const useFilter = <TData>(data: TData[], initialFilters: Filter<TData>[], initia
       }
       return 0;
     });
-    return filteredData;
+    return resultData;
   }, [filters, sort]);
 
-  const updateSort = (sort: Sort<TData>) => {
-    setSort(sort);
+  const updateSort = (newSort: Sort<TData>) => {
+    setSort(newSort);
   };
 
   const updateFilter = (filter: Filter<TData>) => {
     setFilters((prev) => {
       const newFilters = [...prev];
-      let filterToUpdate = prev.findIndex((fil) => fil.property === filter.property);
+      const filterToUpdate = prev.findIndex((fil) => fil.property === filter.property);
       if (filterToUpdate === -1) return newFilters;
       newFilters[filterToUpdate] = { ...filter };
       return newFilters;

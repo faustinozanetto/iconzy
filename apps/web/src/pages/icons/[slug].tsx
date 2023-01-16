@@ -1,13 +1,12 @@
-import BaseLayout from '@modules/layouts/components/base/base-layout';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { IconPackWithAll } from '@modules/icons/typings/icon.typings';
-import { getIconPackByName, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
-import { useIconsContext } from '@modules/icons/context/icons-context';
-import { useEffect } from 'react';
-import { IconsActionType } from '@modules/icons/context/types';
 import IconPackEditor from '@modules/icons/components/editor/icons-pack-editor';
-
-import { ICONS, IconPack } from 'icons-fetching';
+import { useIconsContext } from '@modules/icons/context/icons-context';
+import { IconsActionType } from '@modules/icons/context/types';
+import { getIconPackByName, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
+import type { IconPackWithAll } from '@modules/icons/typings/icon.typings';
+import BaseLayout from '@modules/layouts/components/base/base-layout';
+import { ICONS } from 'icons-fetching';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import { useEffect } from 'react';
 
 type IconPackPagePageProps = {
   iconPack: IconPackWithAll;
@@ -47,7 +46,7 @@ const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = (ICONS as IconPack[]).map((pack) => {
+  const paths = ICONS.map((pack) => {
     return {
       params: {
         slug: pack.name,

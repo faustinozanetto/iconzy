@@ -1,8 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
-import { Icon, IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import type { Icon, IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
+import Link from 'next/link';
+import React from 'react';
 import { Button } from 'ui';
 
 type IconPackCardProps = {
@@ -45,10 +45,10 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
   return (
     <div
       key={iconPack.metadata.name}
-      className="flex rounded-lg justify-center items-center flex-col p-4 space-y-2 bg-neutral-50 border-neutral-300 border-[1px] dark:bg-neutral-800 dark:border-neutral-700 hover:scale-105 transition-transform"
+      className="flex flex-col items-center justify-center space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 transition-transform hover:scale-105 dark:border-neutral-700 dark:bg-neutral-800"
     >
       <h2 className="text-xl font-semibold">{generateIconPackTitle()}</h2>
-      <div className="grid gap-4 p-2 bg-neutral-100 dark:bg-neutral-900 border-neutral-300 border-[1px] dark:border-neutral-700 rounded-md grid-cols-7">
+      <div className="grid grid-cols-7 gap-4 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
         {iconPack.featuredIcons.map((icon, index) => (
           <FeaturedIcon
             key={`icon-${index}`}

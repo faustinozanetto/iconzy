@@ -1,4 +1,3 @@
-// @ts-check
 const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
@@ -9,19 +8,5 @@ module.exports = defineConfig({
     next: {
       rootDir: ['apps/*/'],
     },
-  },
-  rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        endOfLine: 'auto',
-      },
-    ],
-    'no-empty-pattern': 'off',
-    'no-console': 'off',
-    'consistent-return': 'off',
-    'no-param-reassign': 'off',
-    'class-methods-use-this': 'off',
   },
 });

@@ -20,6 +20,9 @@ var Task = class {
 };
 var task_default = Task;
 
+// src/utils/index.ts
+import * as path from "path";
+
 // src/data/icon-packs.ts
 var ICONS = [
   {
@@ -109,11 +112,54 @@ var ICONS = [
       commitHash: "755818100db4687fd907ecaef9f57cc9ea77d0d8",
       iconsFolder: "icons/"
     }
+  },
+  {
+    name: "jam-icons",
+    requiresFill: true,
+    defaultWidth: 1.5,
+    source: {
+      url: "https://github.com/michaelampr/jam",
+      branch: "master",
+      commitHash: "c8501b14e0480c8becac58a626e72502bca90084",
+      iconsFolder: "icons/"
+    }
+  },
+  {
+    name: "eva-icons",
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/akveo/eva-icons",
+      branch: "master",
+      commitHash: "70d2471ff88ab1385d3310b93a406243377b53d5",
+      iconsFolder: "package/icons/fill/svg"
+    }
+  },
+  {
+    name: "fontawesome-icons",
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/FortAwesome/Font-Awesome",
+      branch: "6.x",
+      commitHash: "96cafbd73ec4339b8c73c36673ce1518db82cc5c",
+      iconsFolder: "svgs/solid/"
+    }
+  },
+  {
+    name: "ant-design-icons",
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/ant-design/ant-design-icons",
+      branch: "master",
+      commitHash: "2758f1c614979acc588ffa151805e75266cd5777",
+      iconsFolder: "packages/icons-svg/svg/filled/"
+    }
   }
 ];
 
 // src/utils/index.ts
-import * as path from "path";
 var BASE_DIR = path.join(process.cwd(), "/generated");
 var PACKED_DIR = path.join(process.cwd(), "/packed");
 
@@ -121,11 +167,11 @@ var PACKED_DIR = path.join(process.cwd(), "/packed");
 import * as fs from "fs";
 import * as path2 from "path";
 import util from "util";
-var ICONS_CUSTOM_PARSERS = [
-  {
-    name: "remix-icons",
+import { JSDOM } from "jsdom";
+var ICONS_CUSTOM_PARSERS = {
+  "remix-icons": {
     async customParser(folder) {
-      const categoriesFolders = await fs.promises.readdir(folder);
+      const categoriesFolders = await fs.promises.readdir(path2.join(folder, "/"));
       for (const categoryFolder of categoriesFolders) {
         const categoryPath = path2.join(folder, categoryFolder);
         const content = await fs.promises.readdir(categoryPath);
@@ -141,8 +187,42 @@ var ICONS_CUSTOM_PARSERS = [
         });
       }
     }
+  },
+  "eva-icons": {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileLocation = path2.join(folder, file);
+        const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+        const window = new JSDOM(fileContent).window;
+        const attributesToRemove = ["class"];
+        const elementsToRemove = ["rect", "style", "defs"];
+        elementsToRemove.forEach((tag) => {
+          const elements = window.document.getElementsByTagName(tag);
+          for (let i = elements.length - 1; i >= 0; i--) {
+            const element = elements[i];
+            attributesToRemove.forEach((attribute) => {
+              element.removeAttribute(attribute);
+            });
+            element.remove();
+          }
+        });
+        attributesToRemove.forEach((attribute) => {
+          const elements = window.document.querySelectorAll(`[${attribute}]`);
+          for (let i = elements.length - 1; i >= 0; i--) {
+            elements[i].removeAttribute(attribute);
+          }
+        });
+        const rootElement = window.document.querySelector("svg");
+        if (!rootElement)
+          throw new Error("An error occurred while executing custom parser for eva-icons");
+        const modifiedSource = new window.XMLSerializer().serializeToString(rootElement);
+        console.log({ modifiedSource });
+        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+      }
+    }
   }
-];
+};
 
 // src/fetcher/icon-fetching.ts
 var execFile = util2.promisify(rawExecFile);
@@ -152,6 +232,7 @@ var cleanAndGenerateBaseFolder = async () => {
       recursive: true,
       force: true
     });
+    await fs2.promises.rm(PACKED_DIR, { recursive: true, force: true });
     await fs2.promises.mkdir(BASE_DIR, {
       recursive: true
     });
@@ -212,7 +293,7 @@ var executeCustomParsers = async () => {
   const task = new task_default("execute-custom-parsers", async () => {
     const iconFolders = await fs2.promises.readdir(PACKED_DIR);
     for (const folder of iconFolders) {
-      const iconData = ICONS_CUSTOM_PARSERS.find((icon) => icon.name === folder);
+      const iconData = ICONS_CUSTOM_PARSERS[folder];
       if (!iconData)
         continue;
       if (!iconData.customParser)

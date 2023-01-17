@@ -36,7 +36,7 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
         setValue(rest.placeholder || '#a781ee');
       }}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between ">
         <input
           className="color-input h-12 w-11 cursor-pointer appearance-none border-none"
           id={id}
@@ -49,7 +49,7 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
 
         <input
           id={id}
-          className="h-10 max-w-[120px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
+          className="h-10 max-w-[135px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ml-auto"
           type="text"
           value={value}
           onChange={handleChange}

@@ -1,4 +1,6 @@
-export { type ButtonProps, type ButtonSizes, type ButtonVariants, type ColorSchemes, Button } from './button/button';
+export { type ButtonProps, Button } from './button/button';
+export type { ButtonSizes, ButtonVariants, ColorSchemes } from './button/button-styles';
+export { type IconButtonProps, IconButton } from './button/icon-button';
 export { type SeparatorProps, Separator } from './common/separator';
 export { type ColorInputProps, ColorInput } from './forms/color-input';
 export { type RangeInputProps, RangeInput } from './forms/range-input';

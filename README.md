@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to my Iconzy</h1>
+<h1 align="center">Welcome to Iconzy</h1>
 
 <div align="center">
   <img src="assets/images/iconzy-showcase.png" />

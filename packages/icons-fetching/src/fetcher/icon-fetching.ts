@@ -1,10 +1,13 @@
-import * as path from 'path';
-import util from 'node:util';
-import fs from 'fs';
 import { execFile as rawExecFile } from 'node:child_process';
-import Task from './task';
-import { BASE_DIR, IconPackNames, ICONS, PACKED_DIR } from '../utils';
+import util from 'node:util';
+
+import fs from 'fs';
+import * as path from 'path';
+
 import { ICONS_CUSTOM_PARSERS } from '../data/icon-pack-parsers';
+import type { IconPackNames } from '../utils';
+import { BASE_DIR, ICONS, PACKED_DIR } from '../utils';
+import Task from './task';
 
 const execFile = util.promisify(rawExecFile);
 

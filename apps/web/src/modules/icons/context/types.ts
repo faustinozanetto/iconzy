@@ -2,7 +2,7 @@ import type { IconPack } from 'icons-fetching';
 
 import type { Icon, IconCustomization, IconWithElement } from '../typings/icon.typings';
 
-export type ActionMap<M extends { [index: string]: any }> = {
+export type ActionMap<M extends { [index: string]: unknown }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
         type: Key;

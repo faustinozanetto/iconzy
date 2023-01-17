@@ -42,13 +42,15 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
       .join(' ');
   };
 
+  const licenseType = iconPack.metadata.source.license.type;
+
   return (
     <div
       key={iconPack.metadata.name}
       className="flex flex-col items-center justify-center space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 transition-transform hover:scale-105 dark:border-neutral-700 dark:bg-neutral-800"
     >
       <h2 className="text-xl font-semibold">{generateIconPackTitle()}</h2>
-      <div className="grid grid-cols-7 gap-4 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
+      <div className="grid grid-cols-7 gap-3.5 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
         {iconPack.featuredIcons.map((icon, index) => (
           <FeaturedIcon
             key={`icon-${index}`}
@@ -62,6 +64,10 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
         <div className="flex justify-between font-semibold">
           <p>Icon Count</p>
           <span>{iconPack.metadata.iconsCount}</span>
+        </div>
+        <div className="flex justify-between font-semibold">
+          <p>License Type</p>
+          <span>{licenseType}</span>
         </div>
       </div>
       <Link className="w-full pt-4" href={`/icons/${iconPack.metadata.name}`}>

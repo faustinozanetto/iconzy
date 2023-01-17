@@ -283,12 +283,9 @@ declare const defaultColors: {
 type ButtonVariants = 'outline' | 'solid' | 'ghost';
 type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg';
 type ColorSchemes = keyof typeof defaultColors;
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+
+type BaseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children?: React.ReactNode;
-    /** Optional: Left icon of the button. */
-    leftIcon?: JSX.Element;
-    /** Optional: Right icon of the button. */
-    rightIcon?: JSX.Element;
     /** Optional: Size of the button, defaults to md. */
     size?: ButtonSizes;
     /** Optional: Variant of the button, defaults to solid. */
@@ -296,18 +293,39 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     /** Optional: Color scheme of the button, defaults to primary. */
     colorScheme?: ColorSchemes;
 };
+type ButtonProps = BaseButtonProps & {
+    /** Optional: Left icon of the button. */
+    leftIcon?: JSX.Element;
+    /** Optional: Right icon of the button. */
+    rightIcon?: JSX.Element;
+};
 declare const Button: React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children?: React.ReactNode;
-    /** Optional: Left icon of the button. */
-    leftIcon?: JSX.Element | undefined;
-    /** Optional: Right icon of the button. */
-    rightIcon?: JSX.Element | undefined;
     /** Optional: Size of the button, defaults to md. */
     size?: ButtonSizes | undefined;
     /** Optional: Variant of the button, defaults to solid. */
     variant?: ButtonVariants | undefined;
     /** Optional: Color scheme of the button, defaults to primary. */
     colorScheme?: "slate" | "gray" | "zinc" | "neutral" | "stone" | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia" | "pink" | "rose" | "primary" | undefined;
+} & {
+    /** Optional: Left icon of the button. */
+    leftIcon?: JSX.Element | undefined;
+    /** Optional: Right icon of the button. */
+    rightIcon?: JSX.Element | undefined;
+} & React.RefAttributes<HTMLButtonElement>>;
+
+type IconButtonProps = BaseButtonProps & {
+    /** Optional: Left icon of the button. */
+    icon?: JSX.Element;
+};
+declare const IconButton: React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    children?: React.ReactNode;
+    size?: ButtonSizes | undefined;
+    variant?: ButtonVariants | undefined;
+    colorScheme?: "slate" | "gray" | "zinc" | "neutral" | "stone" | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia" | "pink" | "rose" | "primary" | undefined;
+} & {
+    /** Optional: Left icon of the button. */
+    icon?: JSX.Element | undefined;
 } & React.RefAttributes<HTMLButtonElement>>;
 
 type SeparatorProps = React__default.HTMLAttributes<HTMLHRElement>;
@@ -322,7 +340,7 @@ type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
      */
     onValueChanged: (value: string) => void;
 };
-declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
     label: string;
     /**
      * Callback function called when the value changes.
@@ -397,4 +415,4 @@ declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__de
     onValueChanged: (value: string) => void;
 } & React__default.RefAttributes<HTMLInputElement>>;
 
-export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, defaultColors };
+export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, IconButton, IconButtonProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, defaultColors };

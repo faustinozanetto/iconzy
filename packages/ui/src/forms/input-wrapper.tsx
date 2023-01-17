@@ -68,7 +68,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white">
+        <label htmlFor={id} className="block font-semibold text-gray-900 dark:text-white text-sm">
           <span>{label}</span>
         </label>
         <div className="flex items-center space-x-1">

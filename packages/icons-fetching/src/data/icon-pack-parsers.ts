@@ -1,7 +1,9 @@
-import * as fs from 'fs';
-import * as path from 'path';
 import util from 'node:util';
+
+import * as fs from 'fs';
 import { JSDOM } from 'jsdom';
+import * as path from 'path';
+
 import type { IconPackNames } from '../utils';
 
 type IconPackParser = {
@@ -54,6 +56,32 @@ export const ICONS_CUSTOM_PARSERS: IconPackParser = {
             element.remove();
           }
         });
+        attributesToRemove.forEach((attribute: string) => {
+          const elements = window.document.querySelectorAll(`[${attribute}]`);
+          for (let i = elements.length - 1; i >= 0; i--) {
+            elements[i].removeAttribute(attribute);
+          }
+        });
+
+        const rootElement = window.document.querySelector('svg');
+        if (!rootElement) throw new Error('An error occurred while executing custom parser for eva-icons');
+        const modifiedSource: string = new window.XMLSerializer().serializeToString(rootElement);
+
+        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: 'utf-8' });
+      }
+    },
+  },
+  'dev-icons': {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileLocation = path.join(folder, file);
+        const fileContent = await fs.promises.readFile(fileLocation, { encoding: 'utf-8' });
+
+        const window = new JSDOM(fileContent).window;
+
+        const attributesToRemove: string[] = ['fill'];
+
         attributesToRemove.forEach((attribute: string) => {
           const elements = window.document.querySelectorAll(`[${attribute}]`);
           for (let i = elements.length - 1; i >= 0; i--) {

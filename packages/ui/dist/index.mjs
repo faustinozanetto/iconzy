@@ -33,141 +33,142 @@ var __objRest = (source, exclude) => {
 // src/button/button.tsx
 import clsx from "clsx";
 import * as React from "react";
-import { jsx, jsxs } from "react/jsx-runtime";
-var colorSchemesStyles = {
+
+// src/button/button-styles.ts
+var BUTTON_SIZES = {
+  xs: "p-[4px] text-[10px]",
+  sm: "px-[5px] py-[4px] text-[12px]",
+  md: "px-5 py-2.5 text-md",
+  lg: "px-10 py-3.5 text-lg"
+};
+var ICON_BUTTON_SIZES = {
+  xs: "p-[4px] text-[10px]",
+  sm: "p-[6px] text-[12px]",
+  md: "p-[8px] text-md",
+  lg: "p-[10px] text-lg"
+};
+var BUTTON_COLOR_SCHEMES = {
   slate: {
-    outline: "border-4 border-slate-300 dark:border-slate-600 hover:bg-slate-300 hover:text-slate-900 focus:ring-slate-300 dark:text-slate-200  dark:hover:bg-slate-600 dark:focus:ring-slate-500",
-    solid: "bg-slate-200 text-slate-900 hover:bg-slate-300 focus:ring-slate-300 dark:bg-slate-700 dark:hover:bg-slate-900 dark:text-slate-200",
-    ghost: "text-slate-900 hover:bg-slate-300 focus:ring-slate-300 dark:hover:bg-slate-900 dark:text-slate-200"
+    outline: "border-4 border-slate-300 dark:border-slate-600 hover:bg-slate-400 hover:border-slate-400 focus:ring-slate-300 dark:hover:bg-slate-600 dark:focus:ring-slate-500",
+    solid: "bg-slate-300 hover:bg-slate-400 focus:ring-slate-300 dark:bg-slate-700 dark:hover:bg-slate-900",
+    ghost: "hover:bg-slate-400 focus:ring-slate-300 dark:hover:bg-slate-900"
   },
   gray: {
-    outline: "border-4 border-gray-300 dark:border-gray-600 hover:bg-gray-300 hover:text-gray-900 focus:ring-gray-300 dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:ring-gray-500",
-    solid: "bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-900 dark:text-gray-200",
-    ghost: "text-gray-900 hover:bg-gray-300 focus:ring-gray-300 dark:hover:bg-gray-900 dark:text-gray-200"
+    outline: "border-4 border-gray-300 dark:border-gray-600 hover:bg-gray-400 hover:border-gray-400 focus:ring-gray-300 dark:hover:bg-gray-600 dark:focus:ring-gray-500",
+    solid: "bg-gray-300 hover:bg-gray-400 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-900",
+    ghost: "hover:bg-gray-400 focus:ring-gray-300 dark:hover:bg-gray-900"
   },
   zinc: {
-    outline: "border-4 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-300 hover:text-zinc-900 focus:ring-zinc-300 dark:text-zinc-200  dark:hover:bg-zinc-600 dark:focus:ring-zinc-500",
-    solid: "bg-zinc-200 text-zinc-900 hover:bg-zinc-300 focus:ring-zinc-300 dark:bg-zinc-700 dark:hover:bg-zinc-900 dark:text-zinc-200",
-    ghost: "text-zinc-900 hover:bg-slate-300 focus:ring-zinc-300 dark:hover:bg-zinc-900 dark:text-zinc-200"
+    outline: "border-4 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-400 hover:border-zinc-400 focus:ring-zinc-300 dark:hover:bg-zinc-600 dark:focus:ring-zinc-500",
+    solid: "bg-zinc-300 hover:bg-zinc-400 focus:ring-zinc-300 dark:bg-zinc-700 dark:hover:bg-zinc-900",
+    ghost: "hover:bg-zinc-400 focus:ring-zinc-300 dark:hover:bg-zinc-900"
   },
   neutral: {
-    outline: "border-4 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-300 hover:text-neutral-900 focus:ring-neutral-300 dark:text-neutral-200  dark:hover:bg-neutral-600 dark:focus:ring-neutral-500",
-    solid: "bg-neutral-200 text-neutral-900 hover:bg-neutral-300 focus:ring-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-900 dark:text-neutral-200",
-    ghost: "text-neutral-900 hover:bg-neutral-300 focus:ring-neutral-300 dark:hover:bg-neutral-900 dark:text-neutral-200"
+    outline: "border-4 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-400 hover:border-neutral-400 focus:ring-neutral-300 dark:hover:bg-neutral-600 dark:focus:ring-neutral-500",
+    solid: "bg-neutral-300 hover:bg-neutral-400 focus:ring-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-900",
+    ghost: "hover:bg-neutral-400 focus:ring-neutral-300 dark:hover:bg-neutral-900 "
   },
   stone: {
-    outline: "border-4 border-stone-300 dark:border-stone-600 hover:bg-stone-300 hover:text-stone-900 focus:ring-stone-300 dark:text-stone-200  dark:hover:bg-stone-600 dark:focus:ring-stone-500",
-    solid: "bg-stone-200 text-stone-900 hover:bg-stone-300 focus:ring-stone-300 dark:bg-stone-700 dark:hover:bg-stone-900 dark:text-stone-200",
-    ghost: "text-stone-900 hover:bg-stone-300 focus:ring-stone-300 dark:hover:bg-stone-900 dark:text-stone-200"
+    outline: "border-4 border-stone-300 dark:border-stone-600 hover:bg-stone-400 hover:border-stone-400 focus:ring-stone-300 dark:hover:bg-stone-600 dark:focus:ring-stone-500",
+    solid: "bg-stone-300 hover:bg-stone-400 focus:ring-stone-300 dark:bg-stone-700 dark:hover:bg-stone-900",
+    ghost: "hover:bg-stone-400 focus:ring-stone-300 dark:hover:bg-stone-900"
   },
   red: {
-    outline: "border-4 border-red-300 dark:border-red-600 hover:bg-red-300 hover:text-red-900 focus:ring-red-300 dark:text-red-200 dark:hover:bg-red-600 dark:focus:ring-red-500",
-    solid: "bg-red-200 text-red-900 hover:bg-red-300 focus:ring-red-300 dark:bg-red-700 dark:hover:bg-red-900 dark:text-red-200",
-    ghost: "text-red-900 hover:bg-red-300 focus:ring-red-300 dark:hover:bg-red-900 dark:text-red-200"
+    outline: "border-4 border-red-300 dark:border-red-600 hover:bg-red-400 hover:border-red-400 focus:ring-red-300 dark:hover:bg-red-600 dark:focus:ring-red-500",
+    solid: "bg-red-300 hover:bg-red-400 focus:ring-red-300 dark:bg-red-700 dark:hover:bg-red-900",
+    ghost: "hover:bg-red-400 focus:ring-red-300 dark:hover:bg-red-900"
   },
   orange: {
-    outline: "border-4 border-orange-300 dark:border-orange-600 hover:bg-orange-300 hover:text-orange-900 focus:ring-orange-300 dark:text-orange-200  dark:hover:bg-orange-600 dark:focus:ring-orange-500",
-    solid: "bg-orange-200 text-orange-900 hover:bg-orange-300 focus:ring-orange-300 dark:bg-orange-700 dark:hover:bg-orange-900 dark:text-orange-200",
-    ghost: "text-orange-900 hover:bg-orange-300 focus:ring-orange-300 dark:hover:bg-orange-900 dark:text-orange-200"
+    outline: "border-4 border-orange-300 dark:border-orange-600 hover:bg-orange-400 hover:border-orange-400 focus:ring-orange-300 dark:hover:bg-orange-600 dark:focus:ring-orange-500",
+    solid: "bg-orange-300 hover:bg-orange-400 focus:ring-orange-300 dark:bg-orange-700 dark:hover:bg-orange-900",
+    ghost: "hover:bg-orange-400 focus:ring-orange-300 dark:hover:bg-orange-900"
   },
   amber: {
-    outline: "border-4 border-amber-300 dark:border-amber-600 hover:bg-amber-300 hover:text-amber-900 focus:ring-amber-300 dark:text-amber-200  dark:hover:bg-amber-600 dark:focus:ring-amber-500",
-    solid: "bg-amber-200 text-amber-900 hover:bg-amber-300 focus:ring-amber-300 dark:bg-amber-700 dark:hover:bg-amber-900 dark:text-amber-200",
-    ghost: "text-amber-900 hover:bg-amber-300 focus:ring-amber-300 dark:hover:bg-amber-900 dark:text-amber-200"
+    outline: "border-4 border-amber-300 dark:border-amber-600 hover:bg-amber-400 hover:border-amber-400 focus:ring-amber-300 dark:hover:bg-amber-600 dark:focus:ring-amber-500",
+    solid: "bg-amber-300 hover:bg-amber-400 focus:ring-amber-300 dark:bg-amber-700 dark:hover:bg-amber-900",
+    ghost: "hover:bg-amber-400 focus:ring-amber-300 dark:hover:bg-amber-900"
   },
   yellow: {
-    outline: "border-4 border-yellow-300 dark:border-yellow-600 hover:bg-yellow-300 hover:text-yellow-900 focus:ring-yellow-300 dark:text-yellow-200  dark:hover:bg-yellow-600 dark:focus:ring-yellow-500",
-    solid: "bg-yellow-200 text-yellow-900 hover:bg-yellow-300 focus:ring-yellow-300 dark:bg-yellow-700 dark:hover:bg-yellow-900 dark:text-yellow-200",
-    ghost: "text-yellow-900 hover:bg-yellow-300 focus:ring-yellow-300 dark:hover:bg-yellow-900 dark:text-yellow-200"
+    outline: "border-4 border-yellow-300 dark:border-yellow-600 hover:bg-yellow-400 hover:border-yellow-400 focus:ring-yellow-300 dark:hover:bg-yellow-600 dark:focus:ring-yellow-500",
+    solid: "bg-yellow-300 hover:bg-yellow-400 focus:ring-yellow-300 dark:bg-yellow-700 dark:hover:bg-yellow-900",
+    ghost: "hover:bg-yellow-400 focus:ring-yellow-300 dark:hover:bg-yellow-900"
   },
   lime: {
-    outline: "border-4 border-lime-300 dark:border-lime-600 hover:bg-lime-300 hover:text-lime-900 focus:ring-lime-300 dark:text-lime-200 dark:hover:bg-lime-600 dark:focus:ring-lime-500",
-    solid: "bg-lime-200 text-lime-900 hover:bg-lime-300 focus:ring-lime-300 dark:bg-lime-700 dark:hover:bg-lime-900 dark:text-lime-200",
-    ghost: "text-lime-900 hover:bg-lime-300 focus:ring-lime-300 dark:hover:bg-lime-900 dark:text-lime-200"
+    outline: "border-4 border-lime-300 dark:border-lime-600 hover:bg-lime-400 hover:border-lime-400 focus:ring-lime-300 dark:hover:bg-lime-600 dark:focus:ring-lime-500",
+    solid: "bg-lime-300 hover:bg-lime-400 focus:ring-lime-300 dark:bg-lime-700 dark:hover:bg-lime-900",
+    ghost: "hover:bg-lime-400 focus:ring-lime-300 dark:hover:bg-lime-900"
   },
   green: {
-    outline: "border-4 border-green-300 dark:border-green-600 hover:bg-green-300 hover:text-green-900 focus:ring-green-300 dark:text-green-200  dark:hover:bg-green-600 dark:focus:ring-green-500",
-    solid: "bg-green-200 text-green-900 hover:bg-green-300 focus:ring-green-300 dark:bg-green-700 dark:hover:bg-green-900 dark:text-green-200",
-    ghost: "text-green-900 hover:bg-green-300 focus:ring-green-300 dark:hover:bg-green-900 dark:text-green-200"
+    outline: "border-4 border-green-300 dark:border-green-600 hover:bg-green-400 hover:border-green-400 focus:ring-green-300 dark:hover:bg-green-600 dark:focus:ring-green-500",
+    solid: "bg-green-300 hover:bg-green-400 focus:ring-green-300 dark:bg-green-700 dark:hover:bg-green-900",
+    ghost: "hover:bg-green-400 focus:ring-green-300 dark:hover:bg-green-900"
   },
   emerald: {
-    outline: "border-4 border-emerald-300 dark:border-emerald-600 hover:bg-emerald-300 hover:text-emerald-900 focus:ring-emerald-300 dark:text-emerald-200  dark:hover:bg-emerald-600 dark:focus:ring-emerald-500",
-    solid: "bg-emerald-200 text-emerald-900 hover:bg-emerald-300 focus:ring-emerald-300 dark:bg-emerald-700 dark:hover:bg-emerald-900 dark:text-emerald-200",
-    ghost: "text-emerald-900 hover:bg-emerald-300 focus:ring-emerald-300 dark:hover:bg-emerald-900 dark:text-emerald-200"
+    outline: "border-4 border-emerald-300 dark:border-emerald-600 hover:bg-emerald-400 hover:border-emerald-400 focus:ring-emerald-300 dark:hover:bg-emerald-600 dark:focus:ring-emerald-500",
+    solid: "bg-emerald-300 hover:bg-emerald-400 focus:ring-emerald-300 dark:bg-emerald-700 dark:hover:bg-emerald-900",
+    ghost: "hover:bg-emerald-400 focus:ring-emerald-300 dark:hover:bg-emerald-900"
   },
   teal: {
-    outline: "border-4 border-teal-300 dark:border-teal-600 hover:bg-teal-300 hover:text-teal-900 focus:ring-teal-300 dark:text-teal-200  dark:hover:bg-teal-600 dark:focus:ring-teal-500",
-    solid: "bg-teal-200 text-teal-900 hover:bg-teal-300 focus:ring-teal-300 dark:bg-teal-700 dark:hover:bg-teal-900 dark:text-teal-200",
-    ghost: "text-teal-900 hover:bg-teal-300 focus:ring-teal-300 dark:hover:bg-teal-900 dark:text-teal-200"
+    outline: "border-4 border-teal-300 dark:border-teal-600 hover:bg-teal-400 hover:border-teal-400 focus:ring-teal-300 dark:hover:bg-teal-600 dark:focus:ring-teal-500",
+    solid: "bg-teal-300 hover:bg-teal-400 focus:ring-teal-300 dark:bg-teal-700 dark:hover:bg-teal-900",
+    ghost: "hover:bg-teal-400 focus:ring-teal-300 dark:hover:bg-teal-900"
   },
   cyan: {
-    outline: "border-4 border-cyan-300 dark:border-cyan-600 hover:bg-cyan-300 hover:text-cyan-900 focus:ring-cyan-300 dark:text-cyan-200 dark:hover:bg-cyan-600 dark:focus:ring-cyan-500",
-    solid: "bg-cyan-200 text-cyan-900 hover:bg-cyan-300 focus:ring-cyan-300 dark:bg-cyan-700 dark:hover:bg-cyan-900 dark:text-cyan-200",
-    ghost: "text-cyan-900 hover:bg-cyan-300 focus:ring-cyan-300 dark:hover:bg-cyan-900 dark:text-cyan-200"
+    outline: "border-4 border-cyan-300 dark:border-cyan-600 hover:bg-cyan-400 hover:border-cyan-400 focus:ring-cyan-300 dark:hover:bg-cyan-600 dark:focus:ring-cyan-500",
+    solid: "bg-cyan-300 hover:bg-cyan-400 focus:ring-cyan-300 dark:bg-cyan-700 dark:hover:bg-cyan-900",
+    ghost: "hover:bg-cyan-400 focus:ring-cyan-300 dark:hover:bg-cyan-900"
   },
   sky: {
-    outline: "border-4 border-sky-300 dark:border-sky-600 hover:bg-sky-300 hover:text-sky-900 focus:ring-sky-300 dark:text-sky-200 dark:hover:bg-sky-600 dark:focus:ring-sky-500",
-    solid: "bg-sky-200 text-sky-900 hover:bg-sky-300 focus:ring-sky-300 dark:bg-sky-700 dark:hover:bg-sky-900 dark:text-sky-200",
-    ghost: "text-sky-900 hover:bg-sky-300 focus:ring-sky-300 dark:hover:bg-sky-900 dark:text-sky-200"
+    outline: "border-4 border-sky-300 dark:border-sky-600 hover:bg-sky-400 hover:border-sky-400 focus:ring-sky-300 dark:hover:bg-sky-600 dark:focus:ring-sky-500",
+    solid: "bg-sky-300 hover:bg-sky-400 focus:ring-sky-300 dark:bg-sky-700 dark:hover:bg-sky-900",
+    ghost: "hover:bg-sky-400 focus:ring-sky-300 dark:hover:bg-sky-900 "
   },
   blue: {
-    outline: "border-4 border-blue-300 dark:border-blue-600 hover:bg-blue-300 hover:text-blue-900 focus:ring-blue-300 dark:text-blue-200 dark:hover:bg-blue-600 dark:focus:ring-blue-500",
-    solid: "bg-blue-200 text-blue-900 hover:bg-blue-300 focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-900 dark:text-blue-200",
-    ghost: "text-blue-900 hover:bg-blue-300 focus:ring-blue-300 dark:hover:bg-blue-900 dark:text-blue-200"
+    outline: "border-4 border-blue-300 dark:border-blue-600 hover:bg-blue-400 hover:border-blue-400 focus:ring-blue-300 dark:hover:bg-blue-600 dark:focus:ring-blue-500",
+    solid: "bg-blue-300 hover:bg-blue-400 focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-900",
+    ghost: "hover:bg-blue-400 focus:ring-blue-300 dark:hover:bg-blue-900"
   },
   indigo: {
-    outline: "border-4 border-indigo-300 dark:border-indigo-600 hover:bg-indigo-300 hover:text-indigo-900 focus:ring-indigo-300 dark:text-indigo-200  dark:hover:bg-indigo-600 dark:focus:ring-indigo-500",
-    solid: "bg-indigo-200 text-indigo-900 hover:bg-indigo-300 focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-900 dark:text-indigo-200",
-    ghost: "text-indigo-900 hover:bg-indigo-300 focus:ring-indigo-300 dark:hover:bg-indigo-900 dark:text-indigo-200"
+    outline: "border-4 border-indigo-300 dark:border-indigo-600 hover:bg-indigo-400 hover:border-indigo-400 focus:ring-indigo-300 dark:hover:bg-indigo-600 dark:focus:ring-indigo-500",
+    solid: "bg-indigo-300 hover:bg-indigo-400 focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-900",
+    ghost: "hover:bg-indigo-400 focus:ring-indigo-300 dark:hover:bg-indigo-900"
   },
   violet: {
-    outline: "border-4 border-violet-300 dark:border-violet-600 hover:bg-violet-300 hover:text-violet-900 focus:ring-violet-300 dark:text-violet-200  dark:hover:bg-violet-600 dark:focus:ring-violet-500",
-    solid: "bg-violet-200 text-violet-900 hover:bg-violet-300 focus:ring-violet-300 dark:bg-violet-700 dark:hover:bg-violet-900 dark:text-violet-200",
-    ghost: "text-violet-900 hover:bg-violet-300 focus:ring-violet-300 dark:hover:bg-violet-900 dark:text-violet-200"
+    outline: "border-4 border-violet-300 dark:border-violet-600 hover:bg-violet-400 hover:border-violet-400 focus:ring-violet-300 dark:hover:bg-violet-600 dark:focus:ring-violet-500",
+    solid: "bg-violet-300 hover:bg-violet-400 focus:ring-violet-300 dark:bg-violet-700 dark:hover:bg-violet-900",
+    ghost: "hover:bg-violet-400 focus:ring-violet-300 dark:hover:bg-violet-900"
   },
   purple: {
-    outline: "border-4 border-purple-300 dark:border-purple-600 hover:bg-purple-300 hover:text-purple-900 focus:ring-purple-300 dark:text-purple-200  dark:hover:bg-purple-600 dark:focus:ring-purple-500",
-    solid: "bg-purple-200 text-purple-900 hover:bg-purple-300 focus:ring-purple-300 dark:bg-purple-700 dark:hover:bg-purple-900 dark:text-purple-200",
-    ghost: "text-purple-900 hover:bg-purple-300 focus:ring-purple-300 dark:hover:bg-purple-900 dark:text-purple-200"
+    outline: "border-4 border-purple-300 dark:border-purple-600 hover:bg-purple-400 hover:border-purple-400 focus:ring-purple-300 dark:hover:bg-purple-600 dark:focus:ring-purple-500",
+    solid: "bg-purple-300 hover:bg-purple-400 focus:ring-purple-300 dark:bg-purple-700 dark:hover:bg-purple-900",
+    ghost: "hover:bg-purple-400 focus:ring-purple-300 dark:hover:bg-purple-900"
   },
   fuchsia: {
-    outline: "border-4 border-fuchsia-300 dark:border-fuchsia-600 hover:bg-fuchsia-300 hover:text-fuchsia-900 focus:ring-fuchsia-300 dark:text-fuchsia-200  dark:hover:bg-fuchsia-600 dark:focus:ring-fuchsia-500",
-    solid: "bg-fuchsia-200 text-fuchsia-900 hover:bg-fuchsia-300 focus:ring-fuchsia-300 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-900 dark:text-fuchsia-200",
-    ghost: "text-fuchsia-900 hover:bg-fuchsia-300 focus:ring-fuchsia-300 dark:hover:bg-fuchsia-900 dark:text-fuchsia-200"
+    outline: "border-4 border-fuchsia-300 dark:border-fuchsia-600 hover:bg-fuchsia-400 hover:border-fuchsia-400 focus:ring-fuchsia-300 dark:hover:bg-fuchsia-600 dark:focus:ring-fuchsia-500",
+    solid: "bg-fuchsia-300 hover:bg-fuchsia-400 focus:ring-fuchsia-300 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-900",
+    ghost: "hover:bg-fuchsia-400 focus:ring-fuchsia-300 dark:hover:bg-fuchsia-900"
   },
   pink: {
-    outline: "border-4 border-pink-300 dark:border-pink-600 hover:bg-pink-300 hover:text-pink-900 focus:ring-pink-300 dark:text-pink-200 dark:hover:bg-pink-600 dark:focus:ring-pink-500",
-    solid: "bg-pink-200 text-pink-900 hover:bg-pink-300 focus:ring-pink-300 dark:bg-pink-700 dark:hover:bg-pink-900 dark:text-pink-200",
-    ghost: "text-pink-900 hover:bg-pink-300 focus:ring-pink-300 dark:hover:bg-pink-900 dark:text-pink-200"
+    outline: "border-4 border-pink-300 dark:border-pink-600 hover:bg-pink-400 hover:border-pink-400 focus:ring-pink-300 dark:hover:bg-pink-600 dark:focus:ring-pink-500",
+    solid: "bg-pink-300 hover:bg-pink-400 focus:ring-pink-300 dark:bg-pink-700 dark:hover:bg-pink-900",
+    ghost: "hover:bg-pink-400 focus:ring-pink-300 dark:hover:bg-pink-900"
   },
   rose: {
-    outline: "border-4 border-rose-300 dark:border-rose-600 hover:bg-rose-300 hover:text-rose-900 focus:ring-rose-300 dark:text-rose-200 dark:hover:bg-rose-600 dark:focus:ring-rose-500",
-    solid: "bg-rose-200 text-rose-900 hover:bg-rose-300 focus:ring-rose-300 dark:bg-rose-700 dark:hover:bg-rose-900 dark:text-rose-200",
-    ghost: "text-rose-900 hover:bg-rose-300 focus:ring-rose-300 dark:hover:bg-rose-900 dark:text-rose-200"
+    outline: "border-4 border-rose-300 dark:border-rose-600 hover:bg-rose-400 hover:border-rose-400 focus:ring-rose-300 dark:hover:bg-rose-600 dark:focus:ring-rose-500",
+    solid: "bg-rose-300 hover:bg-rose-400 focus:ring-rose-300 dark:bg-rose-700 dark:hover:bg-rose-900",
+    ghost: "hover:bg-rose-400 focus:ring-rose-300 dark:hover:bg-rose-900"
   },
   primary: {
-    outline: "border-4 border-primary-300 dark:border-primary-600 hover:bg-primary-300 hover:text-primary-900 focus:ring-primary-300 dark:text-primary-200  dark:hover:bg-primary-600 dark:focus:ring-primary-500",
-    solid: "bg-primary-200 text-primary-900 hover:bg-primary-300 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-900 dark:text-primary-200",
-    ghost: "text-primary-900 hover:bg-primary-300 focus:ring-primary-300 dark:hover:bg-primary-900 dark:text-primary-200"
+    outline: "border-4 border-primary-300 dark:border-primary-600 hover:bg-primary-400 hover:border-primary-400 focus:ring-primary-300 dark:hover:bg-primary-600 dark:focus:ring-primary-500",
+    solid: "bg-primary-300 hover:bg-primary-400 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-900",
+    ghost: "hover:bg-primary-400 focus:ring-primary-300 dark:hover:bg-primary-900"
   }
 };
+
+// src/button/button.tsx
+import { jsx, jsxs } from "react/jsx-runtime";
 var Button = React.forwardRef((props, ref) => {
   const _a = props, { children, leftIcon, rightIcon, colorScheme = "primary", size = "md", variant = "solid" } = _a, rest = __objRest(_a, ["children", "leftIcon", "rightIcon", "colorScheme", "size", "variant"]);
-  const getButtonSizes = () => {
-    switch (size) {
-      case "xs":
-        return "p-[4px] text-[10px]";
-      case "sm":
-        return "px-[5px] py-[4px] text-[12px]";
-      case "md":
-        return "px-5 py-2.5 text-md";
-      case "lg":
-        return "px-10 py-3.5 text-lg";
-    }
-  };
-  const getButtonVariants = () => {
-    return colorSchemesStyles[colorScheme][variant];
-  };
   const _b = rest, { className } = _b, excludedRest = __objRest(_b, ["className"]);
   return /* @__PURE__ */ jsxs(
     "button",
@@ -175,9 +176,9 @@ var Button = React.forwardRef((props, ref) => {
       ref,
       type: "button",
       className: clsx(
-        `inline-flex items-center justify-center rounded-lg font-medium focus:outline-none focus:ring-4`,
-        getButtonSizes(),
-        getButtonVariants(),
+        `inline-flex items-center justify-center rounded-lg font-medium focus:outline-none focus:ring-4 transition-colors text-neutral-900 dark:text-neutral-50`,
+        BUTTON_SIZES[size],
+        BUTTON_COLOR_SCHEMES[colorScheme][variant],
         rest.className
       )
     }, excludedRest), {
@@ -191,15 +192,40 @@ var Button = React.forwardRef((props, ref) => {
 });
 Button.displayName = "Button";
 
-// src/common/separator.tsx
+// src/button/icon-button.tsx
+import clsx2 from "clsx";
+import * as React2 from "react";
 import { jsx as jsx2 } from "react/jsx-runtime";
+var IconButton = React2.forwardRef((props, ref) => {
+  const _a = props, { icon, colorScheme = "primary", size = "md", variant = "solid" } = _a, rest = __objRest(_a, ["icon", "colorScheme", "size", "variant"]);
+  const _b = rest, { className } = _b, excludedRest = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ jsx2(
+    "button",
+    __spreadProps(__spreadValues({
+      ref,
+      type: "button",
+      className: clsx2(
+        `inline-flex items-center justify-center rounded-lg font-medium focus:outline-none focus:ring-4 transition-colors text-neutral-900 dark:text-neutral-50`,
+        ICON_BUTTON_SIZES[size],
+        BUTTON_COLOR_SCHEMES[colorScheme][variant],
+        rest.className
+      )
+    }, excludedRest), {
+      children: /* @__PURE__ */ jsx2("div", { className: "inline-flex self-center", children: icon })
+    })
+  );
+});
+IconButton.displayName = "Icon Button";
+
+// src/common/separator.tsx
+import { jsx as jsx3 } from "react/jsx-runtime";
 var Separator = (props) => {
   const rest = __objRest(props, []);
-  return /* @__PURE__ */ jsx2("hr", __spreadValues({ className: "mt-2 h-[1px] border-none bg-neutral-200 dark:bg-neutral-700" }, rest));
+  return /* @__PURE__ */ jsx3("hr", __spreadValues({ className: "mt-2 h-[1px] border-none bg-neutral-200 dark:bg-neutral-700" }, rest));
 };
 
 // src/forms/color-input.tsx
-import React3, { useEffect as useEffect2, useState as useState3 } from "react";
+import React4, { useEffect as useEffect2, useState as useState3 } from "react";
 
 // src/hooks/use-debounce.ts
 import { useEffect, useState } from "react";
@@ -217,7 +243,7 @@ var use_debounce_default = useDebounce;
 
 // src/forms/input-wrapper.tsx
 import { useState as useState2 } from "react";
-import { jsx as jsx3, jsxs as jsxs2 } from "react/jsx-runtime";
+import { jsx as jsx4, jsxs as jsxs2 } from "react/jsx-runtime";
 var InputWrapper = (props) => {
   const { id, label, disabled, onInputReseted, children, initiallyCollapsed = false } = props;
   const [inputCollapsed, setInputCollapsed] = useState2(initiallyCollapsed);
@@ -237,8 +263,8 @@ var InputWrapper = (props) => {
           fill: "none",
           viewBox: "0 0 24 24",
           children: [
-            /* @__PURE__ */ jsx3("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-            /* @__PURE__ */ jsx3("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
+            /* @__PURE__ */ jsx4("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+            /* @__PURE__ */ jsx4("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
           ]
         }
       );
@@ -253,18 +279,18 @@ var InputWrapper = (props) => {
         fill: "none",
         viewBox: "0 0 24 24",
         children: [
-          /* @__PURE__ */ jsx3("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-          /* @__PURE__ */ jsx3("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
+          /* @__PURE__ */ jsx4("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+          /* @__PURE__ */ jsx4("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
         ]
       }
     );
   };
   return /* @__PURE__ */ jsxs2("div", { className: "space-y-2", children: [
     /* @__PURE__ */ jsxs2("div", { className: "flex items-center justify-between", children: [
-      /* @__PURE__ */ jsx3("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx3("span", { children: label }) }),
+      /* @__PURE__ */ jsx4("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white text-sm", children: /* @__PURE__ */ jsx4("span", { children: label }) }),
       /* @__PURE__ */ jsxs2("div", { className: "flex items-center space-x-1", children: [
-        /* @__PURE__ */ jsx3(Button, { size: "sm", "aria-label": "Reset Input", colorScheme: "red", disabled, onClick: onInputReseted, children: "Reset" }),
-        /* @__PURE__ */ jsx3(
+        /* @__PURE__ */ jsx4(Button, { size: "sm", "aria-label": "Reset Input", colorScheme: "red", disabled, onClick: onInputReseted, children: "Reset" }),
+        /* @__PURE__ */ jsx4(
           Button,
           {
             className: "p-[5px]",
@@ -282,8 +308,8 @@ var InputWrapper = (props) => {
 };
 
 // src/forms/color-input.tsx
-import { jsx as jsx4, jsxs as jsxs3 } from "react/jsx-runtime";
-var ColorInput = React3.forwardRef((props, ref) => {
+import { jsx as jsx5, jsxs as jsxs3 } from "react/jsx-runtime";
+var ColorInput = React4.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
   const [value, setValue] = useState3(rest.placeholder || "");
   const debouncedValue = use_debounce_default(value, 100);
@@ -294,7 +320,7 @@ var ColorInput = React3.forwardRef((props, ref) => {
   useEffect2(() => {
     onValueChanged(value);
   }, [debouncedValue]);
-  return /* @__PURE__ */ jsx4(
+  return /* @__PURE__ */ jsx5(
     InputWrapper,
     {
       id,
@@ -303,8 +329,8 @@ var ColorInput = React3.forwardRef((props, ref) => {
       onInputReseted: () => {
         setValue(rest.placeholder || "#a781ee");
       },
-      children: /* @__PURE__ */ jsxs3("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ jsx4(
+      children: /* @__PURE__ */ jsxs3("div", { className: "flex items-center justify-between ", children: [
+        /* @__PURE__ */ jsx5(
           "input",
           __spreadValues({
             className: "color-input h-12 w-11 cursor-pointer appearance-none border-none",
@@ -315,11 +341,11 @@ var ColorInput = React3.forwardRef((props, ref) => {
             onChange: handleChange
           }, rest)
         ),
-        /* @__PURE__ */ jsx4(
+        /* @__PURE__ */ jsx5(
           "input",
           __spreadValues({
             id,
-            className: "h-10 max-w-[120px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
+            className: "h-10 max-w-[135px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ml-auto",
             type: "text",
             value,
             onChange: handleChange
@@ -332,9 +358,9 @@ var ColorInput = React3.forwardRef((props, ref) => {
 ColorInput.displayName = "Color Input";
 
 // src/forms/range-input.tsx
-import React4, { useEffect as useEffect3, useState as useState4 } from "react";
-import { jsx as jsx5, jsxs as jsxs4 } from "react/jsx-runtime";
-var RangeInput = React4.forwardRef((props, ref) => {
+import React5, { useEffect as useEffect3, useState as useState4 } from "react";
+import { jsx as jsx6, jsxs as jsxs4 } from "react/jsx-runtime";
+var RangeInput = React5.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
   const [value, setValue] = useState4(Number(rest.placeholder) || 0);
   const debouncedValue = use_debounce_default(value, 100);
@@ -345,7 +371,7 @@ var RangeInput = React4.forwardRef((props, ref) => {
   useEffect3(() => {
     onValueChanged(value);
   }, [debouncedValue]);
-  return /* @__PURE__ */ jsx5(
+  return /* @__PURE__ */ jsx6(
     InputWrapper,
     {
       id,
@@ -355,7 +381,7 @@ var RangeInput = React4.forwardRef((props, ref) => {
         setValue(Number(rest.placeholder) || 0);
       },
       children: /* @__PURE__ */ jsxs4("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ jsx5(
+        /* @__PURE__ */ jsx6(
           "input",
           __spreadValues({
             id,
@@ -366,7 +392,7 @@ var RangeInput = React4.forwardRef((props, ref) => {
             onChange: handleChange
           }, rest)
         ),
-        /* @__PURE__ */ jsx5(
+        /* @__PURE__ */ jsx6(
           "input",
           __spreadValues({
             id,
@@ -383,13 +409,13 @@ var RangeInput = React4.forwardRef((props, ref) => {
 RangeInput.displayName = "Range Input";
 
 // src/forms/select-input.tsx
-import React5 from "react";
-import { jsx as jsx6, jsxs as jsxs5 } from "react/jsx-runtime";
-var SelectInput = React5.forwardRef((props, ref) => {
+import React6 from "react";
+import { jsx as jsx7, jsxs as jsxs5 } from "react/jsx-runtime";
+var SelectInput = React6.forwardRef((props, ref) => {
   const _a = props, { id, label, children } = _a, rest = __objRest(_a, ["id", "label", "children"]);
   return /* @__PURE__ */ jsxs5("div", { className: "relative", children: [
-    label ? /* @__PURE__ */ jsx6("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx6("span", { children: label }) }) : null,
-    /* @__PURE__ */ jsx6(
+    label ? /* @__PURE__ */ jsx7("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx7("span", { children: label }) }) : null,
+    /* @__PURE__ */ jsx7(
       "select",
       __spreadProps(__spreadValues({
         id,
@@ -405,7 +431,7 @@ SelectInput.displayName = "Select Input";
 
 // src/forms/select-input-sort.tsx
 import { useRef, useState as useState5 } from "react";
-import { jsx as jsx7, jsxs as jsxs6 } from "react/jsx-runtime";
+import { jsx as jsx8, jsxs as jsxs6 } from "react/jsx-runtime";
 var SelectInputSort = (props) => {
   const _a = props, { id, label, children, initialSortCriteria, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "children", "initialSortCriteria", "onValueChanged"]);
   const selectInputRef = useRef(null);
@@ -421,9 +447,9 @@ var SelectInputSort = (props) => {
     }
   };
   return /* @__PURE__ */ jsxs6("div", { className: "relative", children: [
-    label ? /* @__PURE__ */ jsx7("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx7("span", { children: label }) }) : null,
+    label ? /* @__PURE__ */ jsx8("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx8("span", { children: label }) }) : null,
     /* @__PURE__ */ jsxs6("div", { className: "flex items-center space-x-1", children: [
-      /* @__PURE__ */ jsx7(
+      /* @__PURE__ */ jsx8(
         "select",
         __spreadProps(__spreadValues({
           id,
@@ -436,7 +462,7 @@ var SelectInputSort = (props) => {
           children
         })
       ),
-      /* @__PURE__ */ jsx7(
+      /* @__PURE__ */ jsx8(
         Button,
         {
           className: "h-[41px] p-[6px]",
@@ -455,8 +481,8 @@ var SelectInputSort = (props) => {
               fill: "none",
               viewBox: "0 0 24 24",
               children: [
-                /* @__PURE__ */ jsx7("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-                /* @__PURE__ */ jsx7("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
+                /* @__PURE__ */ jsx8("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+                /* @__PURE__ */ jsx8("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
               ]
             }
           ) : /* @__PURE__ */ jsxs6(
@@ -470,8 +496,8 @@ var SelectInputSort = (props) => {
               fill: "none",
               viewBox: "0 0 24 24",
               children: [
-                /* @__PURE__ */ jsx7("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-                /* @__PURE__ */ jsx7("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
+                /* @__PURE__ */ jsx8("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+                /* @__PURE__ */ jsx8("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
               ]
             }
           )
@@ -482,10 +508,10 @@ var SelectInputSort = (props) => {
 };
 
 // src/forms/text-input.tsx
-import clsx2 from "clsx";
-import React7, { useEffect as useEffect4, useState as useState6 } from "react";
-import { jsx as jsx8, jsxs as jsxs7 } from "react/jsx-runtime";
-var TextInput = React7.forwardRef((props, ref) => {
+import clsx3 from "clsx";
+import React8, { useEffect as useEffect4, useState as useState6 } from "react";
+import { jsx as jsx9, jsxs as jsxs7 } from "react/jsx-runtime";
+var TextInput = React8.forwardRef((props, ref) => {
   const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
   const [value, setValue] = useState6("");
   const debouncedValue = use_debounce_default(value, 100);
@@ -497,15 +523,15 @@ var TextInput = React7.forwardRef((props, ref) => {
     onValueChanged(value);
   }, [debouncedValue]);
   return /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
-    label ? /* @__PURE__ */ jsx8("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx8("span", { children: label }) }) : null,
+    label ? /* @__PURE__ */ jsx9("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx9("span", { children: label }) }) : null,
     /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
-      icon ? /* @__PURE__ */ jsx8("div", { className: "pointer-events-none absolute inset-y-0 flex items-center pl-3", children: icon }) : null,
-      /* @__PURE__ */ jsx8(
+      icon ? /* @__PURE__ */ jsx9("div", { className: "pointer-events-none absolute inset-y-0 flex items-center pl-3", children: icon }) : null,
+      /* @__PURE__ */ jsx9(
         "input",
         __spreadValues({
           id,
           ref,
-          className: clsx2(
+          className: clsx3(
             "focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400",
             icon ? "pl-10" : ""
           ),
@@ -800,6 +826,7 @@ var defaultColors = {
 export {
   Button,
   ColorInput,
+  IconButton,
   RangeInput,
   SelectInput,
   SelectInputSort,

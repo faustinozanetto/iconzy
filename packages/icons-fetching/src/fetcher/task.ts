@@ -1,5 +1,6 @@
 class Task {
   private readonly name: string;
+
   private readonly func: () => void;
 
   constructor(name: string, func: () => void) {

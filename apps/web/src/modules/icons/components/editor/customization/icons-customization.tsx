@@ -14,15 +14,26 @@ const IconsCustomization: React.FC = () => {
     setPanelToggled(isSmallDevice);
   }, [isSmallDevice]);
 
+  // const handlePanelToggled = () => {
+  //   setPanelToggled((prev) => !prev);
+  // };
+
   return (
     <section
       className={clsx(
         panelToggled ? 'hidden' : 'flex flex-col justify-between',
-        'h-full w-[280px] overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-4 dark:border-r-neutral-700 dark:bg-neutral-800'
+        'h-full w-[280px] overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-3.5 dark:border-r-neutral-700 dark:bg-neutral-800'
       )}
     >
-      <IconsCustomizationSettings />
-      <IconsCustomizationExport />
+      <div className="mb-2 flex flex-row ">
+        <h3 className="text-lg font-semibold">Customize Icons</h3>
+        {/* <IconCustomizationToggle onClick={handlePanelToggled} /> */}
+      </div>
+      {/* <Separator /> */}
+      <div className="flex flex-1 flex-col justify-between">
+        <IconsCustomizationSettings />
+        <IconsCustomizationExport />
+      </div>
     </section>
   );
 };

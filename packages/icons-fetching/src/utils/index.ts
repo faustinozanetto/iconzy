@@ -1,6 +1,6 @@
 import * as path from 'path';
-import { ICONS } from '../data/icon-packs';
 
+import type { ICONS } from '../data/icon-packs';
 
 export { ICONS } from '../data/icon-packs';
 export const BASE_DIR = path.join(process.cwd(), '/generated');
@@ -16,6 +16,9 @@ export type IconPack = {
     branch: string;
     commitHash: string;
     iconsFolder: string;
+    license: {
+      type: string;
+    };
   };
 };
 

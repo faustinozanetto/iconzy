@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'ui';
+import { IconButton } from 'ui';
 
 import { useThemeContext } from '../context/theme-context';
 
@@ -53,11 +53,7 @@ const ThemeToggler: React.FC = () => {
     return renderDarkModeIcon;
   };
 
-  return (
-    <Button className="h-10 w-10" variant="ghost" aria-label="Toggle Theme" onClick={toggle}>
-      <div className="inline-flex self-center">{themeIcon()}</div>
-    </Button>
-  );
+  return <IconButton variant="ghost" aria-label="Toggle Theme" onClick={toggle} icon={themeIcon()} />;
 };
 
 export default ThemeToggler;

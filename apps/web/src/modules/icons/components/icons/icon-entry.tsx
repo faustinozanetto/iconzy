@@ -24,8 +24,8 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
   return (
     <div
       className={clsx(
-        'hover:border-primary-400 dark:hover:border-primary-500 group relative flex h-[175px] cursor-pointer justify-center overflow-hidden rounded-md border-2 border-neutral-300 bg-neutral-50 p-4 transition-colors hover:border-4 dark:border-neutral-700 dark:bg-neutral-800',
-        isSelected ? 'dark:border-primary-500 border-primary-400' : ''
+        'hover:border-primary-400 dark:hover:border-primary-500 group relative flex h-[175px] cursor-pointer justify-center overflow-hidden rounded-md border-[3.5px] border-neutral-300 bg-neutral-50 p-4 transition-colors hover:border-4 dark:border-neutral-700 dark:bg-neutral-800',
+        isSelected ? 'dark:!border-primary-500 !border-primary-400' : ''
       )}
       onClick={() => onIconSelected(iconSVG)}
     >

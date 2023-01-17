@@ -2,6 +2,7 @@ import useMediaQuery from '@modules/common/hooks/use-media-query';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import theme from 'tailwindcss/defaultTheme';
+import { Separator } from 'ui';
 
 import IconsCustomizationExport from './icons-customization-export';
 import IconsCustomizationSettings from './icons-customization-settings';
@@ -22,14 +23,14 @@ const IconsCustomization: React.FC = () => {
     <section
       className={clsx(
         panelToggled ? 'hidden' : 'flex flex-col justify-between',
-        'h-full w-[280px] overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-3.5 dark:border-r-neutral-700 dark:bg-neutral-800'
+        'h-full w-[280px] space-y-2 overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-3.5 dark:border-r-neutral-700 dark:bg-neutral-800'
       )}
     >
-      <div className="mb-2 flex flex-row ">
-        <h3 className="text-lg font-semibold">Customize Icons</h3>
+      <div className="mb-2 flex flex-row">
+        <h3 className="text-lg font-semibold">Customization</h3>
         {/* <IconCustomizationToggle onClick={handlePanelToggled} /> */}
       </div>
-      {/* <Separator /> */}
+      <Separator />
       <div className="flex flex-1 flex-col justify-between">
         <IconsCustomizationSettings />
         <IconsCustomizationExport />

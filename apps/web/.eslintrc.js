@@ -28,6 +28,7 @@ module.exports = defineConfig({
         'class-methods-use-this': 'off',
         'no-empty-pattern': 'off',
         'consistent-return': 'off',
+        '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: { attributes: false } }],
         'tailwindcss/no-custom-classname': 'off',
         'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
         'react/require-default-props': 'off', // Allow non-defined react props as undefined

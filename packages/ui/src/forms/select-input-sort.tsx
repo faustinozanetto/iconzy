@@ -1,12 +1,11 @@
 import React, { useRef, useState } from 'react';
-
-import { Button } from '../button/button';
+import { IconButton } from '../button/icon-button';
 
 type SortCriteria = 'asc' | 'des';
 
 export type SelectInputSortProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
-  label?: string;
   children: React.ReactNode;
+  label?: string;
   /** Initial value of the crtieria. */
   initialSortCriteria: SortCriteria;
   /**
@@ -35,6 +34,35 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
     }
   };
 
+  const sortCriteriaIcon =
+    sortCriteria === 'asc' ? (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        strokeWidth="2"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <line y2="5" x2="12" y1="19" x1="12" width="35" height="35" strokeWidth="2" />
+        <polyline points="5 12 12 5 19 12" width="35" height="35" strokeWidth="2" />
+      </svg>
+    ) : (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        strokeWidth="2"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <line y2="19" x2="12" y1="5" x1="12" width="35" height="35" strokeWidth="2" />
+        <polyline points="19 12 12 19 5 12" width="35" height="35" strokeWidth="2" />
+      </svg>
+    );
+
   return (
     <div className="relative">
       {label ? (
@@ -54,41 +82,13 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
         >
           {children}
         </select>
-        <Button
-          className="h-[41px] p-[6px]"
-          size="sm"
+        <IconButton
+          className="h-[41px]"
           aria-label="Change Criteria"
           colorScheme="stone"
           onClick={handleSortCriteria}
-        >
-          {sortCriteria === 'asc' ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <line y2="5" x2="12" y1="19" x1="12" width="35" height="35" strokeWidth="2" />
-              <polyline points="5 12 12 5 19 12" width="35" height="35" strokeWidth="2" />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <line y2="19" x2="12" y1="5" x1="12" width="35" height="35" strokeWidth="2" />
-              <polyline points="19 12 12 19 5 12" width="35" height="35" strokeWidth="2" />
-            </svg>
-          )}
-        </Button>
+          icon={sortCriteriaIcon}
+        />
       </div>
     </div>
   );

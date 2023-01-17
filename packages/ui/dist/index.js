@@ -63,7 +63,11 @@ __export(src_exports, {
   SelectInputSort: () => SelectInputSort,
   Separator: () => Separator,
   TextInput: () => TextInput,
-  defaultColors: () => defaultColors
+  ToastProvider: () => ToastProvider,
+  ToastsContainer: () => ToastsContainer,
+  defaultColors: () => defaultColors,
+  useToast: () => useToast,
+  useToastContext: () => useToastContext
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -287,55 +291,61 @@ var InputWrapper = (props) => {
   const handleInputCollapse = () => {
     setInputCollapsed((prev) => !prev);
   };
-  const renderButtonIcon = () => {
-    if (inputCollapsed)
-      return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-        "svg",
-        {
-          xmlns: "http://www.w3.org/2000/svg",
-          className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
-          strokeLinejoin: "round",
-          strokeLinecap: "round",
-          strokeWidth: "2",
-          fill: "none",
-          viewBox: "0 0 24 24",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
-          ]
-        }
-      );
-    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-      "svg",
-      {
-        xmlns: "http://www.w3.org/2000/svg",
-        className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
-        strokeLinejoin: "round",
-        strokeLinecap: "round",
-        strokeWidth: "2",
-        fill: "none",
-        viewBox: "0 0 24 24",
-        children: [
-          /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-          /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
-        ]
-      }
-    );
-  };
+  const renderButtonIcon = inputCollapsed ? /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
+      ]
+    }
+  ) : /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
+      ]
+    }
+  );
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "space-y-2", children: [
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("label", { htmlFor: id, className: "block font-semibold text-gray-900 dark:text-white text-sm", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { children: label }) }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "flex items-center space-x-1", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { size: "sm", "aria-label": "Reset Input", colorScheme: "red", disabled, onClick: onInputReseted, children: "Reset" }),
         /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
           Button,
           {
-            className: "p-[5px]",
+            size: "sm",
+            variant: "ghost",
+            "aria-label": "Reset Input",
+            colorScheme: "red",
+            disabled,
+            onClick: onInputReseted,
+            children: "Reset"
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+          IconButton,
+          {
             size: "sm",
             "aria-label": "Collapse Input",
             colorScheme: "stone",
             onClick: handleInputCollapse,
-            children: renderButtonIcon()
+            icon: renderButtonIcon
           }
         )
       ] })
@@ -381,7 +391,7 @@ var ColorInput = import_react3.default.forwardRef((props, ref) => {
         /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
           "input",
           __spreadValues({
-            id,
+            id: `manual-${id}`,
             className: "h-10 max-w-[135px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ml-auto",
             type: "text",
             value,
@@ -432,7 +442,7 @@ var RangeInput = import_react4.default.forwardRef((props, ref) => {
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
           "input",
           __spreadValues({
-            id,
+            id: `manual-${id}`,
             className: "ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
             type: "text",
             value,
@@ -483,6 +493,37 @@ var SelectInputSort = (props) => {
       handleSelectChanged(selectValue);
     }
   };
+  const sortCriteriaIcon = sortCriteria === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
+      ]
+    }
+  ) : /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
+      ]
+    }
+  );
   return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "relative", children: [
     label ? /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: label }) }) : null,
     /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "flex items-center space-x-1", children: [
@@ -500,44 +541,13 @@ var SelectInputSort = (props) => {
         })
       ),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
-        Button,
+        IconButton,
         {
-          className: "h-[41px] p-[6px]",
-          size: "sm",
+          className: "h-[41px]",
           "aria-label": "Change Criteria",
           colorScheme: "stone",
           onClick: handleSortCriteria,
-          children: sortCriteria === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
-            "svg",
-            {
-              xmlns: "http://www.w3.org/2000/svg",
-              className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
-              strokeLinejoin: "round",
-              strokeLinecap: "round",
-              strokeWidth: "2",
-              fill: "none",
-              viewBox: "0 0 24 24",
-              children: [
-                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
-              ]
-            }
-          ) : /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
-            "svg",
-            {
-              xmlns: "http://www.w3.org/2000/svg",
-              className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
-              strokeLinejoin: "round",
-              strokeLinecap: "round",
-              strokeWidth: "2",
-              fill: "none",
-              viewBox: "0 0 24 24",
-              children: [
-                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
-              ]
-            }
-          )
+          icon: sortCriteriaIcon
         }
       )
     ] })
@@ -580,6 +590,134 @@ var TextInput = import_react7.default.forwardRef((props, ref) => {
   ] });
 });
 TextInput.displayName = "Text Input";
+
+// src/toast/context/toast-context.tsx
+var import_react8 = require("react");
+
+// src/toast/context/reducer/index.ts
+var reducer = (state, action) => {
+  switch (action.type) {
+    case 0 /* ADD_TOAST */: {
+      return __spreadProps(__spreadValues({}, state), {
+        toasts: [...state.toasts, action.payload.toast]
+      });
+    }
+    case 1 /* REMOVE_TOAST */: {
+      const updatedToasts = state.toasts.filter((toast) => toast.id !== action.payload.toast);
+      return __spreadProps(__spreadValues({}, state), {
+        toasts: updatedToasts
+      });
+    }
+    default:
+      throw new Error("The action you requested does not exists!");
+  }
+};
+
+// src/toast/context/toast-context.tsx
+var import_jsx_runtime10 = require("react/jsx-runtime");
+var initialState = {
+  state: { toasts: [] },
+  dispatch: () => {
+  }
+};
+var ToastContext = (0, import_react8.createContext)(initialState);
+var useToastContext = () => {
+  const context = (0, import_react8.useContext)(ToastContext);
+  if (!context)
+    throw new Error("Tried to use ThemeContext with no context avaiable!");
+  return context;
+};
+var useToast = () => {
+  const { dispatch } = useToastContext();
+  const toast = (toast2, duration = 3e3) => {
+    const toastId = Math.random().toString(12).substring(2, 10);
+    dispatch({
+      type: 0 /* ADD_TOAST */,
+      payload: {
+        toast: __spreadProps(__spreadValues({}, toast2), { id: toastId })
+      }
+    });
+    setTimeout(() => {
+      dispatch({
+        type: 1 /* REMOVE_TOAST */,
+        payload: {
+          toast: toastId
+        }
+      });
+    }, duration);
+  };
+  return { toast };
+};
+var ToastProvider = (props) => {
+  const { children } = props;
+  const [state, dispatch] = (0, import_react8.useReducer)(reducer, {
+    toasts: []
+  });
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ToastContext.Provider, { value: { state, dispatch }, children });
+};
+
+// src/toast/components/toast.tsx
+var import_clsx4 = __toESM(require("clsx"));
+var import_jsx_runtime11 = require("react/jsx-runtime");
+var Toast2 = (props) => {
+  const { toast } = props;
+  const toastIcon = toast.variant === "success" ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+    "svg",
+    {
+      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
+      xmlns: "http://www.w3.org/2000/svg",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      stroke: "#ffffff",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("path", { d: "M22 11.08V12a10 10 0 1 1-5.93-9.14" }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("polyline", { points: "22 4 12 14.01 9 11.01" })
+      ]
+    }
+  ) : /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+    "svg",
+    {
+      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
+      xmlns: "http://www.w3.org/2000/svg",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      stroke: "#ffffff",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("circle", { r: "10", cy: "12", cx: "12" }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { y2: "12", x2: "12", y1: "8", x1: "12" }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { y2: "16", x2: "12.01", y1: "16", x1: "12" })
+      ]
+    }
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex flex-col items-center m-2", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+    "div",
+    {
+      className: (0, import_clsx4.default)(
+        "flex p-4 rounded-md items-start overflow-hidden shadow-md text-neutral-800 dark:text-neutral-50",
+        toast.variant === "success" ? "bg-green-200 dark:bg-green-700" : "bg-red-200 dark:bg-red-700"
+      ),
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex-shrink-0 mr-2", children: toastIcon }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex-1 max-w-full", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "text-sm font-medium", children: toast.content }) })
+      ]
+    }
+  ) });
+};
+
+// src/toast/components/toasts-container.tsx
+var import_jsx_runtime12 = require("react/jsx-runtime");
+var ToastsContainer = () => {
+  const { state } = useToastContext();
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "fixed z-50 flex flex-col bottom-0 right-0 left-0", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "max-w-xl mx-auto", children: state.toasts && state.toasts.map((toast) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Toast2, { toast }, toast.id);
+  }) }) });
+};
 
 // src/utils/index.ts
 var defaultColors = {
@@ -870,5 +1008,9 @@ var defaultColors = {
   SelectInputSort,
   Separator,
   TextInput,
-  defaultColors
+  ToastProvider,
+  ToastsContainer,
+  defaultColors,
+  useToast,
+  useToastContext
 });

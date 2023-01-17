@@ -53,7 +53,7 @@ const ThemeToggler: React.FC = () => {
     return renderDarkModeIcon;
   };
 
-  return <IconButton variant="ghost" aria-label="Toggle Theme" onClick={toggle} icon={themeIcon()} />;
+  return <IconButton variant="ghost" aria-label="Toggle Theme" onClick={() => toggle()} icon={themeIcon()} />;
 };
 
 export default ThemeToggler;

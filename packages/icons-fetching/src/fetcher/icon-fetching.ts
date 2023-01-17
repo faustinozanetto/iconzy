@@ -31,7 +31,7 @@ const downloadAndOrganizeIconPacks = async () => {
       const iconTask = new Task(`download-${icon.name}`, async () => {
         const iconFolder = path.join(BASE_DIR, icon.name);
 
-        console.log(`Started icon download: ${icon.source.url}/${icon.source.iconsFolder}@${icon.source.branch}`);
+        console.log(`💾 Started icon download: ${icon.source.url}/${icon.source.iconsFolder}@${icon.source.branch}`);
 
         await execFile('git', ['clone', '--filter=tree:0', '--no-checkout', icon.source.url, icon.name], {
           cwd: BASE_DIR,

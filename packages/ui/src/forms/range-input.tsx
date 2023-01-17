@@ -48,7 +48,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
           {...rest}
         />
         <input
-          id={id}
+          id={`manual-${id}`}
           className="ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
           type="text"
           value={value}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Button } from '../button/button';
+import { IconButton } from '../button/icon-button';
 
 type InputWrapperProps = {
   /**
@@ -33,37 +34,33 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
     setInputCollapsed((prev) => !prev);
   };
 
-  const renderButtonIcon = () => {
-    if (inputCollapsed)
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          strokeWidth="2"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <line y2="5" x2="12" y1="19" x1="12" width="35" height="35" strokeWidth="2" />
-          <polyline points="5 12 12 5 19 12" width="35" height="35" strokeWidth="2" />
-        </svg>
-      );
-    return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        strokeWidth="2"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <line y2="19" x2="12" y1="5" x1="12" width="35" height="35" strokeWidth="2" />
-        <polyline points="19 12 12 19 5 12" width="35" height="35" strokeWidth="2" />
-      </svg>
-    );
-  };
+  const renderButtonIcon = inputCollapsed ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
+      strokeLinejoin="round"
+      strokeLinecap="round"
+      strokeWidth="2"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <line y2="5" x2="12" y1="19" x1="12" width="35" height="35" strokeWidth="2" />
+      <polyline points="5 12 12 5 19 12" width="35" height="35" strokeWidth="2" />
+    </svg>
+  ) : (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100"
+      strokeLinejoin="round"
+      strokeLinecap="round"
+      strokeWidth="2"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <line y2="19" x2="12" y1="5" x1="12" width="35" height="35" strokeWidth="2" />
+      <polyline points="19 12 12 19 5 12" width="35" height="35" strokeWidth="2" />
+    </svg>
+  );
 
   return (
     <div className="space-y-2">
@@ -72,18 +69,23 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
           <span>{label}</span>
         </label>
         <div className="flex items-center space-x-1">
-          <Button size="sm" aria-label="Reset Input" colorScheme="red" disabled={disabled} onClick={onInputReseted}>
+          <Button
+            size="sm"
+            variant="ghost"
+            aria-label="Reset Input"
+            colorScheme="red"
+            disabled={disabled}
+            onClick={onInputReseted}
+          >
             Reset
           </Button>
-          <Button
-            className="p-[5px]"
+          <IconButton
             size="sm"
             aria-label="Collapse Input"
             colorScheme="stone"
             onClick={handleInputCollapse}
-          >
-            {renderButtonIcon()}
-          </Button>
+            icon={renderButtonIcon}
+          />
         </div>
       </div>
       {!inputCollapsed ? children : null}

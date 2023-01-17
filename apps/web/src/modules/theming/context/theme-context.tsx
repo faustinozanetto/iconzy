@@ -15,7 +15,9 @@ const initialState: ThemeContextState = {
 const ThemeContext = createContext<ThemeContextState>(initialState);
 
 export const useThemeContext = () => {
-  return useContext(ThemeContext);
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error('Tried to use ThemeContext with no context avaiable!');
+  return context;
 };
 
 type ThemeProviderProps = {

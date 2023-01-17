@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React$1 from 'react';
 import React__default from 'react';
 
 declare const defaultColors: {
@@ -284,8 +284,8 @@ type ButtonVariants = 'outline' | 'solid' | 'ghost';
 type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg';
 type ColorSchemes = keyof typeof defaultColors;
 
-type BaseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    children?: React.ReactNode;
+type BaseButtonProps = React$1.ButtonHTMLAttributes<HTMLButtonElement> & {
+    children?: React$1.ReactNode;
     /** Optional: Size of the button, defaults to md. */
     size?: ButtonSizes;
     /** Optional: Variant of the button, defaults to solid. */
@@ -299,8 +299,8 @@ type ButtonProps = BaseButtonProps & {
     /** Optional: Right icon of the button. */
     rightIcon?: JSX.Element;
 };
-declare const Button: React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    children?: React.ReactNode;
+declare const Button: React$1.ForwardRefExoticComponent<React$1.ButtonHTMLAttributes<HTMLButtonElement> & {
+    children?: React$1.ReactNode;
     /** Optional: Size of the button, defaults to md. */
     size?: ButtonSizes | undefined;
     /** Optional: Variant of the button, defaults to solid. */
@@ -312,21 +312,21 @@ declare const Button: React.ForwardRefExoticComponent<React.ButtonHTMLAttributes
     leftIcon?: JSX.Element | undefined;
     /** Optional: Right icon of the button. */
     rightIcon?: JSX.Element | undefined;
-} & React.RefAttributes<HTMLButtonElement>>;
+} & React$1.RefAttributes<HTMLButtonElement>>;
 
 type IconButtonProps = BaseButtonProps & {
     /** Optional: Left icon of the button. */
     icon?: JSX.Element;
 };
-declare const IconButton: React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    children?: React.ReactNode;
+declare const IconButton: React$1.ForwardRefExoticComponent<React$1.ButtonHTMLAttributes<HTMLButtonElement> & {
+    children?: React$1.ReactNode;
     size?: ButtonSizes | undefined;
     variant?: ButtonVariants | undefined;
     colorScheme?: "slate" | "gray" | "zinc" | "neutral" | "stone" | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia" | "pink" | "rose" | "primary" | undefined;
 } & {
     /** Optional: Left icon of the button. */
     icon?: JSX.Element | undefined;
-} & React.RefAttributes<HTMLButtonElement>>;
+} & React$1.RefAttributes<HTMLButtonElement>>;
 
 type SeparatorProps = React__default.HTMLAttributes<HTMLHRElement>;
 declare const Separator: React__default.FC<SeparatorProps>;
@@ -340,7 +340,7 @@ type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
      */
     onValueChanged: (value: string) => void;
 };
-declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
+declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
     label: string;
     /**
      * Callback function called when the value changes.
@@ -380,8 +380,8 @@ declare const SelectInput: React__default.ForwardRefExoticComponent<Omit<React__
 
 type SortCriteria = 'asc' | 'des';
 type SelectInputSortProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
-    label?: string;
     children: React__default.ReactNode;
+    label?: string;
     /** Initial value of the crtieria. */
     initialSortCriteria: SortCriteria;
     /**
@@ -415,4 +415,60 @@ declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__de
     onValueChanged: (value: string) => void;
 } & React__default.RefAttributes<HTMLInputElement>>;
 
-export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, IconButton, IconButtonProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, defaultColors };
+declare const ToastsContainer: React__default.FC;
+
+type ActionMap<M extends {
+    [index: string]: unknown;
+}> = {
+    [Key in keyof M]: M[Key] extends undefined ? {
+        type: Key;
+    } : {
+        type: Key;
+        payload: M[Key];
+    };
+};
+type ToastVariants = 'success' | 'error';
+type Toast = {
+    id: string;
+    variant: ToastVariants;
+    content: string;
+};
+type ToastState = {
+    toasts: Toast[];
+};
+type ToastContextState = {
+    state: ToastState;
+    dispatch: React.Dispatch<ToastActions>;
+};
+declare enum ToastActionType {
+    ADD_TOAST = 0,
+    REMOVE_TOAST = 1
+}
+type ToastPayload = {
+    [ToastActionType.ADD_TOAST]: {
+        toast: Toast;
+    };
+    [ToastActionType.REMOVE_TOAST]: {
+        toast: Toast['id'];
+    };
+};
+type ToastActions = ActionMap<ToastPayload>[keyof ActionMap<ToastPayload>];
+
+type ToastProviderProps = {
+    children: React__default.ReactNode;
+};
+/**
+ * Hook that returns the toast context.
+ * @returns The context if valid.
+ */
+declare const useToastContext: () => ToastContextState;
+/**
+ * Hook that returns a function to create toasts.
+ * @returns The function to create toast.
+ */
+declare const useToast: () => {
+    toast: (toast: Omit<Toast, 'id'>, duration?: number) => void;
+};
+declare const ToastProvider: React__default.FC<ToastProviderProps>;
+
+export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, IconButton, IconButtonProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, defaultColors, useToast, useToastContext };

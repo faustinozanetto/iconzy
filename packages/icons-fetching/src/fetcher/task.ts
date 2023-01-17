@@ -10,10 +10,10 @@ class Task {
 
   async run() {
     const startTime = performance.now();
-    console.log(`Executing Task: ${this.name}`);
+    console.log(`🛠 Executing Task: ${this.name}`);
     await this.func();
     const endTime = performance.now();
-    console.log(`Task ${this.name} completed in ${Math.floor(endTime - startTime) / 100} seconds.`);
+    console.log(`🎉 Task ${this.name} completed in ${Math.floor(endTime - startTime) / 100} seconds.`);
   }
 }
 

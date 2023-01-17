@@ -31,10 +31,12 @@ const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
     });
   }, []);
 
+  const parsedName = iconPack.metadata.name.split('-').join(' ');
+
   return (
     <BaseLayout
       headProps={{
-        title: `Browsing ${iconPack.metadata.name} | Iconozen`,
+        title: `Browsing ${parsedName} | Iconozen`,
         description: 'Iconozen is a page for downloading and customizing svg icons for your projects.',
         url: `https://iconzy.vercel.app/icons/${iconPack.metadata.name}`,
         canonicalUrl: `https://iconzy.vercel.app/icons/${iconPack.metadata.name}`,

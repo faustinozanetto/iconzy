@@ -48,7 +48,7 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
         />
 
         <input
-          id={id}
+          id={`manual-${id}`}
           className="h-10 max-w-[135px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ml-auto"
           type="text"
           value={value}

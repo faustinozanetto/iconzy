@@ -111,7 +111,6 @@ export const getIconsCountFromIconPack = (iconPack: IconPack): number => {
     return fs.readdirSync(iconPackFolder, 'utf8').length;
   } catch (error) {
     console.error(error);
-
     throw new Error('An error occurred while trying to count icons from icon pack: ' + iconPack.name);
   }
 };

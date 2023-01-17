@@ -6,6 +6,7 @@ import ThemeProvider from '@modules/theming/context/theme-context';
 import { Inter } from '@next/font/google';
 import type { AppProps } from 'next/app';
 import React from 'react';
+import { ToastProvider, ToastsContainer } from 'ui';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -17,11 +18,14 @@ const IconozenApp: React.FC<PortfolioProps> = (props) => {
 
   return (
     <ThemeProvider>
-      <IconsProvider>
-        <main className={`${inter.variable} font-sans`}>
-          <Component {...pageProps} />
-        </main>
-      </IconsProvider>
+      <ToastProvider>
+        <IconsProvider>
+          <main className={`${inter.variable} relative font-sans`}>
+            <Component {...pageProps} />
+            <ToastsContainer />
+          </main>
+        </IconsProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 };

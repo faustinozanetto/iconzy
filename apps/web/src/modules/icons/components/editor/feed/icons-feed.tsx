@@ -76,7 +76,7 @@ const IconsFeed: React.FC = () => {
           ref={feedContainer}
           style={{ height: '100%', margin: '1rem' }}
           totalCount={filteredData.length}
-          overscan={10}
+          overscan={25}
           data={filteredData}
           itemContent={(index, icon) => {
             return (

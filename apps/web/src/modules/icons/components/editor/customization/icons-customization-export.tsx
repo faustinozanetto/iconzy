@@ -1,10 +1,11 @@
 import { useIconsContext } from '@modules/icons/context/icons-context';
 import { convertJSXToString } from '@modules/icons/lib/icons-utils';
 import React, { useMemo } from 'react';
-import { Button, Separator } from 'ui';
+import { Button, Separator, useToast } from 'ui';
 
 const IconsCustomizationExport: React.FC = () => {
   const { state } = useIconsContext();
+  const { toast } = useToast();
 
   const elementSource = useMemo(() => {
     const selectedIcon = state.selectedIcon;
@@ -18,20 +19,18 @@ const IconsCustomizationExport: React.FC = () => {
       const fileURL = URL.createObjectURL(file);
       const link = document.createElement('a');
       link.href = fileURL;
-      link.download = 'icon.svg';
+      link.download = `${state.selectedIcon?.name || 'icon'}.svg`;
       link.click();
     } catch (err) {
       console.error('Failed to export svg', err);
     }
   };
 
-  const handleCopy = () => {
-    try {
-      if (elementSource) {
-        void navigator.clipboard.writeText(elementSource);
-      }
-    } catch (err) {
-      console.error('Failed to copy svg: ', err);
+  const handleCopy = async () => {
+    if (elementSource) {
+      await navigator.clipboard.writeText(elementSource).then(() => {
+        toast({ variant: 'success', content: 'Icon successfully copied to clipboard.' });
+      });
     }
   };
 

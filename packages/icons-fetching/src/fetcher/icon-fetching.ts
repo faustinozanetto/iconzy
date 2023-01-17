@@ -109,6 +109,7 @@ const executeCustomParsers = async () => {
 const copyIconsToWebApp = async () => {
   const destinationFolder = path.join(process.cwd(), '../../apps/web/public/icons');
   await fs.promises.rm(destinationFolder, { recursive: true });
+  await fs.promises.mkdir(destinationFolder);
 
   const iconFolders = await fs.promises.readdir(PACKED_DIR);
   for (const folder of iconFolders) {

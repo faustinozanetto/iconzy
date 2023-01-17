@@ -47,9 +47,21 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
   return (
     <div
       key={iconPack.metadata.name}
-      className="flex flex-col items-center justify-center space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 transition-transform hover:scale-105 dark:border-neutral-700 dark:bg-neutral-800"
+      className="group flex cursor-pointer flex-col space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800"
     >
-      <h2 className="text-xl font-semibold">{generateIconPackTitle()}</h2>
+      <h2 className="text-xl font-semibold leading-snug tracking-tight">
+        <span
+          className="from-primary-300 to-primary-200 dark:from-primary-600 dark:to-primary-800 bg-gradient-to-r
+          bg-[length:0px_10px]
+          bg-left-bottom
+          bg-no-repeat
+          transition-[background-size]
+          duration-500
+          hover:bg-[length:100%_10px] group-hover:bg-[length:100%_10px]"
+        >
+          {generateIconPackTitle()}
+        </span>
+      </h2>
       <div className="grid grid-cols-7 gap-3.5 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
         {iconPack.featuredIcons.map((icon, index) => (
           <FeaturedIcon
@@ -60,12 +72,12 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
           />
         ))}
       </div>
-      <div className="w-full space-y-4">
-        <div className="flex justify-between font-semibold">
+      <div className="w-full space-y-2">
+        <div className="flex justify-between font-medium">
           <p>Icon Count</p>
           <span>{iconPack.metadata.iconsCount}</span>
         </div>
-        <div className="flex justify-between font-semibold">
+        <div className="flex justify-between font-medium">
           <p>License Type</p>
           <span>{licenseType}</span>
         </div>

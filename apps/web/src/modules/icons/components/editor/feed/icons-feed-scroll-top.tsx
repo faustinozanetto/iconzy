@@ -9,7 +9,7 @@ const IconsFeedScrollTop: React.FC<IconsFeedScrollTopProps> = (props) => {
   const { onClick } = props;
 
   return (
-    <div className="absolute right-0 bottom-0 mr-10 mb-2">
+    <div className="absolute right-0 bottom-0 m-4 md:mr-10 md:mb-2">
       <IconButton
         aria-label="Scroll to Top"
         onClick={onClick}

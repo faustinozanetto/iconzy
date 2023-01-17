@@ -154,6 +154,45 @@ declare const ICONS: readonly [{
             readonly type: "MIT";
         };
     };
+}, {
+    readonly name: "akar-icons";
+    readonly requiresFill: false;
+    readonly defaultWidth: 2;
+    readonly source: {
+        readonly url: "https://github.com/artcoholic/akar-icons";
+        readonly branch: "master";
+        readonly commitHash: "8f2f73d45be190436866c6dbe819505b3c90f7bb";
+        readonly iconsFolder: "src/svg/";
+        readonly license: {
+            readonly type: "MIT";
+        };
+    };
+}, {
+    readonly name: "carbon-icons";
+    readonly requiresFill: true;
+    readonly defaultWidth: 2;
+    readonly source: {
+        readonly url: "https://github.com/carbon-design-system/carbon-icons";
+        readonly branch: "master";
+        readonly commitHash: "acc2c77d01f7e8d89f81a1a83402a28f7e6542f0";
+        readonly iconsFolder: "src/svg/";
+        readonly license: {
+            readonly type: "Apache 2.0";
+        };
+    };
+}, {
+    readonly name: "health-icons";
+    readonly requiresFill: true;
+    readonly defaultWidth: 2;
+    readonly source: {
+        readonly url: "https://github.com/resolvetosavelives/healthicons";
+        readonly branch: "master";
+        readonly commitHash: "c2c2b98f7a4cb3a1569b8fcb9bafde9a4488813c";
+        readonly iconsFolder: "public/icons/svg/filled";
+        readonly license: {
+            readonly type: "MIT";
+        };
+    };
 }];
 
 type IconPack = {

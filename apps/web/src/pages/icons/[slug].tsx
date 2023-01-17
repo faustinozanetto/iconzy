@@ -31,7 +31,10 @@ const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
     });
   }, []);
 
-  const parsedName = iconPack.metadata.name.split('-').join(' ');
+  const parsedName = iconPack.metadata.name
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 
   return (
     <BaseLayout

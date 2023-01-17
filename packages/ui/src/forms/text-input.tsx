@@ -17,7 +17,7 @@ export type TextInputInputProps = Omit<React.InputHTMLAttributes<HTMLInputElemen
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputInputProps>((props, ref) => {
   const { id, icon, label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<string>('');
-  const debouncedValue = useDebounce<string>(value, 100);
+  const debouncedValue = useDebounce<string>(value, 25);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;

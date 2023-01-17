@@ -1,6 +1,7 @@
 import '@styles/global.css';
 import 'ui/styles.css';
 
+import GoogleAnalytics from '@modules/google/components/google-analytics';
 import IconsProvider from '@modules/icons/context/icons-context';
 import ThemeProvider from '@modules/theming/context/theme-context';
 import { Inter } from '@next/font/google';
@@ -21,6 +22,7 @@ const IconozenApp: React.FC<PortfolioProps> = (props) => {
       <ToastProvider>
         <IconsProvider>
           <main className={`${inter.variable} relative font-sans`}>
+            <GoogleAnalytics />
             <Component {...pageProps} />
             <ToastsContainer />
           </main>

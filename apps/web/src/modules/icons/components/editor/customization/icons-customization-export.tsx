@@ -31,6 +31,8 @@ const IconsCustomizationExport: React.FC = () => {
       await navigator.clipboard.writeText(elementSource).then(() => {
         toast({ variant: 'success', content: 'Icon successfully copied to clipboard.' });
       });
+    } else {
+      toast({ variant: 'error', content: 'No icon is selected.' });
     }
   };
 

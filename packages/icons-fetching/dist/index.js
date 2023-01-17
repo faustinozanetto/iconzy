@@ -170,6 +170,48 @@ var ICONS = [
         type: "MIT"
       }
     }
+  },
+  {
+    name: "akar-icons",
+    requiresFill: false,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/artcoholic/akar-icons",
+      branch: "master",
+      commitHash: "8f2f73d45be190436866c6dbe819505b3c90f7bb",
+      iconsFolder: "src/svg/",
+      license: {
+        type: "MIT"
+      }
+    }
+  },
+  {
+    name: "carbon-icons",
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/carbon-design-system/carbon-icons",
+      branch: "master",
+      commitHash: "acc2c77d01f7e8d89f81a1a83402a28f7e6542f0",
+      iconsFolder: "src/svg/",
+      license: {
+        type: "Apache 2.0"
+      }
+    }
+  },
+  {
+    name: "health-icons",
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/resolvetosavelives/healthicons",
+      branch: "master",
+      commitHash: "c2c2b98f7a4cb3a1569b8fcb9bafde9a4488813c",
+      iconsFolder: "public/icons/svg/filled",
+      license: {
+        type: "MIT"
+      }
+    }
   }
 ];
 

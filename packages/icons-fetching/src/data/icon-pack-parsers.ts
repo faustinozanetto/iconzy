@@ -6,8 +6,51 @@ import * as path from 'path';
 
 import type { IconPackNames } from '../utils';
 
+const copyFile = util.promisify(fs.copyFile);
+
 type IconPackParser = {
   [key in IconPackNames]?: { customParser?: (folder: string) => void };
+};
+
+/**
+ * Function that reads a file and returns its source.
+ * @param folder The folder of the file.
+ * @param file The name of the file.
+ * @returns The contents.
+ */
+const readContentsFromFile = async (folder: string, file: string) => {
+  const fileLocation = path.join(folder, file);
+  const fileContent = await fs.promises.readFile(fileLocation, { encoding: 'utf-8' });
+  return fileContent;
+};
+
+/**
+ * Function that removes the attributes and tags of a svg file.
+ * @param fileContent The source of the svg element.
+ * @param attributes The attributes to remove, example: fill,stroke.
+ * @param tags The tags to remove, example: rect, path.
+ * @returns The modified source.
+ */
+const removeAttributesAndTags = (fileContent: string, attributes: string[] = [], tags: string[] = []): string => {
+  const window = new JSDOM(fileContent).window;
+
+  tags.forEach((tag: string) => {
+    const elements = window.document.getElementsByTagName(tag);
+    for (let i = elements.length - 1; i >= 0; i--) {
+      const element = elements[i];
+      element.remove();
+    }
+  });
+  attributes.forEach((attribute: string) => {
+    const elements = window.document.querySelectorAll(`[${attribute}]`);
+    for (let i = elements.length - 1; i >= 0; i--) {
+      elements[i].removeAttribute(attribute);
+    }
+  });
+
+  const rootElement = window.document.querySelector('svg');
+  if (!rootElement) throw new Error('An error occurred while executing custom parser for eva-icons');
+  return new window.XMLSerializer().serializeToString(rootElement);
 };
 
 export const ICONS_CUSTOM_PARSERS: IconPackParser = {
@@ -23,8 +66,6 @@ export const ICONS_CUSTOM_PARSERS: IconPackParser = {
         for (const file of content) {
           const currentSource = path.join(categoryPath, file);
           const currentDestination = path.join(folder, file);
-
-          const copyFile = util.promisify(fs.copyFile);
           await copyFile(currentSource, currentDestination);
         }
         await fs.promises.rm(categoryPath, {
@@ -38,36 +79,9 @@ export const ICONS_CUSTOM_PARSERS: IconPackParser = {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
-        const fileLocation = path.join(folder, file);
-        const fileContent = await fs.promises.readFile(fileLocation, { encoding: 'utf-8' });
-
-        const window = new JSDOM(fileContent).window;
-
-        const attributesToRemove: string[] = ['class'];
-        const elementsToRemove: string[] = ['rect', 'style', 'defs'];
-
-        elementsToRemove.forEach((tag: string) => {
-          const elements = window.document.getElementsByTagName(tag);
-          for (let i = elements.length - 1; i >= 0; i--) {
-            const element = elements[i];
-            attributesToRemove.forEach((attribute: string) => {
-              element.removeAttribute(attribute);
-            });
-            element.remove();
-          }
-        });
-        attributesToRemove.forEach((attribute: string) => {
-          const elements = window.document.querySelectorAll(`[${attribute}]`);
-          for (let i = elements.length - 1; i >= 0; i--) {
-            elements[i].removeAttribute(attribute);
-          }
-        });
-
-        const rootElement = window.document.querySelector('svg');
-        if (!rootElement) throw new Error('An error occurred while executing custom parser for eva-icons');
-        const modifiedSource: string = new window.XMLSerializer().serializeToString(rootElement);
-
-        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: 'utf-8' });
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ['class'], ['rect', 'style', 'defs']);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: 'utf-8' });
       }
     },
   },
@@ -75,25 +89,56 @@ export const ICONS_CUSTOM_PARSERS: IconPackParser = {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
-        const fileLocation = path.join(folder, file);
-        const fileContent = await fs.promises.readFile(fileLocation, { encoding: 'utf-8' });
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ['fill']);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: 'utf-8' });
+      }
+    },
+  },
+  'health-icons': {
+    async customParser(folder) {
+      // Read each category folder in the root folder.
+      const categoriesFolders = await fs.promises.readdir(path.join(folder, '/'));
 
-        const window = new JSDOM(fileContent).window;
-
-        const attributesToRemove: string[] = ['fill'];
-
-        attributesToRemove.forEach((attribute: string) => {
-          const elements = window.document.querySelectorAll(`[${attribute}]`);
-          for (let i = elements.length - 1; i >= 0; i--) {
-            elements[i].removeAttribute(attribute);
-          }
+      for (const categoryFolder of categoriesFolders) {
+        const categoryPath = path.join(folder, categoryFolder);
+        const content = await fs.promises.readdir(categoryPath);
+        // Now read each svg file in the category folder and copy it to the root folder.
+        for (const file of content) {
+          // Read file and modify it.
+          const fileLocation = path.join(categoryPath, file);
+          const fileContent = await fs.promises.readFile(fileLocation, { encoding: 'utf-8' });
+          const modifiedSource = removeAttributesAndTags(fileContent, ['fill', 'stroke']);
+          await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: 'utf-8' });
+          // Copy file
+          const currentSource = path.join(categoryPath, file);
+          const currentDestination = path.join(folder, file);
+          await copyFile(currentSource, currentDestination);
+        }
+        await fs.promises.rm(categoryPath, {
+          recursive: true,
+          force: true,
         });
-
-        const rootElement = window.document.querySelector('svg');
-        if (!rootElement) throw new Error('An error occurred while executing custom parser for eva-icons');
-        const modifiedSource: string = new window.XMLSerializer().serializeToString(rootElement);
-
-        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: 'utf-8' });
+      }
+    },
+  },
+  'carbon-icons': {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ['fill']);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: 'utf-8' });
+      }
+    },
+  },
+  'akar-icons': {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ['fill', 'stroke']);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: 'utf-8' });
       }
     },
   },

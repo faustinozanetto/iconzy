@@ -9,6 +9,27 @@ import util from "util";
 import * as fs from "fs";
 import { JSDOM } from "jsdom";
 import * as path from "path";
+var copyFile2 = util.promisify(fs.copyFile);
+var removeAttributesAndTags = (fileContent, attributes = [], tags = []) => {
+  const window = new JSDOM(fileContent).window;
+  tags.forEach((tag) => {
+    const elements = window.document.getElementsByTagName(tag);
+    for (let i = elements.length - 1; i >= 0; i--) {
+      const element = elements[i];
+      element.remove();
+    }
+  });
+  attributes.forEach((attribute) => {
+    const elements = window.document.querySelectorAll(`[${attribute}]`);
+    for (let i = elements.length - 1; i >= 0; i--) {
+      elements[i].removeAttribute(attribute);
+    }
+  });
+  const rootElement = window.document.querySelector("svg");
+  if (!rootElement)
+    throw new Error("An error occurred while executing custom parser for eva-icons");
+  return new window.XMLSerializer().serializeToString(rootElement);
+};
 var ICONS_CUSTOM_PARSERS = {
   "remix-icons": {
     async customParser(folder) {
@@ -19,7 +40,6 @@ var ICONS_CUSTOM_PARSERS = {
         for (const file of content) {
           const currentSource = path.join(categoryPath, file);
           const currentDestination = path.join(folder, file);
-          const copyFile2 = util.promisify(fs.copyFile);
           await copyFile2(currentSource, currentDestination);
         }
         await fs.promises.rm(categoryPath, {
@@ -35,29 +55,7 @@ var ICONS_CUSTOM_PARSERS = {
       for (const file of content) {
         const fileLocation = path.join(folder, file);
         const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
-        const window = new JSDOM(fileContent).window;
-        const attributesToRemove = ["class"];
-        const elementsToRemove = ["rect", "style", "defs"];
-        elementsToRemove.forEach((tag) => {
-          const elements = window.document.getElementsByTagName(tag);
-          for (let i = elements.length - 1; i >= 0; i--) {
-            const element = elements[i];
-            attributesToRemove.forEach((attribute) => {
-              element.removeAttribute(attribute);
-            });
-            element.remove();
-          }
-        });
-        attributesToRemove.forEach((attribute) => {
-          const elements = window.document.querySelectorAll(`[${attribute}]`);
-          for (let i = elements.length - 1; i >= 0; i--) {
-            elements[i].removeAttribute(attribute);
-          }
-        });
-        const rootElement = window.document.querySelector("svg");
-        if (!rootElement)
-          throw new Error("An error occurred while executing custom parser for eva-icons");
-        const modifiedSource = new window.XMLSerializer().serializeToString(rootElement);
+        const modifiedSource = removeAttributesAndTags(fileContent, ["class"], ["rect", "style", "defs"]);
         await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
       }
     }
@@ -68,18 +66,51 @@ var ICONS_CUSTOM_PARSERS = {
       for (const file of content) {
         const fileLocation = path.join(folder, file);
         const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
-        const window = new JSDOM(fileContent).window;
-        const attributesToRemove = ["fill"];
-        attributesToRemove.forEach((attribute) => {
-          const elements = window.document.querySelectorAll(`[${attribute}]`);
-          for (let i = elements.length - 1; i >= 0; i--) {
-            elements[i].removeAttribute(attribute);
-          }
+        const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
+        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+      }
+    }
+  },
+  "health-icons": {
+    async customParser(folder) {
+      const categoriesFolders = await fs.promises.readdir(path.join(folder, "/"));
+      for (const categoryFolder of categoriesFolders) {
+        const categoryPath = path.join(folder, categoryFolder);
+        const content = await fs.promises.readdir(categoryPath);
+        for (const file of content) {
+          const fileLocation = path.join(categoryPath, file);
+          const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+          const modifiedSource = removeAttributesAndTags(fileContent, ["fill", "stroke"]);
+          await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+          const currentSource = path.join(categoryPath, file);
+          const currentDestination = path.join(folder, file);
+          await copyFile2(currentSource, currentDestination);
+        }
+        await fs.promises.rm(categoryPath, {
+          recursive: true,
+          force: true
         });
-        const rootElement = window.document.querySelector("svg");
-        if (!rootElement)
-          throw new Error("An error occurred while executing custom parser for eva-icons");
-        const modifiedSource = new window.XMLSerializer().serializeToString(rootElement);
+      }
+    }
+  },
+  "carbon-icons": {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileLocation = path.join(folder, file);
+        const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+        const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
+        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+      }
+    }
+  },
+  "akar-icons": {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileLocation = path.join(folder, file);
+        const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+        const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
         await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
       }
     }
@@ -258,6 +289,48 @@ var ICONS = [
         type: "MIT"
       }
     }
+  },
+  {
+    name: "akar-icons",
+    requiresFill: false,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/artcoholic/akar-icons",
+      branch: "master",
+      commitHash: "8f2f73d45be190436866c6dbe819505b3c90f7bb",
+      iconsFolder: "src/svg/",
+      license: {
+        type: "MIT"
+      }
+    }
+  },
+  {
+    name: "carbon-icons",
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/carbon-design-system/carbon-icons",
+      branch: "master",
+      commitHash: "acc2c77d01f7e8d89f81a1a83402a28f7e6542f0",
+      iconsFolder: "src/svg/",
+      license: {
+        type: "Apache 2.0"
+      }
+    }
+  },
+  {
+    name: "health-icons",
+    requiresFill: true,
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/resolvetosavelives/healthicons",
+      branch: "master",
+      commitHash: "c2c2b98f7a4cb3a1569b8fcb9bafde9a4488813c",
+      iconsFolder: "public/icons/svg/filled",
+      license: {
+        type: "MIT"
+      }
+    }
   }
 ];
 
@@ -273,10 +346,10 @@ var Task = class {
   }
   async run() {
     const startTime = performance.now();
-    console.log(`Executing Task: ${this.name}`);
+    console.log(`\u{1F6E0} Executing Task: ${this.name}`);
     await this.func();
     const endTime = performance.now();
-    console.log(`Task ${this.name} completed in ${Math.floor(endTime - startTime) / 100} seconds.`);
+    console.log(`\u{1F389} Task ${this.name} completed in ${Math.floor(endTime - startTime) / 100} seconds.`);
   }
 };
 var task_default = Task;
@@ -301,7 +374,7 @@ var downloadAndOrganizeIconPacks = async () => {
     for (const icon of ICONS) {
       const iconTask = new task_default(`download-${icon.name}`, async () => {
         const iconFolder = path3.join(BASE_DIR, icon.name);
-        console.log(`Started icon download: ${icon.source.url}/${icon.source.iconsFolder}@${icon.source.branch}`);
+        console.log(`\u{1F4BE} Started icon download: ${icon.source.url}/${icon.source.iconsFolder}@${icon.source.branch}`);
         await execFile("git", ["clone", "--filter=tree:0", "--no-checkout", icon.source.url, icon.name], {
           cwd: BASE_DIR
         });
@@ -326,8 +399,8 @@ var copyFolder = async (source, destination) => {
     if (fs2.lstatSync(currentSource).isDirectory()) {
       await copyFolder(currentSource, currentDestination);
     } else {
-      const copyFile2 = util2.promisify(fs2.copyFile);
-      await copyFile2(currentSource, currentDestination);
+      const copyFile3 = util2.promisify(fs2.copyFile);
+      await copyFile3(currentSource, currentDestination);
     }
   }
 };

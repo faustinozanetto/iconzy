@@ -318,7 +318,7 @@ import { jsx as jsx5, jsxs as jsxs3 } from "react/jsx-runtime";
 var ColorInput = React4.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
   const [value, setValue] = useState3(rest.placeholder || "");
-  const debouncedValue = use_debounce_default(value, 100);
+  const debouncedValue = use_debounce_default(value, 25);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
@@ -365,318 +365,6 @@ ColorInput.displayName = "Color Input";
 
 // src/forms/range-input.tsx
 import React5, { useEffect as useEffect3, useState as useState4 } from "react";
-import { jsx as jsx6, jsxs as jsxs4 } from "react/jsx-runtime";
-var RangeInput = React5.forwardRef((props, ref) => {
-  const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = useState4(Number(rest.placeholder) || 0);
-  const debouncedValue = use_debounce_default(value, 100);
-  const handleChange = (event) => {
-    const { value: updatedValue } = event.target;
-    setValue(Number(updatedValue));
-  };
-  useEffect3(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
-  return /* @__PURE__ */ jsx6(
-    InputWrapper,
-    {
-      id,
-      label,
-      disabled: rest.disabled || false,
-      onInputReseted: () => {
-        setValue(Number(rest.placeholder) || 0);
-      },
-      children: /* @__PURE__ */ jsxs4("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ jsx6(
-          "input",
-          __spreadValues({
-            id,
-            ref,
-            className: "h-2 w-full cursor-pointer appearance-none rounded-lg bg-neutral-200 dark:bg-neutral-700",
-            type: "range",
-            value,
-            onChange: handleChange
-          }, rest)
-        ),
-        /* @__PURE__ */ jsx6(
-          "input",
-          __spreadValues({
-            id: `manual-${id}`,
-            className: "ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
-            type: "text",
-            value,
-            onChange: handleChange
-          }, rest)
-        )
-      ] })
-    }
-  );
-});
-RangeInput.displayName = "Range Input";
-
-// src/forms/select-input.tsx
-import React6 from "react";
-import { jsx as jsx7, jsxs as jsxs5 } from "react/jsx-runtime";
-var SelectInput = React6.forwardRef((props, ref) => {
-  const _a = props, { id, label, children } = _a, rest = __objRest(_a, ["id", "label", "children"]);
-  return /* @__PURE__ */ jsxs5("div", { className: "relative", children: [
-    label ? /* @__PURE__ */ jsx7("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx7("span", { children: label }) }) : null,
-    /* @__PURE__ */ jsx7(
-      "select",
-      __spreadProps(__spreadValues({
-        id,
-        ref,
-        className: "focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400"
-      }, rest), {
-        children
-      })
-    )
-  ] });
-});
-SelectInput.displayName = "Select Input";
-
-// src/forms/select-input-sort.tsx
-import { useRef, useState as useState5 } from "react";
-import { jsx as jsx8, jsxs as jsxs6 } from "react/jsx-runtime";
-var SelectInputSort = (props) => {
-  const _a = props, { id, label, children, initialSortCriteria, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "children", "initialSortCriteria", "onValueChanged"]);
-  const selectInputRef = useRef(null);
-  const [sortCriteria, setSortCriteria] = useState5(initialSortCriteria);
-  const handleSelectChanged = (value) => {
-    onValueChanged(value, sortCriteria);
-  };
-  const handleSortCriteria = () => {
-    setSortCriteria((prev) => prev === "asc" ? "des" : "asc");
-    if (selectInputRef.current) {
-      const selectValue = selectInputRef.current.value;
-      handleSelectChanged(selectValue);
-    }
-  };
-  const sortCriteriaIcon = sortCriteria === "asc" ? /* @__PURE__ */ jsxs6(
-    "svg",
-    {
-      xmlns: "http://www.w3.org/2000/svg",
-      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
-      strokeLinejoin: "round",
-      strokeLinecap: "round",
-      strokeWidth: "2",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      children: [
-        /* @__PURE__ */ jsx8("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-        /* @__PURE__ */ jsx8("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
-      ]
-    }
-  ) : /* @__PURE__ */ jsxs6(
-    "svg",
-    {
-      xmlns: "http://www.w3.org/2000/svg",
-      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
-      strokeLinejoin: "round",
-      strokeLinecap: "round",
-      strokeWidth: "2",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      children: [
-        /* @__PURE__ */ jsx8("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
-        /* @__PURE__ */ jsx8("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
-      ]
-    }
-  );
-  return /* @__PURE__ */ jsxs6("div", { className: "relative", children: [
-    label ? /* @__PURE__ */ jsx8("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx8("span", { children: label }) }) : null,
-    /* @__PURE__ */ jsxs6("div", { className: "flex items-center space-x-1", children: [
-      /* @__PURE__ */ jsx8(
-        "select",
-        __spreadProps(__spreadValues({
-          id,
-          ref: selectInputRef,
-          className: "focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400",
-          onChange: (event) => {
-            handleSelectChanged(event.target.value);
-          }
-        }, rest), {
-          children
-        })
-      ),
-      /* @__PURE__ */ jsx8(
-        IconButton,
-        {
-          className: "h-[41px]",
-          "aria-label": "Change Criteria",
-          colorScheme: "stone",
-          onClick: handleSortCriteria,
-          icon: sortCriteriaIcon
-        }
-      )
-    ] })
-  ] });
-};
-
-// src/forms/text-input.tsx
-import clsx3 from "clsx";
-import React8, { useEffect as useEffect4, useState as useState6 } from "react";
-import { jsx as jsx9, jsxs as jsxs7 } from "react/jsx-runtime";
-var TextInput = React8.forwardRef((props, ref) => {
-  const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
-  const [value, setValue] = useState6("");
-  const debouncedValue = use_debounce_default(value, 100);
-  const handleChange = (event) => {
-    const { value: updatedValue } = event.target;
-    setValue(updatedValue);
-  };
-  useEffect4(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
-  return /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
-    label ? /* @__PURE__ */ jsx9("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx9("span", { children: label }) }) : null,
-    /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
-      icon ? /* @__PURE__ */ jsx9("div", { className: "pointer-events-none absolute inset-y-0 flex items-center pl-3", children: icon }) : null,
-      /* @__PURE__ */ jsx9(
-        "input",
-        __spreadValues({
-          id,
-          ref,
-          className: clsx3(
-            "focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400",
-            icon ? "pl-10" : ""
-          ),
-          value,
-          onChange: handleChange
-        }, rest)
-      )
-    ] })
-  ] });
-});
-TextInput.displayName = "Text Input";
-
-// src/toast/context/toast-context.tsx
-import { createContext, useContext, useReducer } from "react";
-
-// src/toast/context/reducer/index.ts
-var reducer = (state, action) => {
-  switch (action.type) {
-    case 0 /* ADD_TOAST */: {
-      return __spreadProps(__spreadValues({}, state), {
-        toasts: [...state.toasts, action.payload.toast]
-      });
-    }
-    case 1 /* REMOVE_TOAST */: {
-      const updatedToasts = state.toasts.filter((toast) => toast.id !== action.payload.toast);
-      return __spreadProps(__spreadValues({}, state), {
-        toasts: updatedToasts
-      });
-    }
-    default:
-      throw new Error("The action you requested does not exists!");
-  }
-};
-
-// src/toast/context/toast-context.tsx
-import { jsx as jsx10 } from "react/jsx-runtime";
-var initialState = {
-  state: { toasts: [] },
-  dispatch: () => {
-  }
-};
-var ToastContext = createContext(initialState);
-var useToastContext = () => {
-  const context = useContext(ToastContext);
-  if (!context)
-    throw new Error("Tried to use ThemeContext with no context avaiable!");
-  return context;
-};
-var useToast = () => {
-  const { dispatch } = useToastContext();
-  const toast = (toast2, duration = 3e3) => {
-    const toastId = Math.random().toString(12).substring(2, 10);
-    dispatch({
-      type: 0 /* ADD_TOAST */,
-      payload: {
-        toast: __spreadProps(__spreadValues({}, toast2), { id: toastId })
-      }
-    });
-    setTimeout(() => {
-      dispatch({
-        type: 1 /* REMOVE_TOAST */,
-        payload: {
-          toast: toastId
-        }
-      });
-    }, duration);
-  };
-  return { toast };
-};
-var ToastProvider = (props) => {
-  const { children } = props;
-  const [state, dispatch] = useReducer(reducer, {
-    toasts: []
-  });
-  return /* @__PURE__ */ jsx10(ToastContext.Provider, { value: { state, dispatch }, children });
-};
-
-// src/toast/components/toast.tsx
-import clsx4 from "clsx";
-import { jsx as jsx11, jsxs as jsxs8 } from "react/jsx-runtime";
-var Toast2 = (props) => {
-  const { toast } = props;
-  const toastIcon = toast.variant === "success" ? /* @__PURE__ */ jsxs8(
-    "svg",
-    {
-      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
-      xmlns: "http://www.w3.org/2000/svg",
-      strokeLinejoin: "round",
-      strokeLinecap: "round",
-      strokeWidth: "2",
-      stroke: "#ffffff",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      children: [
-        /* @__PURE__ */ jsx11("path", { d: "M22 11.08V12a10 10 0 1 1-5.93-9.14" }),
-        /* @__PURE__ */ jsx11("polyline", { points: "22 4 12 14.01 9 11.01" })
-      ]
-    }
-  ) : /* @__PURE__ */ jsxs8(
-    "svg",
-    {
-      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
-      xmlns: "http://www.w3.org/2000/svg",
-      strokeLinejoin: "round",
-      strokeLinecap: "round",
-      strokeWidth: "2",
-      stroke: "#ffffff",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      children: [
-        /* @__PURE__ */ jsx11("circle", { r: "10", cy: "12", cx: "12" }),
-        /* @__PURE__ */ jsx11("line", { y2: "12", x2: "12", y1: "8", x1: "12" }),
-        /* @__PURE__ */ jsx11("line", { y2: "16", x2: "12.01", y1: "16", x1: "12" })
-      ]
-    }
-  );
-  return /* @__PURE__ */ jsx11("div", { className: "flex flex-col items-center m-2", children: /* @__PURE__ */ jsxs8(
-    "div",
-    {
-      className: clsx4(
-        "flex p-4 rounded-md items-start overflow-hidden shadow-md text-neutral-800 dark:text-neutral-50",
-        toast.variant === "success" ? "bg-green-200 dark:bg-green-700" : "bg-red-200 dark:bg-red-700"
-      ),
-      children: [
-        /* @__PURE__ */ jsx11("div", { className: "flex-shrink-0 mr-2", children: toastIcon }),
-        /* @__PURE__ */ jsx11("div", { className: "flex-1 max-w-full", children: /* @__PURE__ */ jsx11("p", { className: "text-sm font-medium", children: toast.content }) })
-      ]
-    }
-  ) });
-};
-
-// src/toast/components/toasts-container.tsx
-import { jsx as jsx12 } from "react/jsx-runtime";
-var ToastsContainer = () => {
-  const { state } = useToastContext();
-  return /* @__PURE__ */ jsx12("div", { className: "fixed z-50 flex flex-col bottom-0 right-0 left-0", children: /* @__PURE__ */ jsx12("div", { className: "max-w-xl mx-auto", children: state.toasts && state.toasts.map((toast) => {
-    return /* @__PURE__ */ jsx12(Toast2, { toast }, toast.id);
-  }) }) });
-};
 
 // src/utils/index.ts
 var defaultColors = {
@@ -956,6 +644,324 @@ var defaultColors = {
     800: "#3730a3",
     900: "#312e81"
   }
+};
+
+// src/forms/range-input.tsx
+import { jsx as jsx6, jsxs as jsxs4 } from "react/jsx-runtime";
+var RangeInput = React5.forwardRef((props, ref) => {
+  const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
+  const [value, setValue] = useState4(Number(rest.placeholder) || 0);
+  const debouncedValue = use_debounce_default(value, 25);
+  const handleChange = (event) => {
+    const { value: updatedValue } = event.target;
+    setValue(Number(updatedValue));
+  };
+  useEffect3(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
+  const sliderControllerPosition = value / (Number(rest.max) || 100) * 100;
+  return /* @__PURE__ */ jsx6(
+    InputWrapper,
+    {
+      id,
+      label,
+      disabled: rest.disabled || false,
+      onInputReseted: () => {
+        setValue(Number(rest.placeholder) || 0);
+      },
+      children: /* @__PURE__ */ jsxs4("div", { className: "flex items-center justify-between", children: [
+        /* @__PURE__ */ jsx6(
+          "input",
+          __spreadValues({
+            id,
+            ref,
+            className: "h-2 w-full cursor-pointer appearance-none rounded-lg bg-neutral-200 dark:bg-neutral-700",
+            type: "range",
+            value,
+            onChange: handleChange,
+            style: {
+              background: `linear-gradient(to right, ${defaultColors.primary[500]} ${sliderControllerPosition}%, gray 0%)`
+            }
+          }, rest)
+        ),
+        /* @__PURE__ */ jsx6(
+          "input",
+          __spreadValues({
+            id: `manual-${id}`,
+            className: "ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
+            type: "text",
+            value,
+            onChange: handleChange
+          }, rest)
+        )
+      ] })
+    }
+  );
+});
+RangeInput.displayName = "Range Input";
+
+// src/forms/select-input.tsx
+import React6 from "react";
+import { jsx as jsx7, jsxs as jsxs5 } from "react/jsx-runtime";
+var SelectInput = React6.forwardRef((props, ref) => {
+  const _a = props, { id, label, children } = _a, rest = __objRest(_a, ["id", "label", "children"]);
+  return /* @__PURE__ */ jsxs5("div", { className: "relative", children: [
+    label ? /* @__PURE__ */ jsx7("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx7("span", { children: label }) }) : null,
+    /* @__PURE__ */ jsx7(
+      "select",
+      __spreadProps(__spreadValues({
+        id,
+        ref,
+        className: "focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400"
+      }, rest), {
+        children
+      })
+    )
+  ] });
+});
+SelectInput.displayName = "Select Input";
+
+// src/forms/select-input-sort.tsx
+import { useRef, useState as useState5 } from "react";
+import { jsx as jsx8, jsxs as jsxs6 } from "react/jsx-runtime";
+var SelectInputSort = (props) => {
+  const _a = props, { id, label, children, initialSortCriteria, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "children", "initialSortCriteria", "onValueChanged"]);
+  const selectInputRef = useRef(null);
+  const [sortCriteria, setSortCriteria] = useState5(initialSortCriteria);
+  const handleSelectChanged = (value) => {
+    onValueChanged(value, sortCriteria);
+  };
+  const handleSortCriteria = () => {
+    setSortCriteria((prev) => prev === "asc" ? "des" : "asc");
+    if (selectInputRef.current) {
+      const selectValue = selectInputRef.current.value;
+      handleSelectChanged(selectValue);
+    }
+  };
+  const sortCriteriaIcon = sortCriteria === "asc" ? /* @__PURE__ */ jsxs6(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ jsx8("line", { y2: "5", x2: "12", y1: "19", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+        /* @__PURE__ */ jsx8("polyline", { points: "5 12 12 5 19 12", width: "35", height: "35", strokeWidth: "2" })
+      ]
+    }
+  ) : /* @__PURE__ */ jsxs6(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      className: "h-4 w-4 stroke-neutral-800 dark:stroke-neutral-100",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ jsx8("line", { y2: "19", x2: "12", y1: "5", x1: "12", width: "35", height: "35", strokeWidth: "2" }),
+        /* @__PURE__ */ jsx8("polyline", { points: "19 12 12 19 5 12", width: "35", height: "35", strokeWidth: "2" })
+      ]
+    }
+  );
+  return /* @__PURE__ */ jsxs6("div", { className: "relative", children: [
+    label ? /* @__PURE__ */ jsx8("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx8("span", { children: label }) }) : null,
+    /* @__PURE__ */ jsxs6("div", { className: "flex items-center space-x-1", children: [
+      /* @__PURE__ */ jsx8(
+        "select",
+        __spreadProps(__spreadValues({
+          id,
+          ref: selectInputRef,
+          className: "focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400",
+          onChange: (event) => {
+            handleSelectChanged(event.target.value);
+          }
+        }, rest), {
+          children
+        })
+      ),
+      /* @__PURE__ */ jsx8(
+        IconButton,
+        {
+          className: "h-[41px]",
+          "aria-label": "Change Criteria",
+          colorScheme: "stone",
+          onClick: handleSortCriteria,
+          icon: sortCriteriaIcon
+        }
+      )
+    ] })
+  ] });
+};
+
+// src/forms/text-input.tsx
+import clsx3 from "clsx";
+import React8, { useEffect as useEffect4, useState as useState6 } from "react";
+import { jsx as jsx9, jsxs as jsxs7 } from "react/jsx-runtime";
+var TextInput = React8.forwardRef((props, ref) => {
+  const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
+  const [value, setValue] = useState6("");
+  const debouncedValue = use_debounce_default(value, 25);
+  const handleChange = (event) => {
+    const { value: updatedValue } = event.target;
+    setValue(updatedValue);
+  };
+  useEffect4(() => {
+    onValueChanged(value);
+  }, [debouncedValue]);
+  return /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
+    label ? /* @__PURE__ */ jsx9("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx9("span", { children: label }) }) : null,
+    /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
+      icon ? /* @__PURE__ */ jsx9("div", { className: "pointer-events-none absolute inset-y-0 flex items-center pl-3", children: icon }) : null,
+      /* @__PURE__ */ jsx9(
+        "input",
+        __spreadValues({
+          id,
+          ref,
+          className: clsx3(
+            "focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400",
+            icon ? "pl-10" : ""
+          ),
+          value,
+          onChange: handleChange
+        }, rest)
+      )
+    ] })
+  ] });
+});
+TextInput.displayName = "Text Input";
+
+// src/toast/context/toast-context.tsx
+import { createContext, useContext, useReducer } from "react";
+
+// src/toast/context/reducer/index.ts
+var reducer = (state, action) => {
+  switch (action.type) {
+    case 0 /* ADD_TOAST */: {
+      return __spreadProps(__spreadValues({}, state), {
+        toasts: [...state.toasts, action.payload.toast]
+      });
+    }
+    case 1 /* REMOVE_TOAST */: {
+      const updatedToasts = state.toasts.filter((toast) => toast.id !== action.payload.toast);
+      return __spreadProps(__spreadValues({}, state), {
+        toasts: updatedToasts
+      });
+    }
+    default:
+      throw new Error("The action you requested does not exists!");
+  }
+};
+
+// src/toast/context/toast-context.tsx
+import { jsx as jsx10 } from "react/jsx-runtime";
+var initialState = {
+  state: { toasts: [] },
+  dispatch: () => {
+  }
+};
+var ToastContext = createContext(initialState);
+var useToastContext = () => {
+  const context = useContext(ToastContext);
+  if (!context)
+    throw new Error("Tried to use ThemeContext with no context avaiable!");
+  return context;
+};
+var useToast = () => {
+  const { dispatch } = useToastContext();
+  const toast = (toast2, duration = 3e3) => {
+    const toastId = Math.random().toString(12).substring(2, 10);
+    dispatch({
+      type: 0 /* ADD_TOAST */,
+      payload: {
+        toast: __spreadProps(__spreadValues({}, toast2), { id: toastId })
+      }
+    });
+    setTimeout(() => {
+      dispatch({
+        type: 1 /* REMOVE_TOAST */,
+        payload: {
+          toast: toastId
+        }
+      });
+    }, duration);
+  };
+  return { toast };
+};
+var ToastProvider = (props) => {
+  const { children } = props;
+  const [state, dispatch] = useReducer(reducer, {
+    toasts: []
+  });
+  return /* @__PURE__ */ jsx10(ToastContext.Provider, { value: { state, dispatch }, children });
+};
+
+// src/toast/components/toast.tsx
+import clsx4 from "clsx";
+import { jsx as jsx11, jsxs as jsxs8 } from "react/jsx-runtime";
+var Toast2 = (props) => {
+  const { toast } = props;
+  const toastIcon = toast.variant === "success" ? /* @__PURE__ */ jsxs8(
+    "svg",
+    {
+      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
+      xmlns: "http://www.w3.org/2000/svg",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      stroke: "#ffffff",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ jsx11("path", { d: "M22 11.08V12a10 10 0 1 1-5.93-9.14" }),
+        /* @__PURE__ */ jsx11("polyline", { points: "22 4 12 14.01 9 11.01" })
+      ]
+    }
+  ) : /* @__PURE__ */ jsxs8(
+    "svg",
+    {
+      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
+      xmlns: "http://www.w3.org/2000/svg",
+      strokeLinejoin: "round",
+      strokeLinecap: "round",
+      strokeWidth: "2",
+      stroke: "#ffffff",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      children: [
+        /* @__PURE__ */ jsx11("circle", { r: "10", cy: "12", cx: "12" }),
+        /* @__PURE__ */ jsx11("line", { y2: "12", x2: "12", y1: "8", x1: "12" }),
+        /* @__PURE__ */ jsx11("line", { y2: "16", x2: "12.01", y1: "16", x1: "12" })
+      ]
+    }
+  );
+  return /* @__PURE__ */ jsx11("div", { className: "flex flex-col items-center m-2", children: /* @__PURE__ */ jsxs8(
+    "div",
+    {
+      className: clsx4(
+        "flex p-4 rounded-md items-start overflow-hidden shadow-md text-neutral-800 dark:text-neutral-50",
+        toast.variant === "success" ? "bg-green-200 dark:bg-green-700" : "bg-red-200 dark:bg-red-700"
+      ),
+      children: [
+        /* @__PURE__ */ jsx11("div", { className: "flex-shrink-0 mr-2", children: toastIcon }),
+        /* @__PURE__ */ jsx11("div", { className: "flex-1 max-w-full", children: /* @__PURE__ */ jsx11("p", { className: "text-sm font-medium", children: toast.content }) })
+      ]
+    }
+  ) });
+};
+
+// src/toast/components/toasts-container.tsx
+import { jsx as jsx12 } from "react/jsx-runtime";
+var ToastsContainer = () => {
+  const { state } = useToastContext();
+  return /* @__PURE__ */ jsx12("div", { className: "fixed z-50 flex flex-col bottom-0 right-0 left-0 pointer-events-none", children: /* @__PURE__ */ jsx12("div", { className: "max-w-xl mx-auto", children: state.toasts && state.toasts.map((toast) => {
+    return /* @__PURE__ */ jsx12(Toast2, { toast }, toast.id);
+  }) }) });
 };
 export {
   Button,

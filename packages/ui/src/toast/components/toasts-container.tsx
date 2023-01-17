@@ -6,7 +6,7 @@ export const ToastsContainer: React.FC = () => {
   const { state } = useToastContext();
 
   return (
-    <div className="fixed z-50 flex flex-col bottom-0 right-0 left-0">
+    <div className="fixed z-50 flex flex-col bottom-0 right-0 left-0 pointer-events-none">
       <div className="max-w-xl mx-auto">
         {state.toasts &&
           state.toasts.map((toast) => {

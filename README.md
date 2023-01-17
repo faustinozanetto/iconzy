@@ -23,7 +23,7 @@
 
 ## ✨ About
 
-Iconzy is a personal project for customizing and browsing free icon packs for your personla projects.
+Iconzy is a project for customizing and browsing free icon packs for your personal projects.
 
 ## 🚀 Installation and Usage
 

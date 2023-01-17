@@ -1,5 +1,5 @@
-import { useIconsContext } from '@modules/icons/context/icons-context';
-import { IconsActionType } from '@modules/icons/context/types';
+import { useIconsContext } from '@modules/icons/context/icons/icons-context';
+import { IconsActionType } from '@modules/icons/context/icons/types';
 import { DEFAULT_ICON_SIZE, ICON_SIZE_LIMITS, ICON_WIDTH_LIMITS } from '@modules/icons/lib/constants';
 import React from 'react';
 import { ColorInput, RangeInput } from 'ui';

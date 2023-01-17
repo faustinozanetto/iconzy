@@ -1,16 +1,16 @@
-import { useIconsContext } from '@modules/icons/context/icons-context';
+import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import { convertJSXToString } from '@modules/icons/lib/icons-utils';
 import React, { useMemo } from 'react';
 import { Button, Separator, useToast } from 'ui';
 
 const IconsCustomizationExport: React.FC = () => {
-  const { state } = useIconsContext();
+  const { state } = useIconsSelectionContext();
   const { toast } = useToast();
 
   const elementSource = useMemo(() => {
-    const selectedIcon = state.selectedIcon;
+    const selectedIcon = state.selectedIcons[0];
     if (selectedIcon) return convertJSXToString(selectedIcon.element);
-  }, [state.selectedIcon]);
+  }, [state.selectedIcons]);
 
   const handleExport = () => {
     if (!elementSource) return;
@@ -19,7 +19,7 @@ const IconsCustomizationExport: React.FC = () => {
       const fileURL = URL.createObjectURL(file);
       const link = document.createElement('a');
       link.href = fileURL;
-      link.download = `${state.selectedIcon?.name || 'icon'}.svg`;
+      link.download = `icon.svg`;
       link.click();
     } catch (err) {
       console.error('Failed to export svg', err);

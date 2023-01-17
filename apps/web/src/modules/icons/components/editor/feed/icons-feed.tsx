@@ -1,7 +1,8 @@
 import type { Filter, Sort } from '@modules/common/hooks/use-filter';
 import useFilter from '@modules/common/hooks/use-filter';
-import { useIconsContext } from '@modules/icons/context/icons-context';
-import { IconsActionType } from '@modules/icons/context/types';
+import { useIconsContext } from '@modules/icons/context/icons/icons-context';
+import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
+import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
 import type { Icon, IconWithElement } from '@modules/icons/typings/icon.typings';
 import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
@@ -24,7 +25,8 @@ const IconEntry = dynamic(() => import('../../icons/icon-entry'), {
 });
 
 const IconsFeed: React.FC = () => {
-  const { state, dispatch } = useIconsContext();
+  const { state: iconsState } = useIconsContext();
+  const { dispatch } = useIconsSelectionContext();
   const feedContainer = useRef<VirtuosoGridHandle | null>(null);
 
   const initialFilters: Filter<Icon>[] = [{ property: 'name', value: '', enabled: true }];
@@ -34,13 +36,21 @@ const IconsFeed: React.FC = () => {
     ascending: true,
   };
 
-  const { filteredData, updateFilter, updateSort } = useFilter<Icon>(state.icons, initialFilters, initialSort);
+  const { filteredData, updateFilter, updateSort } = useFilter<Icon>(iconsState.icons, initialFilters, initialSort);
 
-  const handleIconSelected = (icon: IconWithElement) => {
-    dispatch({
-      type: IconsActionType.SET_SELECTED_ICON,
+  const handleIconSelected = (icon: IconWithElement, selected: boolean) => {
+    if (!selected)
+      return dispatch({
+        type: IconsSelectionActionType.ADD_SELECTED_ICON,
+        payload: {
+          icon,
+        },
+      });
+
+    return dispatch({
+      type: IconsSelectionActionType.REMOVE_SELECTED_ICON,
       payload: {
-        icon,
+        name: icon.name,
       },
     });
   };
@@ -79,13 +89,16 @@ const IconsFeed: React.FC = () => {
           overscan={25}
           data={filteredData}
           itemContent={(index, icon) => {
+            // const isIconSelected =
+            //   iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
+
             return (
               <IconEntry
                 key={`icon-${index}`}
-                icon={{ ...icon, customization: state.iconCustomization }}
-                isSelected={state.selectedIcon !== null && state.selectedIcon.name === icon.name}
-                onIconSelected={(iconElement: JSX.Element) => {
-                  handleIconSelected({ ...icon, element: iconElement });
+                icon={{ ...icon, customization: iconsState.iconCustomization }}
+                onClick={(iconElement, selected) => {
+                  const iconWithElement: IconWithElement = { ...icon, element: iconElement };
+                  handleIconSelected(iconWithElement, selected);
                 }}
               />
             );

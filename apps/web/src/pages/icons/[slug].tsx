@@ -1,6 +1,6 @@
 import IconPackEditor from '@modules/icons/components/editor/icons-pack-editor';
-import { useIconsContext } from '@modules/icons/context/icons-context';
-import { IconsActionType } from '@modules/icons/context/types';
+import { useIconsContext } from '@modules/icons/context/icons/icons-context';
+import { IconsActionType } from '@modules/icons/context/icons/types';
 import { getIconPackByName, getIconsFromIconPack } from '@modules/icons/lib/icons-utils';
 import type { IconPackWithAll } from '@modules/icons/typings/icon.typings';
 import BaseLayout from '@modules/layouts/components/base/base-layout';

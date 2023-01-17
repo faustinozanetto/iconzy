@@ -30,6 +30,11 @@ var fs = __toESM(require("fs"), 1);
 var import_jsdom = require("jsdom");
 var path = __toESM(require("path"), 1);
 var copyFile2 = import_node_util.default.promisify(fs.copyFile);
+var readContentsFromFile = async (folder, file) => {
+  const fileLocation = path.join(folder, file);
+  const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+  return fileContent;
+};
 var removeAttributesAndTags = (fileContent, attributes = [], tags = []) => {
   const window = new import_jsdom.JSDOM(fileContent).window;
   tags.forEach((tag) => {
@@ -73,10 +78,9 @@ var ICONS_CUSTOM_PARSERS = {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
-        const fileLocation = path.join(folder, file);
-        const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+        const fileContent = await readContentsFromFile(folder, file);
         const modifiedSource = removeAttributesAndTags(fileContent, ["class"], ["rect", "style", "defs"]);
-        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
       }
     }
   },
@@ -84,10 +88,9 @@ var ICONS_CUSTOM_PARSERS = {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
-        const fileLocation = path.join(folder, file);
-        const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+        const fileContent = await readContentsFromFile(folder, file);
         const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
-        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
       }
     }
   },
@@ -117,10 +120,9 @@ var ICONS_CUSTOM_PARSERS = {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
-        const fileLocation = path.join(folder, file);
-        const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
+        const fileContent = await readContentsFromFile(folder, file);
         const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
-        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
       }
     }
   },
@@ -128,10 +130,10 @@ var ICONS_CUSTOM_PARSERS = {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
-        const fileLocation = path.join(folder, file);
-        const fileContent = await fs.promises.readFile(fileLocation, { encoding: "utf-8" });
-        const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
-        await fs.promises.writeFile(fileLocation, modifiedSource, { encoding: "utf-8" });
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ["fill", "stroke"]);
+        console.log({ modifiedSource });
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
       }
     }
   }
@@ -463,22 +465,12 @@ var copyIconsToWebApp = async () => {
     await copyFolder(path3.join(PACKED_DIR, folder), path3.join(destinationFolder, folder));
   }
 };
-var cleanupFiles = async () => {
-  const task = new task_default("cleanup-files", async () => {
-    const packFolder = path3.join(process.cwd(), "/packed");
-    await import_fs.default.promises.rm(packFolder, { recursive: true });
-    const generatedFolder = path3.join(process.cwd(), "/generated");
-    await import_fs.default.promises.rm(generatedFolder, { recursive: true });
-  });
-  await task.run();
-};
 var main = async () => {
   await cleanAndGenerateBaseFolder();
   await downloadAndOrganizeIconPacks();
   await parseAndPackIcons();
   await executeCustomParsers();
   await copyIconsToWebApp();
-  await cleanupFiles();
 };
 main().catch((error) => {
   console.error("An error occurred", error);

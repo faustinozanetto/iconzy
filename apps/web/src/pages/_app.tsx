@@ -2,7 +2,7 @@ import '@styles/global.css';
 import 'ui/styles.css';
 
 import GoogleAnalytics from '@modules/google/components/google-analytics';
-import IconsProvider from '@modules/icons/context/icons-context';
+import IconsProvider from '@modules/icons/context/icons/icons-context';
 import ThemeProvider from '@modules/theming/context/theme-context';
 import { Inter } from '@next/font/google';
 import type { AppProps } from 'next/app';

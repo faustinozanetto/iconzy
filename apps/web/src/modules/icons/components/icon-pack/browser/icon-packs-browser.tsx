@@ -74,7 +74,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
       >
         {filteredData.map((iconPack) => {
           const pack = iconPacks.find((p) => p.metadata.name === iconPack.name);
-          if (pack) return <IconPackCard key={`pack-${pack.metadata.name}`} iconPack={pack} />;
+          if (pack) return <IconPackCard key={pack.metadata.name} iconPack={pack} />;
         })}
       </div>
     </div>

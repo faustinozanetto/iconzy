@@ -49,10 +49,7 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
   const licenseType = iconPack.metadata.source.license.type;
 
   return (
-    <div
-      key={iconPack.metadata.name}
-      className="group flex cursor-pointer flex-col space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800"
-    >
+    <div className="group flex cursor-pointer flex-col space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800">
       <h2 className="mb-2 text-xl font-semibold leading-snug tracking-tight">
         <span
           className="from-primary-300 to-primary-200 dark:from-primary-600 dark:to-primary-800 bg-gradient-to-r
@@ -67,9 +64,9 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
         </span>
       </h2>
       <div className="grid grid-cols-7 gap-3.5 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
-        {iconPack.featuredIcons.map((icon, index) => (
+        {iconPack.featuredIcons.map((icon, iconIndex) => (
           <FeaturedIcon
-            key={`icon-${index}`}
+            key={`icon-${iconIndex}`}
             icon={icon}
             requiresFill={iconPack.metadata.requiresFill}
             defaultWidth={iconPack.metadata.defaultWidth}

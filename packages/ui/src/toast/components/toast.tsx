@@ -43,7 +43,24 @@ export const Toast: React.FC<ToastProps> = (props) => {
     );
 
   return (
-    <motion.div layout className="flex flex-col items-center m-2">
+    <motion.li
+      initial={{ height: 0, opacity: 0 }}
+      animate={{
+        height: 'auto',
+        opacity: 1,
+        transition: {
+          type: 'spring',
+          bounce: 0.3,
+        },
+      }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{
+        duration: 0.6,
+        type: 'spring',
+        bounce: 0,
+      }}
+      className="flex flex-col items-center m-2"
+    >
       <div
         className={clsx(
           'flex p-4 rounded-md items-start overflow-hidden shadow-md text-neutral-800 dark:text-neutral-50',
@@ -55,6 +72,6 @@ export const Toast: React.FC<ToastProps> = (props) => {
           <p className="text-sm font-medium">{toast.content}</p>
         </div>
       </div>
-    </motion.div>
+    </motion.li>
   );
 };

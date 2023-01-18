@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 /**
  * The `Filter` type is used to define a filter that can be applied to a data set.
@@ -69,7 +69,7 @@ const useFilter = <TData>(data: TData[], initialFilters: Filter<TData>[], initia
     setSort(newSort);
   };
 
-  const updateFilter = (filter: Filter<TData>) => {
+  const updateFilter = useCallback((filter: Filter<TData>) => {
     setFilters((prev) => {
       const newFilters = [...prev];
       const filterToUpdate = prev.findIndex((fil) => fil.property === filter.property);
@@ -77,7 +77,7 @@ const useFilter = <TData>(data: TData[], initialFilters: Filter<TData>[], initia
       newFilters[filterToUpdate] = { ...filter };
       return newFilters;
     });
-  };
+  }, []);
 
   return { filteredData, updateSort, updateFilter };
 };

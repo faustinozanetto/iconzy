@@ -1,5 +1,6 @@
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import React from 'react';
 import { IconButton } from 'ui';
 
@@ -49,7 +50,23 @@ const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
   );
 
   return (
-    <div className="flex justify-between p-2">
+    <motion.li
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          type: 'spring',
+          bounce: 0.3,
+        },
+      }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.15,
+        type: 'spring',
+        bounce: 0.2,
+      }}
+      className="relative flex justify-between p-2"
+    >
       <div className="flex items-center space-x-2">
         {clonedIcon}
         <h4 className="font-medium">{icon.name}</h4>
@@ -61,7 +78,7 @@ const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
         icon={removeIcon}
         onClick={onRemovedClicked}
       />
-    </div>
+    </motion.li>
   );
 };
 

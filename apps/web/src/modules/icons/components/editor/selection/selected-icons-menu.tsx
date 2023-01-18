@@ -3,6 +3,7 @@ import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
+import { AnimatePresence } from 'framer-motion';
 import React, { Fragment, useEffect } from 'react';
 import { IconButton } from 'ui';
 
@@ -113,18 +114,20 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
                   </div>
                 </div>
 
-                <div className="flex max-h-96 w-full flex-col space-y-2 overflow-y-scroll">
-                  {iconsSelectionState.selectedIcons.map((icon) => {
-                    return (
-                      <SelectedIconsMenuIcon
-                        key={icon.name}
-                        icon={icon}
-                        onRemovedClicked={() => handleRemoveIcon(icon)}
-                        isFillType={state.iconPack?.requiresFill || false}
-                      />
-                    );
-                  })}
-                </div>
+                <ul className="hide-scrollbar flex max-h-96 w-full flex-col space-y-2 overflow-y-scroll">
+                  <AnimatePresence initial={false}>
+                    {iconsSelectionState.selectedIcons.reverse().map((icon) => {
+                      return (
+                        <SelectedIconsMenuIcon
+                          key={icon.name}
+                          icon={icon}
+                          onRemovedClicked={() => handleRemoveIcon(icon)}
+                          isFillType={state.iconPack?.requiresFill || false}
+                        />
+                      );
+                    })}
+                  </AnimatePresence>
+                </ul>
               </Dialog.Panel>
             </Transition.Child>
           </div>

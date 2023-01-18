@@ -8,14 +8,14 @@ export const ToastsContainer: React.FC = () => {
 
   return (
     <div className="fixed z-50 flex flex-col bottom-0 right-0 left-0 pointer-events-none">
-      <div className="max-w-xl mx-auto">
-        <AnimatePresence>
+      <ul className="max-w-xl mx-auto">
+        <AnimatePresence initial={false}>
           {state.toasts &&
             state.toasts.map((toast) => {
               return <Toast key={toast.id} toast={toast} />;
             })}
         </AnimatePresence>
-      </div>
+      </ul>
     </div>
   );
 };

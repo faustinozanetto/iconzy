@@ -120,7 +120,7 @@ const IconsFeed: React.FC = () => {
       <div className="relative h-full">
         <VirtuosoGrid
           ref={feedContainer}
-          className="virtuoso"
+          className="hide-scrollbar"
           style={{ height: '100%', margin: '1rem' }}
           totalCount={filteredData.length}
           overscan={25}
@@ -150,6 +150,7 @@ const IconsFeed: React.FC = () => {
             );
           }}
         />
+
         <div className="absolute bottom-0 my-2 flex w-full justify-between px-4">
           <SelectedIcons />
           <IconsFeedScrollTop onClick={handleScrollToTop} />

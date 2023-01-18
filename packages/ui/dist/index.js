@@ -985,26 +985,47 @@ var Toast2 = (props) => {
       ]
     }
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_framer_motion.motion.div, { layout: true, className: "flex flex-col items-center m-2", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
-    "div",
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+    import_framer_motion.motion.li,
     {
-      className: (0, import_clsx4.default)(
-        "flex p-4 rounded-md items-start overflow-hidden shadow-md text-neutral-800 dark:text-neutral-50",
-        toast.variant === "success" ? "bg-green-200 dark:bg-green-700" : "bg-red-200 dark:bg-red-700"
-      ),
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex-shrink-0 mr-2", children: toastIcon }),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex-1 max-w-full", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "text-sm font-medium", children: toast.content }) })
-      ]
+      initial: { height: 0, opacity: 0 },
+      animate: {
+        height: "auto",
+        opacity: 1,
+        transition: {
+          type: "spring",
+          bounce: 0.3
+        }
+      },
+      exit: { height: 0, opacity: 0 },
+      transition: {
+        duration: 0.6,
+        type: "spring",
+        bounce: 0
+      },
+      className: "flex flex-col items-center m-2",
+      children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+        "div",
+        {
+          className: (0, import_clsx4.default)(
+            "flex p-4 rounded-md items-start overflow-hidden shadow-md text-neutral-800 dark:text-neutral-50",
+            toast.variant === "success" ? "bg-green-200 dark:bg-green-700" : "bg-red-200 dark:bg-red-700"
+          ),
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex-shrink-0 mr-2", children: toastIcon }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "flex-1 max-w-full", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "text-sm font-medium", children: toast.content }) })
+          ]
+        }
+      )
     }
-  ) });
+  );
 };
 
 // src/toast/components/toasts-container.tsx
 var import_jsx_runtime12 = require("react/jsx-runtime");
 var ToastsContainer = () => {
   const { state } = useToastContext();
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "fixed z-50 flex flex-col bottom-0 right-0 left-0 pointer-events-none", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "max-w-xl mx-auto", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_framer_motion2.AnimatePresence, { children: state.toasts && state.toasts.map((toast) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "fixed z-50 flex flex-col bottom-0 right-0 left-0 pointer-events-none", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("ul", { className: "max-w-xl mx-auto", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_framer_motion2.AnimatePresence, { initial: false, children: state.toasts && state.toasts.map((toast) => {
     return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Toast2, { toast }, toast.id);
   }) }) }) });
 };

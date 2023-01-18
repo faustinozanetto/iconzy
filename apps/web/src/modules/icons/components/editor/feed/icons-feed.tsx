@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
 import { VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
 
+import SelectedIcons from '../selection/selected-icons';
 import IconsFeedFiltering from './icons-feed-filtering';
 import IconsFeedScrollTop from './icons-feed-scroll-top';
 
@@ -26,7 +27,7 @@ const IconEntry = dynamic(() => import('../../icons/icon-entry'), {
 
 const IconsFeed: React.FC = () => {
   const { state: iconsState } = useIconsContext();
-  const { dispatch } = useIconsSelectionContext();
+  const { state: iconsSelectionState, dispatch } = useIconsSelectionContext();
   const feedContainer = useRef<VirtuosoGridHandle | null>(null);
 
   const initialFilters: Filter<Icon>[] = [{ property: 'name', value: '', enabled: true }];
@@ -75,7 +76,7 @@ const IconsFeed: React.FC = () => {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800 ">
+      <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
         <h2 className="text-xl font-medium">
           Browsing <span className="text-primary-600 dark:text-primary-300 font-bold">{filteredData.length}</span> icons
         </h2>
@@ -89,21 +90,23 @@ const IconsFeed: React.FC = () => {
           overscan={25}
           data={filteredData}
           itemContent={(index, icon) => {
-            // const isIconSelected =
-            //   iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
+            const isIconSelected =
+              iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
 
             return (
               <IconEntry
                 key={`icon-${index}`}
                 icon={{ ...icon, customization: iconsState.iconCustomization }}
-                onClick={(iconElement, selected) => {
+                selected={isIconSelected}
+                onClick={(iconElement) => {
                   const iconWithElement: IconWithElement = { ...icon, element: iconElement };
-                  handleIconSelected(iconWithElement, selected);
+                  handleIconSelected(iconWithElement, isIconSelected);
                 }}
               />
             );
           }}
         />
+        <SelectedIcons />
         <IconsFeedScrollTop onClick={handleScrollToTop} />
       </div>
     </div>

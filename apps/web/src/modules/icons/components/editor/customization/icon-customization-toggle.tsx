@@ -2,6 +2,7 @@ import React from 'react';
 import { IconButton } from 'ui';
 
 type IconCustomizationToggleProps = {
+  /** Callback funcion when the button is clicked */
   onClick: () => void;
 };
 

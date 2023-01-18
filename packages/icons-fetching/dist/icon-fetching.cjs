@@ -132,7 +132,6 @@ var ICONS_CUSTOM_PARSERS = {
       for (const file of content) {
         const fileContent = await readContentsFromFile(folder, file);
         const modifiedSource = removeAttributesAndTags(fileContent, ["fill", "stroke"]);
-        console.log({ modifiedSource });
         await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
       }
     }
@@ -465,12 +464,22 @@ var copyIconsToWebApp = async () => {
     await copyFolder(path3.join(PACKED_DIR, folder), path3.join(destinationFolder, folder));
   }
 };
+var cleanupFiles = async () => {
+  const task = new task_default("cleanup-files", async () => {
+    const packFolder = path3.join(process.cwd(), "/packed");
+    await import_fs.default.promises.rm(packFolder, { recursive: true });
+    const generatedFolder = path3.join(process.cwd(), "/generated");
+    await import_fs.default.promises.rm(generatedFolder, { recursive: true });
+  });
+  await task.run();
+};
 var main = async () => {
   await cleanAndGenerateBaseFolder();
   await downloadAndOrganizeIconPacks();
   await parseAndPackIcons();
   await executeCustomParsers();
   await copyIconsToWebApp();
+  await cleanupFiles();
 };
 main().catch((error) => {
   console.error("An error occurred", error);

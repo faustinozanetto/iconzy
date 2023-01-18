@@ -42,6 +42,7 @@ export const getSVGSourceIntoComponent = (
         return domNode;
       }
     },
+    trim: true,
   }) as JSX.Element;
 
   return parsed;

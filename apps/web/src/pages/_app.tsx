@@ -18,17 +18,22 @@ const IconozenApp: React.FC<PortfolioProps> = (props) => {
   const { pageProps, Component } = props;
 
   return (
-    <ThemeProvider>
-      <ToastProvider>
-        <IconsProvider>
-          <main className={`${inter.variable} relative font-sans`}>
+    <main className={`${inter.variable} relative font-sans`}>
+      <ThemeProvider>
+        <ToastProvider>
+          <IconsProvider>
             <GoogleAnalytics />
             <Component {...pageProps} />
             <ToastsContainer />
-          </main>
-        </IconsProvider>
-      </ToastProvider>
-    </ThemeProvider>
+            <style jsx global>{`
+              :root {
+                --font-sans: ${inter.style.fontFamily};
+              }
+            `}</style>
+          </IconsProvider>
+        </ToastProvider>
+      </ThemeProvider>
+    </main>
   );
 };
 

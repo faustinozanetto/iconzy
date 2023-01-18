@@ -6,12 +6,16 @@ import React from 'react';
 import { Button } from 'ui';
 
 type IconPackCardProps = {
+  /** Icon pack data */
   iconPack: IconPackWithFeatured;
 };
 
 type FeaturedIconProps = {
+  /** Featured icon data */
   icon: Icon;
+  /** Wether the icon requires fill or not */
   requiresFill: boolean;
+  /** Default width of the icon */
   defaultWidth: number;
 };
 

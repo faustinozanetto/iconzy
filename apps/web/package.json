@@ -12,6 +12,7 @@
     "child_process": false
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
     "@next/font": "^13.1.2",
     "clsx": "^1.2.1",
     "framer-motion": "^8.4.6",

@@ -2,24 +2,24 @@ import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import type { IconWithCustomization } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React from 'react';
 
 type IconEntryProps = {
   /** Icon data to display */
   icon: IconWithCustomization;
+  /** Wether the icon is selected or not */
+  selected: boolean;
   /**
    * Callback function when the icon is clicked
    * @param iconElement The icon element.
-   * @param selected Wether the icon is selected or not.
    * @returns Void
    */
-  onClick: (iconElement: JSX.Element, selected: boolean) => void;
+  onClick: (iconElement: JSX.Element) => void;
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
-  const { icon, onClick } = props;
+  const { icon, selected, onClick } = props;
   const { state } = useIconsContext();
-  const [isSelected, setIsSelected] = useState(false);
 
   const iconSVG: JSX.Element = getSVGSourceIntoComponent(
     icon.source,
@@ -32,13 +32,10 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
     <div
       className={clsx(
         'hover:border-primary-400 dark:hover:border-primary-500 group relative flex h-[175px] cursor-pointer justify-center overflow-hidden rounded-md border-[3.5px] border-neutral-300 bg-neutral-50 p-4 transition-colors hover:border-4 dark:border-neutral-700 dark:bg-neutral-800',
-        isSelected ? 'dark:!border-primary-500 !border-primary-400' : ''
+        selected ? 'dark:!border-primary-500 !border-primary-400' : ''
       )}
       onClick={() => {
-        setIsSelected((prev) => {
-          return !prev;
-        });
-        onClick(iconSVG, isSelected);
+        onClick(iconSVG);
       }}
     >
       <div className="flex flex-col self-stretch">

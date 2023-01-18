@@ -28,6 +28,8 @@ module.exports = defineConfig({
         'class-methods-use-this': 'off',
         'no-empty-pattern': 'off',
         'consistent-return': 'off',
+
+        '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: { attributes: false } }],
         'tailwindcss/no-custom-classname': 'off',
         'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
@@ -38,7 +40,7 @@ module.exports = defineConfig({
         'simple-import-sort/imports': 'error', // Import configuration for `eslint-plugin-simple-import-sort`
         'simple-import-sort/exports': 'error', // Export configuration for `eslint-plugin-simple-import-sort`
         'unused-imports/no-unused-imports': 'error',
-        'unused-imports/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+        'unused-imports/no-unused-vars': 'off',
       },
     },
   ],

@@ -26,7 +26,18 @@ const SearchIcon: React.FC = () => {
 };
 
 type IconsFeedFilteringProps = {
+  /**
+   * Callback function when the name changes
+   * @param value The new name value
+   * @returns Void
+   */
   onNameChanged: (value: string) => void;
+  /**
+   * Callback function when the sort changes
+   * @param value  The new sort value
+   * @param criteria The sort criteria
+   * @returns Void
+   */
   onSortChanged: (value: keyof Icon, criteria: 'asc' | 'des') => void;
 };
 

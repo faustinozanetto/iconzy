@@ -2,6 +2,7 @@ import React from 'react';
 import { IconButton } from 'ui';
 
 type IconsFeedScrollTopProps = {
+  /** Callback function when the button is clicked */
   onClick: () => void;
 };
 

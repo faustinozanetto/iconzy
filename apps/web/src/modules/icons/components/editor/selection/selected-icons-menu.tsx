@@ -41,6 +41,13 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
     });
   };
 
+  const handleRemoveAllIcons = () => {
+    dispatch({
+      type: IconsSelectionActionType.CLEAR_SELECTED_ICONS,
+      payload: {},
+    });
+  };
+
   useEffect(() => {
     if (iconsSelectionState.selectedIcons.length === 0) {
       onClose();
@@ -73,11 +80,37 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className=" w-full max-w-md overflow-hidden rounded-2xl bg-neutral-50 p-6 text-left align-middle shadow-xl transition-all dark:bg-neutral-800">
-                <div className="mb-4 flex justify-between">
+                <div className="mb-4 flex items-center justify-between">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6">
-                    Manage Selected Icons
+                    Manage Selected Icons <br />
+                    <span className="text-sm">{iconsSelectionState.selectedIcons.length} selected</span>
                   </Dialog.Title>
-                  <IconButton aria-label="Close Menu" icon={closeButtonIcon} onClick={onClose} />
+                  <div className="flex items-center space-x-2">
+                    <IconButton
+                      aria-label="Remove All"
+                      colorScheme="red"
+                      variant="ghost"
+                      onClick={handleRemoveAllIcons}
+                      icon={
+                        <svg
+                          className="h-5 w-5 shrink-0 stroke-neutral-800 dark:stroke-neutral-50"
+                          xmlns="http://www.w3.org/2000/svg"
+                          strokeLinejoin="round"
+                          strokeLinecap="round"
+                          strokeWidth="2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <polyline points="3 6 5 6 21 6" />
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                          <line y2="17" x2="10" y1="11" x1="10" />
+                          <line y2="17" x2="14" y1="11" x1="14" />
+                        </svg>
+                      }
+                    />
+
+                    <IconButton aria-label="Close Menu" icon={closeButtonIcon} onClick={onClose} />
+                  </div>
                 </div>
 
                 <div className="flex max-h-96 w-full flex-col space-y-2 overflow-y-scroll">

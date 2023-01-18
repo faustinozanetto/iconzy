@@ -8,10 +8,18 @@ module.exports = {
         fs: false,
       };
     }
-
     return config;
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/icons',
+        permanent: true,
+      },
+    ];
   },
   poweredByHeader: false,
   compress: true,
-  // transpilePackages: ['ui'],
+  transpilePackages: ['ui'],
 };

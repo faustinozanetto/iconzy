@@ -70,7 +70,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
         </label>
         <div className="flex items-center space-x-1">
           <Button
-            size="sm"
+            size="xs"
             variant="ghost"
             aria-label="Reset Input"
             colorScheme="red"
@@ -80,7 +80,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
             Reset
           </Button>
           <IconButton
-            size="sm"
+            size="xs"
             aria-label="Collapse Input"
             colorScheme="stone"
             onClick={handleInputCollapse}

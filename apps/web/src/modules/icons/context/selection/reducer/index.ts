@@ -2,6 +2,12 @@ import { IconsSelectionActions, IconsSelectionActionType, IconsSelectionState } 
 
 export const reducer = (state: IconsSelectionState, action: IconsSelectionActions): IconsSelectionState => {
   switch (action.type) {
+    case IconsSelectionActionType.SET_SELECTED_ICONS: {
+      return {
+        ...state,
+        selectedIcons: action.payload.icons,
+      };
+    }
     case IconsSelectionActionType.ADD_SELECTED_ICON: {
       return {
         ...state,

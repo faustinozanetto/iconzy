@@ -1,32 +1,23 @@
-import { useIconsContext } from '@modules/icons/context/icons/icons-context';
-import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
-import type { IconWithCustomization } from '@modules/icons/typings/icon.typings';
+import type { Icon } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
 import React from 'react';
 
 type IconEntryProps = {
-  /** Icon data to display */
-  icon: IconWithCustomization;
+  /** Icon name to display */
+  name: Icon['name'];
   /** Wether the icon is selected or not */
   selected: boolean;
   /**
    * Callback function when the icon is clicked
-   * @param iconElement The icon element.
    * @returns Void
    */
-  onClick: (iconElement: JSX.Element) => void;
+  onClick: () => void;
+  /** SVG Element to render */
+  svgElement: JSX.Element;
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
-  const { icon, selected, onClick } = props;
-  const { state } = useIconsContext();
-
-  const iconSVG: JSX.Element = getSVGSourceIntoComponent(
-    icon.source,
-    state.iconPack?.requiresFill || false,
-    icon.customization,
-    'grid-icon'
-  );
+  const { name, selected, onClick, svgElement } = props;
 
   return (
     <div
@@ -35,12 +26,12 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
         selected ? 'dark:!border-primary-500 !border-primary-400' : ''
       )}
       onClick={() => {
-        onClick(iconSVG);
+        onClick();
       }}
     >
       <div className="flex flex-col self-stretch">
-        <div className="mx-auto flex flex-1 items-center justify-center">{iconSVG}</div>
-        <span className="mb-1.5 text-center font-medium">{icon.name}</span>
+        <div className="mx-auto flex flex-1 items-center justify-center">{svgElement}</div>
+        <span className="mb-1.5 text-center font-medium">{name}</span>
       </div>
     </div>
   );

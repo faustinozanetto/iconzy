@@ -18,7 +18,7 @@ export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>
       <select
         id={id}
         ref={ref}
-        className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400"
+        className="focus-visible:ring-primary-500 focus-visible:border-primary-500 dark:focus-visible:ring-primary-500 dark:focus-visible:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400"
         {...rest}
       >
         {children}

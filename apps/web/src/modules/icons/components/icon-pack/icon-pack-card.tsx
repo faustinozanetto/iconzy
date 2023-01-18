@@ -53,7 +53,7 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
       key={iconPack.metadata.name}
       className="group flex cursor-pointer flex-col space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800"
     >
-      <h2 className="text-xl font-semibold leading-snug tracking-tight">
+      <h2 className="mb-2 text-xl font-semibold leading-snug tracking-tight">
         <span
           className="from-primary-300 to-primary-200 dark:from-primary-600 dark:to-primary-800 bg-gradient-to-r
           bg-[length:0px_10px]

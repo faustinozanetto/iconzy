@@ -1,5 +1,5 @@
 import type { Icon } from '@modules/icons/typings/icon.typings';
-import React from 'react';
+import React, { useRef } from 'react';
 import { SelectInputSort, TextInput } from 'ui';
 
 const SearchIcon: React.FC = () => {
@@ -43,11 +43,18 @@ type IconsFeedFilteringProps = {
 
 const IconsFeedFiltering: React.FC<IconsFeedFilteringProps> = (props) => {
   const { onNameChanged, onSortChanged } = props;
+  const inputNameRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="grid gap-2 md:grid-cols-2">
       {/* Name Filtering */}
-      <TextInput id="search-icon" placeholder="Search Icons" icon={<SearchIcon />} onValueChanged={onNameChanged} />
+      <TextInput
+        ref={inputNameRef}
+        id="search-icon"
+        placeholder="Search Icons"
+        icon={<SearchIcon />}
+        onValueChanged={onNameChanged}
+      />
       {/* Sort Filtering */}
       <SelectInputSort
         id="sort-icon"

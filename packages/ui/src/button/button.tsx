@@ -30,16 +30,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
       ref={ref}
       type="button"
       className={clsx(
-        `inline-flex items-center justify-center rounded-lg font-medium focus:outline-none focus:ring-4 transition-colors text-neutral-900 dark:text-neutral-50`,
+        `inline-flex appearance-none items-center justify-center select-none relative whitespace-nowrap align-middle leading-[1.2] rounded-lg font-semibold focus-visible:outline-none focus-visible:ring-4 transition-colors text-neutral-900 dark:text-neutral-50`,
         BUTTON_SIZES[size],
         BUTTON_COLOR_SCHEMES[colorScheme][variant],
         rest.className
       )}
       {...excludedRest}
     >
-      {leftIcon && <div className="inline-flex shrink-0 self-center pr-1">{leftIcon}</div>}
+      {leftIcon && <span className="inline-flex shrink-0 self-center mr-2">{leftIcon}</span>}
       {children}
-      {rightIcon && <div className="inline-flex shrink-0 self-center pl-1">{rightIcon}</div>}
+      {rightIcon && <span className="inline-flex shrink-0 self-center ml-2">{rightIcon}</span>}
     </button>
   );
 });

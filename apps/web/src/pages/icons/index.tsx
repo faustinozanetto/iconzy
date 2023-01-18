@@ -6,6 +6,7 @@ import type { GetStaticProps } from 'next';
 import React from 'react';
 
 type IconPacksPageProps = {
+  /** All the available icon packs with their featured icons. */
   iconPacks: IconPackWithFeatured[];
 };
 

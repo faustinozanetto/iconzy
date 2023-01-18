@@ -15,10 +15,6 @@ const IconsCustomization: React.FC = () => {
     setPanelToggled(isSmallDevice);
   }, [isSmallDevice]);
 
-  // const handlePanelToggled = () => {
-  //   setPanelToggled((prev) => !prev);
-  // };
-
   return (
     <section
       className={clsx(

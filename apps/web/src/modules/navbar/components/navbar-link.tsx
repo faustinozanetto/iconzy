@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 type NavbarLinkProps = {
+  /** Link to navigate when clicked */
   href: string;
   children: React.ReactNode;
 };

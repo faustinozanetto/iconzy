@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // from https://usehooks-ts.com/react-hook/use-media-query
-function useMediaQuery(query: string): boolean {
+const useMediaQuery = (query: string): boolean => {
   const getMatches = (q: string): boolean => {
     // Prevents SSR issues
     if (typeof window !== 'undefined') {
@@ -39,6 +39,6 @@ function useMediaQuery(query: string): boolean {
   }, [query]);
 
   return matches;
-}
+};
 
 export default useMediaQuery;

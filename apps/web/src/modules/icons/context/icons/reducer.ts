@@ -1,6 +1,12 @@
 import type { IconsActions, IconsState } from './types';
 import { IconsActionType } from './types';
 
+/**
+ * Reducer for the icons context.
+ * @param state State of the reducer.
+ * @param action Action to execute.
+ * @returns The modified state.
+ */
 export const reducer = (state: IconsState, action: IconsActions): IconsState => {
   switch (action.type) {
     case IconsActionType.SET_ICON_PACK: {

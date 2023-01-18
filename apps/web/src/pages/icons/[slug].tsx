@@ -9,6 +9,9 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect } from 'react';
 
 type IconPackPagePageProps = {
+  /**
+   * The icon pack of the specified page.
+   */
   iconPack: IconPackWithAll;
 };
 

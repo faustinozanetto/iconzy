@@ -8,32 +8,44 @@ import IconPackCard from '../icon-pack-card';
 import IconPacksBrowserFiltering from './icon-packs-browser-filtering';
 
 type IconPacksBrowserTypes = {
+  /** The list of icon packs with featured icons. */
   iconPacks: IconPackWithFeatured[];
-};
-
-const initialFilters: Filter<IconPack>[] = [
-  { property: 'name', value: '', enabled: true },
-  { property: 'iconsCount', value: 0, enabled: false },
-];
-
-const initialSort: Sort<IconPack> = {
-  property: 'iconsCount',
-  ascending: false,
 };
 
 const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
   const { iconPacks } = props;
+
+  const initialFilters: Filter<IconPack>[] = [
+    { property: 'name', value: '', enabled: true },
+    { property: 'iconsCount', value: 0, enabled: false },
+  ];
+
+  const initialSort: Sort<IconPack> = {
+    property: 'iconsCount',
+    ascending: false,
+  };
+
   const mappedPacks: IconPack[] = iconPacks.map((pack) => {
     return {
       ...pack.metadata,
     };
   });
+
   const { filteredData, updateFilter, updateSort } = useFilter<IconPack>(mappedPacks, initialFilters, initialSort);
 
+  /**
+   * Callback function when the name changes.
+   * @param filter The new name.
+   */
   const handleNameFilterChanged = (filter: string) => {
     updateFilter({ property: 'name', value: filter, enabled: true });
   };
 
+  /**
+   * Callback function when the sort changes.
+   * @param value The new sort.
+   * @param criteria The sort criteria.
+   */
   const handleSortChanged = (value: keyof IconPack, criteria: 'asc' | 'des') => {
     updateSort({ property: value, ascending: criteria === 'asc' });
   };

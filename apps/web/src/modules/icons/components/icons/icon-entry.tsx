@@ -12,12 +12,15 @@ type IconEntryProps = {
    * @returns Void
    */
   onClick: () => void;
-  /** SVG Element to render */
-  svgElement: JSX.Element;
+  /**
+   * Render function that computes the icon element.
+   * @returns The icon element
+   */
+  render: () => JSX.Element;
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
-  const { name, selected, onClick, svgElement } = props;
+  const { name, selected, onClick, render } = props;
 
   return (
     <div
@@ -30,7 +33,7 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
       }}
     >
       <div className="flex flex-col self-stretch">
-        <div className="mx-auto flex flex-1 items-center justify-center">{svgElement}</div>
+        <div className="mx-auto flex flex-1 items-center justify-center">{render()}</div>
         <span className="mb-1.5 text-center font-medium">{name}</span>
       </div>
     </div>

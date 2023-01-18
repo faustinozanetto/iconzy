@@ -40,6 +40,12 @@ const IconsFeed: React.FC = () => {
 
   const { filteredData, updateFilter, updateSort } = useFilter<Icon>(iconsState.icons, initialFilters, initialSort);
 
+  /**
+   * Callback function when a icon is selecte.
+   * @param icon The icon that has been selected.
+   * @param selected Wether is has been selected or deselected.
+   * @returns Void
+   */
   const handleIconSelected = (icon: IconWithElement, selected: boolean) => {
     if (!selected)
       return dispatch({
@@ -57,10 +63,19 @@ const IconsFeed: React.FC = () => {
     });
   };
 
+  /**
+   * Callback function when the name filter changes.
+   * @param value New name filter.
+   */
   const handleNameFilterChanged = (value: string) => {
     updateFilter({ property: 'name', value, enabled: true });
   };
 
+  /**
+   * Callback function when the sort filter changes.
+   * @param value New sort filter.
+   * @param criteria The sort criteria.
+   */
   const handleSortChanged = (value: keyof Icon, criteria: 'asc' | 'des') => {
     updateSort({ property: value, ascending: criteria === 'asc' });
   };
@@ -105,6 +120,7 @@ const IconsFeed: React.FC = () => {
       <div className="relative h-full">
         <VirtuosoGrid
           ref={feedContainer}
+          className="virtuoso"
           style={{ height: '100%', margin: '1rem' }}
           totalCount={filteredData.length}
           overscan={25}
@@ -113,28 +129,31 @@ const IconsFeed: React.FC = () => {
             const isIconSelected =
               iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
 
-            const iconSVG: JSX.Element = getSVGSourceIntoComponent(
-              icon.source,
-              iconsState.iconPack?.requiresFill || false,
-              iconsState.iconCustomization,
-              'grid-icon'
-            );
+            const renderIcon = () =>
+              getSVGSourceIntoComponent(
+                icon.source,
+                iconsState.iconPack?.requiresFill || false,
+                iconsState.iconCustomization,
+                'grid-icon'
+              );
 
             return (
               <IconEntry
                 key={`icon-${index}`}
                 name={icon.name}
                 selected={isIconSelected}
-                svgElement={iconSVG}
+                render={renderIcon}
                 onClick={() => {
-                  handleIconSelected({ ...icon, element: iconSVG }, isIconSelected);
+                  handleIconSelected({ ...icon, element: renderIcon() }, isIconSelected);
                 }}
               />
             );
           }}
         />
-        <SelectedIcons />
-        <IconsFeedScrollTop onClick={handleScrollToTop} />
+        <div className="absolute bottom-0 my-2 flex w-full justify-between px-4">
+          <SelectedIcons />
+          <IconsFeedScrollTop onClick={handleScrollToTop} />
+        </div>
       </div>
     </div>
   );

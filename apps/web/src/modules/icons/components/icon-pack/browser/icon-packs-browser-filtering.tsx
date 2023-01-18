@@ -26,7 +26,18 @@ const SearchIcon: React.FC = () => {
 };
 
 type IconPacksBrowserFilteringProps = {
+  /**
+   * Callback function when the name changes.
+   * @param value The new name.
+   * @returns Void
+   */
   onNameChanged: (value: string) => void;
+  /**
+   * Callback function when the sort changes.
+   * @param value The new sort.
+   * @param criteria The sort criteria.
+   * @returns Void
+   */
   onSortChanged: (value: keyof IconPack, criteria: 'asc' | 'des') => void;
 };
 

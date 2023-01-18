@@ -7,14 +7,26 @@ import { ColorInput, RangeInput } from 'ui';
 const IconsCustomizationSettings: React.FC = () => {
   const { state, dispatch } = useIconsContext();
 
+  /**
+   * Callback function when the size changes.
+   * @param value The new size.
+   */
   const handelSizeChanged = (value: number) => {
     dispatch({ type: IconsActionType.SET_ICON_SIZE, payload: { size: value } });
   };
 
+  /**
+   * Callback function when the width changes.
+   * @param value The new width.
+   */
   const handleWidthChanged = (value: number) => {
     dispatch({ type: IconsActionType.SET_ICON_WIDTH, payload: { width: value } });
   };
 
+  /**
+   * Callback function when the color changes.
+   * @param value The new color.
+   */
   const handleColorChanged = (value: string) => {
     dispatch({
       type: IconsActionType.SET_ICON_COLOR,

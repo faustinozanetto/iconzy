@@ -1,5 +1,11 @@
 import { IconsSelectionActions, IconsSelectionActionType, IconsSelectionState } from './types';
 
+/**
+ * Reducer for the selected icons context.
+ * @param state State of the reducer.
+ * @param action Action to execute.
+ * @returns The modified state.
+ */
 export const reducer = (state: IconsSelectionState, action: IconsSelectionActions): IconsSelectionState => {
   switch (action.type) {
     case IconsSelectionActionType.SET_SELECTED_ICONS: {

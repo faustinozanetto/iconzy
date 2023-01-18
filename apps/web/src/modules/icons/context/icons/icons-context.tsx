@@ -5,7 +5,13 @@ import { reducer } from './reducer';
 import type { IconsActions, IconsState } from './types';
 
 type IconsContextState = {
+  /**
+   * The state of the context.
+   */
   state: IconsState;
+  /**
+   * The dispatch of the context reducer.
+   */
   dispatch: React.Dispatch<IconsActions>;
 };
 
@@ -13,8 +19,14 @@ const initialState: IconsContextState = {} as IconsContextState;
 
 const IconsContext = createContext<IconsContextState>(initialState);
 
+/**
+ * Hook for accessing the icons context.
+ * @returns The icons context.
+ */
 export const useIconsContext = () => {
-  return useContext(IconsContext);
+  const context = useContext(IconsContext);
+  if (!context) throw new Error('Tried to use IconsContext with no context avaiable!');
+  return context;
 };
 
 type ThemeProviderProps = {

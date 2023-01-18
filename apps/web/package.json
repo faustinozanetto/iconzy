@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
+    "@next/bundle-analyzer": "^13.1.2",
     "@next/font": "^13.1.2",
     "adm-zip": "^0.5.10",
     "client-zip": "^2.3.0",

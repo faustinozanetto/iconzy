@@ -14,6 +14,10 @@ const initialState: ThemeContextState = {
 
 const ThemeContext = createContext<ThemeContextState>(initialState);
 
+/**
+ * Hook for accessing the theme context.
+ * @returns The theme context.
+ */
 export const useThemeContext = () => {
   const context = useContext(ThemeContext);
   if (!context) throw new Error('Tried to use ThemeContext with no context avaiable!');

@@ -19,7 +19,6 @@ out/
 build
 
 # buid
-dist
 
 # misc
 .DS_Store

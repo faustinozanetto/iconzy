@@ -1,10 +1,10 @@
 import ADMZip from 'adm-zip';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useToast } from 'ui';
 
 import { useIconsContext } from '../context/icons/icons-context';
-import { convertJSXToString, getSVGSourceIntoComponent } from '../lib/icons-utils';
+import { applyIconCustomizationStyles, convertJSXToString, getSVGSourceIntoComponent } from '../lib/icons-utils';
 import { selectSelectedIcons } from '../state/selected-icons.slice';
 
 export const useSaveIcons = () => {
@@ -16,7 +16,8 @@ export const useSaveIcons = () => {
     const elements = selectedIcons.map((selectedIcon) => {
       const source = getSVGSourceIntoComponent(selectedIcon.source, state.iconPack?.type || 'outline', 'grid-icon');
       const content = convertJSXToString(source);
-      const compiledIcon = { ...selectedIcon, compiled: content };
+      const stylesApplied = applyIconCustomizationStyles(content, state.iconPack?.type || 'fill');
+      const compiledIcon = { ...selectedIcon, compiled: stylesApplied };
 
       return compiledIcon;
     });
@@ -50,7 +51,7 @@ export const useSaveIcons = () => {
     link.click();
   };
 
-  const exportIcons = () => {
+  const exportIcons = useCallback(() => {
     if (noIconsSelected) return toast({ variant: 'error', content: 'No icons selected!' });
     try {
       if (isSingleFile) saveSingleFile();
@@ -58,8 +59,9 @@ export const useSaveIcons = () => {
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
-  };
-  const copyIcon = async () => {
+  }, [selectedIcons]);
+
+  const copyIcon = useCallback(async () => {
     if (!isSingleFile) return;
     try {
       const uniqueElement = compiledIcons[0];
@@ -69,7 +71,7 @@ export const useSaveIcons = () => {
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
-  };
+  }, [selectedIcons]);
 
   return { exportIcons, copyIcon, isSingleFile };
 };

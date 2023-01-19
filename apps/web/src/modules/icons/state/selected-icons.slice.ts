@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { AppState } from '@state/store';
+import { RootState } from '@state/store';
 
 import { Icon, IconWithElement } from '../typings/icon.typings';
 
@@ -34,4 +34,4 @@ export const selectedIconsSlice = createSlice({
 });
 
 export const { addSelectedIcon, removeSelectedIcon, setSelectedIcons, clearSelectedIcons } = selectedIconsSlice.actions;
-export const selectSelectedIcons = (state: AppState) => state.selectedIcons.selectedIcons;
+export const selectSelectedIcons = (state: RootState) => state.selectedIcons.selectedIcons;

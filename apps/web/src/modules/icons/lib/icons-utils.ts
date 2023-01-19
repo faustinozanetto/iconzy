@@ -78,6 +78,28 @@ export const convertJSXToString = (element: JSX.Element): string => {
   return cleaned;
 };
 
+export const applyIconCustomizationStyles = (source: string, type: IconPack['type']): string => {
+  const color = document.documentElement.style.getPropertyValue('--grid-icon-color');
+  const width = document.documentElement.style.getPropertyValue('--grid-icon-width');
+  const size = document.documentElement.style.getPropertyValue('--grid-icon-size');
+
+  const parser = new DOMParser();
+  const svgDoc = parser.parseFromString(source, 'image/svg+xml');
+  const svgElement = svgDoc.documentElement;
+  svgElement.setAttribute('width', size);
+  svgElement.setAttribute('height', size);
+  if (type === 'fill') {
+    svgElement.setAttribute('fill', color);
+  } else {
+    svgElement.setAttribute('stroke', color);
+    svgElement.setAttribute('stroke-width', width);
+  }
+
+  console.log({ color, width, size });
+
+  return new XMLSerializer().serializeToString(svgElement);
+};
+
 /**
  * Function that gets all the icons in a icon pack.
  * @param iconPack The icon pack to get the icons.

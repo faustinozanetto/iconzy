@@ -389,8 +389,10 @@ var ColorInput = import_react2.default.forwardRef((props, ref) => {
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
-    onValueChanged(updatedValue);
   };
+  (0, import_react2.useEffect)(() => {
+    onValueChanged(value);
+  }, [value]);
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
     InputWrapper,
     {
@@ -719,8 +721,10 @@ var RangeInput = import_react3.default.forwardRef((props, ref) => {
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(Number(updatedValue));
-    onValueChanged(Number(updatedValue));
   };
+  (0, import_react3.useEffect)(() => {
+    onValueChanged(Number(value));
+  }, [value]);
   const sliderControllerPosition = value / (Number(rest.max) || 100) * 100;
   return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
     InputWrapper,
@@ -872,8 +876,10 @@ var TextInput = import_react6.default.forwardRef((props, ref) => {
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
-    onValueChanged(updatedValue);
   };
+  (0, import_react6.useEffect)(() => {
+    onValueChanged(value);
+  }, [value]);
   return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "relative", children: [
     label ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { children: label }) }) : null,
     /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "relative", children: [

@@ -265,7 +265,7 @@ var Separator = (props) => {
 };
 
 // src/forms/color-input.tsx
-import React4, { useState as useState2 } from "react";
+import React4, { useEffect, useState as useState2 } from "react";
 
 // src/forms/input-wrapper.tsx
 import { useState } from "react";
@@ -347,8 +347,10 @@ var ColorInput = React4.forwardRef((props, ref) => {
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
-    onValueChanged(updatedValue);
   };
+  useEffect(() => {
+    onValueChanged(value);
+  }, [value]);
   return /* @__PURE__ */ jsx6(
     InputWrapper,
     {
@@ -387,7 +389,7 @@ var ColorInput = React4.forwardRef((props, ref) => {
 ColorInput.displayName = "Color Input";
 
 // src/forms/range-input.tsx
-import React5, { useState as useState3 } from "react";
+import React5, { useEffect as useEffect2, useState as useState3 } from "react";
 
 // src/utils/index.ts
 var defaultColors = {
@@ -677,8 +679,10 @@ var RangeInput = React5.forwardRef((props, ref) => {
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(Number(updatedValue));
-    onValueChanged(Number(updatedValue));
   };
+  useEffect2(() => {
+    onValueChanged(Number(value));
+  }, [value]);
   const sliderControllerPosition = value / (Number(rest.max) || 100) * 100;
   return /* @__PURE__ */ jsx7(
     InputWrapper,
@@ -822,7 +826,7 @@ var SelectInputSort = (props) => {
 
 // src/forms/text-input.tsx
 import clsx3 from "clsx";
-import React8, { useState as useState5 } from "react";
+import React8, { useEffect as useEffect3, useState as useState5 } from "react";
 import { jsx as jsx10, jsxs as jsxs7 } from "react/jsx-runtime";
 var TextInput = React8.forwardRef((props, ref) => {
   const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
@@ -830,8 +834,10 @@ var TextInput = React8.forwardRef((props, ref) => {
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
-    onValueChanged(updatedValue);
   };
+  useEffect3(() => {
+    onValueChanged(value);
+  }, [value]);
   return /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
     label ? /* @__PURE__ */ jsx10("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx10("span", { children: label }) }) : null,
     /* @__PURE__ */ jsxs7("div", { className: "relative", children: [

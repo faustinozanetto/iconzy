@@ -348,7 +348,7 @@ type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
      */
     onValueChanged: (value: string) => void;
 };
-declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
     label: string;
     /**
      * Callback function called when the value changes.
@@ -367,7 +367,7 @@ type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
      */
     onValueChanged: (value: number) => void;
 };
-declare const RangeInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const RangeInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
     label: string;
     /**
      * Callback function called when the value changes.
@@ -412,7 +412,7 @@ type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElem
      */
     onValueChanged: (value: string) => void;
 };
-declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
     label?: string | undefined;
     icon?: JSX.Element | undefined;
     /**

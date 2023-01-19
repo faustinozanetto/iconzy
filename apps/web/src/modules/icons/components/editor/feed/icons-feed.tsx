@@ -2,9 +2,11 @@ import type { Filter, Sort } from '@modules/common/hooks/use-filter';
 import useFilter from '@modules/common/hooks/use-filter';
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import { selectSelectedIcons } from '@modules/icons/state/selected-icons.slice';
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
 
 import SelectedIcons from '../selection/selected-icons';
@@ -26,6 +28,7 @@ const IconEntry = dynamic(() => import('../../icons/icon-entry'), {
 
 const IconsFeed: React.FC = () => {
   const { state: iconsState } = useIconsContext();
+  const selectedIcons = useSelector(selectSelectedIcons);
 
   const feedContainer = useRef<VirtuosoGridHandle | null>(null);
 
@@ -101,9 +104,11 @@ const IconsFeed: React.FC = () => {
           overscan={25}
           data={filteredData}
           itemContent={(index, icon) => {
+            const isIconSelected = selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
+
             const source = getSVGSourceIntoComponent(icon.source, iconsState.iconPack?.type || 'outline', 'grid-icon');
 
-            return <IconEntry key={`icon-${index}`} icon={icon} render={source} />;
+            return <IconEntry key={`icon-${index}`} icon={icon} selected={isIconSelected} render={source} />;
           }}
         />
 

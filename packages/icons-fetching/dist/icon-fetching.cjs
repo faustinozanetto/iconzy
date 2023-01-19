@@ -475,9 +475,9 @@ var executeCustomParsers = async () => {
   await task.run();
 };
 var copyIconsToWebApp = async () => {
-  const destinationFolder = path3.join(process.cwd(), "../../apps/web/public/icons");
-  await import_fs.default.promises.rm(destinationFolder, { recursive: true });
-  await import_fs.default.promises.mkdir(destinationFolder);
+  const destinationFolder = path3.join(process.cwd() + "/../../apps/web/public/icons");
+  await import_fs.default.promises.mkdir(destinationFolder, { recursive: true });
+  await import_fs.default.promises.writeFile(path3.join(destinationFolder, "dummy.txt"), "dummy", { encoding: "utf8" });
   const iconFolders = await import_fs.default.promises.readdir(PACKED_DIR);
   for (const folder of iconFolders) {
     await copyFolder(path3.join(PACKED_DIR, folder), path3.join(destinationFolder, folder));

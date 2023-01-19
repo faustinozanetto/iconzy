@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { InputWrapper } from './input-wrapper';
 
@@ -19,8 +19,11 @@ export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((p
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;
     setValue(updatedValue);
-    onValueChanged(updatedValue);
   };
+
+  useEffect(() => {
+    onValueChanged(value);
+  }, [value]);
 
   return (
     <InputWrapper

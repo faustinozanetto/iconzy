@@ -16,12 +16,10 @@ type FeaturedIconProps = {
   icon: Icon;
   /** Wether the icon requires fill or not */
   type: IconPack['type'];
-  /** Default width of the icon */
-  defaultWidth: number;
 };
 
 const FeaturedIcon: React.FC<FeaturedIconProps> = (props) => {
-  const { icon, type, defaultWidth } = props;
+  const { icon, type } = props;
 
   const source = getSVGSourceIntoComponent(
     icon.source,
@@ -63,12 +61,7 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
       </h2>
       <div className="featued-icons-container grid grid-cols-7 gap-3.5 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
         {iconPack.featuredIcons.map((icon, iconIndex) => (
-          <FeaturedIcon
-            key={`icon-${iconIndex}`}
-            icon={icon}
-            type={iconPack.metadata.type}
-            defaultWidth={iconPack.metadata.defaultWidth}
-          />
+          <FeaturedIcon key={`icon-${iconIndex}`} icon={icon} type={iconPack.metadata.type} />
         ))}
       </div>
       <div className="w-full space-y-2">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { defaultColors } from '../utils';
 import { InputWrapper } from './input-wrapper';
@@ -21,8 +21,11 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;
     setValue(Number(updatedValue));
-    onValueChanged(Number(updatedValue));
   };
+
+  useEffect(() => {
+    onValueChanged(Number(value));
+  }, [value]);
 
   const sliderControllerPosition = (value / (Number(rest.max) || 100)) * 100;
 

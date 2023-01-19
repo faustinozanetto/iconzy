@@ -127,9 +127,10 @@ const executeCustomParsers = async () => {
  * Task for copying packaged and organized icons to the web app.
  */
 const copyIconsToWebApp = async () => {
-  const destinationFolder = path.join(process.cwd(), '../../apps/web/public/icons');
-  await fs.promises.rm(destinationFolder, { recursive: true });
-  await fs.promises.mkdir(destinationFolder);
+  const destinationFolder = path.join(process.cwd() + '/../../apps/web/public/icons');
+
+  await fs.promises.mkdir(destinationFolder, { recursive: true });
+  await fs.promises.writeFile(path.join(destinationFolder, 'dummy.txt'), 'dummy', { encoding: 'utf8' });
 
   const iconFolders = await fs.promises.readdir(PACKED_DIR);
   for (const folder of iconFolders) {

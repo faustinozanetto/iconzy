@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export type TextInputInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label?: string;
@@ -19,8 +19,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputInputProps>
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;
     setValue(updatedValue);
-    onValueChanged(updatedValue);
   };
+
+  useEffect(() => {
+    onValueChanged(value);
+  }, [value]);
 
   return (
     <div className="relative">

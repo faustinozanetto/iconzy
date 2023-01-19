@@ -1,12 +1,13 @@
 import { addSelectedIcon, removeSelectedIcon } from '@modules/icons/state/selected-icons.slice';
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
 type IconEntryProps = {
   /** Icon data to display */
   icon: Icon;
+  selected: boolean;
   /**
    * Render function that computes the icon element.
    * @returns The icon element
@@ -15,9 +16,7 @@ type IconEntryProps = {
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
-  const { icon, render } = props;
-  const [selected, setSelected] = useState<boolean>(false);
-
+  const { icon, selected, render } = props;
   const dispatch = useDispatch();
 
   /**
@@ -25,12 +24,10 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
    * @returns Void
    */
   const handleIconSelected = () => {
-    setSelected((prev) => !prev);
     if (!selected) {
       dispatch(
         addSelectedIcon({
           ...icon,
-          // element: render,
         })
       );
     } else {

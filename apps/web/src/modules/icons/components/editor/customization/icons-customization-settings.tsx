@@ -1,5 +1,3 @@
-import { useIconsCustomizationContext } from '@modules/icons/context/customization/icons-customization-context';
-import { IconsCustomizationActionType } from '@modules/icons/context/customization/reducer/types';
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import {
   DEFAULT_ICON_SIZE,
@@ -7,19 +5,21 @@ import {
   ICON_WIDTH_LIMITS,
   ICONS_DEFAULT_COLOR,
 } from '@modules/icons/lib/constants';
+import { setIconColor, setIconSize, setIconWidth } from '@modules/icons/state/customization.slice';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { ColorInput, RangeInput } from 'ui';
 
 const IconsCustomizationSettings: React.FC = () => {
   const { state: iconsState } = useIconsContext();
-  const { state, dispatch } = useIconsCustomizationContext();
+  const dispatch = useDispatch();
 
   /**
    * Callback function when the size changes.
    * @param value The new size.
    */
   const handelSizeChanged = (value: number) => {
-    dispatch({ type: IconsCustomizationActionType.SET_ICON_SIZE, payload: { size: value } });
+    dispatch(setIconSize(value));
   };
 
   /**
@@ -27,7 +27,7 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new width.
    */
   const handleWidthChanged = (value: number) => {
-    dispatch({ type: IconsCustomizationActionType.SET_ICON_WIDTH, payload: { width: value } });
+    dispatch(setIconWidth(value));
   };
 
   /**
@@ -35,12 +35,7 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new color.
    */
   const handleColorChanged = (value: string) => {
-    dispatch({
-      type: IconsCustomizationActionType.SET_ICON_COLOR,
-      payload: {
-        color: value,
-      },
-    });
+    dispatch(setIconColor(value));
   };
 
   return (

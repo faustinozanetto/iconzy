@@ -1,7 +1,5 @@
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
-
-import useDebounce from '../hooks/use-debounce';
+import React, { useState } from 'react';
 
 export type TextInputInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label?: string;
@@ -17,16 +15,12 @@ export type TextInputInputProps = Omit<React.InputHTMLAttributes<HTMLInputElemen
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputInputProps>((props, ref) => {
   const { id, icon, label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<string>('');
-  const debouncedValue = useDebounce<string>(value, 50);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;
     setValue(updatedValue);
+    onValueChanged(updatedValue);
   };
-
-  useEffect(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
 
   return (
     <div className="relative">

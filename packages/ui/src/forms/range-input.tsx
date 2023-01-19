@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import useDebounce from '../hooks/use-debounce';
 import { defaultColors } from '../utils';
 import { InputWrapper } from './input-wrapper';
 
@@ -18,15 +17,12 @@ export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
 export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((props, ref) => {
   const { id = 'default-id', label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<number>(Number(rest.placeholder) || 0);
-  const debouncedValue = useDebounce<number>(value, 0.1);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;
     setValue(Number(updatedValue));
-    onValueChanged(value);
+    onValueChanged(Number(updatedValue));
   };
-
-  // useEffect(() => {}, [debouncedValue]);
 
   const sliderControllerPosition = (value / (Number(rest.max) || 100)) * 100;
 

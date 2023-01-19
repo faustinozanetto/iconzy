@@ -4,6 +4,8 @@
 
 :root {
   --grid-icon-size: 45px;
+  --grid-icon-width: 2;
+  --grid-icon-color: rgb(67, 248, 18);
 }
 
 body {
@@ -66,4 +68,17 @@ span {
 .feed-icon-wrapper svg {
   width: var(--grid-icon-size);
   height: var(--grid-icon-size);
+}
+
+.feed-icon-wrapper svg[stroke]:not([stroke='none']),
+.feed-icon-wrapper path[stroke]:not([stroke='none']),
+.feed-icon-wrapper circle[stroke]:not([stroke='none']),
+.feed-icon-wrapper rect[stroke]:not([stroke='none']) {
+  stroke: var(--grid-icon-color);
+}
+
+.feed-icon-wrapper svg[stroke-width],
+.feed-icon-wrapper path[stroke-width],
+.feed-icon-wrapper rect[stroke-width] {
+  stroke-width: var(--grid-icon-width);
 }

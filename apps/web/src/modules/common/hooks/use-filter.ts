@@ -63,11 +63,11 @@ const useFilter = <TData>(data: TData[], initialFilters: Filter<TData>[], initia
       return 0;
     });
     return resultData;
-  }, [filters, sort]);
+  }, [data, filters, sort]);
 
-  const updateSort = (newSort: Sort<TData>) => {
+  const updateSort = useCallback((newSort: Sort<TData>) => {
     setSort(newSort);
-  };
+  }, []);
 
   const updateFilter = useCallback((filter: Filter<TData>) => {
     setFilters((prev) => {

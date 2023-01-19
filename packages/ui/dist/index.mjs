@@ -265,28 +265,14 @@ var Separator = (props) => {
 };
 
 // src/forms/color-input.tsx
-import React4, { useEffect as useEffect2, useState as useState3 } from "react";
-
-// src/hooks/use-debounce.ts
-import { useEffect, useState } from "react";
-function useDebounce(value, delay) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-  useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay || 500);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [value, delay]);
-  return debouncedValue;
-}
-var use_debounce_default = useDebounce;
+import React4, { useState as useState2 } from "react";
 
 // src/forms/input-wrapper.tsx
-import { useState as useState2 } from "react";
+import { useState } from "react";
 import { jsx as jsx5, jsxs as jsxs2 } from "react/jsx-runtime";
 var InputWrapper = (props) => {
   const { id, label, disabled, onInputReseted, children, initiallyCollapsed = false } = props;
-  const [inputCollapsed, setInputCollapsed] = useState2(initiallyCollapsed);
+  const [inputCollapsed, setInputCollapsed] = useState(initiallyCollapsed);
   const handleInputCollapse = () => {
     setInputCollapsed((prev) => !prev);
   };
@@ -357,15 +343,12 @@ var InputWrapper = (props) => {
 import { jsx as jsx6, jsxs as jsxs3 } from "react/jsx-runtime";
 var ColorInput = React4.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = useState3(rest.placeholder || "");
-  const debouncedValue = use_debounce_default(value, 50);
+  const [value, setValue] = useState2(rest.placeholder || "");
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
+    onValueChanged(updatedValue);
   };
-  useEffect2(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
   return /* @__PURE__ */ jsx6(
     InputWrapper,
     {
@@ -404,7 +387,7 @@ var ColorInput = React4.forwardRef((props, ref) => {
 ColorInput.displayName = "Color Input";
 
 // src/forms/range-input.tsx
-import React5, { useState as useState4 } from "react";
+import React5, { useState as useState3 } from "react";
 
 // src/utils/index.ts
 var defaultColors = {
@@ -690,12 +673,11 @@ var defaultColors = {
 import { jsx as jsx7, jsxs as jsxs4 } from "react/jsx-runtime";
 var RangeInput = React5.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = useState4(Number(rest.placeholder) || 0);
-  const debouncedValue = use_debounce_default(value, 0.1);
+  const [value, setValue] = useState3(Number(rest.placeholder) || 0);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(Number(updatedValue));
-    onValueChanged(value);
+    onValueChanged(Number(updatedValue));
   };
   const sliderControllerPosition = value / (Number(rest.max) || 100) * 100;
   return /* @__PURE__ */ jsx7(
@@ -761,12 +743,12 @@ var SelectInput = React6.forwardRef((props, ref) => {
 SelectInput.displayName = "Select Input";
 
 // src/forms/select-input-sort.tsx
-import { useRef, useState as useState5 } from "react";
+import { useRef, useState as useState4 } from "react";
 import { jsx as jsx9, jsxs as jsxs6 } from "react/jsx-runtime";
 var SelectInputSort = (props) => {
   const _a = props, { id, label, children, initialSortCriteria, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "children", "initialSortCriteria", "onValueChanged"]);
   const selectInputRef = useRef(null);
-  const [sortCriteria, setSortCriteria] = useState5(initialSortCriteria);
+  const [sortCriteria, setSortCriteria] = useState4(initialSortCriteria);
   const handleSelectChanged = (value) => {
     onValueChanged(value, sortCriteria);
   };
@@ -840,19 +822,16 @@ var SelectInputSort = (props) => {
 
 // src/forms/text-input.tsx
 import clsx3 from "clsx";
-import React8, { useEffect as useEffect4, useState as useState6 } from "react";
+import React8, { useState as useState5 } from "react";
 import { jsx as jsx10, jsxs as jsxs7 } from "react/jsx-runtime";
 var TextInput = React8.forwardRef((props, ref) => {
   const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
-  const [value, setValue] = useState6("");
-  const debouncedValue = use_debounce_default(value, 50);
+  const [value, setValue] = useState5("");
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
+    onValueChanged(updatedValue);
   };
-  useEffect4(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
   return /* @__PURE__ */ jsxs7("div", { className: "relative", children: [
     label ? /* @__PURE__ */ jsx10("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ jsx10("span", { children: label }) }) : null,
     /* @__PURE__ */ jsxs7("div", { className: "relative", children: [

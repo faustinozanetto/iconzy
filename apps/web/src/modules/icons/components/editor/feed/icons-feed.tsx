@@ -5,10 +5,10 @@ import { useIconsSelectionContext } from '@modules/icons/context/selection/icons
 import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import type { Icon, IconWithElement } from '@modules/icons/typings/icon.typings';
-import dynamic from 'next/dynamic';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
 
+import IconEntry from '../../icons/icon-entry';
 import SelectedIcons from '../selection/selected-icons';
 import IconsFeedFiltering from './icons-feed-filtering';
 import IconsFeedScrollTop from './icons-feed-scroll-top';
@@ -21,16 +21,32 @@ const LoadingIcon = () => {
   );
 };
 
-const IconEntry = dynamic(() => import('../../icons/icon-entry'), {
-  ssr: false,
-  loading: () => <LoadingIcon />,
-});
+// const IconEntry = dynamic(() => import('../../icons/icon-entry'), {
+//   ssr: false,
+//   loading: () => <LoadingIcon />,
+// });
 
 const IconsFeed: React.FC = () => {
   const { state: iconsState } = useIconsContext();
   const { state: iconsSelectionState, dispatch } = useIconsSelectionContext();
   const feedContainer = useRef<VirtuosoGridHandle | null>(null);
-  const elementsMap = new Map<string, JSX.Element>();
+
+  // const elementsMap = useMemo(() => {
+  //   const map = new Map<string, JSX.Element>([]);
+  //   iconsState.icons.forEach((icon) => {
+  //     const source = getSVGSourceIntoComponent(
+  //       icon.source,
+  //       iconsState.iconPack?.requiresFill || false,
+  //       iconsState.iconCustomization,
+  //       'grid-icon'
+  //     );
+  //     map.set(icon.name, source);
+  //   });
+
+  //   console.log('Updated map');
+  //   console.log(map);
+  //   return map;
+  // }, [iconsState.icons]);
 
   const initialFilters: Filter<Icon>[] = [{ property: 'name', value: '', enabled: true }];
 
@@ -110,22 +126,6 @@ const IconsFeed: React.FC = () => {
     });
   }, [iconsState.iconCustomization]);
 
-  const renderedIconElements = useMemo(() => {
-    filteredData.forEach((icon) => {
-      const source = getSVGSourceIntoComponent(
-        icon.source,
-        iconsState.iconPack?.requiresFill || false,
-        iconsState.iconCustomization,
-        'grid-icon'
-      );
-      elementsMap.set(icon.name, source);
-    });
-
-    console.log('Updated map');
-
-    return elementsMap;
-  }, [filteredData, iconsState.iconCustomization]);
-
   return (
     <div className="flex w-full flex-col">
       <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
@@ -146,17 +146,23 @@ const IconsFeed: React.FC = () => {
             const isIconSelected =
               iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
 
-            const renderIcon = renderedIconElements.get(icon.name);
-            if (!renderIcon) return;
+            // const renderIcon = elementsMap.get(icon.name);
+            // if (!renderIcon) return;
+            const source = getSVGSourceIntoComponent(
+              icon.source,
+              iconsState.iconPack?.requiresFill || false,
+              iconsState.iconCustomization,
+              'grid-icon'
+            );
 
             return (
               <IconEntry
                 key={`icon-${index}`}
                 name={icon.name}
                 selected={isIconSelected}
-                render={renderIcon}
+                render={source}
                 onClick={() => {
-                  handleIconSelected({ ...icon, element: renderIcon }, isIconSelected);
+                  handleIconSelected({ ...icon, element: source }, isIconSelected);
                 }}
               />
             );

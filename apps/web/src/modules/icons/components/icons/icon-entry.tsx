@@ -1,6 +1,6 @@
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
-import React, { memo } from 'react';
+import React from 'react';
 
 type IconEntryProps = {
   /** Icon name to display */
@@ -40,4 +40,4 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
   );
 };
 
-export default memo(IconEntry);
+export default IconEntry;

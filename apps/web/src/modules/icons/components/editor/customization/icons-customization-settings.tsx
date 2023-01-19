@@ -1,5 +1,4 @@
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
-import { IconsActionType } from '@modules/icons/context/icons/types';
 import {
   DEFAULT_ICON_SIZE,
   ICON_SIZE_LIMITS,
@@ -17,7 +16,7 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new size.
    */
   const handelSizeChanged = (value: number) => {
-    // document.documentElement.style.setProperty('--grid-icon-size', `${value}px`);
+    document.documentElement.style.setProperty('--grid-icon-size', `${value}px`);
     // dispatch({ type: IconsActionType.SET_ICON_SIZE, payload: { size: value } });
   };
 
@@ -26,7 +25,8 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new width.
    */
   const handleWidthChanged = (value: number) => {
-    dispatch({ type: IconsActionType.SET_ICON_WIDTH, payload: { width: value } });
+    document.documentElement.style.setProperty('--grid-icon-width', `${value}px`);
+    // dispatch({ type: IconsActionType.SET_ICON_WIDTH, payload: { width: value } });
   };
 
   /**
@@ -34,12 +34,13 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new color.
    */
   const handleColorChanged = (value: string) => {
-    dispatch({
-      type: IconsActionType.SET_ICON_COLOR,
-      payload: {
-        color: value,
-      },
-    });
+    document.documentElement.style.setProperty('--grid-icon-color', value);
+    // dispatch({
+    //   type: IconsActionType.SET_ICON_COLOR,
+    //   payload: {
+    //     color: value,
+    //   },
+    // });
   };
 
   return (

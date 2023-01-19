@@ -307,28 +307,14 @@ var Separator = (props) => {
 };
 
 // src/forms/color-input.tsx
-var import_react3 = __toESM(require("react"));
-
-// src/hooks/use-debounce.ts
-var import_react = require("react");
-function useDebounce(value, delay) {
-  const [debouncedValue, setDebouncedValue] = (0, import_react.useState)(value);
-  (0, import_react.useEffect)(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay || 500);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [value, delay]);
-  return debouncedValue;
-}
-var use_debounce_default = useDebounce;
+var import_react2 = __toESM(require("react"));
 
 // src/forms/input-wrapper.tsx
-var import_react2 = require("react");
+var import_react = require("react");
 var import_jsx_runtime5 = require("react/jsx-runtime");
 var InputWrapper = (props) => {
   const { id, label, disabled, onInputReseted, children, initiallyCollapsed = false } = props;
-  const [inputCollapsed, setInputCollapsed] = (0, import_react2.useState)(initiallyCollapsed);
+  const [inputCollapsed, setInputCollapsed] = (0, import_react.useState)(initiallyCollapsed);
   const handleInputCollapse = () => {
     setInputCollapsed((prev) => !prev);
   };
@@ -397,17 +383,14 @@ var InputWrapper = (props) => {
 
 // src/forms/color-input.tsx
 var import_jsx_runtime6 = require("react/jsx-runtime");
-var ColorInput = import_react3.default.forwardRef((props, ref) => {
+var ColorInput = import_react2.default.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = (0, import_react3.useState)(rest.placeholder || "");
-  const debouncedValue = use_debounce_default(value, 50);
+  const [value, setValue] = (0, import_react2.useState)(rest.placeholder || "");
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
+    onValueChanged(updatedValue);
   };
-  (0, import_react3.useEffect)(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
     InputWrapper,
     {
@@ -446,7 +429,7 @@ var ColorInput = import_react3.default.forwardRef((props, ref) => {
 ColorInput.displayName = "Color Input";
 
 // src/forms/range-input.tsx
-var import_react4 = __toESM(require("react"));
+var import_react3 = __toESM(require("react"));
 
 // src/utils/index.ts
 var defaultColors = {
@@ -730,14 +713,13 @@ var defaultColors = {
 
 // src/forms/range-input.tsx
 var import_jsx_runtime7 = require("react/jsx-runtime");
-var RangeInput = import_react4.default.forwardRef((props, ref) => {
+var RangeInput = import_react3.default.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
-  const [value, setValue] = (0, import_react4.useState)(Number(rest.placeholder) || 0);
-  const debouncedValue = use_debounce_default(value, 0.1);
+  const [value, setValue] = (0, import_react3.useState)(Number(rest.placeholder) || 0);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(Number(updatedValue));
-    onValueChanged(value);
+    onValueChanged(Number(updatedValue));
   };
   const sliderControllerPosition = value / (Number(rest.max) || 100) * 100;
   return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
@@ -782,9 +764,9 @@ var RangeInput = import_react4.default.forwardRef((props, ref) => {
 RangeInput.displayName = "Range Input";
 
 // src/forms/select-input.tsx
-var import_react5 = __toESM(require("react"));
+var import_react4 = __toESM(require("react"));
 var import_jsx_runtime8 = require("react/jsx-runtime");
-var SelectInput = import_react5.default.forwardRef((props, ref) => {
+var SelectInput = import_react4.default.forwardRef((props, ref) => {
   const _a = props, { id, label, children } = _a, rest = __objRest(_a, ["id", "label", "children"]);
   return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "relative", children: [
     label ? /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: label }) }) : null,
@@ -803,12 +785,12 @@ var SelectInput = import_react5.default.forwardRef((props, ref) => {
 SelectInput.displayName = "Select Input";
 
 // src/forms/select-input-sort.tsx
-var import_react6 = require("react");
+var import_react5 = require("react");
 var import_jsx_runtime9 = require("react/jsx-runtime");
 var SelectInputSort = (props) => {
   const _a = props, { id, label, children, initialSortCriteria, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "children", "initialSortCriteria", "onValueChanged"]);
-  const selectInputRef = (0, import_react6.useRef)(null);
-  const [sortCriteria, setSortCriteria] = (0, import_react6.useState)(initialSortCriteria);
+  const selectInputRef = (0, import_react5.useRef)(null);
+  const [sortCriteria, setSortCriteria] = (0, import_react5.useState)(initialSortCriteria);
   const handleSelectChanged = (value) => {
     onValueChanged(value, sortCriteria);
   };
@@ -882,19 +864,16 @@ var SelectInputSort = (props) => {
 
 // src/forms/text-input.tsx
 var import_clsx3 = __toESM(require("clsx"));
-var import_react7 = __toESM(require("react"));
+var import_react6 = __toESM(require("react"));
 var import_jsx_runtime10 = require("react/jsx-runtime");
-var TextInput = import_react7.default.forwardRef((props, ref) => {
+var TextInput = import_react6.default.forwardRef((props, ref) => {
   const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
-  const [value, setValue] = (0, import_react7.useState)("");
-  const debouncedValue = use_debounce_default(value, 50);
+  const [value, setValue] = (0, import_react6.useState)("");
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
+    onValueChanged(updatedValue);
   };
-  (0, import_react7.useEffect)(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "relative", children: [
     label ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("label", { htmlFor: id, className: "mb-1 block text-sm font-semibold text-gray-900 dark:text-white", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { children: label }) }) : null,
     /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "relative", children: [
@@ -921,7 +900,7 @@ TextInput.displayName = "Text Input";
 var import_framer_motion3 = require("framer-motion");
 
 // src/toast/context/toast-context.tsx
-var import_react8 = require("react");
+var import_react7 = require("react");
 
 // src/toast/context/reducer/index.ts
 var reducer = (state, action) => {
@@ -949,9 +928,9 @@ var initialState = {
   dispatch: () => {
   }
 };
-var ToastContext = (0, import_react8.createContext)(initialState);
+var ToastContext = (0, import_react7.createContext)(initialState);
 var useToastContext = () => {
-  const context = (0, import_react8.useContext)(ToastContext);
+  const context = (0, import_react7.useContext)(ToastContext);
   if (!context)
     throw new Error("Tried to use ThemeContext with no context avaiable!");
   return context;
@@ -979,7 +958,7 @@ var useToast = () => {
 };
 var ToastProvider = (props) => {
   const { children } = props;
-  const [state, dispatch] = (0, import_react8.useReducer)(reducer, {
+  const [state, dispatch] = (0, import_react7.useReducer)(reducer, {
     toasts: []
   });
   return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ToastContext.Provider, { value: { state, dispatch }, children });

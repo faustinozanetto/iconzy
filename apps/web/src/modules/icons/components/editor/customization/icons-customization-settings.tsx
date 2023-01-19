@@ -17,7 +17,8 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new size.
    */
   const handelSizeChanged = (value: number) => {
-    dispatch({ type: IconsActionType.SET_ICON_SIZE, payload: { size: value } });
+    // document.documentElement.style.setProperty('--grid-icon-size', `${value}px`);
+    // dispatch({ type: IconsActionType.SET_ICON_SIZE, payload: { size: value } });
   };
 
   /**

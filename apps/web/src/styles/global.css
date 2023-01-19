@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --grid-icon-size: 45px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -57,4 +61,9 @@ span {
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.feed-icon-wrapper svg {
+  width: var(--grid-icon-size);
+  height: var(--grid-icon-size);
 }

@@ -18,16 +18,15 @@ export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
 export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((props, ref) => {
   const { id = 'default-id', label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<number>(Number(rest.placeholder) || 0);
-  const debouncedValue = useDebounce<number>(value, 25);
+  const debouncedValue = useDebounce<number>(value, 0.1);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;
     setValue(Number(updatedValue));
+    onValueChanged(value);
   };
 
-  useEffect(() => {
-    onValueChanged(value);
-  }, [debouncedValue]);
+  // useEffect(() => {}, [debouncedValue]);
 
   const sliderControllerPosition = (value / (Number(rest.max) || 100)) * 100;
 
@@ -57,6 +56,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
           id={`manual-${id}`}
           className="ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 disabled:cursor-not-allowed"
           type="text"
+          inputMode="numeric"
           value={value}
           onChange={handleChange}
           {...rest}

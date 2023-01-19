@@ -16,7 +16,7 @@ export type ColorInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
 export const ColorInput = React.forwardRef<HTMLInputElement, ColorInputProps>((props, ref) => {
   const { id = 'default-id', label, onValueChanged, ...rest } = props;
   const [value, setValue] = useState<string>(rest.placeholder || '');
-  const debouncedValue = useDebounce<string>(value, 25);
+  const debouncedValue = useDebounce<string>(value, 50);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: updatedValue } = event.target as HTMLInputElement;

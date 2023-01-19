@@ -400,7 +400,7 @@ var import_jsx_runtime6 = require("react/jsx-runtime");
 var ColorInput = import_react3.default.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
   const [value, setValue] = (0, import_react3.useState)(rest.placeholder || "");
-  const debouncedValue = use_debounce_default(value, 25);
+  const debouncedValue = use_debounce_default(value, 50);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
@@ -733,14 +733,12 @@ var import_jsx_runtime7 = require("react/jsx-runtime");
 var RangeInput = import_react4.default.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
   const [value, setValue] = (0, import_react4.useState)(Number(rest.placeholder) || 0);
-  const debouncedValue = use_debounce_default(value, 25);
+  const debouncedValue = use_debounce_default(value, 0.1);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(Number(updatedValue));
-  };
-  (0, import_react4.useEffect)(() => {
     onValueChanged(value);
-  }, [debouncedValue]);
+  };
   const sliderControllerPosition = value / (Number(rest.max) || 100) * 100;
   return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
     InputWrapper,
@@ -772,6 +770,7 @@ var RangeInput = import_react4.default.forwardRef((props, ref) => {
             id: `manual-${id}`,
             className: "ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 disabled:cursor-not-allowed",
             type: "text",
+            inputMode: "numeric",
             value,
             onChange: handleChange
           }, rest)
@@ -888,7 +887,7 @@ var import_jsx_runtime10 = require("react/jsx-runtime");
 var TextInput = import_react7.default.forwardRef((props, ref) => {
   const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
   const [value, setValue] = (0, import_react7.useState)("");
-  const debouncedValue = use_debounce_default(value, 25);
+  const debouncedValue = use_debounce_default(value, 50);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);

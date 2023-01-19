@@ -6,7 +6,7 @@ import { IconsSelectionActionType } from '@modules/icons/context/selection/reduc
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import type { Icon, IconWithElement } from '@modules/icons/typings/icon.typings';
 import dynamic from 'next/dynamic';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
 
 import SelectedIcons from '../selection/selected-icons';
@@ -30,6 +30,7 @@ const IconsFeed: React.FC = () => {
   const { state: iconsState } = useIconsContext();
   const { state: iconsSelectionState, dispatch } = useIconsSelectionContext();
   const feedContainer = useRef<VirtuosoGridHandle | null>(null);
+  const elementsMap = new Map<string, JSX.Element>();
 
   const initialFilters: Filter<Icon>[] = [{ property: 'name', value: '', enabled: true }];
 
@@ -109,6 +110,22 @@ const IconsFeed: React.FC = () => {
     });
   }, [iconsState.iconCustomization]);
 
+  const renderedIconElements = useMemo(() => {
+    filteredData.forEach((icon) => {
+      const source = getSVGSourceIntoComponent(
+        icon.source,
+        iconsState.iconPack?.requiresFill || false,
+        iconsState.iconCustomization,
+        'grid-icon'
+      );
+      elementsMap.set(icon.name, source);
+    });
+
+    console.log('Updated map');
+
+    return elementsMap;
+  }, [filteredData, iconsState.iconCustomization]);
+
   return (
     <div className="flex w-full flex-col">
       <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
@@ -129,13 +146,8 @@ const IconsFeed: React.FC = () => {
             const isIconSelected =
               iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
 
-            const renderIcon = () =>
-              getSVGSourceIntoComponent(
-                icon.source,
-                iconsState.iconPack?.requiresFill || false,
-                iconsState.iconCustomization,
-                'grid-icon'
-              );
+            const renderIcon = renderedIconElements.get(icon.name);
+            if (!renderIcon) return;
 
             return (
               <IconEntry
@@ -144,7 +156,7 @@ const IconsFeed: React.FC = () => {
                 selected={isIconSelected}
                 render={renderIcon}
                 onClick={() => {
-                  handleIconSelected({ ...icon, element: renderIcon() }, isIconSelected);
+                  handleIconSelected({ ...icon, element: renderIcon }, isIconSelected);
                 }}
               />
             );

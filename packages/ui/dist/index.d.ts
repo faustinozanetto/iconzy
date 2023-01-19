@@ -312,7 +312,7 @@ declare const Button: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonHTMLA
     /** Optional: Variant of the button, defaults to solid. */
     variant?: ButtonVariants | undefined;
     /** Optional: Color scheme of the button, defaults to primary. */
-    colorScheme?: "slate" | "gray" | "zinc" | "neutral" | "stone" | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia" | "pink" | "rose" | "primary" | undefined;
+    colorScheme?: "blue" | "cyan" | "fuchsia" | "gray" | "green" | "indigo" | "lime" | "orange" | "pink" | "purple" | "red" | "teal" | "violet" | "yellow" | "slate" | "zinc" | "neutral" | "stone" | "amber" | "emerald" | "sky" | "rose" | "primary" | undefined;
     isDisabled?: boolean | undefined;
 } & {
     /** Optional: Left icon of the button. */
@@ -325,11 +325,12 @@ type IconButtonProps = BaseButtonProps & {
     /** Optional: Left icon of the button. */
     icon?: JSX.Element;
 };
-declare const IconButton: React$1.ForwardRefExoticComponent<React$1.ButtonHTMLAttributes<HTMLButtonElement> & {
+declare const IconButton: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonHTMLAttributes<HTMLButtonElement>, "disabled"> & {
     children?: React$1.ReactNode;
     size?: ButtonSizes | undefined;
     variant?: ButtonVariants | undefined;
-    colorScheme?: "slate" | "gray" | "zinc" | "neutral" | "stone" | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia" | "pink" | "rose" | "primary" | undefined;
+    colorScheme?: "blue" | "cyan" | "fuchsia" | "gray" | "green" | "indigo" | "lime" | "orange" | "pink" | "purple" | "red" | "teal" | "violet" | "yellow" | "slate" | "zinc" | "neutral" | "stone" | "amber" | "emerald" | "sky" | "rose" | "primary" | undefined;
+    isDisabled?: boolean | undefined;
 } & {
     /** Optional: Left icon of the button. */
     icon?: JSX.Element | undefined;
@@ -347,7 +348,7 @@ type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
      */
     onValueChanged: (value: string) => void;
 };
-declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
     label: string;
     /**
      * Callback function called when the value changes.
@@ -411,7 +412,7 @@ type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElem
      */
     onValueChanged: (value: string) => void;
 };
-declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
     label?: string | undefined;
     icon?: JSX.Element | undefined;
     /**

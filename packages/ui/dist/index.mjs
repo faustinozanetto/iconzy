@@ -358,7 +358,7 @@ import { jsx as jsx6, jsxs as jsxs3 } from "react/jsx-runtime";
 var ColorInput = React4.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
   const [value, setValue] = useState3(rest.placeholder || "");
-  const debouncedValue = use_debounce_default(value, 25);
+  const debouncedValue = use_debounce_default(value, 50);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);
@@ -404,7 +404,7 @@ var ColorInput = React4.forwardRef((props, ref) => {
 ColorInput.displayName = "Color Input";
 
 // src/forms/range-input.tsx
-import React5, { useEffect as useEffect3, useState as useState4 } from "react";
+import React5, { useState as useState4 } from "react";
 
 // src/utils/index.ts
 var defaultColors = {
@@ -691,14 +691,12 @@ import { jsx as jsx7, jsxs as jsxs4 } from "react/jsx-runtime";
 var RangeInput = React5.forwardRef((props, ref) => {
   const _a = props, { id = "default-id", label, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "onValueChanged"]);
   const [value, setValue] = useState4(Number(rest.placeholder) || 0);
-  const debouncedValue = use_debounce_default(value, 25);
+  const debouncedValue = use_debounce_default(value, 0.1);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(Number(updatedValue));
-  };
-  useEffect3(() => {
     onValueChanged(value);
-  }, [debouncedValue]);
+  };
   const sliderControllerPosition = value / (Number(rest.max) || 100) * 100;
   return /* @__PURE__ */ jsx7(
     InputWrapper,
@@ -730,6 +728,7 @@ var RangeInput = React5.forwardRef((props, ref) => {
             id: `manual-${id}`,
             className: "ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 disabled:cursor-not-allowed",
             type: "text",
+            inputMode: "numeric",
             value,
             onChange: handleChange
           }, rest)
@@ -846,7 +845,7 @@ import { jsx as jsx10, jsxs as jsxs7 } from "react/jsx-runtime";
 var TextInput = React8.forwardRef((props, ref) => {
   const _a = props, { id, icon, label, onValueChanged } = _a, rest = __objRest(_a, ["id", "icon", "label", "onValueChanged"]);
   const [value, setValue] = useState6("");
-  const debouncedValue = use_debounce_default(value, 25);
+  const debouncedValue = use_debounce_default(value, 50);
   const handleChange = (event) => {
     const { value: updatedValue } = event.target;
     setValue(updatedValue);

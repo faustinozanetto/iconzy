@@ -1,6 +1,6 @@
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
-import React from 'react';
+import React, { memo } from 'react';
 
 type IconEntryProps = {
   /** Icon name to display */
@@ -16,7 +16,7 @@ type IconEntryProps = {
    * Render function that computes the icon element.
    * @returns The icon element
    */
-  render: () => JSX.Element;
+  render: JSX.Element;
 };
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
@@ -33,11 +33,11 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
       }}
     >
       <div className="flex flex-col self-stretch">
-        <div className="mx-auto flex flex-1 items-center justify-center">{render()}</div>
+        <div className="feed-icon-wrapper mx-auto flex flex-1 items-center justify-center">{render}</div>
         <span className="mb-1.5 text-center font-medium">{name}</span>
       </div>
     </div>
   );
 };
 
-export default IconEntry;
+export default memo(IconEntry);

@@ -42,8 +42,9 @@ const IconPackPage: React.FC<IconPackPagePageProps> = (props) => {
   return (
     <BaseLayout
       headProps={{
-        title: `Browsing ${parsedName} | Iconozen`,
-        description: 'Iconozen is a page for downloading and customizing svg icons for your projects.',
+        title: `Browsing ${parsedName} | Iconzy`,
+        description:
+          'Iconzy is a personal project for customizing and browsing free icon packs for your personal projects.',
         url: `https://iconzy.vercel.app/icons/${iconPack.metadata.name}`,
         canonicalUrl: `https://iconzy.vercel.app/icons/${iconPack.metadata.name}`,
       }}

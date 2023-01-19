@@ -1,5 +1,4 @@
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
-import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import React from 'react';
 import { IconButton } from 'ui';
@@ -7,30 +6,12 @@ import { IconButton } from 'ui';
 type SelectedIconsMenuIconProps = {
   /** Icon data */
   icon: IconWithElement;
-  /** TODO: Wether the icon is fill type or not. manage this better */
-  isFillType: boolean;
   /** Callback when the remove icon is clicked */
   onRemovedClicked: () => void;
 };
 
-type ClonedIconProps = {
-  [key: string]: unknown;
-};
-
 const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
-  const { icon, isFillType, onRemovedClicked } = props;
-
-  const { height, width, ...filteredProps } = icon.element.props;
-
-  const clonedIconProps: ClonedIconProps = {
-    ...filteredProps,
-    className: clsx(
-      isFillType ? 'fill-neutral-800 dark:fill-neutral-50' : 'stroke-neutral-800 dark:stroke-neutral-50',
-      'h-7 w-7'
-    ),
-  };
-
-  const clonedIcon = React.cloneElement(icon.element, clonedIconProps);
+  const { icon, onRemovedClicked } = props;
 
   const removeIcon = (
     <svg
@@ -68,7 +49,7 @@ const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
       className="relative flex justify-between p-2"
     >
       <div className="flex items-center space-x-2">
-        {clonedIcon}
+        {icon.element}
         <h4 className="font-medium">{icon.name}</h4>
       </div>
       <IconButton

@@ -1,7 +1,7 @@
 export const ICONS = [
   {
     name: 'circum-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 1.5,
     source: {
       url: 'https://github.com/Klarr-Agency/Circum-Icons.git',
@@ -15,7 +15,7 @@ export const ICONS = [
   },
   {
     name: 'dev-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 1,
     source: {
       url: 'https://github.com/vorillaz/devicons.git',
@@ -30,7 +30,7 @@ export const ICONS = [
 
   {
     name: 'simple-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 1,
     source: {
       url: 'https://github.com/simple-icons/simple-icons.git',
@@ -44,7 +44,7 @@ export const ICONS = [
   },
   {
     name: 'box-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 1,
     source: {
       url: 'https://github.com/atisawd/boxicons.git',
@@ -58,7 +58,7 @@ export const ICONS = [
   },
   {
     name: 'feather-icons',
-    requiresFill: false,
+    type: 'outline',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/feathericons/feather.git',
@@ -72,7 +72,7 @@ export const ICONS = [
   },
   {
     name: 'tabler-icons',
-    requiresFill: false,
+    type: 'outline',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/tabler/tabler-icons',
@@ -86,7 +86,7 @@ export const ICONS = [
   },
   {
     name: 'typ-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/stephenhutchings/typicons.font',
@@ -100,7 +100,7 @@ export const ICONS = [
   },
   {
     name: 'remix-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 1.5,
     source: {
       url: 'https://github.com/Remix-Design/RemixIcon',
@@ -114,7 +114,7 @@ export const ICONS = [
   },
   {
     name: 'jam-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 1.5,
     source: {
       url: 'https://github.com/michaelampr/jam',
@@ -128,7 +128,7 @@ export const ICONS = [
   },
   {
     name: 'eva-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/akveo/eva-icons',
@@ -142,7 +142,7 @@ export const ICONS = [
   },
   {
     name: 'fontawesome-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/FortAwesome/Font-Awesome',
@@ -156,7 +156,7 @@ export const ICONS = [
   },
   {
     name: 'ant-design-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/ant-design/ant-design-icons',
@@ -170,7 +170,7 @@ export const ICONS = [
   },
   {
     name: 'akar-icons',
-    requiresFill: false,
+    type: 'outline',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/artcoholic/akar-icons',
@@ -184,7 +184,7 @@ export const ICONS = [
   },
   {
     name: 'carbon-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/carbon-design-system/carbon-icons',
@@ -198,7 +198,7 @@ export const ICONS = [
   },
   {
     name: 'health-icons',
-    requiresFill: true,
+    type: 'fill',
     defaultWidth: 2,
     source: {
       url: 'https://github.com/resolvetosavelives/healthicons',

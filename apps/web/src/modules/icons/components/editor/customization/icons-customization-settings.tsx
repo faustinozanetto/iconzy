@@ -1,3 +1,5 @@
+import { useIconsCustomizationContext } from '@modules/icons/context/customization/icons-customization-context';
+import { IconsCustomizationActionType } from '@modules/icons/context/customization/reducer/types';
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import {
   DEFAULT_ICON_SIZE,
@@ -9,15 +11,15 @@ import React from 'react';
 import { ColorInput, RangeInput } from 'ui';
 
 const IconsCustomizationSettings: React.FC = () => {
-  const { state, dispatch } = useIconsContext();
+  const { state: iconsState } = useIconsContext();
+  const { state, dispatch } = useIconsCustomizationContext();
 
   /**
    * Callback function when the size changes.
    * @param value The new size.
    */
   const handelSizeChanged = (value: number) => {
-    document.documentElement.style.setProperty('--grid-icon-size', `${value}px`);
-    // dispatch({ type: IconsActionType.SET_ICON_SIZE, payload: { size: value } });
+    dispatch({ type: IconsCustomizationActionType.SET_ICON_SIZE, payload: { size: value } });
   };
 
   /**
@@ -25,8 +27,7 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new width.
    */
   const handleWidthChanged = (value: number) => {
-    document.documentElement.style.setProperty('--grid-icon-width', `${value}px`);
-    // dispatch({ type: IconsActionType.SET_ICON_WIDTH, payload: { width: value } });
+    dispatch({ type: IconsCustomizationActionType.SET_ICON_WIDTH, payload: { width: value } });
   };
 
   /**
@@ -34,13 +35,12 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new color.
    */
   const handleColorChanged = (value: string) => {
-    document.documentElement.style.setProperty('--grid-icon-color', value);
-    // dispatch({
-    //   type: IconsActionType.SET_ICON_COLOR,
-    //   payload: {
-    //     color: value,
-    //   },
-    // });
+    dispatch({
+      type: IconsCustomizationActionType.SET_ICON_COLOR,
+      payload: {
+        color: value,
+      },
+    });
   };
 
   return (
@@ -61,7 +61,7 @@ const IconsCustomizationSettings: React.FC = () => {
           max={ICON_WIDTH_LIMITS.max}
           step={0.01}
           placeholder="2"
-          disabled={state.iconPack?.requiresFill}
+          disabled={iconsState.iconPack?.type === 'fill' || false}
           onValueChanged={handleWidthChanged}
         />
         <ColorInput

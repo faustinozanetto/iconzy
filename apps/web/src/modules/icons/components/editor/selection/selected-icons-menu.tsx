@@ -1,10 +1,12 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
-import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
-import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
-import { IconWithElement } from '@modules/icons/typings/icon.typings';
+import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import { clearSelectedIcons, removeSelectedIcon, selectSelectedIcons } from '@modules/icons/state/selected-icons.slice';
+import { Icon } from '@modules/icons/typings/icon.typings';
+import clsx from 'clsx';
 import { AnimatePresence } from 'framer-motion';
 import React, { Fragment, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { IconButton, Separator } from 'ui';
 
 import SelectedIconsMenuIcon from './selected-icons-menu-icon';
@@ -18,8 +20,9 @@ type SelectedIconsMenuProps = {
 
 const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
   const { open, onClose } = props;
-  const { state } = useIconsContext();
-  const { state: iconsSelectionState, dispatch } = useIconsSelectionContext();
+  const { state: iconsState } = useIconsContext();
+  const selectedIcons = useSelector(selectSelectedIcons);
+  const dispatch = useDispatch();
 
   const closeButtonIcon = (
     <svg
@@ -33,27 +36,19 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
     </svg>
   );
 
-  const handleRemoveIcon = (icon: IconWithElement) => {
-    dispatch({
-      type: IconsSelectionActionType.REMOVE_SELECTED_ICON,
-      payload: {
-        name: icon.name,
-      },
-    });
+  const handleRemoveIcon = (icon: Icon) => {
+    dispatch(removeSelectedIcon(icon.name));
   };
 
   const handleRemoveAllIcons = () => {
-    dispatch({
-      type: IconsSelectionActionType.CLEAR_SELECTED_ICONS,
-      payload: {},
-    });
+    dispatch(clearSelectedIcons());
   };
 
   useEffect(() => {
-    if (iconsSelectionState.selectedIcons.length === 0) {
+    if (selectedIcons.length === 0) {
       onClose();
     }
-  }, [iconsSelectionState.selectedIcons]);
+  }, [selectedIcons]);
 
   return (
     <Transition appear show={open} as={Fragment}>
@@ -84,7 +79,7 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
                 <div className="mb-4 flex items-center justify-between">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6">
                     Manage Selected Icons <br />
-                    <span className="text-sm">{iconsSelectionState.selectedIcons.length} selected</span>
+                    <span className="text-sm">{selectedIcons.length} selected</span>
                   </Dialog.Title>
                   <div className="flex items-center space-x-2">
                     <IconButton
@@ -116,15 +111,19 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
 
                 <Separator />
 
-                <ul className="hide-scrollbar flex max-h-96 w-full flex-col space-y-2 overflow-y-scroll">
+                <ul className="featued-icons-container hide-scrollbar flex max-h-96 w-full flex-col space-y-2 overflow-y-scroll">
                   <AnimatePresence initial={false}>
-                    {iconsSelectionState.selectedIcons.reverse().map((icon) => {
+                    {selectedIcons.map((icon) => {
+                      const source = getSVGSourceIntoComponent(
+                        icon.source,
+                        iconsState.iconPack?.type || 'outline',
+                        clsx(iconsState.iconPack?.type === 'fill' ? 'featured-icon-fill' : 'featured-icon', '!h-8 !w-8')
+                      );
                       return (
                         <SelectedIconsMenuIcon
                           key={icon.name}
-                          icon={icon}
+                          icon={{ ...icon, element: source }}
                           onRemovedClicked={() => handleRemoveIcon(icon)}
-                          isFillType={state.iconPack?.requiresFill || false}
                         />
                       );
                     })}

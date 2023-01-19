@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --grid-icon-size: 45px;
+  --grid-icon-size: 50px;
   --grid-icon-width: 2;
-  --grid-icon-color: rgb(67, 248, 18);
+  --grid-icon-color: #6936f5;
 }
 
 body {
@@ -28,30 +28,10 @@ span {
   margin: 0px auto;
 }
 
-.grid-icon-wrapper {
-  @apply relative pt-[100%] rounded-md cursor-pointer bg-neutral-50 border-neutral-300 border-[2px] dark:bg-neutral-800 dark:border-neutral-700 h-[150px] overflow-hidden hover:border-primary-500 hover:border-2 dark:hover:border-primary-200;
-}
-
-.grid-icon-container {
-  @apply absolute overflow-hidden w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-}
-.grid-icon-name {
-  @apply text-center whitespace-nowrap overflow-ellipsis overflow-hidden mt-2 text-neutral-700 dark:text-neutral-100;
-  padding: 0px 15px;
-}
-
 .virtuoso-grid-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 16px;
-}
-
-.featured-icon {
-  @apply stroke-neutral-800 dark:stroke-neutral-100;
-}
-
-.featured-icon-fill {
-  @apply fill-neutral-800 dark:fill-neutral-100;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -65,20 +45,48 @@ span {
   scrollbar-width: none; /* Firefox */
 }
 
-.feed-icon-wrapper svg {
-  width: var(--grid-icon-size);
-  height: var(--grid-icon-size);
+/* Featured Icons */
+
+.featued-icons-container svg {
+  width: 24px;
+  height: 24px;
+  @apply text-black dark:text-white;
 }
 
-.feed-icon-wrapper svg[stroke]:not([stroke='none']),
-.feed-icon-wrapper path[stroke]:not([stroke='none']),
-.feed-icon-wrapper circle[stroke]:not([stroke='none']),
-.feed-icon-wrapper rect[stroke]:not([stroke='none']) {
+.featued-icons-container circle,
+rect,
+path {
+  @apply text-black dark:text-white;
+}
+
+/* Icons Container */
+
+.icons-container svg {
+  width: var(--grid-icon-size);
+  height: var(--grid-icon-size);
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.icons-container svg[stroke]:not([stroke='none']),
+.icons-container circle[stroke]:not([stroke='none']),
+.icons-container rect[stroke]:not([stroke='none']),
+.icons-container ellipse[stroke]:not([stroke='none']),
+.icons-container path[stroke]:not([stroke='none']) {
   stroke: var(--grid-icon-color);
 }
 
-.feed-icon-wrapper svg[stroke-width],
-.feed-icon-wrapper path[stroke-width],
-.feed-icon-wrapper rect[stroke-width] {
+.icons-container svg[fill]:not([fill='none']),
+.icons-container path[fill]:not([fill='none']),
+.icons-container circle[fill]:not([fill='none']),
+.icons-container ellipse[fill]:not([fill='none']),
+.icons-container rect[fill]:not([fill='none']) {
+  fill: var(--grid-icon-color);
+}
+
+.icons-container svg[stroke-width],
+.icons-container rect[stroke-width],
+.icons-container ellipse[stroke-width],
+.icons-container path[stroke-width] {
   stroke-width: var(--grid-icon-width);
 }

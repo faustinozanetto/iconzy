@@ -8,7 +8,7 @@ export const PACKED_DIR = path.join(process.cwd(), '/packed');
 
 export type IconPack = {
   name: string;
-  requiresFill: boolean;
+  type: 'fill' | 'outline';
   iconsCount?: number;
   defaultWidth: number;
   source: {

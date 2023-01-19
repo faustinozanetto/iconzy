@@ -1,4 +1,4 @@
-import { Icon, IconCustomization } from '@modules/icons/typings/icon.typings';
+import { Icon } from '@modules/icons/typings/icon.typings';
 import type { IconPack } from 'icons-fetching';
 
 export type ActionMap<M extends { [index: string]: unknown }> = {
@@ -15,15 +15,11 @@ export type ActionMap<M extends { [index: string]: unknown }> = {
 export type IconsState = {
   iconPack: IconPack | null;
   icons: Icon[];
-  iconCustomization: IconCustomization;
 };
 
 export enum IconsActionType {
   SET_ICON_PACK,
   SET_ICONS,
-  SET_ICON_SIZE,
-  SET_ICON_COLOR,
-  SET_ICON_WIDTH,
 }
 
 type IconsPayload = {
@@ -32,15 +28,6 @@ type IconsPayload = {
   };
   [IconsActionType.SET_ICONS]: {
     icons: Icon[];
-  };
-  [IconsActionType.SET_ICON_SIZE]: {
-    size: number;
-  };
-  [IconsActionType.SET_ICON_COLOR]: {
-    color: string;
-  };
-  [IconsActionType.SET_ICON_WIDTH]: {
-    width: number;
   };
 };
 

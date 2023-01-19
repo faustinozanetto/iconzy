@@ -6,7 +6,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import path from 'path';
 import * as ReactDOMServer from 'react-dom/server';
 
-import type { Icon, IconCustomization } from '../typings/icon.typings';
+import type { Icon } from '../typings/icon.typings';
 import { FEATURED_ICONS_COUNT, ICONS_DIR } from './constants';
 
 /**
@@ -16,12 +16,7 @@ import { FEATURED_ICONS_COUNT, ICONS_DIR } from './constants';
  * @param className Optional: Custom classnames to style the element.
  * @returns The JSX Element if successful.
  */
-export const getSVGSourceIntoComponent = (
-  svgSource: string,
-  requiresFill: boolean,
-  customization: IconCustomization,
-  className?: string
-) => {
+export const getSVGSourceIntoComponent = (svgSource: string, type: IconPack['type'], className?: string) => {
   const clean = DOMPurify.sanitize(svgSource);
 
   const parsed = parse(clean, {
@@ -32,13 +27,20 @@ export const getSVGSourceIntoComponent = (
         domNode.attribs = {
           ...domNode.attribs,
           className: className || '',
-          width: `${customization.size}`,
-          height: `${customization.size}`,
-          stroke: !requiresFill ? `${customization.color}` : 'none',
-          fill: requiresFill ? `${customization.color}` : 'none',
-          strokeWidth: `${customization.width}`,
         };
 
+        if (type === 'fill') {
+          domNode.attribs = {
+            ...domNode.attribs,
+            fill: 'currentColor',
+          };
+        } else {
+          domNode.attribs = {
+            ...domNode.attribs,
+            stroke: 'currentColor',
+            fill: 'none',
+          };
+        }
         return domNode;
       }
     },

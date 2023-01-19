@@ -1,6 +1,7 @@
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import type { Icon, IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
+import { IconPack } from 'icons-fetching';
 import Link from 'next/link';
 import React from 'react';
 import { Button } from 'ui';
@@ -14,24 +15,21 @@ type FeaturedIconProps = {
   /** Featured icon data */
   icon: Icon;
   /** Wether the icon requires fill or not */
-  requiresFill: boolean;
+  type: IconPack['type'];
   /** Default width of the icon */
   defaultWidth: number;
 };
 
 const FeaturedIcon: React.FC<FeaturedIconProps> = (props) => {
-  const { icon, requiresFill, defaultWidth } = props;
+  const { icon, type, defaultWidth } = props;
 
-  return getSVGSourceIntoComponent(
+  const source = getSVGSourceIntoComponent(
     icon.source,
-    requiresFill,
-    {
-      size: 25,
-      color: '#000',
-      width: defaultWidth,
-    },
-    clsx(requiresFill ? 'featured-icon-fill' : 'featured-icon')
+    type,
+    clsx(type === 'fill' ? 'featured-icon-fill' : 'featured-icon')
   );
+
+  return source;
 };
 
 const IconPackCard: React.FC<IconPackCardProps> = (props) => {
@@ -63,12 +61,12 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
           {generateIconPackTitle()}
         </span>
       </h2>
-      <div className="grid grid-cols-7 gap-3.5 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
+      <div className="featued-icons-container grid grid-cols-7 gap-3.5 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
         {iconPack.featuredIcons.map((icon, iconIndex) => (
           <FeaturedIcon
             key={`icon-${iconIndex}`}
             icon={icon}
-            requiresFill={iconPack.metadata.requiresFill}
+            type={iconPack.metadata.type}
             defaultWidth={iconPack.metadata.defaultWidth}
           />
         ))}

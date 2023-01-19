@@ -5,6 +5,7 @@ import GoogleAnalytics from '@modules/google/components/google-analytics';
 import IconsProvider from '@modules/icons/context/icons/icons-context';
 import ThemeProvider from '@modules/theming/context/theme-context';
 import { Poppins } from '@next/font/google';
+import { wrapper } from '@state/store';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import { ToastProvider, ToastsContainer } from 'ui';
@@ -40,4 +41,4 @@ const IconozenApp: React.FC<PortfolioProps> = (props) => {
   );
 };
 
-export default IconozenApp;
+export default wrapper.withRedux(IconozenApp);

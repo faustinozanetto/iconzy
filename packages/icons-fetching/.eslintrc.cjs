@@ -6,7 +6,7 @@ module.exports = defineConfig({
   overrides: [
     // Configuration for TypeScript files
     {
-      files: ['**/*.ts', '**/*.tsx'],
+      files: ['src/**/*.ts', 'src/**/*.tsx'],
       plugins: ['@typescript-eslint', 'unused-imports', 'simple-import-sort'],
       extends: ['airbnb-typescript', 'plugin:prettier/recommended'],
       parserOptions: {

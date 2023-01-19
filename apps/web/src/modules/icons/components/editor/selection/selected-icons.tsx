@@ -1,20 +1,21 @@
-import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
+import { selectSelectedIcons } from '@modules/icons/state/selected-icons.slice';
 import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Button, FadeAnimated } from 'ui';
 
 import SelectedIconsMenu from './selected-icons-menu';
 
 const SelectedIcons: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { state } = useIconsSelectionContext();
+  const selectedIcons = useSelector(selectSelectedIcons);
 
   return (
     <AnimatePresence>
-      {state.selectedIcons.length ? (
+      {selectedIcons.length ? (
         <FadeAnimated key="selected-icons">
           <Button aria-label="Selected Icons" colorScheme="teal" onClick={() => setOpen(true)}>
-            {state.selectedIcons.length} Selected
+            {selectedIcons.length} Selected
           </Button>
         </FadeAnimated>
       ) : null}

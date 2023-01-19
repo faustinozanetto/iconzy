@@ -53,6 +53,18 @@ const removeAttributesAndTags = (fileContent: string, attributes: string[] = [],
   return new window.XMLSerializer().serializeToString(rootElement);
 };
 
+const addAttributes = (fileContent: string, attributes: { name: string; value: string }[]): string => {
+  const window = new JSDOM(fileContent).window;
+  const rootElement = window.document.querySelector('svg');
+  if (!rootElement) throw new Error('An error occurred while trying to get root node');
+
+  attributes.forEach((attribute) => {
+    rootElement.setAttribute(attribute.name, attribute.value);
+  });
+
+  return new window.XMLSerializer().serializeToString(rootElement);
+};
+
 export const ICONS_CUSTOM_PARSERS: IconPackParser = {
   'remix-icons': {
     async customParser(folder) {
@@ -72,6 +84,16 @@ export const ICONS_CUSTOM_PARSERS: IconPackParser = {
           recursive: true,
           force: true,
         });
+      }
+    },
+  },
+  'fontawesome-icons': {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = addAttributes(fileContent, [{ name: 'fill', value: 'currentColor' }]);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: 'utf-8' });
       }
     },
   },
@@ -137,8 +159,9 @@ export const ICONS_CUSTOM_PARSERS: IconPackParser = {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
         const fileContent = await readContentsFromFile(folder, file);
-        const modifiedSource = removeAttributesAndTags(fileContent, ['fill', 'stroke']);
-        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: 'utf-8' });
+        // const modifiedSource = removeAttributesAndTags(fileContent, ['fill', 'stroke']);
+
+        await fs.promises.writeFile(path.join(folder, file), fileContent, { encoding: 'utf-8' });
       }
     },
   },

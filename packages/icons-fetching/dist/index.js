@@ -5,7 +5,7 @@ import * as path from "path";
 var ICONS = [
   {
     name: "circum-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 1.5,
     source: {
       url: "https://github.com/Klarr-Agency/Circum-Icons.git",
@@ -19,7 +19,7 @@ var ICONS = [
   },
   {
     name: "dev-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 1,
     source: {
       url: "https://github.com/vorillaz/devicons.git",
@@ -33,7 +33,7 @@ var ICONS = [
   },
   {
     name: "simple-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 1,
     source: {
       url: "https://github.com/simple-icons/simple-icons.git",
@@ -47,7 +47,7 @@ var ICONS = [
   },
   {
     name: "box-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 1,
     source: {
       url: "https://github.com/atisawd/boxicons.git",
@@ -61,7 +61,7 @@ var ICONS = [
   },
   {
     name: "feather-icons",
-    requiresFill: false,
+    type: "outline",
     defaultWidth: 2,
     source: {
       url: "https://github.com/feathericons/feather.git",
@@ -75,7 +75,7 @@ var ICONS = [
   },
   {
     name: "tabler-icons",
-    requiresFill: false,
+    type: "outline",
     defaultWidth: 2,
     source: {
       url: "https://github.com/tabler/tabler-icons",
@@ -89,7 +89,7 @@ var ICONS = [
   },
   {
     name: "typ-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 2,
     source: {
       url: "https://github.com/stephenhutchings/typicons.font",
@@ -103,7 +103,7 @@ var ICONS = [
   },
   {
     name: "remix-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 1.5,
     source: {
       url: "https://github.com/Remix-Design/RemixIcon",
@@ -117,7 +117,7 @@ var ICONS = [
   },
   {
     name: "jam-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 1.5,
     source: {
       url: "https://github.com/michaelampr/jam",
@@ -131,7 +131,7 @@ var ICONS = [
   },
   {
     name: "eva-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 2,
     source: {
       url: "https://github.com/akveo/eva-icons",
@@ -145,7 +145,7 @@ var ICONS = [
   },
   {
     name: "fontawesome-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 2,
     source: {
       url: "https://github.com/FortAwesome/Font-Awesome",
@@ -159,7 +159,7 @@ var ICONS = [
   },
   {
     name: "ant-design-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 2,
     source: {
       url: "https://github.com/ant-design/ant-design-icons",
@@ -173,7 +173,7 @@ var ICONS = [
   },
   {
     name: "akar-icons",
-    requiresFill: false,
+    type: "outline",
     defaultWidth: 2,
     source: {
       url: "https://github.com/artcoholic/akar-icons",
@@ -187,7 +187,7 @@ var ICONS = [
   },
   {
     name: "carbon-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 2,
     source: {
       url: "https://github.com/carbon-design-system/carbon-icons",
@@ -201,7 +201,7 @@ var ICONS = [
   },
   {
     name: "health-icons",
-    requiresFill: true,
+    type: "fill",
     defaultWidth: 2,
     source: {
       url: "https://github.com/resolvetosavelives/healthicons",

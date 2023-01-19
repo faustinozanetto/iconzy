@@ -151,6 +151,7 @@ const main = async () => {
   await cleanAndGenerateBaseFolder();
   await downloadAndOrganizeIconPacks();
   await parseAndPackIcons();
+
   await executeCustomParsers();
   await copyIconsToWebApp();
   await cleanupFiles();

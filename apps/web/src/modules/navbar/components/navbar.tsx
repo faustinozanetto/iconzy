@@ -8,7 +8,7 @@ const Navbar: React.FC = (props) => {
   const {} = props;
 
   return (
-    <nav className="relative z-50 flex h-20 items-center justify-between border-[1px] border-neutral-300 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:justify-between">
+    <nav className="relative z-50 flex h-[90px] items-center justify-between border-[1px] border-neutral-300 bg-neutral-50 px-6 dark:border-neutral-700 dark:bg-neutral-800 md:justify-between">
       {/* Logo */}
       <Logo />
       {/* Buttons */}

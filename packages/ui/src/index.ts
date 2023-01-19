@@ -1,3 +1,4 @@
+export { FadeAnimated } from './animation/fade-animated';
 export { type ButtonProps, Button } from './button/button';
 export type { ButtonSizes, ButtonVariants, ColorSchemes } from './button/button-styles';
 export { type IconButtonProps, IconButton } from './button/icon-button';

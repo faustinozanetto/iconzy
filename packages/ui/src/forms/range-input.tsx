@@ -44,7 +44,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
         <input
           id={id}
           ref={ref}
-          className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-neutral-200 dark:bg-neutral-700"
+          className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-neutral-200 dark:bg-neutral-700 disabled:cursor-not-allowed"
           type="range"
           value={value}
           onChange={handleChange}
@@ -55,7 +55,7 @@ export const RangeInput = React.forwardRef<HTMLInputElement, RangeInputProps>((p
         />
         <input
           id={`manual-${id}`}
-          className="ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
+          className="ml-4 h-9 max-w-[50px] rounded-lg border-[1px] border-neutral-300 bg-neutral-100 text-center font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 disabled:cursor-not-allowed"
           type="text"
           value={value}
           onChange={handleChange}

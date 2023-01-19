@@ -5,7 +5,7 @@ import { IconsSelectionActionType } from '@modules/icons/context/selection/reduc
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
 import { AnimatePresence } from 'framer-motion';
 import React, { Fragment, useEffect } from 'react';
-import { IconButton } from 'ui';
+import { IconButton, Separator } from 'ui';
 
 import SelectedIconsMenuIcon from './selected-icons-menu-icon';
 
@@ -80,7 +80,7 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className=" w-full max-w-md overflow-hidden rounded-2xl bg-neutral-50 p-6 text-left align-middle shadow-xl transition-all dark:bg-neutral-800">
+              <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl border-2 border-neutral-300 bg-neutral-50 p-6 text-left align-middle shadow-xl transition-all dark:border-neutral-700 dark:bg-neutral-800">
                 <div className="mb-4 flex items-center justify-between">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6">
                     Manage Selected Icons <br />
@@ -113,6 +113,8 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
                     <IconButton aria-label="Close Menu" icon={closeButtonIcon} onClick={onClose} />
                   </div>
                 </div>
+
+                <Separator />
 
                 <ul className="hide-scrollbar flex max-h-96 w-full flex-col space-y-2 overflow-y-scroll">
                   <AnimatePresence initial={false}>

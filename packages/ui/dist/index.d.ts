@@ -1,6 +1,11 @@
 import * as React$1 from 'react';
 import React__default from 'react';
 
+type FadeAnimatedProps = {
+    children: React__default.ReactNode;
+};
+declare const FadeAnimated: React__default.FC<FadeAnimatedProps>;
+
 declare const defaultColors: {
     slate: {
         50: string;
@@ -284,7 +289,7 @@ type ButtonVariants = 'outline' | 'solid' | 'ghost';
 type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg';
 type ColorSchemes = keyof typeof defaultColors;
 
-type BaseButtonProps = React$1.ButtonHTMLAttributes<HTMLButtonElement> & {
+type BaseButtonProps = Omit<React$1.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> & {
     children?: React$1.ReactNode;
     /** Optional: Size of the button, defaults to md. */
     size?: ButtonSizes;
@@ -292,6 +297,7 @@ type BaseButtonProps = React$1.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: ButtonVariants;
     /** Optional: Color scheme of the button, defaults to primary. */
     colorScheme?: ColorSchemes;
+    isDisabled?: boolean;
 };
 type ButtonProps = BaseButtonProps & {
     /** Optional: Left icon of the button. */
@@ -299,7 +305,7 @@ type ButtonProps = BaseButtonProps & {
     /** Optional: Right icon of the button. */
     rightIcon?: JSX.Element;
 };
-declare const Button: React$1.ForwardRefExoticComponent<React$1.ButtonHTMLAttributes<HTMLButtonElement> & {
+declare const Button: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonHTMLAttributes<HTMLButtonElement>, "disabled"> & {
     children?: React$1.ReactNode;
     /** Optional: Size of the button, defaults to md. */
     size?: ButtonSizes | undefined;
@@ -307,6 +313,7 @@ declare const Button: React$1.ForwardRefExoticComponent<React$1.ButtonHTMLAttrib
     variant?: ButtonVariants | undefined;
     /** Optional: Color scheme of the button, defaults to primary. */
     colorScheme?: "slate" | "gray" | "zinc" | "neutral" | "stone" | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia" | "pink" | "rose" | "primary" | undefined;
+    isDisabled?: boolean | undefined;
 } & {
     /** Optional: Left icon of the button. */
     leftIcon?: JSX.Element | undefined;
@@ -328,7 +335,7 @@ declare const IconButton: React$1.ForwardRefExoticComponent<React$1.ButtonHTMLAt
     icon?: JSX.Element | undefined;
 } & React$1.RefAttributes<HTMLButtonElement>>;
 
-type SeparatorProps = React__default.HTMLAttributes<HTMLHRElement>;
+type SeparatorProps = Omit<React__default.HTMLAttributes<HTMLHRElement>, 'className'>;
 declare const Separator: React__default.FC<SeparatorProps>;
 
 type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
@@ -359,7 +366,7 @@ type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>
      */
     onValueChanged: (value: number) => void;
 };
-declare const RangeInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const RangeInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "classsName" | "onChange"> & {
     label: string;
     /**
      * Callback function called when the value changes.
@@ -471,4 +478,4 @@ declare const useToast: () => {
 };
 declare const ToastProvider: React__default.FC<ToastProviderProps>;
 
-export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, IconButton, IconButtonProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, defaultColors, useToast, useToastContext };
+export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, FadeAnimated, IconButton, IconButtonProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, defaultColors, useToast, useToastContext };

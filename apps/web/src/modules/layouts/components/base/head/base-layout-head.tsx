@@ -15,12 +15,12 @@ type BaseLayoutHeadProps = {
 };
 
 const BaseLayoutHead: React.FC<BaseLayoutHeadProps> = (props) => {
-  const { title, description, url, canonicalUrl, image = 'assets/images/faustino.png' } = props;
+  const { title, description, url, canonicalUrl, image = '/images/marketing/landscape-logo.png' } = props;
   return (
     <Head>
       <title>{title}</title>
       {/* Manifest */}
-      {/* <link rel="manifest" href="/manifest.json" /> */}
+      <link rel="manifest" href="/manifest.json" />
       {/* Base */}
       <meta charSet="UTF-8" />
       <meta name="robots" content="index" />
@@ -30,17 +30,17 @@ const BaseLayoutHead: React.FC<BaseLayoutHeadProps> = (props) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <link rel="canonical" href={canonicalUrl} />
-      <meta content="#7DD3FC" name="theme-color" />
+      <meta content="#6936F5" name="theme-color" />
 
       {/* Open graph */}
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:width" content="457" />
-      <meta property="og:image:height" content="457" />
+      <meta property="og:image:width" content="2000" />
+      <meta property="og:image:height" content="1000" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="en" />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Iconozen" />
+      <meta property="og:site_name" content="Iconzy" />
       <meta property="og:description" content={description} />
       {/* Twitter */}
       <meta name="twitter:site" content={url} />
@@ -50,7 +50,7 @@ const BaseLayoutHead: React.FC<BaseLayoutHeadProps> = (props) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:title" content={title} />
-      <meta name="twitter:creator" content="@iconozen" />
+      <meta name="twitter:creator" content="@iconzy" />
     </Head>
   );
 };

@@ -23,7 +23,7 @@ const IconsCustomization: React.FC = () => {
       )}
     >
       <div className="mb-2 flex flex-row">
-        <h3 className="text-lg font-semibold">Customization</h3>
+        <h3 className="text-xl font-semibold">Customization</h3>
         {/* <IconCustomizationToggle onClick={handlePanelToggled} /> */}
       </div>
       <Separator />

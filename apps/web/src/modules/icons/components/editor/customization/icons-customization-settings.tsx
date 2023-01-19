@@ -1,6 +1,11 @@
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { IconsActionType } from '@modules/icons/context/icons/types';
-import { DEFAULT_ICON_SIZE, ICON_SIZE_LIMITS, ICON_WIDTH_LIMITS } from '@modules/icons/lib/constants';
+import {
+  DEFAULT_ICON_SIZE,
+  ICON_SIZE_LIMITS,
+  ICON_WIDTH_LIMITS,
+  ICONS_DEFAULT_COLOR,
+} from '@modules/icons/lib/constants';
 import React from 'react';
 import { ColorInput, RangeInput } from 'ui';
 
@@ -57,7 +62,12 @@ const IconsCustomizationSettings: React.FC = () => {
           disabled={state.iconPack?.requiresFill}
           onValueChanged={handleWidthChanged}
         />
-        <ColorInput id="icon-color" label="Color" placeholder="#a781ee" onValueChanged={handleColorChanged} />
+        <ColorInput
+          id="icon-color"
+          label="Color"
+          placeholder={ICONS_DEFAULT_COLOR}
+          onValueChanged={handleColorChanged}
+        />
       </div>
     </div>
   );

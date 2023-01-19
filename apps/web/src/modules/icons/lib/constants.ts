@@ -12,3 +12,5 @@ export const ICON_WIDTH_LIMITS: IconCustomizationLimits = {
   min: 0.25,
   max: 3.5,
 };
+
+export const ICONS_DEFAULT_COLOR = '#6936F5';

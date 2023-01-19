@@ -1,10 +1,20 @@
+import { useThemeContext } from '@modules/theming/context/theme-context';
+import Image from 'next/image';
 import React from 'react';
 
 const Logo: React.FC = (props) => {
   const {} = props;
+  const { theme } = useThemeContext();
 
-  // return <Image src="/images/marketing/logo.svg" priority width={125} height={50} alt="Logo" style={{ fill: 'red' }} />;
-  return <span className="text-4xl font-extrabold text-black dark:text-white">Iconzy</span>;
+  return (
+    <Image
+      src={theme === 'light' ? '/images/marketing/logo-light.svg' : '/images/marketing/logo-dark.svg'}
+      priority
+      width={175}
+      height={100}
+      alt="Logo"
+    />
+  );
 };
 
 export default Logo;

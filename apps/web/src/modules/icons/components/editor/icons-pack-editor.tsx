@@ -10,7 +10,7 @@ const IconPackEditor: React.FC = () => {
       <div
         className="flex overflow-hidden"
         style={{
-          height: 'calc(100vh - 80px)',
+          height: 'calc(100vh - 90px)',
         }}
       >
         <IconsCustomization />

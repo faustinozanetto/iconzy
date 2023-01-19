@@ -559,6 +559,11 @@ video {
   margin-right: auto;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -1559,6 +1564,14 @@ video {
 .focus-visible\:ring-primary-500:focus-visible {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
+}
+
+.disabled\:cursor-none:disabled {
+  cursor: none;
+}
+
+.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
 }
 
 .dark .dark\:border-slate-600 {

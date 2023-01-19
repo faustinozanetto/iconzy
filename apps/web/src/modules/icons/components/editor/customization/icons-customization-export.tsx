@@ -15,7 +15,7 @@ const IconsCustomizationExport: React.FC = () => {
             Copy
           </Button>
         ) : null}
-        <Button className="w-full" colorScheme="sky" onClick={exportIcons}>
+        <Button className="w-full" onClick={exportIcons}>
           Export
         </Button>
       </div>

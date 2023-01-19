@@ -11,6 +11,33 @@ import Task from './task';
 
 const execFile = util.promisify(rawExecFile);
 
+/**
+ * Utility function for copying files or folders from one place to another.
+ * @param source Source location.
+ * @param destination Destination location.
+ */
+const copyFolder = async (source: string, destination: string) => {
+  // Read the direcotry and make sure to create the destination folder.
+  const files = await fs.promises.readdir(source);
+  await fs.promises.mkdir(destination, { recursive: true });
+
+  // For each file copy the file or if its a folder recurse call.
+  for (const file of files) {
+    const currentSource = path.join(source, file);
+    const currentDestination = path.join(destination, file);
+
+    if (fs.lstatSync(currentSource).isDirectory()) {
+      await copyFolder(currentSource, currentDestination);
+    } else {
+      const copyFile = util.promisify(fs.copyFile);
+      await copyFile(currentSource, currentDestination);
+    }
+  }
+};
+
+/**
+ * Task for cleaning and generating the necesary folders.
+ */
 const cleanAndGenerateBaseFolder = async () => {
   const task = new Task('clean-generate', async () => {
     await fs.promises.rm(BASE_DIR, {
@@ -25,6 +52,9 @@ const cleanAndGenerateBaseFolder = async () => {
   await task.run();
 };
 
+/**
+ * Main task for donwloading all the icon packs.
+ */
 const downloadAndOrganizeIconPacks = async () => {
   const task = new Task('download-organize-icons', async () => {
     for (const icon of ICONS) {
@@ -51,25 +81,9 @@ const downloadAndOrganizeIconPacks = async () => {
   await task.run();
 };
 
-const copyFolder = async (source: string, destination: string) => {
-  // Read the direcotry and make sure to create the destination folder.
-  const files = await fs.promises.readdir(source);
-  await fs.promises.mkdir(destination, { recursive: true });
-
-  // For each file copy the file or if its a folder recurse call.
-  for (const file of files) {
-    const currentSource = path.join(source, file);
-    const currentDestination = path.join(destination, file);
-
-    if (fs.lstatSync(currentSource).isDirectory()) {
-      await copyFolder(currentSource, currentDestination);
-    } else {
-      const copyFile = util.promisify(fs.copyFile);
-      await copyFile(currentSource, currentDestination);
-    }
-  }
-};
-
+/**
+ * Task por parsing and packaging each icon pack.
+ */
 const parseAndPackIcons = async () => {
   const task = new Task('parse-and-pack', async () => {
     // Make sure the packed folder exists
@@ -89,6 +103,9 @@ const parseAndPackIcons = async () => {
   await task.run();
 };
 
+/**
+ * Task that looks if the icon pack has a custom parser defined and it executes them.
+ */
 const executeCustomParsers = async () => {
   const task = new Task('execute-custom-parsers', async () => {
     const iconFolders = (await fs.promises.readdir(PACKED_DIR)) as IconPackNames[];
@@ -106,6 +123,9 @@ const executeCustomParsers = async () => {
   await task.run();
 };
 
+/**
+ * Task for copying packaged and organized icons to the web app.
+ */
 const copyIconsToWebApp = async () => {
   const destinationFolder = path.join(process.cwd(), '../../apps/web/public/icons');
   await fs.promises.rm(destinationFolder, { recursive: true });

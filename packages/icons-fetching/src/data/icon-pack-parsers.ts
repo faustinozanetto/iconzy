@@ -97,6 +97,16 @@ export const ICONS_CUSTOM_PARSERS: IconPackParser = {
       }
     },
   },
+  'cryptocurrency-icons': {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ['fill']);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: 'utf-8' });
+      }
+    },
+  },
   'eva-icons': {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);

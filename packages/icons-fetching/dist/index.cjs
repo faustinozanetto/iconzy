@@ -244,6 +244,20 @@ var ICONS = [
         type: "MIT"
       }
     }
+  },
+  {
+    name: "cryptocurrency-icons",
+    type: "fill",
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/spothq/cryptocurrency-icons",
+      branch: "master",
+      commitHash: "1a63530be6e374711a8554f31b17e4cb92c25fa5",
+      iconsFolder: "svg/white",
+      license: {
+        type: "CC0-1.0"
+      }
+    }
   }
 ];
 

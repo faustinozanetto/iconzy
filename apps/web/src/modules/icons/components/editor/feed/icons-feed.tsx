@@ -42,7 +42,7 @@ const IconsFeed: React.FC = () => {
    * @param value New name filter.
    */
   const handleNameFilterChanged = (value: string) => {
-    updateFilter({ property: 'name', value, enabled: true });
+    updateFilter({ property: 'name', value: value.toLowerCase(), enabled: true });
   };
 
   /**

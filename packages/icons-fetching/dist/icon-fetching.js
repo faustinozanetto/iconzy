@@ -74,6 +74,16 @@ var ICONS_CUSTOM_PARSERS = {
       }
     }
   },
+  "cryptocurrency-icons": {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
+      }
+    }
+  },
   "eva-icons": {
     async customParser(folder) {
       const content = await fs.promises.readdir(folder);
@@ -349,6 +359,20 @@ var ICONS = [
       iconsFolder: "public/icons/svg/filled",
       license: {
         type: "MIT"
+      }
+    }
+  },
+  {
+    name: "cryptocurrency-icons",
+    type: "fill",
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/spothq/cryptocurrency-icons",
+      branch: "master",
+      commitHash: "1a63530be6e374711a8554f31b17e4cb92c25fa5",
+      iconsFolder: "svg/white",
+      license: {
+        type: "CC0-1.0"
       }
     }
   }

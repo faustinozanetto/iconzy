@@ -23,7 +23,6 @@ const IconozenApp: React.FC<PortfolioProps> = ({ Component, ...rest }) => {
       <ThemeProvider>
         <ToastProvider>
           <GoogleAnalytics />
-          {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
           <IconsProvider>
             <Component {...rest.pageProps} />
           </IconsProvider>

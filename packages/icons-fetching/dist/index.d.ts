@@ -193,6 +193,19 @@ declare const ICONS: readonly [{
             readonly type: "MIT";
         };
     };
+}, {
+    readonly name: "cryptocurrency-icons";
+    readonly type: "fill";
+    readonly defaultWidth: 2;
+    readonly source: {
+        readonly url: "https://github.com/spothq/cryptocurrency-icons";
+        readonly branch: "master";
+        readonly commitHash: "1a63530be6e374711a8554f31b17e4cb92c25fa5";
+        readonly iconsFolder: "svg/white";
+        readonly license: {
+            readonly type: "CC0-1.0";
+        };
+    };
 }];
 
 type IconPack = {

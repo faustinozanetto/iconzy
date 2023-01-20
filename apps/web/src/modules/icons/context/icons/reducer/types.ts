@@ -1,19 +1,8 @@
-import { Icon } from '@modules/icons/typings/icon.typings';
+import { ActionMap, Icon } from '@modules/icons/typings/icon.typings';
 import type { IconPack } from 'icons-fetching';
 
-export type ActionMap<M extends { [index: string]: unknown }> = {
-  [Key in keyof M]: M[Key] extends undefined
-    ? {
-        type: Key;
-      }
-    : {
-        type: Key;
-        payload: M[Key];
-      };
-};
-
 export type IconsState = {
-  iconPack: IconPack | null;
+  iconPack: IconPack;
   icons: Icon[];
 };
 

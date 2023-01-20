@@ -1,8 +1,9 @@
+import { IconPack } from 'icons-fetching';
 import React, { useMemo } from 'react';
 import { createContext, useContext, useReducer } from 'react';
 
 import { reducer } from './reducer';
-import type { IconsActions, IconsState } from './types';
+import { IconsActions, IconsState } from './reducer/types';
 
 type IconsContextState = {
   /**
@@ -36,7 +37,7 @@ type ThemeProviderProps = {
 const IconsProvider: React.FC<ThemeProviderProps> = (props) => {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, {
-    iconPack: null,
+    iconPack: {} as IconPack,
     icons: [],
   });
 

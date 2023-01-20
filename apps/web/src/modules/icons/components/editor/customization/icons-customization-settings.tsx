@@ -1,3 +1,5 @@
+import { useIconsCustomizationContext } from '@modules/icons/context/customization/icons-customization-context';
+import { IconsCustomizationActionType } from '@modules/icons/context/customization/reducer/types';
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import {
   DEFAULT_ICON_SIZE,
@@ -5,21 +7,19 @@ import {
   ICON_WIDTH_LIMITS,
   ICONS_DEFAULT_COLOR,
 } from '@modules/icons/lib/constants';
-import { setIconColor, setIconSize, setIconWidth } from '@modules/icons/state/customization.slice';
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { ColorInput, RangeInput } from 'ui';
 
 const IconsCustomizationSettings: React.FC = () => {
   const { state: iconsState } = useIconsContext();
-  const dispatch = useDispatch();
+  const { dispatch: iconsCustomizationDispatch } = useIconsCustomizationContext();
 
   /**
    * Callback function when the size changes.
    * @param value The new size.
    */
   const handelSizeChanged = (value: number) => {
-    dispatch(setIconSize(value));
+    iconsCustomizationDispatch({ type: IconsCustomizationActionType.SET_ICON_SIZE, payload: { size: value } });
   };
 
   /**
@@ -27,7 +27,7 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new width.
    */
   const handleWidthChanged = (value: number) => {
-    dispatch(setIconWidth(value));
+    iconsCustomizationDispatch({ type: IconsCustomizationActionType.SET_ICON_WIDTH, payload: { width: value } });
   };
 
   /**
@@ -35,7 +35,12 @@ const IconsCustomizationSettings: React.FC = () => {
    * @param value The new color.
    */
   const handleColorChanged = (value: string) => {
-    dispatch(setIconColor(value));
+    iconsCustomizationDispatch({
+      type: IconsCustomizationActionType.SET_ICON_COLOR,
+      payload: {
+        color: value,
+      },
+    });
   };
 
   return (
@@ -56,7 +61,7 @@ const IconsCustomizationSettings: React.FC = () => {
           max={ICON_WIDTH_LIMITS.max}
           step={0.01}
           placeholder="2"
-          disabled={iconsState.iconPack?.type === 'fill' || false}
+          disabled={iconsState.iconPack.type === 'fill'}
           onValueChanged={handleWidthChanged}
         />
         <ColorInput

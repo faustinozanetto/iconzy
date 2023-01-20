@@ -1,8 +1,8 @@
-import { addSelectedIcon, removeSelectedIcon } from '@modules/icons/state/selected-icons.slice';
+import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
+import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 type IconEntryProps = {
   /** Icon data to display */
@@ -17,21 +17,29 @@ type IconEntryProps = {
 
 const IconEntry: React.FC<IconEntryProps> = (props) => {
   const { icon, selected, render } = props;
-  const dispatch = useDispatch();
-
+  const { dispatch } = useIconsSelectionContext();
   /**
    * Function
    * @returns Void
    */
   const handleIconSelected = () => {
     if (!selected) {
-      dispatch(
-        addSelectedIcon({
-          ...icon,
-        })
-      );
+      dispatch({
+        type: IconsSelectionActionType.ADD_SELECTED_ICON,
+        payload: {
+          icon: {
+            ...icon,
+            element: render,
+          },
+        },
+      });
     } else {
-      dispatch(removeSelectedIcon(icon.name));
+      dispatch({
+        type: IconsSelectionActionType.REMOVE_SELECTED_ICON,
+        payload: {
+          name: icon.name,
+        },
+      });
     }
   };
 

@@ -1,12 +1,11 @@
 import type { Filter, Sort } from '@modules/common/hooks/use-filter';
 import useFilter from '@modules/common/hooks/use-filter';
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
+import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
-import { selectSelectedIcons } from '@modules/icons/state/selected-icons.slice';
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
 import { VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
 
 import SelectedIcons from '../selection/selected-icons';
@@ -28,17 +27,14 @@ const IconEntry = dynamic(() => import('../../icons/icon-entry'), {
 
 const IconsFeed: React.FC = () => {
   const { state: iconsState } = useIconsContext();
-  const selectedIcons = useSelector(selectSelectedIcons);
-
+  const { state: iconsSelectionState } = useIconsSelectionContext();
   const feedContainer = useRef<VirtuosoGridHandle | null>(null);
 
   const initialFilters: Filter<Icon>[] = [{ property: 'name', value: '', enabled: true }];
-
   const initialSort: Sort<Icon> = {
     property: 'name',
     ascending: true,
   };
-
   const { filteredData, updateFilter, updateSort } = useFilter<Icon>(iconsState.icons, initialFilters, initialSort);
 
   /**
@@ -68,25 +64,6 @@ const IconsFeed: React.FC = () => {
     }
   };
 
-  // TODO: Maybe improve this effect, is needed because we need to update the svg source elements of the selected icons when the customization changes, otherwise they will stay like when they were selected.
-  // useEffect(() => {
-  //   if (!iconsSelectionState.selectedIcons.length) return;
-
-  //   const updatedSelectedIcons = iconsSelectionState.selectedIcons.map((selectedIcon) => {
-  //     const iconSVG: JSX.Element = getSVGSourceIntoComponent(
-  //       selectedIcon.source,
-  //       iconsState.iconPack?.requiresFill || false,
-  //       iconsState.iconCustomization,
-  //       'grid-icon'
-  //     );
-  //     return { ...selectedIcon, element: iconSVG };
-  //   });
-  //   dispatch({
-  //     type: IconsSelectionActionType.SET_SELECTED_ICONS,
-  //     payload: { icons: updatedSelectedIcons },
-  //   });
-  // }, [iconsState.iconCustomization]);
-
   return (
     <div className="flex w-full flex-col">
       <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
@@ -104,9 +81,10 @@ const IconsFeed: React.FC = () => {
           overscan={25}
           data={filteredData}
           itemContent={(index, icon) => {
-            const isIconSelected = selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
+            const isIconSelected =
+              iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
 
-            const source = getSVGSourceIntoComponent(icon.source, iconsState.iconPack?.type || 'outline', 'grid-icon');
+            const source = getSVGSourceIntoComponent(icon.source, iconsState.iconPack.type, 'grid-icon');
 
             return <IconEntry key={`icon-${index}`} icon={icon} selected={isIconSelected} render={source} />;
           }}

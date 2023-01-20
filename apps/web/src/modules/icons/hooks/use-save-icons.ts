@@ -1,28 +1,27 @@
 import ADMZip from 'adm-zip';
 import { useCallback, useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { useToast } from 'ui';
 
 import { useIconsContext } from '../context/icons/icons-context';
+import { useIconsSelectionContext } from '../context/selection/icons-selection-context';
 import { applyIconCustomizationStyles, convertJSXToString, getSVGSourceIntoComponent } from '../lib/icons-utils';
-import { selectSelectedIcons } from '../state/selected-icons.slice';
 
 export const useSaveIcons = () => {
-  const { state } = useIconsContext();
-  const selectedIcons = useSelector(selectSelectedIcons);
+  const { state: iconsState } = useIconsContext();
+  const { state: iconsSelectionState } = useIconsSelectionContext();
   const { toast } = useToast();
 
   const compiledIcons = useMemo(() => {
-    const elements = selectedIcons.map((selectedIcon) => {
-      const source = getSVGSourceIntoComponent(selectedIcon.source, state.iconPack?.type || 'outline', 'grid-icon');
+    const elements = iconsSelectionState.selectedIcons.map((selectedIcon) => {
+      const source = getSVGSourceIntoComponent(selectedIcon.source, iconsState.iconPack.type, 'grid-icon');
       const content = convertJSXToString(source);
-      const stylesApplied = applyIconCustomizationStyles(content, state.iconPack?.type || 'fill');
+      const stylesApplied = applyIconCustomizationStyles(content, iconsState.iconPack.type);
       const compiledIcon = { ...selectedIcon, compiled: stylesApplied };
 
       return compiledIcon;
     });
     return elements;
-  }, [selectedIcons]);
+  }, [iconsSelectionState.selectedIcons]);
 
   const isSingleFile = compiledIcons.length === 1;
   const noIconsSelected = !compiledIcons.length;
@@ -59,7 +58,7 @@ export const useSaveIcons = () => {
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
-  }, [selectedIcons]);
+  }, [iconsSelectionState.selectedIcons]);
 
   const copyIcon = useCallback(async () => {
     if (!isSingleFile) return;
@@ -71,7 +70,7 @@ export const useSaveIcons = () => {
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
-  }, [selectedIcons]);
+  }, [iconsSelectionState.selectedIcons]);
 
   return { exportIcons, copyIcon, isSingleFile };
 };

@@ -90,12 +90,12 @@ export const applyIconCustomizationStyles = (source: string, type: IconPack['typ
   svgElement.setAttribute('height', size);
   if (type === 'fill') {
     svgElement.setAttribute('fill', color);
+    svgElement.setAttribute('stroke', 'none');
   } else {
+    svgElement.setAttribute('fill', 'none');
     svgElement.setAttribute('stroke', color);
     svgElement.setAttribute('stroke-width', width);
   }
-
-  console.log({ color, width, size });
 
   return new XMLSerializer().serializeToString(svgElement);
 };

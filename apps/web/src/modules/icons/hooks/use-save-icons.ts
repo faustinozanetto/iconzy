@@ -2,6 +2,7 @@ import ADMZip from 'adm-zip';
 import { useMemo } from 'react';
 import { useToast } from 'ui';
 
+import { useIconsCustomizationContext } from '../context/customization/icons-customization-context';
 import { useIconsContext } from '../context/icons/icons-context';
 import { useIconsSelectionContext } from '../context/selection/icons-selection-context';
 import { applyIconCustomizationStyles, convertJSXToString, getSVGSourceIntoComponent } from '../lib/icons-utils';
@@ -9,6 +10,7 @@ import { applyIconCustomizationStyles, convertJSXToString, getSVGSourceIntoCompo
 export const useSaveIcons = () => {
   const { state: iconsState } = useIconsContext();
   const { state: iconsSelectionState } = useIconsSelectionContext();
+  const { state: customizationState } = useIconsCustomizationContext();
   const { toast } = useToast();
 
   const compiledIcons = useMemo(() => {
@@ -21,7 +23,7 @@ export const useSaveIcons = () => {
       return compiledIcon;
     });
     return elements;
-  }, [iconsSelectionState.selectedIcons]);
+  }, [iconsSelectionState.selectedIcons, customizationState.customization]);
 
   const isSingleFile = compiledIcons.length === 1;
   const noIconsSelected = !compiledIcons.length;

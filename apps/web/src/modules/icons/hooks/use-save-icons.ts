@@ -1,5 +1,5 @@
 import ADMZip from 'adm-zip';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useToast } from 'ui';
 
 import { useIconsContext } from '../context/icons/icons-context';
@@ -50,7 +50,7 @@ export const useSaveIcons = () => {
     link.click();
   };
 
-  const exportIcons = useCallback(() => {
+  const exportIcons = () => {
     if (noIconsSelected) return toast({ variant: 'error', content: 'No icons selected!' });
     try {
       if (isSingleFile) saveSingleFile();
@@ -58,9 +58,9 @@ export const useSaveIcons = () => {
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
-  }, [iconsSelectionState.selectedIcons]);
+  };
 
-  const copyIcon = useCallback(async () => {
+  const copyIcon = async () => {
     if (!isSingleFile) return;
     try {
       const uniqueElement = compiledIcons[0];
@@ -70,7 +70,7 @@ export const useSaveIcons = () => {
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
-  }, [iconsSelectionState.selectedIcons]);
+  };
 
   return { exportIcons, copyIcon, isSingleFile };
 };

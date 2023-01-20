@@ -9,7 +9,6 @@ import { AnimatePresence } from 'framer-motion';
 import React, { Fragment, useEffect } from 'react';
 import { IconButton, Separator } from 'ui';
 
-import selectedIcons from './selected-icons';
 import SelectedIconsMenuIcon from './selected-icons-menu-icon';
 
 type SelectedIconsMenuProps = {
@@ -87,7 +86,7 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
                 <div className="mb-4 flex items-center justify-between">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6">
                     Manage Selected Icons <br />
-                    <span className="text-sm">{selectedIcons.length} selected</span>
+                    <span className="text-sm">{iconsSelectionState.selectedIcons.length} selected</span>
                   </Dialog.Title>
                   <div className="flex items-center space-x-2">
                     <IconButton

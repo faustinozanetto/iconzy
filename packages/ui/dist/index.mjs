@@ -31,12 +31,12 @@ var __objRest = (source, exclude) => {
 };
 
 // src/animation/fade-animated.tsx
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { jsx } from "react/jsx-runtime";
 var FadeAnimated = (props) => {
   const { children } = props;
   return /* @__PURE__ */ jsx(
-    motion.div,
+    m.div,
     {
       initial: { opacity: 0 },
       animate: {
@@ -930,7 +930,7 @@ var ToastProvider = (props) => {
 
 // src/toast/components/toast.tsx
 import clsx4 from "clsx";
-import { motion as motion2 } from "framer-motion";
+import { m as m2 } from "framer-motion";
 import { jsx as jsx12, jsxs as jsxs8 } from "react/jsx-runtime";
 var Toast2 = (props) => {
   const { toast } = props;
@@ -969,7 +969,7 @@ var Toast2 = (props) => {
     }
   );
   return /* @__PURE__ */ jsx12(
-    motion2.li,
+    m2.li,
     {
       initial: { height: 0, opacity: 0 },
       animate: {

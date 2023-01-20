@@ -1,5 +1,5 @@
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import React from 'react';
 import { IconButton } from 'ui';
 
@@ -31,7 +31,7 @@ const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
   );
 
   return (
-    <motion.li
+    <m.li
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
@@ -59,7 +59,7 @@ const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
         icon={removeIcon}
         onClick={onRemovedClicked}
       />
-    </motion.li>
+    </m.li>
   );
 };
 

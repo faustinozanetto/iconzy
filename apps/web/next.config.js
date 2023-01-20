@@ -1,6 +1,14 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  // eslint-disable-next-line turbo/no-undeclared-env-vars
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+module.exports = withBundleAnalyzer({
   reactStrictMode: true,
+  experimental: {
+    fallbackNodePolyfills: true,
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // don't resolve 'fs' module on the client to prevent this error on build --> Error: Can't resolve 'fs'
@@ -22,4 +30,4 @@ module.exports = {
   poweredByHeader: false,
   compress: true,
   transpilePackages: ['ui'],
-};
+});

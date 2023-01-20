@@ -78,7 +78,7 @@ var import_jsx_runtime = require("react/jsx-runtime");
 var FadeAnimated = (props) => {
   const { children } = props;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-    import_framer_motion.motion.div,
+    import_framer_motion.m.div,
     {
       initial: { opacity: 0 },
       animate: {
@@ -1011,7 +1011,7 @@ var Toast2 = (props) => {
     }
   );
   return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-    import_framer_motion2.motion.li,
+    import_framer_motion2.m.li,
     {
       initial: { height: 0, opacity: 0 },
       animate: {

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import React from 'react';
 
 type FadeAnimatedProps = {
@@ -9,7 +9,7 @@ export const FadeAnimated: React.FC<FadeAnimatedProps> = (props) => {
   const { children } = props;
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
@@ -22,6 +22,6 @@ export const FadeAnimated: React.FC<FadeAnimatedProps> = (props) => {
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };

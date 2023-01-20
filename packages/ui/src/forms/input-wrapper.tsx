@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FadeAnimated } from '..';
 
 import { Button } from '../button/button';
 import { IconButton } from '../button/icon-button';
@@ -19,15 +20,16 @@ type InputWrapperProps = {
   /**
    * Optional: Wether the input should by initially collapsed or not */
   initiallyCollapsed?: boolean;
+  reseteable?: boolean;
   /**
    * Callback function called when reset button is clicked
    */
-  onInputReseted: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onInputReseted?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
 };
 
 export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
-  const { id, label, disabled, onInputReseted, children, initiallyCollapsed = false } = props;
+  const { id, label, disabled, onInputReseted, children, reseteable = true, initiallyCollapsed = false } = props;
   const [inputCollapsed, setInputCollapsed] = useState(initiallyCollapsed);
 
   const handleInputCollapse = () => {
@@ -69,16 +71,18 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
           <span>{label}</span>
         </label>
         <div className="flex items-center space-x-1">
-          <Button
-            size="sm"
-            variant="ghost"
-            aria-label="Reset Input"
-            colorScheme="red"
-            isDisabled={disabled}
-            onClick={onInputReseted}
-          >
-            Reset
-          </Button>
+          {reseteable ? (
+            <Button
+              size="sm"
+              variant="ghost"
+              aria-label="Reset Input"
+              colorScheme="red"
+              isDisabled={disabled}
+              onClick={onInputReseted}
+            >
+              Reset
+            </Button>
+          ) : null}
           <IconButton
             size="sm"
             aria-label="Collapse Input"
@@ -88,7 +92,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
           />
         </div>
       </div>
-      {!inputCollapsed ? children : null}
+      {inputCollapsed && <FadeAnimated key={`input-${id}`}>{children}</FadeAnimated>}
     </div>
   );
 };

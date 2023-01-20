@@ -15,10 +15,6 @@ const Navbar: React.FC = (props) => {
       <div className="ml-auto mr-4 hidden items-center justify-center space-x-4 md:flex">
         <NavbarLink href="/">Home</NavbarLink>
         <NavbarLink href="/icons">Icons</NavbarLink>
-      </div>
-
-      {/* Theme Toggler */}
-      <div className="md:flex">
         <ThemeToggler />
       </div>
     </nav>

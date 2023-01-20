@@ -15,3 +15,7 @@
 .color-input::-moz-color-swatch {
   @apply rounded-md border-none;
 }
+
+.multi-button-wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}

@@ -1,8 +1,6 @@
 import ADMZip from 'adm-zip';
-import { useMemo } from 'react';
 import { useToast } from 'ui';
 
-import { useIconsCustomizationContext } from '../context/customization/icons-customization-context';
 import { useIconsContext } from '../context/icons/icons-context';
 import { useIconsSelectionContext } from '../context/selection/icons-selection-context';
 import { applyIconCustomizationStyles, convertJSXToString, getSVGSourceIntoComponent } from '../lib/icons-utils';
@@ -10,10 +8,12 @@ import { applyIconCustomizationStyles, convertJSXToString, getSVGSourceIntoCompo
 export const useSaveIcons = () => {
   const { state: iconsState } = useIconsContext();
   const { state: iconsSelectionState } = useIconsSelectionContext();
-  const { state: customizationState } = useIconsCustomizationContext();
+
   const { toast } = useToast();
 
-  const compiledIcons = useMemo(() => {
+  const SINGLE_FILE = iconsSelectionState.selectedIcons.length === 1;
+
+  const compiledIcons = () => {
     const elements = iconsSelectionState.selectedIcons.map((selectedIcon) => {
       const source = getSVGSourceIntoComponent(selectedIcon.source, iconsState.iconPack.type, 'grid-icon');
       const content = convertJSXToString(source);
@@ -23,13 +23,11 @@ export const useSaveIcons = () => {
       return compiledIcon;
     });
     return elements;
-  }, [iconsSelectionState.selectedIcons, customizationState.customization]);
-
-  const isSingleFile = compiledIcons.length === 1;
-  const noIconsSelected = !compiledIcons.length;
+  };
 
   const saveSingleFile = () => {
-    const singleIcon = compiledIcons[0];
+    const compiled = compiledIcons();
+    const singleIcon = compiled[0];
     const fileBlob = new Blob([singleIcon.compiled], { type: 'application/zip' });
     const fileURL = URL.createObjectURL(fileBlob);
     const link = document.createElement('a');
@@ -39,8 +37,9 @@ export const useSaveIcons = () => {
   };
 
   const saveMultipleFiles = () => {
+    const compiled = compiledIcons();
     const zipFile = new ADMZip();
-    compiledIcons.map((icon) => {
+    compiled.map((icon) => {
       zipFile.addFile(`${icon.name}.svg`, Buffer.from(icon.compiled, 'utf-8'));
     });
 
@@ -53,9 +52,9 @@ export const useSaveIcons = () => {
   };
 
   const exportIcons = () => {
-    if (noIconsSelected) return toast({ variant: 'error', content: 'No icons selected!' });
+    if (!iconsSelectionState.selectedIcons.length) return toast({ variant: 'error', content: 'No icons selected!' });
     try {
-      if (isSingleFile) saveSingleFile();
+      if (SINGLE_FILE) saveSingleFile();
       else saveMultipleFiles();
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
@@ -63,16 +62,16 @@ export const useSaveIcons = () => {
   };
 
   const copyIcon = async () => {
-    if (!isSingleFile) return;
+    if (!SINGLE_FILE) return;
     try {
-      const uniqueElement = compiledIcons[0];
+      const compiled = compiledIcons();
       await navigator.clipboard
-        .writeText(uniqueElement.compiled)
+        .writeText(compiled[0].compiled)
         .then(() => toast({ variant: 'success', content: 'Icon successfully copied to clipboard.' }));
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
   };
 
-  return { exportIcons, copyIcon, isSingleFile };
+  return { exportIcons, copyIcon, isSingleFile: SINGLE_FILE };
 };

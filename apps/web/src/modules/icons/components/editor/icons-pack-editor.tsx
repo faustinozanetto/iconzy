@@ -1,8 +1,8 @@
 import { IconsSelectionProvider } from '@modules/icons/context/selection/icons-selection-context';
 import React from 'react';
 
-import IconsCustomization from './customization/icons-customization';
 import IconsFeed from './feed/icons-feed';
+import IconsCustomization from './settings/icons-settings';
 
 const IconPackEditor: React.FC = () => {
   return (

@@ -1,17 +1,27 @@
-import { IconWithElement } from '@modules/icons/typings/icon.typings';
+import { useIconsContext } from '@modules/icons/context/icons/icons-context';
+import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import { Icon } from '@modules/icons/typings/icon.typings';
+import clsx from 'clsx';
 import { m } from 'framer-motion';
 import React from 'react';
 import { IconButton } from 'ui';
 
 type SelectedIconsMenuIconProps = {
   /** Icon data */
-  icon: IconWithElement;
+  icon: Icon;
   /** Callback when the remove icon is clicked */
   onRemovedClicked: () => void;
 };
 
 const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
   const { icon, onRemovedClicked } = props;
+  const { state: iconsState } = useIconsContext();
+
+  const source = getSVGSourceIntoComponent(
+    icon.source,
+    iconsState.iconPack.type,
+    clsx(iconsState.iconPack.type === 'fill' ? 'featured-icon-fill' : 'featured-icon', '!h-8 !w-8')
+  );
 
   const removeIcon = (
     <svg
@@ -49,7 +59,7 @@ const SelectedIconsMenuIcon: React.FC<SelectedIconsMenuIconProps> = (props) => {
       className="relative flex justify-between p-2"
     >
       <div className="flex items-center space-x-2">
-        {icon.element}
+        {source}
         <h4 className="font-medium">{icon.name}</h4>
       </div>
       <IconButton

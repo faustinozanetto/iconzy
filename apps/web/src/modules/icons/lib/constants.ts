@@ -1,4 +1,5 @@
 import path from 'path';
+import { defaultColors } from 'ui';
 
 import type { IconCustomizationLimits } from '../typings/icon.typings';
 
@@ -13,4 +14,4 @@ export const ICON_WIDTH_LIMITS: IconCustomizationLimits = {
   max: 3.5,
 };
 
-export const ICONS_DEFAULT_COLOR = '#6936F5';
+export const ICONS_DEFAULT_COLOR = defaultColors.primary['700'];

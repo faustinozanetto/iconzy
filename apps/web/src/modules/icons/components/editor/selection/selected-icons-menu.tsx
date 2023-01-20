@@ -1,12 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
-import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import { IconWithElement } from '@modules/icons/typings/icon.typings';
-import clsx from 'clsx';
 import { AnimatePresence } from 'framer-motion';
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { IconButton, Separator } from 'ui';
 
 import SelectedIconsMenuIcon from './selected-icons-menu-icon';
@@ -20,7 +17,7 @@ type SelectedIconsMenuProps = {
 
 const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
   const { open, onClose } = props;
-  const { state: iconsState } = useIconsContext();
+
   const { state: iconsSelectionState, dispatch } = useIconsSelectionContext();
 
   const closeButtonIcon = (
@@ -50,12 +47,6 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
       payload: {},
     });
   };
-
-  useEffect(() => {
-    if (iconsSelectionState.selectedIcons.length === 0) {
-      onClose();
-    }
-  }, [iconsSelectionState.selectedIcons]);
 
   return (
     <Transition appear show={open} as={Fragment}>
@@ -121,15 +112,10 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
                 <ul className="featued-icons-container hide-scrollbar flex max-h-96 w-full flex-col space-y-2 overflow-y-scroll">
                   <AnimatePresence initial={false}>
                     {iconsSelectionState.selectedIcons.map((icon) => {
-                      const source = getSVGSourceIntoComponent(
-                        icon.source,
-                        iconsState.iconPack.type,
-                        clsx(iconsState.iconPack.type === 'fill' ? 'featured-icon-fill' : 'featured-icon', '!h-8 !w-8')
-                      );
                       return (
                         <SelectedIconsMenuIcon
                           key={icon.name}
-                          icon={{ ...icon, element: source }}
+                          icon={icon}
                           onRemovedClicked={() => handleRemoveIcon(icon)}
                         />
                       );

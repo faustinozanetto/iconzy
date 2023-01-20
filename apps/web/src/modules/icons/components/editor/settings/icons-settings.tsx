@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 import theme from 'tailwindcss/defaultTheme';
 import { Separator } from 'ui';
 
-import IconsCustomizationExport from './icons-customization-export';
-import IconsCustomizationSettings from './icons-customization-settings';
+import IconsCustomizationSettings from './customization/icons-customization-settings';
+import IconsCustomizationExport from './export/icons-customization-export';
 
 const IconsCustomization: React.FC = () => {
   const isSmallDevice = useMediaQuery(`(max-width: ${theme.screens.md}`);
@@ -26,7 +26,6 @@ const IconsCustomization: React.FC = () => {
       >
         <div className="mb-2 flex flex-row">
           <h3 className="text-xl font-semibold">Customization</h3>
-          {/* <IconCustomizationToggle onClick={handlePanelToggled} /> */}
         </div>
         <Separator />
         <div className="flex flex-1 flex-col justify-between">

@@ -358,6 +358,27 @@ declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__d
     onValueChanged: (value: string) => void;
 } & React__default.RefAttributes<HTMLInputElement>>;
 
+type Option = {
+    id: string;
+    value: string;
+};
+type MultiButtonInputProps = {
+    id: string;
+    /** Label to display */
+    label: string;
+    /** Options to select from */
+    options: Option[];
+    /** Optional: Default selected option */
+    defaultSelected?: Option['id'];
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * @returns void.
+     */
+    onValueChanged: (value: string) => void;
+};
+declare const MultiButtonInput: React__default.ForwardRefExoticComponent<MultiButtonInputProps & React__default.RefAttributes<HTMLDivElement>>;
+
 type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
     label: string;
     /**
@@ -479,4 +500,4 @@ declare const useToast: () => {
 };
 declare const ToastProvider: React__default.FC<ToastProviderProps>;
 
-export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, FadeAnimated, IconButton, IconButtonProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, defaultColors, useToast, useToastContext };
+export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, FadeAnimated, IconButton, IconButtonProps, MultiButtonInput, MultiButtonInputProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, defaultColors, useToast, useToastContext };

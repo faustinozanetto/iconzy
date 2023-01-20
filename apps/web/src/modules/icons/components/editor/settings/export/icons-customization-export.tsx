@@ -1,6 +1,6 @@
 import { useSaveIcons } from '@modules/icons/hooks/use-save-icons';
 import React from 'react';
-import { Button, Separator } from 'ui';
+import { Button, MultiButtonInput, Separator } from 'ui';
 
 const IconsCustomizationExport: React.FC = () => {
   const { exportIcons, copyIcon, isSingleFile } = useSaveIcons();
@@ -8,6 +8,19 @@ const IconsCustomizationExport: React.FC = () => {
   return (
     <div className="flex flex-col">
       <h3 className="text-lg font-semibold">Export Settings</h3>
+      <Separator />
+      <div className="mt-2 flex flex-col space-y-4">
+        <MultiButtonInput
+          id="export-type"
+          label="Export Type"
+          defaultSelected="react"
+          options={[
+            { id: 'html', value: 'HTML' },
+            { id: 'react', value: 'React' },
+          ]}
+          onValueChanged={() => {}}
+        />
+      </div>
       <Separator />
       <div className="mt-2 flex flex-col space-y-2">
         {isSingleFile ? (

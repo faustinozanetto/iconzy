@@ -83,7 +83,7 @@ export const SelectInputSort: React.FC<SelectInputSortProps> = (props) => {
           {children}
         </select>
         <IconButton
-          className="h-[41px]"
+          className="h-[44px]"
           aria-label="Change Criteria"
           colorScheme="stone"
           onClick={handleSortCriteria}

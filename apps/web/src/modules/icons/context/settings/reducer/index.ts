@@ -1,4 +1,4 @@
-import { IconsCustomizationActions, IconsCustomizationActionType, IconsCustomizationState } from './types';
+import { IconsSettingsActions, IconsSettingsActionType, IconsSettingsState } from './types';
 
 /**
  * Reducer for the selected icons context.
@@ -6,9 +6,9 @@ import { IconsCustomizationActions, IconsCustomizationActionType, IconsCustomiza
  * @param action Action to execute.
  * @returns The modified state.
  */
-export const reducer = (state: IconsCustomizationState, action: IconsCustomizationActions): IconsCustomizationState => {
+export const reducer = (state: IconsSettingsState, action: IconsSettingsActions): IconsSettingsState => {
   switch (action.type) {
-    case IconsCustomizationActionType.SET_ICON_SIZE: {
+    case IconsSettingsActionType.SET_ICON_SIZE: {
       const iconSize = action.payload.size;
       document.documentElement.style.setProperty('--grid-icon-size', `${iconSize}px`);
 
@@ -20,7 +20,7 @@ export const reducer = (state: IconsCustomizationState, action: IconsCustomizati
         },
       };
     }
-    case IconsCustomizationActionType.SET_ICON_COLOR: {
+    case IconsSettingsActionType.SET_ICON_COLOR: {
       const iconColor = action.payload.color;
       document.documentElement.style.setProperty('--grid-icon-color', iconColor);
 
@@ -32,7 +32,7 @@ export const reducer = (state: IconsCustomizationState, action: IconsCustomizati
         },
       };
     }
-    case IconsCustomizationActionType.SET_ICON_WIDTH: {
+    case IconsSettingsActionType.SET_ICON_WIDTH: {
       const iconWidth = action.payload.width;
       document.documentElement.style.setProperty('--grid-icon-width', `${iconWidth}px`);
 
@@ -41,6 +41,28 @@ export const reducer = (state: IconsCustomizationState, action: IconsCustomizati
         customization: {
           ...state.customization,
           width: iconWidth,
+        },
+      };
+    }
+    case IconsSettingsActionType.SET_EXPORT_PLATFORM: {
+      const platform = action.payload.platform;
+
+      return {
+        ...state,
+        export: {
+          ...state.export,
+          platform,
+        },
+      };
+    }
+    case IconsSettingsActionType.SET_EXPORT_TYPE: {
+      const type = action.payload.type;
+
+      return {
+        ...state,
+        export: {
+          ...state.export,
+          type,
         },
       };
     }

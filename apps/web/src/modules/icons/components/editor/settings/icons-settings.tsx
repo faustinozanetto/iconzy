@@ -1,5 +1,5 @@
 import useMediaQuery from '@modules/common/hooks/use-media-query';
-import { IconsCustomizationProvider } from '@modules/icons/context/customization/icons-customization-context';
+import { IconsSettingsProvider } from '@modules/icons/context/settings/icons-settings-context';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import theme from 'tailwindcss/defaultTheme';
@@ -17,7 +17,7 @@ const IconsCustomization: React.FC = () => {
   }, [isSmallDevice]);
 
   return (
-    <IconsCustomizationProvider>
+    <IconsSettingsProvider>
       <section
         className={clsx(
           panelToggled ? 'hidden' : 'flex flex-col justify-between',
@@ -33,7 +33,7 @@ const IconsCustomization: React.FC = () => {
           <IconsCustomizationExport />
         </div>
       </section>
-    </IconsCustomizationProvider>
+    </IconsSettingsProvider>
   );
 };
 

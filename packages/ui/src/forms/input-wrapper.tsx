@@ -92,7 +92,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props) => {
           />
         </div>
       </div>
-      {inputCollapsed && <FadeAnimated key={`input-${id}`}>{children}</FadeAnimated>}
+      {!inputCollapsed && <FadeAnimated key={`input-${id}`}>{children}</FadeAnimated>}
     </div>
   );
 };

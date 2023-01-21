@@ -648,20 +648,12 @@ video {
   width: 2.75rem;
 }
 
-.w-\[100px\] {
-  width: 100px;
-}
-
 .w-full {
   width: 100%;
 }
 
 .w-5 {
   width: 1.25rem;
-}
-
-.w-\[85px\] {
-  width: 85px;
 }
 
 .min-w-\[1\.5rem\] {
@@ -1049,6 +1041,11 @@ video {
 .bg-red-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
 .stroke-neutral-800 {

@@ -12,7 +12,7 @@ const Navbar: React.FC = (props) => {
       {/* Logo */}
       <Logo />
       {/* Buttons */}
-      <div className="ml-auto mr-4 hidden items-center justify-center space-x-4 md:flex">
+      <div className="ml-auto hidden items-center justify-center space-x-4 md:flex">
         <NavbarLink href="/">Home</NavbarLink>
         <NavbarLink href="/icons">Icons</NavbarLink>
         <ThemeToggler />

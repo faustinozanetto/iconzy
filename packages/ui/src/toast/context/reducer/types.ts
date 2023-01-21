@@ -9,7 +9,7 @@ export type ActionMap<M extends { [index: string]: unknown }> = {
       };
 };
 
-export type ToastVariants = 'success' | 'error';
+export type ToastVariants = 'success' | 'error' | 'info';
 
 export type Toast = {
   id: string;

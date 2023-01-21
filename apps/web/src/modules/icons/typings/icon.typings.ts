@@ -27,6 +27,14 @@ export type IconPackWithAll = {
   icons: Icon[];
 };
 
+export type IconExportTypes = 'svg' | 'png';
+export type IconExportPlatforms = 'html' | 'react';
+
+export type IconsExport = {
+  type: IconExportTypes;
+  platform: IconExportPlatforms;
+};
+
 export type ActionMap<M extends { [index: string]: unknown }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {

@@ -335,7 +335,7 @@ var InputWrapper = (props) => {
         )
       ] })
     ] }),
-    inputCollapsed && /* @__PURE__ */ jsx5(FadeAnimated, { children }, `input-${id}`)
+    !inputCollapsed && /* @__PURE__ */ jsx5(FadeAnimated, { children }, `input-${id}`)
   ] });
 };
 
@@ -389,33 +389,32 @@ var ColorInput = React4.forwardRef((props, ref) => {
 ColorInput.displayName = "Color Input";
 
 // src/forms/multi-button-input.tsx
-import React5, { useEffect as useEffect2, useState as useState3 } from "react";
+import { useEffect as useEffect2, useState as useState3 } from "react";
 import { jsx as jsx7 } from "react/jsx-runtime";
-var MultiButtonInput = React5.forwardRef((props, ref) => {
-  const _a = props, { id, label, options, defaultSelected, onValueChanged } = _a, rest = __objRest(_a, ["id", "label", "options", "defaultSelected", "onValueChanged"]);
-  const [value, setValue] = useState3(defaultSelected || "");
+var MultiButtonInput = (props) => {
+  const _a = props, { id, label, options, defaultSelected, onValueChanged, optionRender } = _a, rest = __objRest(_a, ["id", "label", "options", "defaultSelected", "onValueChanged", "optionRender"]);
+  const [value, setValue] = useState3(defaultSelected || options[0]);
   const handleChange = (selectedOption) => {
     setValue(selectedOption);
   };
   useEffect2(() => {
     onValueChanged(value);
   }, [value]);
-  return /* @__PURE__ */ jsx7(InputWrapper, { id, label, disabled: false, reseteable: false, children: /* @__PURE__ */ jsx7("div", { ref, className: "grid multi-button-wrapper gap-2", children: options.map((option) => {
-    const isCurrentlySelected = option.id === value;
+  return /* @__PURE__ */ jsx7(InputWrapper, { id, label, disabled: false, reseteable: false, children: /* @__PURE__ */ jsx7("div", { className: "grid multi-button-wrapper gap-2", children: options.map((option) => {
+    const isCurrentlySelected = option === value;
     return /* @__PURE__ */ jsx7(
       Button,
       {
         size: "sm",
         className: "w-full",
         variant: isCurrentlySelected ? "solid" : "ghost",
-        onClick: () => handleChange(option.id),
-        children: option.value
+        onClick: () => handleChange(option),
+        children: optionRender(option)
       },
-      option.id
+      option
     );
   }) }) });
-});
-MultiButtonInput.displayName = "Multi Button Input";
+};
 
 // src/forms/range-input.tsx
 import React6, { useEffect as useEffect3, useState as useState4 } from "react";
@@ -963,40 +962,71 @@ import { m as m2 } from "framer-motion";
 import { jsx as jsx13, jsxs as jsxs8 } from "react/jsx-runtime";
 var Toast2 = (props) => {
   const { toast } = props;
-  const toastIcon = toast.variant === "success" ? /* @__PURE__ */ jsxs8(
-    "svg",
-    {
-      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
-      xmlns: "http://www.w3.org/2000/svg",
-      strokeLinejoin: "round",
-      strokeLinecap: "round",
-      strokeWidth: "2",
-      stroke: "#ffffff",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      children: [
-        /* @__PURE__ */ jsx13("path", { d: "M22 11.08V12a10 10 0 1 1-5.93-9.14" }),
-        /* @__PURE__ */ jsx13("polyline", { points: "22 4 12 14.01 9 11.01" })
-      ]
+  const toastIcon = () => {
+    switch (toast.variant) {
+      case "info": {
+        return /* @__PURE__ */ jsxs8(
+          "svg",
+          {
+            className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
+            fill: "none",
+            strokeLinejoin: "round",
+            strokeLinecap: "round",
+            strokeWidth: "2",
+            viewBox: "0 0 24 24",
+            height: "50px",
+            width: "50px",
+            xmlns: "http://www.w3.org/2000/svg",
+            children: [
+              /* @__PURE__ */ jsx13("path", { fill: "none", d: "M0 0h24v24H0z", stroke: "none" }),
+              /* @__PURE__ */ jsx13("path", { d: "M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" }),
+              /* @__PURE__ */ jsx13("line", { y2: "9", x2: "16", y1: "9", x1: "8" }),
+              /* @__PURE__ */ jsx13("line", { y2: "13", x2: "14", y1: "13", x1: "8" })
+            ]
+          }
+        );
+      }
+      case "success": {
+        return /* @__PURE__ */ jsxs8(
+          "svg",
+          {
+            className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
+            xmlns: "http://www.w3.org/2000/svg",
+            strokeLinejoin: "round",
+            strokeLinecap: "round",
+            strokeWidth: "2",
+            stroke: "#ffffff",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            children: [
+              /* @__PURE__ */ jsx13("path", { d: "M22 11.08V12a10 10 0 1 1-5.93-9.14" }),
+              /* @__PURE__ */ jsx13("polyline", { points: "22 4 12 14.01 9 11.01" })
+            ]
+          }
+        );
+      }
+      case "error": {
+        return /* @__PURE__ */ jsxs8(
+          "svg",
+          {
+            className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
+            xmlns: "http://www.w3.org/2000/svg",
+            strokeLinejoin: "round",
+            strokeLinecap: "round",
+            strokeWidth: "2",
+            stroke: "#ffffff",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            children: [
+              /* @__PURE__ */ jsx13("circle", { r: "10", cy: "12", cx: "12" }),
+              /* @__PURE__ */ jsx13("line", { y2: "12", x2: "12", y1: "8", x1: "12" }),
+              /* @__PURE__ */ jsx13("line", { y2: "16", x2: "12.01", y1: "16", x1: "12" })
+            ]
+          }
+        );
+      }
     }
-  ) : /* @__PURE__ */ jsxs8(
-    "svg",
-    {
-      className: "h-5 w-5 stroke-neutral-800 dark:stroke-neutral-50",
-      xmlns: "http://www.w3.org/2000/svg",
-      strokeLinejoin: "round",
-      strokeLinecap: "round",
-      strokeWidth: "2",
-      stroke: "#ffffff",
-      fill: "none",
-      viewBox: "0 0 24 24",
-      children: [
-        /* @__PURE__ */ jsx13("circle", { r: "10", cy: "12", cx: "12" }),
-        /* @__PURE__ */ jsx13("line", { y2: "12", x2: "12", y1: "8", x1: "12" }),
-        /* @__PURE__ */ jsx13("line", { y2: "16", x2: "12.01", y1: "16", x1: "12" })
-      ]
-    }
-  );
+  };
   return /* @__PURE__ */ jsx13(
     m2.li,
     {
@@ -1021,10 +1051,12 @@ var Toast2 = (props) => {
         {
           className: clsx4(
             "flex p-4 rounded-md items-start overflow-hidden shadow-md text-neutral-800 dark:text-neutral-50",
-            toast.variant === "success" ? "bg-green-200 dark:bg-green-700" : "bg-red-200 dark:bg-red-700"
+            toast.variant === "success" && "bg-green-200 dark:bg-green-700",
+            toast.variant === "error" && "bg-red-200 dark:bg-red-700",
+            toast.variant === "info" && "bg-blue-200 dark:bg-blue-700"
           ),
           children: [
-            /* @__PURE__ */ jsx13("div", { className: "flex-shrink-0 mr-2", children: toastIcon }),
+            /* @__PURE__ */ jsx13("div", { className: "flex-shrink-0 mr-2", children: toastIcon() }),
             /* @__PURE__ */ jsx13("div", { className: "flex-1 max-w-full", children: /* @__PURE__ */ jsx13("p", { className: "text-sm font-medium", children: toast.content }) })
           ]
         }

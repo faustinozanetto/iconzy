@@ -4,7 +4,7 @@ export type { ButtonSizes, ButtonVariants, ColorSchemes } from './button/button-
 export { type IconButtonProps, IconButton } from './button/icon-button';
 export { type SeparatorProps, Separator } from './common/separator';
 export { type ColorInputProps, ColorInput } from './forms/color-input';
-export { type MultiButtonInputProps, MultiButtonInput } from './forms/multi-button-input';
+export { type MultiButtonInputOption, type MultiButtonInputProps, MultiButtonInput } from './forms/multi-button-input';
 export { type RangeInputProps, RangeInput } from './forms/range-input';
 export { type SelectInputProps, SelectInput } from './forms/select-input';
 export { type SelectInputSortProps, SelectInputSort } from './forms/select-input-sort';

@@ -32,6 +32,7 @@ module.exports = defineConfig({
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: { attributes: false } }],
         'tailwindcss/no-custom-classname': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
         'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
         'react/require-default-props': 'off', // Allow non-defined react props as undefined
         'react/jsx-props-no-spreading': 'off', // _app.tsx uses spread operator and also, react-hook-form

@@ -1,34 +1,34 @@
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { Button } from '../button/button';
 import { InputWrapper } from './input-wrapper';
 
-export type Option = {
-  id: string;
-  value: string;
-};
+export type MultiButtonInputOption<TValue extends React.ReactNode> = TValue;
 
-export type MultiButtonInputProps = {
+export type MultiButtonInputProps<TValue extends React.ReactNode> = {
   id: string;
   /** Label to display */
   label: string;
   /** Options to select from */
-  options: Option[];
+  options: MultiButtonInputOption<TValue>[];
   /** Optional: Default selected option */
-  defaultSelected?: Option['id'];
+  defaultSelected?: MultiButtonInputOption<TValue>;
   /**
    * Callback function called when the value changes.
    * @param value New value
    * @returns void.
    */
-  onValueChanged: (value: string) => void;
+  onValueChanged: (value: MultiButtonInputOption<TValue>) => void;
+  optionRender: (option: MultiButtonInputOption<TValue>) => string;
 };
 
-export const MultiButtonInput = React.forwardRef<HTMLDivElement, MultiButtonInputProps>((props, ref) => {
-  const { id, label, options, defaultSelected, onValueChanged, ...rest } = props;
-  const [value, setValue] = useState<Option['id']>(defaultSelected || '');
+export const MultiButtonInput = <TValue extends React.ReactNode>(
+  props: PropsWithChildren<MultiButtonInputProps<TValue>>
+) => {
+  const { id, label, options, defaultSelected, onValueChanged, optionRender, ...rest } = props;
+  const [value, setValue] = useState<MultiButtonInputOption<TValue>>(defaultSelected || options[0]);
 
-  const handleChange = (selectedOption: Option['id']) => {
+  const handleChange = (selectedOption: MultiButtonInputOption<TValue>) => {
     setValue(selectedOption);
   };
 
@@ -38,24 +38,23 @@ export const MultiButtonInput = React.forwardRef<HTMLDivElement, MultiButtonInpu
 
   return (
     <InputWrapper id={id} label={label} disabled={false} reseteable={false}>
-      <div ref={ref} className="grid multi-button-wrapper gap-2">
+      <div className="grid multi-button-wrapper gap-2">
         {options.map((option) => {
-          const isCurrentlySelected = option.id === value;
+          const isCurrentlySelected = option === value;
           return (
             <Button
               size="sm"
-              key={option.id}
+              // @ts-ignore
+              key={option}
               className="w-full"
               variant={isCurrentlySelected ? 'solid' : 'ghost'}
-              onClick={() => handleChange(option.id)}
+              onClick={() => handleChange(option)}
             >
-              {option.value}
+              {optionRender(option)}
             </Button>
           );
         })}
       </div>
     </InputWrapper>
   );
-});
-
-MultiButtonInput.displayName = 'Multi Button Input';
+};

@@ -2,7 +2,6 @@ import type { Filter, Sort } from '@modules/common/hooks/use-filter';
 import useFilter from '@modules/common/hooks/use-filter';
 import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
-import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
@@ -83,9 +82,8 @@ const IconsFeed: React.FC = () => {
           itemContent={(index, icon) => {
             const isIconSelected =
               iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
-            const source = getSVGSourceIntoComponent(icon.source, iconsState.iconPack.type, 'grid-icon');
 
-            return <IconEntry key={`icon-${index}`} icon={icon} selected={isIconSelected} render={source} />;
+            return <IconEntry key={`icon-${index}`} icon={icon} selected={isIconSelected} />;
           }}
         />
 

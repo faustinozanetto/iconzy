@@ -59,7 +59,6 @@ const IconsSettingsSettings: React.FC = () => {
           label="Width"
           min={ICON_WIDTH_LIMITS.min}
           max={ICON_WIDTH_LIMITS.max}
-          step={0.01}
           placeholder="2"
           disabled={iconsState.iconPack.type === 'fill'}
           onValueChanged={handleWidthChanged}

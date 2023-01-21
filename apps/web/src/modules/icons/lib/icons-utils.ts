@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import parse, { Element } from 'html-react-parser';
 import type { IconPack } from 'icons-fetching';
 import { ICONS } from 'icons-fetching';
-import DOMPurify from 'isomorphic-dompurify';
 import path from 'path';
 import * as ReactDOMServer from 'react-dom/server';
 
@@ -17,9 +16,9 @@ import { FEATURED_ICONS_COUNT, ICONS_DIR } from './constants';
  * @returns The JSX Element if successful.
  */
 export const getSVGSourceIntoComponent = (svgSource: string, type: IconPack['type'], className?: string) => {
-  const clean = DOMPurify.sanitize(svgSource);
+  // const clean = DOMPurify.sanitize(svgSource);
 
-  const parsed = parse(clean, {
+  const parsed = parse(svgSource, {
     replace: (domNode) => {
       if (domNode instanceof Element && domNode.attribs) {
         if (domNode.name !== 'svg') return;

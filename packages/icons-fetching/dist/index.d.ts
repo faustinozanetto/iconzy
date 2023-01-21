@@ -206,6 +206,19 @@ declare const ICONS: readonly [{
             readonly type: "CC0-1.0";
         };
     };
+}, {
+    readonly name: "bas-icons";
+    readonly type: "outline";
+    readonly defaultWidth: 2;
+    readonly source: {
+        readonly url: "https://github.com/solomon-fibonacci/react-basicons";
+        readonly branch: "main";
+        readonly commitHash: "a4850b127fad66106022238b48634f828caecc9c";
+        readonly iconsFolder: "svg";
+        readonly license: {
+            readonly type: "MIT";
+        };
+    };
 }];
 
 type IconPack = {

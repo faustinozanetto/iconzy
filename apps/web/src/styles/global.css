@@ -24,10 +24,6 @@ span {
   @apply text-neutral-900 dark:text-neutral-100;
 }
 
-.grid-icon {
-  margin: 0px auto;
-}
-
 .virtuoso-grid-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));

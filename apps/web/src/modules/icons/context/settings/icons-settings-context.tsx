@@ -1,5 +1,5 @@
 import { ICONS_DEFAULT_EXPORT_PLATFORM, ICONS_DEFAULT_EXPORT_TYPE } from '@modules/icons/lib/constants';
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
 
 import { reducer } from './reducer';
 import { IconsSettingsContextState } from './reducer/types';
@@ -32,5 +32,9 @@ export const IconsSettingsProvider: React.FC<IconsSettingsProviderProps> = (prop
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, initialState.state);
 
-  return <IconsSettingsContext.Provider value={{ state, dispatch }}>{children}</IconsSettingsContext.Provider>;
+  const value = useMemo(() => {
+    return { state, dispatch };
+  }, [state]);
+
+  return <IconsSettingsContext.Provider value={value}>{children}</IconsSettingsContext.Provider>;
 };

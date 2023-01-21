@@ -3,7 +3,7 @@ import type { Icon, IconPackWithFeatured } from '@modules/icons/typings/icon.typ
 import clsx from 'clsx';
 import { IconPack } from 'icons-fetching';
 import Link from 'next/link';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Button } from 'ui';
 
 type IconPackCardProps = {
@@ -21,11 +21,9 @@ type FeaturedIconProps = {
 const FeaturedIcon: React.FC<FeaturedIconProps> = (props) => {
   const { icon, type } = props;
 
-  const source = getSVGSourceIntoComponent(
-    icon.source,
-    type,
-    clsx(type === 'fill' ? 'featured-icon-fill' : 'featured-icon')
-  );
+  const source = useMemo(() => {
+    return getSVGSourceIntoComponent(icon.source, type, clsx(type === 'fill' ? 'featured-icon-fill' : 'featured-icon'));
+  }, []);
 
   return source;
 };

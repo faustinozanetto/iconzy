@@ -258,6 +258,20 @@ var ICONS = [
         type: "CC0-1.0"
       }
     }
+  },
+  {
+    name: "bas-icons",
+    type: "outline",
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/solomon-fibonacci/react-basicons",
+      branch: "main",
+      commitHash: "a4850b127fad66106022238b48634f828caecc9c",
+      iconsFolder: "svg",
+      license: {
+        type: "MIT"
+      }
+    }
   }
 ];
 

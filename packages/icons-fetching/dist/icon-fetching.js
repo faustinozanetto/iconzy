@@ -141,7 +141,18 @@ var ICONS_CUSTOM_PARSERS = {
       const content = await fs.promises.readdir(folder);
       for (const file of content) {
         const fileContent = await readContentsFromFile(folder, file);
-        await fs.promises.writeFile(path.join(folder, file), fileContent, { encoding: "utf-8" });
+        const modifiedSource = removeAttributesAndTags(fileContent, ["fill"]);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
+      }
+    }
+  },
+  "bas-icons": {
+    async customParser(folder) {
+      const content = await fs.promises.readdir(folder);
+      for (const file of content) {
+        const fileContent = await readContentsFromFile(folder, file);
+        const modifiedSource = removeAttributesAndTags(fileContent, ["fill", "stroke"]);
+        await fs.promises.writeFile(path.join(folder, file), modifiedSource, { encoding: "utf-8" });
       }
     }
   }
@@ -373,6 +384,20 @@ var ICONS = [
       iconsFolder: "svg/white",
       license: {
         type: "CC0-1.0"
+      }
+    }
+  },
+  {
+    name: "bas-icons",
+    type: "outline",
+    defaultWidth: 2,
+    source: {
+      url: "https://github.com/solomon-fibonacci/react-basicons",
+      branch: "main",
+      commitHash: "a4850b127fad66106022238b48634f828caecc9c",
+      iconsFolder: "svg",
+      license: {
+        type: "MIT"
       }
     }
   }

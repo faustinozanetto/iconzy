@@ -16,8 +16,12 @@ export const ICON_WIDTH_LIMITS: IconCustomizationLimits = {
 
 export const ICONS_DEFAULT_COLOR = defaultColors.primary['700'];
 
-export const ICONS_EXPORT_TYPES: MultiButtonInputOption<IconExportTypes>[] = ['svg', 'png'];
+export const ICONS_EXPORT_TYPES_HTML: MultiButtonInputOption<IconExportTypes>[] = ['svg', 'png'];
+
+export const ICONS_EXPORT_TYPES_REACT: MultiButtonInputOption<IconExportTypes>[] = ['jsx', 'tsx'];
+
 export const ICONS_EXPORT_PLATFORMS: MultiButtonInputOption<IconExportPlatforms>[] = ['html', 'react'];
 
-export const ICONS_DEFAULT_EXPORT_TYPE = ICONS_EXPORT_TYPES[0];
-export const ICONS_DEFAULT_EXPORT_PLATFORMS = ICONS_EXPORT_PLATFORMS[0];
+export const ICONS_DEFAULT_EXPORT_TYPE = ICONS_EXPORT_TYPES_HTML[0];
+
+export const ICONS_DEFAULT_EXPORT_PLATFORM = ICONS_EXPORT_PLATFORMS[0];

@@ -5,7 +5,6 @@ import { InputWrapper } from './input-wrapper';
 
 export type RangeInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
   label: string;
-
   /**
    * Callback function called when the value changes.
    * @param value New value

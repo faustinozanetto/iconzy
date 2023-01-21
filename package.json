@@ -19,13 +19,13 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
-    "autoprefixer": "^10.3.4",
+    "autoprefixer": "^10.4.13",
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
-    "postcss": "^8.2.15",
+    "postcss": "^8.4.21",
     "prettier": "latest",
-    "tailwindcss": "^3.1.4",
+    "tailwindcss": "^3.2.4",
     "turbo": "latest",
     "rimraf": "^4.1.1"
   },

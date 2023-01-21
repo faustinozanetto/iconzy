@@ -83,7 +83,6 @@ const IconsFeed: React.FC = () => {
           itemContent={(index, icon) => {
             const isIconSelected =
               iconsSelectionState.selectedIcons.find((selectedIcon) => selectedIcon.name === icon.name) !== undefined;
-
             const source = getSVGSourceIntoComponent(icon.source, iconsState.iconPack.type, 'grid-icon');
 
             return <IconEntry key={`icon-${index}`} icon={icon} selected={isIconSelected} render={source} />;

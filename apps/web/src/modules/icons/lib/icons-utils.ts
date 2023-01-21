@@ -78,6 +78,12 @@ export const convertJSXToString = (element: JSX.Element): string => {
   return cleaned;
 };
 
+/**
+ * Function that takes a svg string source and the type of iconpack and applies the customization styles to it.
+ * @param source The svg source to modify.
+ * @param type The type of icon pack.
+ * @returns The modified svg string source.
+ */
 export const applyIconCustomizationStyles = (source: string, type: IconPack['type']): string => {
   const color = document.documentElement.style.getPropertyValue('--grid-icon-color');
   const width = document.documentElement.style.getPropertyValue('--grid-icon-width');

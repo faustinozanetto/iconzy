@@ -34,7 +34,7 @@ export const reducer = (state: IconsSettingsState, action: IconsSettingsActions)
     }
     case IconsSettingsActionType.SET_ICON_WIDTH: {
       const iconWidth = action.payload.width;
-      document.documentElement.style.setProperty('--grid-icon-width', `${iconWidth}px`);
+      document.documentElement.style.setProperty('--grid-icon-width', String(iconWidth));
 
       return {
         ...state,

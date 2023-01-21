@@ -364,7 +364,7 @@ var ColorInput = React4.forwardRef((props, ref) => {
         /* @__PURE__ */ jsx6(
           "input",
           __spreadValues({
-            className: "color-input h-12 w-11 cursor-pointer appearance-none border-none",
+            className: "color-input h-12 w-11 shrink-0 cursor-pointer appearance-none border-none",
             id,
             ref,
             type: "color",
@@ -376,7 +376,7 @@ var ColorInput = React4.forwardRef((props, ref) => {
           "input",
           __spreadValues({
             id: `manual-${id}`,
-            className: "h-10 max-w-[135px] rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ml-auto",
+            className: "h-10 w-full rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 text-start font-bold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ml-4",
             type: "text",
             value,
             onChange: handleChange
@@ -392,7 +392,7 @@ ColorInput.displayName = "Color Input";
 import { useEffect as useEffect2, useState as useState3 } from "react";
 import { jsx as jsx7 } from "react/jsx-runtime";
 var MultiButtonInput = (props) => {
-  const _a = props, { id, label, options, defaultSelected, onValueChanged, optionRender } = _a, rest = __objRest(_a, ["id", "label", "options", "defaultSelected", "onValueChanged", "optionRender"]);
+  const { id, label, options, defaultSelected, colorScheme = "primary", onValueChanged, optionRender } = props;
   const [value, setValue] = useState3(defaultSelected || options[0]);
   const handleChange = (selectedOption) => {
     setValue(selectedOption);
@@ -400,18 +400,23 @@ var MultiButtonInput = (props) => {
   useEffect2(() => {
     onValueChanged(value);
   }, [value]);
+  useEffect2(() => {
+    if (defaultSelected)
+      setValue(defaultSelected);
+  }, [defaultSelected]);
   return /* @__PURE__ */ jsx7(InputWrapper, { id, label, disabled: false, reseteable: false, children: /* @__PURE__ */ jsx7("div", { className: "grid multi-button-wrapper gap-2", children: options.map((option) => {
     const isCurrentlySelected = option === value;
     return /* @__PURE__ */ jsx7(
       Button,
       {
         size: "sm",
+        colorScheme,
         className: "w-full",
         variant: isCurrentlySelected ? "solid" : "ghost",
         onClick: () => handleChange(option),
         children: optionRender(option)
       },
-      option
+      option == null ? void 0 : option.toString()
     );
   }) }) });
 };
@@ -830,7 +835,7 @@ var SelectInputSort = (props) => {
         __spreadProps(__spreadValues({
           id,
           ref: selectInputRef,
-          className: "focus-visible:ring-primary-500 focus-visible:border-primary-500 dark:focus-visible:ring-primary-500 dark:focus-visible:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400",
+          className: "focus-visible:ring-primary-500 focus-visible:border-primary-500 dark:focus-visible:ring-primary-500 dark:focus-visible:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400 h-11",
           onChange: (event) => {
             handleSelectChanged(event.target.value);
           }
@@ -841,7 +846,7 @@ var SelectInputSort = (props) => {
       /* @__PURE__ */ jsx10(
         IconButton,
         {
-          className: "h-[44px]",
+          className: "h-11",
           "aria-label": "Change Criteria",
           colorScheme: "stone",
           onClick: handleSortCriteria,
@@ -876,7 +881,7 @@ var TextInput = React9.forwardRef((props, ref) => {
           id,
           ref,
           className: clsx3(
-            "focus-visible:ring-primary-500 focus-visible:border-primary-500 dark:focus-visible:ring-primary-500 dark:focus-visible:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400",
+            "focus-visible:ring-primary-500 focus-visible:border-primary-500 dark:focus-visible:ring-primary-500 dark:focus-visible:border-primary-500 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400 h-11",
             icon ? "pl-10" : ""
           ),
           value,

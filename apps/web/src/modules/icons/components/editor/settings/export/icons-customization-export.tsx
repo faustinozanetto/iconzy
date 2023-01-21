@@ -1,7 +1,11 @@
 import { useIconsSettingsContext } from '@modules/icons/context/settings/icons-settings-context';
 import { IconsSettingsActionType } from '@modules/icons/context/settings/reducer/types';
 import { useSaveIcons } from '@modules/icons/hooks/use-save-icons';
-import { ICONS_EXPORT_PLATFORMS, ICONS_EXPORT_TYPES } from '@modules/icons/lib/constants';
+import {
+  ICONS_EXPORT_PLATFORMS,
+  ICONS_EXPORT_TYPES_HTML,
+  ICONS_EXPORT_TYPES_REACT,
+} from '@modules/icons/lib/constants';
 import { IconExportPlatforms, IconExportTypes } from '@modules/icons/typings/icon.typings';
 import React from 'react';
 import { Button, MultiButtonInput, MultiButtonInputOption, Separator } from 'ui';
@@ -10,11 +14,19 @@ const IconsCustomizationExport: React.FC = () => {
   const { state, dispatch } = useIconsSettingsContext();
   const { exportIcons, copyIcon, isSingleFile } = useSaveIcons();
 
+  const EXPORT_TYPE_OPTIONS = state.export.platform === 'html' ? ICONS_EXPORT_TYPES_HTML : ICONS_EXPORT_TYPES_REACT;
+
   const handlePlatformChange = (value: MultiButtonInputOption<IconExportPlatforms>) => {
     dispatch({
       type: IconsSettingsActionType.SET_EXPORT_PLATFORM,
       payload: {
         platform: value,
+      },
+    });
+    dispatch({
+      type: IconsSettingsActionType.SET_EXPORT_TYPE,
+      payload: {
+        type: value === 'html' ? ICONS_EXPORT_TYPES_HTML[0] : ICONS_EXPORT_TYPES_REACT[0],
       },
     });
   };
@@ -34,7 +46,7 @@ const IconsCustomizationExport: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      <h3 className="text-lg font-semibold">Export Settings</h3>
+      <h3 className="text-xl font-semibold">Export Settings</h3>
       <Separator />
       <div className="mt-2 flex flex-col space-y-4">
         <MultiButtonInput
@@ -49,7 +61,7 @@ const IconsCustomizationExport: React.FC = () => {
           id="export-type"
           label="Export Type"
           defaultSelected={state.export.type}
-          options={ICONS_EXPORT_TYPES}
+          options={EXPORT_TYPE_OPTIONS}
           onValueChanged={(value) => handleTypeChange(value)}
           optionRender={(option: IconExportTypes) => option.toUpperCase()}
         />

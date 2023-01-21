@@ -27,7 +27,7 @@ export type IconPackWithAll = {
   icons: Icon[];
 };
 
-export type IconExportTypes = 'svg' | 'png';
+export type IconExportTypes = 'svg' | 'png' | 'jsx' | 'tsx';
 export type IconExportPlatforms = 'html' | 'react';
 
 export type IconsExport = {

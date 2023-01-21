@@ -1,4 +1,4 @@
-import { ICONS_DEFAULT_EXPORT_PLATFORMS, ICONS_DEFAULT_EXPORT_TYPE } from '@modules/icons/lib/constants';
+import { ICONS_DEFAULT_EXPORT_PLATFORM, ICONS_DEFAULT_EXPORT_TYPE } from '@modules/icons/lib/constants';
 import React, { createContext, useContext, useReducer } from 'react';
 
 import { reducer } from './reducer';
@@ -7,7 +7,7 @@ import { IconsSettingsContextState } from './reducer/types';
 const initialState: IconsSettingsContextState = {
   state: {
     customization: { size: 35, color: '#000', width: 2 },
-    export: { platform: ICONS_DEFAULT_EXPORT_PLATFORMS, type: ICONS_DEFAULT_EXPORT_TYPE },
+    export: { platform: ICONS_DEFAULT_EXPORT_PLATFORM, type: ICONS_DEFAULT_EXPORT_TYPE },
   },
   dispatch: () => {},
 };

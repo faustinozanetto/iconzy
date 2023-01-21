@@ -640,6 +640,14 @@ video {
   height: 1.25rem;
 }
 
+.h-\[40px\] {
+  height: 40px;
+}
+
+.h-11 {
+  height: 2.75rem;
+}
+
 .w-4 {
   width: 1rem;
 }
@@ -654,6 +662,10 @@ video {
 
 .w-5 {
   width: 1.25rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .min-w-\[1\.5rem\] {

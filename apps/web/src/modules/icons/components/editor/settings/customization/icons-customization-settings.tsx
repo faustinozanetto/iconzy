@@ -55,6 +55,7 @@ const IconsSettingsSettings: React.FC = () => {
           max={ICON_SIZE_LIMITS.max}
           placeholder={String(DEFAULT_ICON_SIZE)}
           onValueChanged={handelSizeChanged}
+          aria-label="Icon Size"
         />
         <RangeInput
           id="stroke-width"
@@ -64,12 +65,14 @@ const IconsSettingsSettings: React.FC = () => {
           placeholder="2"
           disabled={iconsState.iconPack.type === 'fill'}
           onValueChanged={handleWidthChanged}
+          aria-label="Icon Width"
         />
         <ColorInput
           id="icon-color"
           label="Color"
           placeholder={ICONS_DEFAULT_COLOR}
           onValueChanged={handleColorChanged}
+          aria-label="Icon Color"
         />
       </div>
     </div>

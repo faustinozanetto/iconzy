@@ -57,6 +57,7 @@ export const MultiButtonInput = <TValue extends React.ReactNode>(
               size="sm"
               colorScheme={colorScheme}
               className="w-full"
+              aria-label={`Option ${option}`}
               variant={isCurrentlySelected ? 'solid' : 'ghost'}
               onClick={() => handleChange(option)}
             >

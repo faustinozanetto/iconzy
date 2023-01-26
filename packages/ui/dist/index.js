@@ -490,6 +490,7 @@ var MultiButtonInput = (props) => {
         size: "sm",
         colorScheme,
         className: "w-full",
+        "aria-label": `Option ${option}`,
         variant: isCurrentlySelected ? "solid" : "ghost",
         onClick: () => handleChange(option),
         children: optionRender(option)

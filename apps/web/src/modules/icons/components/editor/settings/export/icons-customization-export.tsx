@@ -87,11 +87,11 @@ const IconsCustomizationExport: React.FC = () => {
       <Separator />
       <div className="flex flex-col space-y-2">
         {isSingleFile ? (
-          <Button className="w-full" variant="ghost" colorScheme="rose" onClick={copyIcon}>
+          <Button className="w-full" variant="ghost" colorScheme="rose" onClick={copyIcon} aria-label="Copy Icon">
             Copy
           </Button>
         ) : null}
-        <Button className="w-full" onClick={handleExport}>
+        <Button className="w-full" onClick={handleExport} aria-label="Export Icons">
           Export
         </Button>
       </div>

@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "prepare-icons-folder": "rimraf apps/web/public/icons",
-    "build-icons-fetching": "turbo run build --scope=icons-fecthing && yarn workspace icons-fetching build-fetcher",
+    "build-icons-fetching": "yarn workspace icons-fetching build && yarn workspace icons-fetching build-fetcher",
     "run-icons-fetching": "yarn workspace icons-fetching fetcher",
-    "prebuild": "yarn build-icons-fetching && yarn run-icons-fetching"
+    "prebuild": "yarn prepare-icons-folder && yarn build-icons-fetching && yarn run-icons-fetching"
   },
   "browser": {
     "child_process": false

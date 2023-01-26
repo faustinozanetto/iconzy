@@ -1,0 +1,25 @@
+{
+  "extends": "tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@contexts/*": ["contexts/*"],
+      "@hooks/*": ["hooks/*"],
+      "@lib/*": ["lib/*"],
+      "@pages/*": ["src/pages/*"],
+      "@styles/*": ["styles/*"],
+      "@utils/*": ["utils/*"],
+      "@typedefs/*": ["typedefs/*"],
+      "@state/*": ["state/*"],
+      "@wrappers/*": ["wrappers/*"],
+      "@public/*": ["..public/*"],
+      "@typings/*": ["typings/*"],
+      "@modules/*": ["modules/*"],
+      "@data/*": ["data/*"]
+    }
+  }
+}

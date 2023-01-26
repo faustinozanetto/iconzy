@@ -1,8 +1,9 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { Button } from 'ui';
 import FeatureCard, { FeatureCardProps } from './feature-card';
 
-const FEATURES: FeatureCardProps[] = [
+const FEATURES: FeatureCardProps['data'][] = [
   {
     title: 'Icon Packs',
     text: 'Transform your designs with our versatile and stylish icon packs.',
@@ -77,9 +78,9 @@ const FEATURES: FeatureCardProps[] = [
 const FeaturesSection: React.FC = () => {
   return (
     <section className="pt-20 pb-8 lg:pt-[120px] lg:pb-[70px] bg-neutral-50">
-      <div className="container max-w-5xl mx-auto flex flex-wrap">
+      <div className="container max-w-5xl mx-auto flex flex-wrap px-4">
         {/* Top Content */}
-        <div className="w-full px-4">
+        <div className="w-full">
           <div className="mb-10 max-w-2xl lg:mb-18">
             <span className="mb-2 block text-lg font-bold text-primary-900">Features</span>
             <h2 className="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[42px]">Main Features</h2>
@@ -89,9 +90,18 @@ const FeaturesSection: React.FC = () => {
           </div>
         </div>
         {/* Bottom Content */}
-        <div className="w-full px-4 flex flex-col space-y-4 md:space-x-4 md:!flex-row md:!space-y-0">
-          {FEATURES.map((feature) => {
-            return <FeatureCard key={feature.text} {...feature} />;
+        <div className="w-full grid md:grid-cols-2 lg:grid-cols-4 justify-center gap-4">
+          {FEATURES.map((feature, index) => {
+            return (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.25 }}
+              >
+                <FeatureCard data={feature} />
+              </motion.div>
+            );
           })}
         </div>
       </div>

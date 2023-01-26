@@ -1,14 +1,16 @@
+import Logo from '@modules/marketing/components/logo';
 import React from 'react';
-import NavbarLogo from './navbar-logo';
 
 const Navbar: React.FC = () => {
   return (
-    <div className="absolute top-0 left-0 z-40 flex w-full items-center backdrop-blur-sm bg-black/10 shadow-md">
-      <div className="container mx-auto md:max-w-7xl flex items-center justify-between h-[80px] px-4">
-        {/* Logo */}
-        <NavbarLogo />
+    <header className="fixed w-full z-10 transition-colors duration-300 top-0 shadow backdrop-blur-md bg-primary-800/35">
+      <div className="flex w-full items-center">
+        <div className="container mx-auto md:max-w-7xl flex items-center justify-between h-[80px] px-4">
+          {/* Logo */}
+          <Logo />
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 

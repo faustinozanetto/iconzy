@@ -26,7 +26,7 @@ export const BUTTON_COLOR_SCHEMES: AvailableColorSchemes = {
     outline:
       'border-4 border-slate-300 dark:border-slate-600 hover:bg-slate-400 hover:border-slate-400 focus-visible:ring-slate-300 dark:hover:bg-slate-600 dark:focus-visible:ring-slate-500',
     solid: 'bg-white hover:bg-neutral-50 focus-visible:ring-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800',
-    ghost: 'hover:bg-slate-400 focus-visible:ring-slate-300 dark:hover:bg-slate-900',
+    ghost: 'hover:bg-white focus-visible:ring-slate-300 dark:hover:bg-black',
   },
   slate: {
     outline:

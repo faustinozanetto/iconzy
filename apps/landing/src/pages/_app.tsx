@@ -16,15 +16,8 @@ type PortfolioProps = AppProps;
 const IconozenApp: React.FC<PortfolioProps> = ({ Component, ...rest }) => {
   return (
     <LazyMotion features={domAnimation}>
-      <main className={`${InterFont.variable} relative scroll-smooth font-sans subpixel-antialiased`}>
-        {/* <ThemeProvider> */}
+      <main className={`${InterFont.variable} scroll-smooth font-sans subpixel-antialiased`}>
         <Component {...rest.pageProps} />
-        <style jsx global>{`
-          :root {
-            --font-sans: ${InterFont.style.fontFamily};
-          }
-        `}</style>
-        {/* </ThemeProvider> */}
       </main>
     </LazyMotion>
   );

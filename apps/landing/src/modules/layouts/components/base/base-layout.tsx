@@ -1,3 +1,4 @@
+import Footer from '@modules/footer/components/footer';
 import Navbar from '@modules/navbar/components/navbar';
 import type { ReactNode } from 'react';
 import React from 'react';
@@ -22,7 +23,10 @@ const BaseLayout: React.FC<BaseLayoutProps> = (props) => {
       <Navbar />
 
       {/* CONTENT */}
-      <main className="grow bg-primary-700 dark:bg-primary-400">{children}</main>
+      <main className="relative grow bg-primary-800">
+        {children}
+        <Footer />
+      </main>
     </div>
   );
 };

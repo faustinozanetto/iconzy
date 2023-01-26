@@ -54,6 +54,7 @@ The project is being developed with the latest technlogoies used in the industry
 The project is a structured in a mono repo so it consists of multiple separated projects. It has two main folders called `apps` and `packages` where the core tools are built.
 
 - `apps/web`: the main [Next.js](https://nextjs.org/) app containing the frontend
+- `apps/landing`: the landing [Next.js](https://nextjs.org/) app for the iconzy landing page
 - `packages/tsconfig`: the main tsconfig has some files that describe how typescript should work for each app
 - `packages/tailwind-config`: the base config for the different uses of tailwindcss across the project
 - `packages/eslint-config-custom`: the custom eslint configuration for the project

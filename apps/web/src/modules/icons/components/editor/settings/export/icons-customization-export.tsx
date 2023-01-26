@@ -3,10 +3,11 @@ import { IconsSettingsActionType } from '@modules/icons/context/settings/reducer
 import { useSaveIcons } from '@modules/icons/hooks/use-save-icons';
 import {
   ICONS_EXPORT_PLATFORMS,
+  ICONS_EXPORT_SELECTION,
   ICONS_EXPORT_TYPES_HTML,
   ICONS_EXPORT_TYPES_REACT,
 } from '@modules/icons/lib/constants';
-import { IconExportPlatforms, IconExportTypes } from '@modules/icons/typings/icon.typings';
+import { IconExportPlatforms, IconExportTypes, IconsExportSelection } from '@modules/icons/typings/icon.typings';
 import React from 'react';
 import { Button, MultiButtonInput, MultiButtonInputOption, Separator } from 'ui';
 
@@ -40,15 +41,24 @@ const IconsCustomizationExport: React.FC = () => {
     });
   };
 
+  const handleSelectionChange = (value: MultiButtonInputOption<IconsExportSelection>) => {
+    dispatch({
+      type: IconsSettingsActionType.SET_EXPORT_SELECTION,
+      payload: {
+        selection: value,
+      },
+    });
+  };
+
   const handleExport = async () => {
     await exportIcons();
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col space-y-3">
       <h3 className="text-xl font-semibold">Export Settings</h3>
       <Separator />
-      <div className="mt-2 flex flex-col space-y-4">
+      <div className="flex flex-col space-y-2">
         <MultiButtonInput
           id="export-platform"
           label="Export Platform"
@@ -65,9 +75,17 @@ const IconsCustomizationExport: React.FC = () => {
           onValueChanged={(value) => handleTypeChange(value)}
           optionRender={(option: IconExportTypes) => option.toUpperCase()}
         />
+        <MultiButtonInput
+          id="export-selection"
+          label="Export Selection"
+          defaultSelected="selected"
+          options={ICONS_EXPORT_SELECTION}
+          onValueChanged={(value) => handleSelectionChange(value)}
+          optionRender={(option: IconsExportSelection) => option.toUpperCase()}
+        />
       </div>
       <Separator />
-      <div className="mt-2 flex flex-col space-y-2">
+      <div className="flex flex-col space-y-2">
         {isSingleFile ? (
           <Button className="w-full" variant="ghost" colorScheme="rose" onClick={copyIcon}>
             Copy

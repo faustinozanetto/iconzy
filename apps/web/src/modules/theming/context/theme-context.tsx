@@ -44,7 +44,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
   useEffect(() => {
     const localTheme = (window.localStorage.getItem('theme') as ThemeType) || initialState.theme;
     if (localTheme) {
-      console.log('initial theme to', localTheme);
       setTheme(localTheme);
       updateLocalItem(localTheme);
       updateBodyClasses(localTheme);

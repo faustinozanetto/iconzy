@@ -1,7 +1,7 @@
-import { ActionMap, IconWithElement } from '@modules/icons/typings/icon.typings';
+import { ActionMap, Icon } from '@modules/icons/typings/icon.typings';
 
 export type IconsSelectionState = {
-  selectedIcons: IconWithElement[];
+  selectedIcons: Icon[];
 };
 
 export type IconsSelectionContextState = {
@@ -18,13 +18,13 @@ export enum IconsSelectionActionType {
 
 type IconsSelectionPayload = {
   [IconsSelectionActionType.SET_SELECTED_ICONS]: {
-    icons: IconWithElement[];
+    icons: Icon[];
   };
   [IconsSelectionActionType.ADD_SELECTED_ICON]: {
-    icon: IconWithElement;
+    icon: Icon;
   };
   [IconsSelectionActionType.REMOVE_SELECTED_ICON]: {
-    name: IconWithElement['name'];
+    name: Icon['name'];
   };
   [IconsSelectionActionType.CLEAR_SELECTED_ICONS]: object;
 };

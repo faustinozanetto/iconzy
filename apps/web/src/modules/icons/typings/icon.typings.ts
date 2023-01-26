@@ -7,8 +7,6 @@ export type Icon = {
   source: string;
 };
 
-export type IconWithElement = Icon & { element: JSX.Element };
-
 export type IconWithCustomization = Icon & { customization: IconCustomization };
 
 export type IconCustomization = {
@@ -27,12 +25,14 @@ export type IconPackWithAll = {
   icons: Icon[];
 };
 
+export type IconsExportSelection = 'all' | 'selected';
 export type IconExportTypes = 'svg' | 'png' | 'jsx' | 'tsx';
 export type IconExportPlatforms = 'html' | 'react';
 
 export type IconsExport = {
   type: IconExportTypes;
   platform: IconExportPlatforms;
+  selection: IconsExportSelection;
 };
 
 export type ActionMap<M extends { [index: string]: unknown }> = {

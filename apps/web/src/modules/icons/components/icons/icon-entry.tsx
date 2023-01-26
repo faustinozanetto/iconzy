@@ -32,7 +32,6 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
         payload: {
           icon: {
             ...icon,
-            element: source,
           },
         },
       });

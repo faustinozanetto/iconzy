@@ -61,7 +61,7 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
     <div className="flex h-full flex-col">
       <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
         <h2 className="text-xl font-medium">
-          Browsing <span className="text-primary-600 dark:text-primary-300 font-bold">{filteredData.length}</span> packs
+          Browsing <span className="text-primary-800 dark:text-primary-400 font-bold">{filteredData.length}</span> packs
           and <span className="text-primary-600 dark:text-primary-300 font-bold">{totalIconsCount}</span> icons
         </h2>
         <IconPacksBrowserFiltering onNameChanged={handleNameFilterChanged} onSortChanged={handleSortChanged} />

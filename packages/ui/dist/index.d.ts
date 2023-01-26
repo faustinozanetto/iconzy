@@ -1,5 +1,5 @@
 import * as React$1 from 'react';
-import React__default from 'react';
+import React__default, { PropsWithChildren } from 'react';
 
 type FadeAnimatedProps = {
     children: React__default.ReactNode;
@@ -339,6 +339,12 @@ declare const IconButton: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonH
 type SeparatorProps = Omit<React__default.HTMLAttributes<HTMLHRElement>, 'className'>;
 declare const Separator: React__default.FC<SeparatorProps>;
 
+interface Props extends PropsWithChildren {
+    text: string;
+    placement?: 'top' | 'bottom' | 'left' | 'right';
+}
+declare const Tooltip: React__default.FC<Props>;
+
 type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
     label: string;
     /**
@@ -448,6 +454,27 @@ declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__de
     onValueChanged: (value: string) => void;
 } & React__default.RefAttributes<HTMLInputElement>>;
 
+type ToggleInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
+    id: string;
+    label: string;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * ;@returns void.
+     */
+    onValueChanged: (value: boolean) => void;
+};
+declare const ToggleInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+    id: string;
+    label: string;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * ;@returns void.
+     */
+    onValueChanged: (value: boolean) => void;
+} & React__default.RefAttributes<HTMLInputElement>>;
+
 declare const ToastsContainer: React__default.FC;
 
 type ActionMap<M extends {
@@ -504,4 +531,4 @@ declare const useToast: () => {
 };
 declare const ToastProvider: React__default.FC<ToastProviderProps>;
 
-export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, FadeAnimated, IconButton, IconButtonProps, MultiButtonInput, MultiButtonInputOption, MultiButtonInputProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, defaultColors, useToast, useToastContext };
+export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, FadeAnimated, IconButton, IconButtonProps, MultiButtonInput, MultiButtonInputOption, MultiButtonInputProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, ToggleInput, ToggleInputProps, Tooltip, defaultColors, useToast, useToastContext };

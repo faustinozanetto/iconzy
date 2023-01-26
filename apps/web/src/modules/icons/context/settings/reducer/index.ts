@@ -66,6 +66,17 @@ export const reducer = (state: IconsSettingsState, action: IconsSettingsActions)
         },
       };
     }
+    case IconsSettingsActionType.SET_EXPORT_SELECTION: {
+      const selection = action.payload.selection;
+
+      return {
+        ...state,
+        export: {
+          ...state.export,
+          selection,
+        },
+      };
+    }
     default:
       throw new Error('The action you requested does not exists!');
   }

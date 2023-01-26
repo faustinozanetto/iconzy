@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
-import { IconWithElement } from '@modules/icons/typings/icon.typings';
+import { Icon } from '@modules/icons/typings/icon.typings';
 import { AnimatePresence } from 'framer-motion';
 import React, { Fragment } from 'react';
 import { IconButton, Separator } from 'ui';
@@ -32,7 +32,7 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
     </svg>
   );
 
-  const handleRemoveIcon = (icon: IconWithElement) => {
+  const handleRemoveIcon = (icon: Icon) => {
     dispatch({
       type: IconsSelectionActionType.REMOVE_SELECTED_ICON,
       payload: {

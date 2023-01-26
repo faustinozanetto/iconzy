@@ -2,14 +2,15 @@ import ADMZip from 'adm-zip';
 import parse from 'html-react-parser';
 import { toBlob, toPng } from 'html-to-image';
 import { Options } from 'html-to-image/lib/types';
+import { useState } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { useToast } from 'ui';
 
 import { useIconsContext } from '../context/icons/icons-context';
 import { useIconsSelectionContext } from '../context/selection/icons-selection-context';
 import { useIconsSettingsContext } from '../context/settings/icons-settings-context';
-import { applyIconCustomizationStyles, convertJSXToString } from '../lib/icons-utils';
-import { IconExportPlatforms, IconExportTypes, IconWithElement } from '../typings/icon.typings';
+import { applyIconCustomizationStyles } from '../lib/icons-utils';
+import { Icon, IconExportPlatforms, IconExportTypes } from '../typings/icon.typings';
 
 type Attribute = {
   attribute: string;
@@ -74,21 +75,40 @@ export const useSaveIcons = () => {
   const { state: iconsSelectionState } = useIconsSelectionContext();
   const { state: iconsSettingsState } = useIconsSettingsContext();
 
-  const SINGLE_FILE = iconsSelectionState.selectedIcons.length === 1;
+  const [compiledIcons, setCompiledIcons] = useState<[Icon, JSX.Element, string][]>([]);
+
+  const ICONS_SELECTED =
+    iconsSettingsState.export.selection === 'selected' ? iconsSelectionState.selectedIcons : iconsState.icons;
+
+  const SINGLE_FILE = ICONS_SELECTED.length === 1;
   const EXPORT_TYPE: IconExportTypes = iconsSettingsState.export.type;
   const EXPORT_PLATFORM: IconExportPlatforms = iconsSettingsState.export.platform;
 
   /**
    * Function that takes a icon with its JSX.Element and compiles it with the styles applied and returns the parsed JSX with the source string.
    * @param icon The icon to compile.
-   * @returns A tuple containing the JSX.Element and the string source.
+   * @returns A tuple containing the icon, compiled JSX and the string source.
    */
-  const compileIcon = (icon: IconWithElement): [JSX.Element, string] => {
-    const elementToString = convertJSXToString(icon.element);
-    const stylesApplied = applyIconCustomizationStyles(elementToString, iconsState.iconPack.type);
+  const compileIcon = (icon: Icon): [Icon, JSX.Element, string] => {
+    const stylesApplied = applyIconCustomizationStyles(icon.source, iconsState.iconPack.type);
     const parsedToJSX = parse(stylesApplied) as JSX.Element;
 
-    return [parsedToJSX, stylesApplied];
+    return [icon, parsedToJSX, stylesApplied];
+  };
+
+  /**
+   * Compiles all the selected icons and sets them to state.
+   */
+  const compileSelectedIcons = async (): Promise<void> => {
+    return new Promise((res, rej) => {
+      try {
+        const compiled = ICONS_SELECTED.map((icon) => compileIcon(icon));
+        setCompiledIcons(compiled);
+        res();
+      } catch (err) {
+        rej(new Error('An error occurred while compiling icons!'));
+      }
+    });
   };
 
   /**
@@ -127,12 +147,13 @@ export const useSaveIcons = () => {
       height: parsedElement.clientHeight + 50 * scaleRatio,
       pixelRatio: 12,
       quality: 1,
+      skipFonts: true,
     };
     // Used when exporting to png but multiple files.
-    if (requiresBlob)
-      return toBlob(parsedElement, options).then((blob) => {
-        return blob as Blob;
-      });
+    if (requiresBlob) {
+      const blob = await toBlob(parsedElement, options);
+      if (blob) return blob;
+    }
     // Normal export type to png when single file.
     if (type === 'png') return toPng(parsedElement, options).then((dataUrl) => dataUrl);
     throw new Error('Unsupported extension type');
@@ -223,8 +244,7 @@ export const useSaveIcons = () => {
    * Function for saving a single file to pc for html platform.
    */
   const saveSingleFileHTML = async () => {
-    const icon = iconsSelectionState.selectedIcons[0];
-    const [compiledJSX, compiledString] = compileIcon(icon);
+    const [icon, compiledJSX, compiledString] = compiledIcons[0];
 
     const fileName = `${icon.name}.${iconsSettingsState.export.type}`;
     const link = document.createElement('a');
@@ -259,14 +279,10 @@ export const useSaveIcons = () => {
    * Function for saving multiple files to the computer for html platform.
    */
   const saveMultipleFilesHTML = async () => {
-    const compiled = iconsSelectionState.selectedIcons.map((icon) => {
-      return compileIcon(icon);
-    });
-
     const zipFile = new ADMZip();
     await Promise.all(
-      compiled.map(async ([compiledJSX, compiledString], index) => {
-        const iconMetadata = iconsSelectionState.selectedIcons[index];
+      compiledIcons.map(async ([icon, compiledJSX, compiledString], index) => {
+        const iconMetadata = ICONS_SELECTED[index];
         const fileName = `${iconMetadata.name}.${iconsSettingsState.export.type}`;
         let rawContent = Buffer.alloc(0);
         // If export type is not svg we have to convert it to the proper extension and parse the blob
@@ -293,8 +309,7 @@ export const useSaveIcons = () => {
    */
   const saveSingleFileReact = () => {
     // Compile the first selected icon, parse and generate the jsx code, convert to blob and generate url.
-    const icon = iconsSelectionState.selectedIcons[0];
-    const [compiledJSX] = compileIcon(icon);
+    const [icon, compiledJSX, compiledSource] = compiledIcons[0];
     const generatedSource = generateReactSourceCode(compiledJSX);
     const fileBlob = new Blob([generatedSource]);
     const converted = URL.createObjectURL(fileBlob);
@@ -310,14 +325,10 @@ export const useSaveIcons = () => {
    * Function for saving multiple files to the computer for react platform.
    */
   const saveMultipleFilesReact = async () => {
-    const compiled = iconsSelectionState.selectedIcons.map((icon) => {
-      return compileIcon(icon);
-    });
-
     const zipFile = new ADMZip();
     await Promise.all(
-      compiled.map(async ([compiledJSX], index) => {
-        const iconMetadata = iconsSelectionState.selectedIcons[index];
+      compiledIcons.map(async ([icon, compiledJSX], index) => {
+        const iconMetadata = ICONS_SELECTED[index];
         const fileName = `${iconMetadata.name}.${iconsSettingsState.export.type}`;
         const generatedSource = generateReactSourceCode(compiledJSX);
         const fileBlob = new Blob([generatedSource]);
@@ -351,12 +362,15 @@ export const useSaveIcons = () => {
    * Main function for handling the export of icons.
    */
   const exportIcons = async () => {
-    if (!iconsSelectionState.selectedIcons.length) return toast({ variant: 'error', content: 'No icons selected!' });
+    if (!ICONS_SELECTED.length) return toast({ variant: 'error', content: 'No icons selected!' });
     try {
       toast({ variant: 'info', content: 'Started packing icons...' });
-      if (EXPORT_PLATFORM === 'html') await exportIconHTMLPlatform();
-      else if (EXPORT_PLATFORM === 'react') await exportIconReactPlatform();
-      toast({ variant: 'success', content: 'Icons downloaded successfully!' });
+
+      await compileSelectedIcons().then(async () => {
+        if (EXPORT_PLATFORM === 'html') await exportIconHTMLPlatform();
+        else if (EXPORT_PLATFORM === 'react') await exportIconReactPlatform();
+        toast({ variant: 'success', content: 'Icons downloaded successfully!' });
+      });
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }
@@ -364,10 +378,9 @@ export const useSaveIcons = () => {
 
   /**
    * Function for copying a icon to the clipboard for html platform.
-   * @param compiledIcon The compiled icon data.
    */
-  const copyIconHTMLPlatform = async (compiledIcon: ReturnType<typeof compileIcon>) => {
-    const [compiledJSX, compiledString] = compiledIcon;
+  const copyIconHTMLPlatform = async () => {
+    const [icon, compiledJSX, compiledString] = compiledIcons[0];
 
     if (EXPORT_TYPE === 'svg') {
       await navigator.clipboard.writeText(compiledString);
@@ -383,10 +396,9 @@ export const useSaveIcons = () => {
 
   /**
    * Function for copying a icon to the clipboard for react platform.
-   * @param compiledIcon The compiled icon data.
    */
-  const copyIconReactPlatform = async (compiledIcon: ReturnType<typeof compileIcon>) => {
-    const [compiledJSX] = compiledIcon;
+  const copyIconReactPlatform = async () => {
+    const [icon, compiledJSX, compiledString] = compiledIcons[0];
 
     const generatedCode = generateReactSourceCode(compiledJSX);
     await navigator.clipboard.writeText(generatedCode);
@@ -398,13 +410,13 @@ export const useSaveIcons = () => {
   const copyIcon = async () => {
     try {
       if (!SINGLE_FILE) return;
-      const icon = iconsSelectionState.selectedIcons[0];
-      const compiledIcon = compileIcon(icon);
 
-      if (EXPORT_PLATFORM === 'html') await copyIconHTMLPlatform(compiledIcon);
-      else if (EXPORT_PLATFORM === 'react') await copyIconReactPlatform(compiledIcon);
+      await compileSelectedIcons().then(async () => {
+        if (EXPORT_PLATFORM === 'html') await copyIconHTMLPlatform();
+        else if (EXPORT_PLATFORM === 'react') await copyIconReactPlatform();
 
-      toast({ variant: 'success', content: 'Icon successfully copied to clipboard.' });
+        toast({ variant: 'success', content: 'Icon successfully copied to clipboard.' });
+      });
     } catch (error) {
       toast({ variant: 'error', content: 'An error occurred!' });
     }

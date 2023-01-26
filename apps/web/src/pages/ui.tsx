@@ -1,5 +1,5 @@
 import BaseLayout from '@modules/layouts/components/base/base-layout';
-import type { ColorSchemes } from 'ui';
+import { ColorSchemes } from 'ui';
 import { Button, defaultColors } from 'ui';
 
 const UIPage: React.FC = () => {

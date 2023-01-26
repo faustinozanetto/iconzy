@@ -8,7 +8,7 @@ import {
   ICONS_DEFAULT_COLOR,
 } from '@modules/icons/lib/constants';
 import React from 'react';
-import { ColorInput, RangeInput } from 'ui';
+import { ColorInput, RangeInput, Separator } from 'ui';
 
 const IconsSettingsSettings: React.FC = () => {
   const { state: iconsState } = useIconsContext();
@@ -44,8 +44,10 @@ const IconsSettingsSettings: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="mt-2 flex flex-col space-y-4">
+    <div className="flex flex-col space-y-3">
+      <h3 className="text-xl font-semibold">Customization</h3>
+      <Separator />
+      <div className="flex flex-col space-y-2">
         <RangeInput
           id="icon-size"
           label="Size"

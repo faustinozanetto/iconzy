@@ -67,7 +67,7 @@ const IconsFeed: React.FC = () => {
     <div className="flex w-full flex-col">
       <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
         <h2 className="text-xl font-medium">
-          Browsing <span className="text-primary-600 dark:text-primary-300 font-bold">{filteredData.length}</span> icons
+          Browsing <span className="text-primary-800 dark:text-primary-400 font-bold">{filteredData.length}</span> icons
         </h2>
         <IconsFeedFiltering onNameChanged={handleNameFilterChanged} onSortChanged={handleSortChanged} />
       </div>

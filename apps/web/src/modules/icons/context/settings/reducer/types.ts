@@ -4,6 +4,7 @@ import {
   IconExportPlatforms,
   IconExportTypes,
   IconsExport,
+  IconsExportSelection,
 } from '@modules/icons/typings/icon.typings';
 
 export type IconsSettingsState = {
@@ -22,6 +23,7 @@ export enum IconsSettingsActionType {
   SET_ICON_WIDTH,
   SET_EXPORT_PLATFORM,
   SET_EXPORT_TYPE,
+  SET_EXPORT_SELECTION,
 }
 
 type IconsSettingsPayload = {
@@ -39,6 +41,9 @@ type IconsSettingsPayload = {
   };
   [IconsSettingsActionType.SET_EXPORT_TYPE]: {
     type: IconExportTypes;
+  };
+  [IconsSettingsActionType.SET_EXPORT_SELECTION]: {
+    selection: IconsExportSelection;
   };
 };
 

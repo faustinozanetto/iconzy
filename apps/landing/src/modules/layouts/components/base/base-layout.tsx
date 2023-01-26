@@ -1,3 +1,4 @@
+import Navbar from '@modules/navbar/components/navbar';
 import type { ReactNode } from 'react';
 import React from 'react';
 
@@ -17,8 +18,11 @@ const BaseLayout: React.FC<BaseLayoutProps> = (props) => {
       {/* HEAD */}
       <BaseLayoutHead {...headProps} />
 
+      {/* Navbar */}
+      <Navbar />
+
       {/* CONTENT */}
-      <main className="grow bg-neutral-50 dark:bg-neutral-900">{children}</main>
+      <main className="grow bg-primary-700 dark:bg-primary-400">{children}</main>
     </div>
   );
 };

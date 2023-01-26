@@ -1,5 +1,7 @@
 import BaseLayout from '@modules/layouts/components/base/base-layout';
-import HeroSection from '@modules/sections/hero/hero-section';
+import FeaturesSection from '@modules/sections/components/features/features-section';
+import HeroSection from '@modules/sections/components/hero/hero-section';
+
 import React from 'react';
 
 const HomePage: React.FC = () => {
@@ -14,6 +16,7 @@ const HomePage: React.FC = () => {
       }}
     >
       <HeroSection />
+      <FeaturesSection />
     </BaseLayout>
   );
 };

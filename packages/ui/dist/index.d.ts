@@ -286,8 +286,8 @@ declare const defaultColors: {
 };
 
 type ButtonVariants = 'outline' | 'solid' | 'ghost';
-type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg';
-type ColorSchemes = keyof typeof defaultColors;
+type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type ColorSchemes = keyof typeof defaultColors | 'plain';
 
 type BaseButtonProps = Omit<React$1.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> & {
     children?: React$1.ReactNode;
@@ -312,7 +312,7 @@ declare const Button: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonHTMLA
     /** Optional: Variant of the button, defaults to solid. */
     variant?: ButtonVariants | undefined;
     /** Optional: Color scheme of the button, defaults to primary. */
-    colorScheme?: "blue" | "cyan" | "fuchsia" | "gray" | "green" | "indigo" | "lime" | "orange" | "pink" | "purple" | "red" | "teal" | "violet" | "yellow" | "slate" | "zinc" | "neutral" | "stone" | "amber" | "emerald" | "sky" | "rose" | "primary" | undefined;
+    colorScheme?: ColorSchemes | undefined;
     isDisabled?: boolean | undefined;
 } & {
     /** Optional: Left icon of the button. */
@@ -329,7 +329,7 @@ declare const IconButton: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonH
     children?: React$1.ReactNode;
     size?: ButtonSizes | undefined;
     variant?: ButtonVariants | undefined;
-    colorScheme?: "blue" | "cyan" | "fuchsia" | "gray" | "green" | "indigo" | "lime" | "orange" | "pink" | "purple" | "red" | "teal" | "violet" | "yellow" | "slate" | "zinc" | "neutral" | "stone" | "amber" | "emerald" | "sky" | "rose" | "primary" | undefined;
+    colorScheme?: ColorSchemes | undefined;
     isDisabled?: boolean | undefined;
 } & {
     /** Optional: Left icon of the button. */

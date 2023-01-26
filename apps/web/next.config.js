@@ -15,12 +15,11 @@ module.exports = withBundleAnalyzer({
     }
     return config;
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: '/',
         destination: '/icons',
-        permanent: true,
       },
     ];
   },

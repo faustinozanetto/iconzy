@@ -624,6 +624,10 @@ video {
   height: 3rem;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .h-\[1px\] {
   height: 1px;
 }
@@ -678,6 +682,10 @@ video {
 
 .min-w-\[3rem\] {
   min-width: 3rem;
+}
+
+.min-w-\[3\.5rem\] {
+  min-width: 3.5rem;
 }
 
 .max-w-\[50px\] {
@@ -913,6 +921,11 @@ video {
 .border-primary-300 {
   --tw-border-opacity: 1;
   border-color: rgb(210 195 252 / var(--tw-border-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-slate-300 {
@@ -1424,6 +1437,11 @@ video {
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-neutral-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 250 250 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gray-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
@@ -1555,6 +1573,11 @@ video {
   --tw-ring-color: rgb(203 213 225 / var(--tw-ring-opacity));
 }
 
+.focus-visible\:ring-neutral-300:focus-visible {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(212 212 212 / var(--tw-ring-opacity));
+}
+
 .focus-visible\:ring-gray-300:focus-visible {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
@@ -1563,11 +1586,6 @@ video {
 .focus-visible\:ring-zinc-300:focus-visible {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(212 212 216 / var(--tw-ring-opacity));
-}
-
-.focus-visible\:ring-neutral-300:focus-visible {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(212 212 212 / var(--tw-ring-opacity));
 }
 
 .focus-visible\:ring-stone-300:focus-visible {
@@ -1827,6 +1845,11 @@ video {
   border-color: rgb(64 64 64 / var(--tw-border-opacity));
 }
 
+.dark .dark\:bg-neutral-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:bg-slate-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
@@ -1983,6 +2006,11 @@ video {
 .dark .dark\:hover\:bg-slate-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:hover\:bg-neutral-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:hover\:bg-slate-900:hover {

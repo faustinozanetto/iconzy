@@ -7,12 +7,7 @@ import IconsCustomization from './settings/icons-settings';
 const IconPackEditor: React.FC = () => {
   return (
     <IconsSelectionProvider>
-      <div
-        className="flex overflow-hidden"
-        style={{
-          height: 'calc(100vh - 90px)',
-        }}
-      >
+      <div className="flex h-[calc(100vh-80px)] overflow-hidden">
         <IconsCustomization />
         <IconsFeed />
       </div>

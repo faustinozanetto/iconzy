@@ -16,26 +16,21 @@ const FEATURED_ICON_PACKS: FeaturedIconPackCardProps['data'][] = [
     name: 'Akar Icons',
     slug: 'akar-icons',
   },
-  {
-    name: 'Box Icons',
-    slug: 'box-icons',
-  },
 ];
 
 const IconPacksSection: React.FC = () => {
   return (
-    <section className="bg-neutral-50 px-4 pt-20 pb-8 md:px-8 lg:pt-[120px] lg:pb-[70px]">
-      <div className="container mx-auto flex max-w-5xl flex-wrap">
+    <section className="bg-primary-800 px-4 pb-20 pt-8 md:px-8 lg:pb-[120px] lg:pt-[70px]">
+      <div className="container mx-auto flex max-w-5xl flex-col items-center text-center">
         {/* Top Content */}
         <div className="lg:mb-18 mb-10 w-full max-w-2xl">
-          <span className="text-primary-900 mb-2 block text-lg font-bold">Icon Packs</span>
-          <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-[42px]">Featured Icon Packs</h2>
-          <p className="text-lg leading-relaxed sm:text-xl sm:leading-relaxed">
+          <h2 className="mb-4 text-4xl font-extrabold text-neutral-50 md:text-5xl">Featured Icon Packs</h2>
+          <p className="text-lg text-neutral-100 sm:text-xl">
             Search multiple icon packs with loads of icons to download and customize with just a few clicks.
           </p>
         </div>
         {/* Bottom Content */}
-        <div className="grid w-full justify-center gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid w-full justify-center gap-4 md:grid-cols-3">
           {FEATURED_ICON_PACKS.map((iconPack, index) => {
             return (
               <motion.div

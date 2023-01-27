@@ -17,8 +17,8 @@ const StyledBackground: React.FC<StyledBackgroundProps> = (props) => {
     >
       <defs>
         <radialGradient id="ffflux-gradient">
-          <stop offset="0%" stop-color="#784af6"></stop>
-          <stop offset="100%" stop-color="#8766e5"></stop>
+          <stop offset="0%" stopColor="#784af6"></stop>
+          <stop offset="100%" stopColor="#8766e5"></stop>
         </radialGradient>
         <filter
           id="ffflux-filter"
@@ -28,7 +28,7 @@ const StyledBackground: React.FC<StyledBackgroundProps> = (props) => {
           height="140%"
           filterUnits="objectBoundingBox"
           primitiveUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feTurbulence
             type="fractalNoise"

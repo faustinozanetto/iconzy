@@ -8,7 +8,6 @@ const NewsletterSection: React.FC = () => {
       <div className="container mx-auto flex max-w-5xl flex-wrap">
         <div className="flex h-full w-full flex-col space-y-3 overflow-hidden rounded-md p-4 backdrop-blur-md md:!flex-row md:!p-12">
           <StyledBackground className="absolute inset-0 z-[-1]" />
-
           <div className="flex w-full flex-col space-y-2">
             <h3 className="text-3xl font-bold text-neutral-50 md:text-2xl">Newsletter</h3>
             <p className="text-lg leading-snug text-neutral-50">

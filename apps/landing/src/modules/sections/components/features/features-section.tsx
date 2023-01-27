@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { Button } from 'ui';
+
 import FeatureCard, { FeatureCardProps } from './feature-card';
 
 const FEATURES: FeatureCardProps['data'][] = [
@@ -9,7 +9,7 @@ const FEATURES: FeatureCardProps['data'][] = [
     text: 'Transform your designs with our versatile and stylish icon packs.',
     icon: (
       <svg
-        className="stroke-white h-9 w-9"
+        className="h-9 w-9 stroke-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -28,7 +28,7 @@ const FEATURES: FeatureCardProps['data'][] = [
     text: 'Customize your designs with our fully customizable icon packs.',
     icon: (
       <svg
-        className="fill-white h-9 w-9"
+        className="h-9 w-9 fill-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -44,7 +44,7 @@ const FEATURES: FeatureCardProps['data'][] = [
     text: 'Download our icon packs in multiple formats and easily integrate them.',
     icon: (
       <svg
-        className="fill-white h-9 w-9"
+        className="h-9 w-9 fill-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -61,7 +61,7 @@ const FEATURES: FeatureCardProps['data'][] = [
     text: 'Explore a vast collection of customizable icons available for download.',
     icon: (
       <svg
-        className="fill-white h-9 w-9"
+        className="h-9 w-9 fill-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -77,20 +77,18 @@ const FEATURES: FeatureCardProps['data'][] = [
 
 const FeaturesSection: React.FC = () => {
   return (
-    <section className="pt-20 pb-8 lg:pt-[120px] lg:pb-[70px] bg-neutral-50">
-      <div className="container max-w-5xl mx-auto flex flex-wrap px-4">
+    <section className="bg-neutral-50 px-4 pt-20 pb-8 md:px-8 lg:pt-[120px] lg:pb-[70px]">
+      <div className="container mx-auto flex max-w-5xl flex-wrap">
         {/* Top Content */}
-        <div className="w-full">
-          <div className="mb-10 max-w-2xl lg:mb-18">
-            <span className="mb-2 block text-lg font-bold text-primary-900">Features</span>
-            <h2 className="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[42px]">Main Features</h2>
-            <p className="text-lg leading-relaxed text-body-color sm:text-xl sm:leading-relaxed">
-              Customizable icons in multiple formats for easy integration and endless design possibilities.
-            </p>
-          </div>
+        <div className="lg:mb-18 mb-10 w-full max-w-2xl">
+          <span className="text-primary-900 mb-2 block text-lg font-bold">Features</span>
+          <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-[42px]">Main Features</h2>
+          <p className="text-body-color text-lg leading-relaxed sm:text-xl sm:leading-relaxed">
+            Customizable icons in multiple formats for easy integration and endless design possibilities.
+          </p>
         </div>
         {/* Bottom Content */}
-        <div className="w-full grid md:grid-cols-2 lg:grid-cols-4 justify-center gap-4">
+        <div className="grid w-full justify-center gap-4 md:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((feature, index) => {
             return (
               <motion.div

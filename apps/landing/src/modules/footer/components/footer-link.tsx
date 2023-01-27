@@ -10,7 +10,7 @@ const FooterLink: React.FC<FooterLinkProps> = (props) => {
   const { href, title } = props;
 
   return (
-    <Link href={href} className="text-neutral-50/90 font-medium hover:text-neutral-800 transition-colors">
+    <Link href={href} className="font-medium text-neutral-50/90 transition-colors hover:text-neutral-800">
       {title}
     </Link>
   );

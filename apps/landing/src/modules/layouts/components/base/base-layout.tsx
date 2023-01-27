@@ -23,7 +23,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = (props) => {
       <Navbar />
 
       {/* CONTENT */}
-      <main className="relative grow bg-primary-800">
+      <main className="bg-primary-800 relative grow">
         {children}
         <Footer />
       </main>

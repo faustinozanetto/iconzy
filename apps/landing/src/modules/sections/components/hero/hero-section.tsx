@@ -1,43 +1,68 @@
-import React from 'react';
+import { EDITOR_ENDPOINT } from '@lib/constants';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import React from 'react';
 import { Button } from 'ui';
-import { EDITOR_ENDPOINT } from '@lib/constants';
-import HeroBackground from './hero-background';
+
+import StyledBackground from '../../../common/components/styled-background';
 
 const HeroSection: React.FC = () => {
   return (
     <div className="backdrop-blur-md">
-      <HeroBackground />
-      <section className="relative container overflow-hidden mx-auto pt-32 px-4 md:px-8 md:pt-40 bg-transparent">
+      <StyledBackground className="absolute inset-x-0 bottom-0 z-[-1] min-h-screen" />
+      <section className="container mx-auto flex flex-col justify-between bg-transparent px-4 pt-32 md:px-8 md:pt-40">
         <div className="flex flex-col items-center text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-neutral-50 sm:text-5xl md:text-6xl lg:text-7xl">
-            Browse <span className="text-neutral-900">10000+</span> <br />
+          <motion.h1
+            className="text-4xl font-extrabold tracking-tight text-neutral-50 sm:text-5xl md:text-6xl lg:text-7xl "
+            initial={{ opacity: 0, translateY: -20 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
+          >
+            Browse
+            <span className="hero-sub-title relative mx-2 leading-tight text-neutral-900 after:absolute after:-z-10 after:bg-cover after:bg-no-repeat after:content-['']">
+              10000+
+            </span>{' '}
+            <br />
             icons for free now
-          </h1>
-          <p className="mt-4 text-lg max-w-2xl text-neutral-50 opacity-90 font-medium md:text-xl">
+          </motion.h1>
+          <motion.p
+            className="mt-4 max-w-2xl text-lg font-medium text-neutral-100 md:text-xl"
+            initial={{ opacity: 0, translateY: -20 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            transition={{ delay: 0.25, duration: 0.35 }}
+          >
             Enhance your design projects with a wide selection of high-quality icons. Whether you&apos;re creating a
             website, mobile app, these icons will bring your work to the next level.
-          </p>
-          <div className="mt-4 md:mt-6 w-full">
+          </motion.p>
+          <motion.div
+            className="mt-4 w-full md:mt-6"
+            initial={{ opacity: 0, translateY: -20 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            transition={{ delay: 0.35, duration: 0.35 }}
+          >
             <Link href={EDITOR_ENDPOINT} target="_blank">
-              <Button colorScheme="plain" size="xl" className="shadow-md">
+              <Button colorScheme="plain" size="lg" className="shadow-md">
                 Start browsing
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
-        <div className="mt-8">
+        <motion.div
+          className="mt-6 md:mt-10"
+          initial={{ opacity: 0, translateY: -20 }}
+          whileInView={{ opacity: 1, translateY: 0 }}
+          transition={{ delay: 0.45, duration: 0.35 }}
+        >
           <Image
             src="/images/hero-thumbnail.png"
             alt="hero"
-            width={1000}
-            height={1000}
+            width={1500}
+            height={1500}
             priority
-            className="mx-auto max-w-full rounded-t-xl"
+            className="rounded-t-xl"
           />
-        </div>
+        </motion.div>
       </section>
     </div>
   );

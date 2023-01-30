@@ -10,7 +10,7 @@ import StyledBackground from '../../../common/components/styled-background';
 const HeroSection: React.FC = () => {
   return (
     <div className="backdrop-blur-md">
-      <StyledBackground className="absolute inset-x-0 bottom-0 z-[-1] h-full min-h-screen" />
+      <StyledBackground className="absolute inset-x-0 bottom-0 z-[-1] min-h-screen" />
       <section className="container mx-auto flex flex-col justify-between bg-transparent px-4 pt-32 md:px-8 md:pt-40">
         <div className="flex flex-col items-center text-center">
           <motion.h1

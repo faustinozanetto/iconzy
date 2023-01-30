@@ -7,7 +7,7 @@ const HowToSection: React.FC = () => {
         {/* Top Content */}
         <div className="lg:mb-18 mb-10 w-full max-w-2xl">
           <h2 className="mb-4 text-4xl font-extrabold text-neutral-900 md:text-5xl">Get Started</h2>
-          <p className="text-lg text-neutral-900 sm:text-xl">
+          <p className="text-lg text-neutral-900 md:text-xl">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur fuga debitis sint architecto aliquam
             voluptatum rerum neque tempora provident quam.
           </p>

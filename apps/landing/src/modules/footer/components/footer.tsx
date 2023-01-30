@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               return <FooterCategory key={category.category} {...category} />;
             })}
           </div>
-          <span className="font-medium text-neutral-100">© 2023 Faustino Zanetto. All rights reserved</span>
+          <span className="font-medium text-neutral-200">© 2023 Faustino Zanetto. All rights reserved</span>
         </div>
       </div>
     </footer>

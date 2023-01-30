@@ -10,11 +10,11 @@ import StyledBackground from '../../../common/components/styled-background';
 const HeroSection: React.FC = () => {
   return (
     <div className="backdrop-blur-md">
-      <StyledBackground className="absolute inset-x-0 bottom-0 z-[-1] min-h-screen" />
+      <StyledBackground className="absolute inset-x-0 bottom-0 z-[-1] h-full min-h-screen" />
       <section className="container mx-auto flex flex-col justify-between bg-transparent px-4 pt-32 md:px-8 md:pt-40">
         <div className="flex flex-col items-center text-center">
           <motion.h1
-            className="text-4xl font-extrabold tracking-tight text-neutral-50 sm:text-5xl md:text-6xl lg:text-7xl "
+            className="text-4xl font-extrabold tracking-tight text-neutral-50 md:text-6xl lg:text-7xl"
             initial={{ opacity: 0, translateY: -20 }}
             whileInView={{ opacity: 1, translateY: 0 }}
             transition={{ delay: 0.15, duration: 0.35 }}
@@ -27,7 +27,7 @@ const HeroSection: React.FC = () => {
             icons for free now
           </motion.h1>
           <motion.p
-            className="mt-4 max-w-2xl text-lg font-medium text-neutral-100 md:text-xl"
+            className="mt-4 max-w-2xl font-medium text-neutral-100 md:text-xl"
             initial={{ opacity: 0, translateY: -20 }}
             whileInView={{ opacity: 1, translateY: 0 }}
             transition={{ delay: 0.25, duration: 0.35 }}
@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
             whileInView={{ opacity: 1, translateY: 0 }}
             transition={{ delay: 0.35, duration: 0.35 }}
           >
-            <Link href={EDITOR_ENDPOINT} target="_blank">
+            <Link href={EDITOR_ENDPOINT}>
               <Button colorScheme="plain" size="lg" className="shadow-md">
                 Start browsing
               </Button>

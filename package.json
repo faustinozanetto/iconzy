@@ -24,7 +24,7 @@
     "prettier": "latest",
     "tailwindcss": "^3.2.4",
     "turbo": "latest",
-    "rimraf": "^4.1.1"
+    "rimraf": "^4.1.2"
   },
   "engines": {
     "node": ">=16.0.0"

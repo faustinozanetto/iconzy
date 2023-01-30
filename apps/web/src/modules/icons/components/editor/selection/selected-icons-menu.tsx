@@ -73,11 +73,12 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl border-2 border-neutral-300 bg-neutral-50 p-6 text-left align-middle shadow-xl transition-all dark:border-neutral-700 dark:bg-neutral-800">
+              <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-lg border-2 border-neutral-300 bg-neutral-50 p-5 text-left align-middle shadow-lg transition-all dark:border-neutral-700 dark:bg-neutral-800">
                 <div className="mb-4 flex items-center justify-between">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6">
+                  <Dialog.Title as="h3" className="font-medium leading-6 md:text-lg">
                     Manage Selected Icons <br />
-                    <span className="text-sm">{iconsSelectionState.selectedIcons.length} selected</span>
+                    <span className="text-sm font-semibold">{iconsSelectionState.selectedIcons.length} </span>
+                    selected
                   </Dialog.Title>
                   <div className="flex items-center space-x-2">
                     <IconButton
@@ -102,7 +103,6 @@ const SelectedIconsMenu: React.FC<SelectedIconsMenuProps> = (props) => {
                         </svg>
                       }
                     />
-
                     <IconButton aria-label="Close Menu" icon={closeButtonIcon} onClick={onClose} />
                   </div>
                 </div>

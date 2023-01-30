@@ -24,8 +24,8 @@ const IconPacksSection: React.FC = () => {
       <div className="container mx-auto flex max-w-5xl flex-col items-center text-center">
         {/* Top Content */}
         <div className="lg:mb-18 mb-10 w-full max-w-2xl">
-          <h2 className="mb-4 text-4xl font-extrabold text-neutral-50 md:text-5xl">Featured Icon Packs</h2>
-          <p className="text-lg text-neutral-100 sm:text-xl">
+          <h2 className="mb-4 text-3xl font-extrabold text-neutral-50 md:text-4xl">Featured Icon Packs</h2>
+          <p className="text-neutral-100 md:text-xl">
             Search multiple icon packs with loads of icons to download and customize with just a few clicks.
           </p>
         </div>

@@ -6,10 +6,10 @@ import FeatureCard, { FeatureCardProps } from './feature-card';
 const FEATURES: FeatureCardProps['data'][] = [
   {
     title: 'Icon Packs',
-    text: 'Transform your designs with our versatile and stylish icon packs.',
+    text: 'Transform your designs with the versatile and stylish icon packs.',
     icon: (
       <svg
-        className="h-9 w-9 stroke-white"
+        className="h-7 w-7 stroke-white md:h-9 md:w-9"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -25,13 +25,12 @@ const FEATURES: FeatureCardProps['data'][] = [
   },
   {
     title: 'Icon Customization',
-    text: 'Customize your designs with our fully customizable icon packs.',
+    text: 'Customize your designs with our customizable editor.',
     icon: (
       <svg
-        className="h-9 w-9 fill-white"
+        className="h-7 w-7 fill-white md:h-9 md:w-9"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -41,10 +40,10 @@ const FEATURES: FeatureCardProps['data'][] = [
   },
   {
     title: 'Icon Download',
-    text: 'Download our icon packs in multiple formats and easily integrate them.',
+    text: 'Download the icons in multiple formats and easily integrate them.',
     icon: (
       <svg
-        className="h-9 w-9 fill-white"
+        className="h-7 w-7 fill-white md:h-9 md:w-9"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -58,10 +57,10 @@ const FEATURES: FeatureCardProps['data'][] = [
   },
   {
     title: 'Icon Search',
-    text: 'Explore a vast collection of customizable icons available for download.',
+    text: 'Find the icons that suit your need with a few clicks.',
     icon: (
       <svg
-        className="h-9 w-9 fill-white"
+        className="h-7 w-7 fill-white md:h-9 md:w-9"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -82,8 +81,8 @@ const FeaturesSection: React.FC = () => {
         {/* Top Content */}
         <div className="lg:mb-18 mb-10 w-full max-w-2xl">
           <span className="text-primary-900 mb-2 block text-lg font-bold">Features</span>
-          <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-[42px]">Main Features</h2>
-          <p className="text-body-color text-lg leading-relaxed sm:text-xl sm:leading-relaxed">
+          <h2 className="mb-4 text-2xl font-bold md:text-3xl">Main Features</h2>
+          <p className="text-body-color leading-relaxed md:text-xl md:leading-relaxed">
             Customizable icons in multiple formats for easy integration and endless design possibilities.
           </p>
         </div>

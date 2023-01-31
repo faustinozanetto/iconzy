@@ -39,7 +39,7 @@ const CATEGORIES: FooterCategoryProps[] = [
 
 const Footer: React.FC = () => {
   return (
-    <footer className="flex p-4 md:p-6 lg:p-8">
+    <footer className="bg-primary-700 flex p-4 md:p-6 lg:p-8">
       <div className="container mx-auto max-w-5xl py-4 md:py-6 lg:py-10">
         <div className="flex w-full flex-col space-y-4">
           {/* Categories */}

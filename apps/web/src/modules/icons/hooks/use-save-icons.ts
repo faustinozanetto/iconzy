@@ -406,6 +406,10 @@ export const useSaveIcons = () => {
       else if (EXPORT_PLATFORM === 'react') await copyIconReactPlatform();
       toast({ variant: 'success', content: 'Icon successfully copied to clipboard.' });
     } catch (error) {
+      let message = 'Unknown Error';
+      if (error instanceof Error) message = error.message;
+      console.log({ message });
+
       toast({ variant: 'error', content: 'An error occurred!' });
     }
   };

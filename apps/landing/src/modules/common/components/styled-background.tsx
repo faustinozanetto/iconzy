@@ -16,6 +16,7 @@ const StyledBackground: React.FC<StyledBackgroundProps> = (props) => {
       className={className}
       src="/images/hero-background-fallback.png"
       alt="Hero Background"
+      priority
       width={1500}
       height={1500}
     />

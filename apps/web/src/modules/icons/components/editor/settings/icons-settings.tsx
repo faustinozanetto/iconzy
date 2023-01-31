@@ -1,27 +1,15 @@
-import useMediaQuery from '@modules/common/hooks/use-media-query';
 import { IconsSettingsProvider } from '@modules/icons/context/settings/icons-settings-context';
-import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
-import theme from 'tailwindcss/defaultTheme';
+import React from 'react';
 
 import IconsCustomizationSettings from './customization/icons-customization-settings';
 import IconsCustomizationExport from './export/icons-customization-export';
 
 const IconsCustomization: React.FC = () => {
-  const isSmallDevice = useMediaQuery(`(max-width: ${theme.screens.md}`);
-  const [panelToggled, setPanelToggled] = useState(false);
-
-  useEffect(() => {
-    setPanelToggled(isSmallDevice);
-  }, [isSmallDevice]);
-
   return (
     <IconsSettingsProvider>
       <section
-        className={clsx(
-          panelToggled ? 'hidden' : 'flex flex-col justify-between',
-          'h-full w-[280px] space-y-2 overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-3.5 dark:border-r-neutral-700 dark:bg-neutral-800'
-        )}
+        className="hidden h-full w-[280px] flex-col
+          justify-between space-y-2 overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-3.5 dark:border-r-neutral-700 dark:bg-neutral-800 md:flex"
       >
         <div className="flex flex-1 flex-col justify-between">
           <IconsCustomizationSettings />

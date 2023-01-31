@@ -12,29 +12,14 @@ const useMediaQuery = (query: string): boolean => {
 
   const [matches, setMatches] = useState<boolean>(false);
 
-  function handleChange() {
-    setMatches(getMatches(query));
-  }
-
   useEffect(() => {
-    const matchMedia = window.matchMedia(query);
-
-    // Triggered at the first client-side load and if query changes
-    handleChange();
-
-    // Listen matchMedia
-    if (matchMedia.addListener) {
-      matchMedia.addListener(handleChange);
-    } else {
-      matchMedia.addEventListener('change', handleChange);
+    const matchQueryList = window.matchMedia(query);
+    function handleChange(e: MediaQueryListEvent) {
+      setMatches(e.matches);
     }
-
+    matchQueryList.addEventListener('change', handleChange);
     return () => {
-      if (matchMedia.removeListener) {
-        matchMedia.removeListener(handleChange);
-      } else {
-        matchMedia.removeEventListener('change', handleChange);
-      }
+      matchQueryList.removeEventListener('change', handleChange);
     };
   }, [query]);
 

@@ -4,7 +4,7 @@ import type { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import type { IconPack } from 'icons-fetching';
 import React, { useMemo } from 'react';
 
-import IconPackCard from '../icon-pack-card';
+import IconPackCard from '../card/icon-pack-card';
 import IconPacksBrowserFiltering from './icon-packs-browser-filtering';
 
 type IconPacksBrowserTypes = {
@@ -60,14 +60,14 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
   return (
     <div className="flex h-full flex-col">
       <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
-        <h2 className="text-xl font-medium">
+        <h2 className="text-lg font-medium md:text-xl">
           Browsing <span className="text-primary-800 dark:text-primary-400 font-bold">{filteredData.length}</span> packs
           and <span className="text-primary-600 dark:text-primary-300 font-bold">{totalIconsCount}</span> icons
         </h2>
         <IconPacksBrowserFiltering onNameChanged={handleNameFilterChanged} onSortChanged={handleSortChanged} />
       </div>
       <div
-        className="grid w-full items-center gap-4 p-4 sm:ml-auto"
+        className="grid w-full items-center gap-4 p-4 md:ml-auto"
         style={{
           gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
         }}

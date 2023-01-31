@@ -62,9 +62,15 @@ var BUTTON_SIZES = {
   xs: "px-2 h-6 min-w-[1.5rem] text-[0.75rem]",
   sm: "px-3 h-8 min-w-[2rem] text-[0.875rem]",
   md: "px-4 h-10 min-w-[2.5rem] text-[1rem]",
-  lg: "px-6 h-12 min-w-[3rem] text-[1.125rem]"
+  lg: "px-6 h-12 min-w-[3rem] text-[1.125rem]",
+  xl: "px-6 h-16 min-w-[3.5rem] text-[1.125rem]"
 };
 var BUTTON_COLOR_SCHEMES = {
+  plain: {
+    outline: "border-4 border-slate-300 dark:border-slate-600 hover:bg-slate-400 hover:border-slate-400 focus-visible:ring-slate-300 dark:hover:bg-slate-600 dark:focus-visible:ring-slate-500",
+    solid: "bg-white hover:bg-neutral-50 focus-visible:ring-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800",
+    ghost: "hover:bg-white focus-visible:ring-slate-300 dark:hover:bg-black"
+  },
   slate: {
     outline: "border-4 border-slate-300 dark:border-slate-600 hover:bg-slate-400 hover:border-slate-400 focus-visible:ring-slate-300 dark:hover:bg-slate-600 dark:focus-visible:ring-slate-500",
     solid: "bg-slate-300 hover:bg-slate-400 focus-visible:ring-slate-300 dark:bg-slate-700 dark:hover:bg-slate-900",

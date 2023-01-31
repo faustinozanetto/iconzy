@@ -66,7 +66,7 @@ const IconsFeed: React.FC = () => {
   return (
     <div className="flex w-full flex-col">
       <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
-        <h2 className="text-xl font-medium">
+        <h2 className="text-lg font-medium md:text-xl">
           Browsing <span className="text-primary-800 dark:text-primary-400 font-bold">{filteredData.length}</span> icons
         </h2>
         <IconsFeedFiltering onNameChanged={handleNameFilterChanged} onSortChanged={handleSortChanged} />
@@ -74,8 +74,7 @@ const IconsFeed: React.FC = () => {
       <div className="relative h-full">
         <VirtuosoGrid
           ref={feedContainer}
-          className="hide-scrollbar icons-container"
-          style={{ height: '100%', margin: '1rem' }}
+          className="icons-container"
           totalCount={filteredData.length}
           overscan={25}
           data={filteredData}

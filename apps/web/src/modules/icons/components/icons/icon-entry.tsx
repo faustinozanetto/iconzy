@@ -19,7 +19,7 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
 
   const source = useMemo(() => {
     return getSVGSourceIntoComponent(icon.source, iconsState.iconPack.type);
-  }, []);
+  }, [icon.source]);
 
   /**
    * Function

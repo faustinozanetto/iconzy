@@ -11,10 +11,7 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare-icons-folder": "rimraf apps/web/public/icons",
-    "build-icons-fetching": "turbo run build --scope=icons-fecthing && yarn workspace icons-fetching build-fetcher",
-    "run-icons-fetching": "yarn workspace icons-fetching fetcher",
-    "prepare": "husky install && yarn build-icons-fetching && yarn run-icons-fetching"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
@@ -27,7 +24,7 @@
     "prettier": "latest",
     "tailwindcss": "^3.2.4",
     "turbo": "latest",
-    "rimraf": "^4.1.1"
+    "rimraf": "^4.1.2"
   },
   "engines": {
     "node": ">=16.0.0"

@@ -4,16 +4,16 @@ import 'ui/styles.css';
 import GoogleAnalytics from '@modules/google/components/google-analytics';
 import IconsProvider from '@modules/icons/context/icons/icons-context';
 import ThemeProvider from '@modules/theming/context/theme-context';
-import { Poppins } from '@next/font/google';
+import { Inter } from '@next/font/google';
 import { domAnimation, LazyMotion } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import { ToastProvider, ToastsContainer } from 'ui';
 
-const PoppinsFont = Poppins({
+const InterFont = Inter({
   variable: '--font-sans',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
 });
 
 type PortfolioProps = AppProps;
@@ -21,7 +21,7 @@ type PortfolioProps = AppProps;
 const IconozenApp: React.FC<PortfolioProps> = ({ Component, ...rest }) => {
   return (
     <LazyMotion features={domAnimation}>
-      <main className={`${PoppinsFont.variable} relative scroll-smooth font-sans subpixel-antialiased`}>
+      <main className={`${InterFont.variable} relative scroll-smooth font-sans antialiased`}>
         <ThemeProvider>
           <ToastProvider>
             <GoogleAnalytics />
@@ -31,7 +31,7 @@ const IconozenApp: React.FC<PortfolioProps> = ({ Component, ...rest }) => {
             <ToastsContainer />
             <style jsx global>{`
               :root {
-                --font-sans: ${PoppinsFont.style.fontFamily};
+                --font-sans: ${InterFont.style.fontFamily};
               }
             `}</style>
           </ToastProvider>

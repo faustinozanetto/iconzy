@@ -3627,6 +3627,11 @@ optionator@^0.9.1:
     type-check "^0.4.0"
     word-wrap "^1.2.3"
 
+original-fs@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/original-fs/-/original-fs-1.2.0.tgz#ea6c5117ee71fe6a9f809130de0590676370b5e8"
+  integrity sha512-IGo+qFumpIV65oDchJrqL0BOk9kr82fObnTesNJt8t3YgP6vfqcmRs0ofPzg3D9PKMeBHt7lrg1k/6L+oFdS8g==
+
 p-limit@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.3.0.tgz#3dd33c647a214fdfffd835933eb086da0dc21db1"

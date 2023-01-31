@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare-icons-folder": "rimraf apps/web/public/icons",
+    "build-icons-fetching": "yarn workspace icons-fetching build && yarn workspace icons-fetching build-fetcher",
+    "run-icons-fetching": "yarn workspace icons-fetching fetcher",
+    "prebuild": "yarn prepare-icons-folder && yarn build-icons-fetching && yarn run-icons-fetching"
   },
   "browser": {
     "child_process": false
@@ -22,6 +26,7 @@
     "html-to-image": "^1.11.4",
     "isomorphic-dompurify": "^0.26.0",
     "next": "13.1.4",
+    "original-fs": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-virtuoso": "^4.0.3",

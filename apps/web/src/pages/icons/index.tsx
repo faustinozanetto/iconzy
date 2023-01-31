@@ -16,7 +16,7 @@ const IconPacksPage: React.FC<IconPacksPageProps> = (props) => {
   return (
     <BaseLayout
       headProps={{
-        title: 'Icon Packs | Iconzy',
+        title: 'Icon Packs | Iconzy Editor',
         description:
           'Iconzy is a personal project for customizing and browsing free icon packs for your personal projects.',
         url: 'https://iconzy.vercel.app/icons',

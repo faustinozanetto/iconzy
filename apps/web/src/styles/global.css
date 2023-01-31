@@ -64,6 +64,11 @@ path {
   max-height: 100px;
 }
 
+.icons-container > div {
+  margin: 1rem;
+  width: calc(100% - 2rem) !important;
+}
+
 .icons-container svg[stroke]:not([stroke='none']),
 .icons-container circle[stroke]:not([stroke='none']),
 .icons-container rect[stroke]:not([stroke='none']),

@@ -6,14 +6,14 @@ import { Button, FadeAnimated } from 'ui';
 import SelectedIconsMenu from './selected-icons-menu';
 
 const SelectedIcons: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
   const { state } = useIconsSelectionContext();
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <AnimatePresence>
       {state.selectedIcons.length ? (
         <FadeAnimated key="selected-icons">
-          <Button aria-label="Selected Icons" colorScheme="teal" onClick={() => setOpen(true)}>
+          <Button aria-label="Selected Icons" onClick={() => setOpen(true)}>
             {state.selectedIcons.length} Selected
           </Button>
         </FadeAnimated>

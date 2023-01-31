@@ -15,11 +15,11 @@ const NotFoundPage: React.FC = () => {
       }}
     >
       <section className="container mx-auto mb-auto mt-10 flex flex-col  items-center justify-center px-4 md:mt-20 lg:mt-36">
-        <div className="flex flex-col space-y-4 text-center text-neutral-50">
+        <div className="flex flex-col space-y-4 text-center text-neutral-900">
           {/* Titles */}
           <div className="leading-tight">
             <h1 className="text-4xl font-bold md:text-5xl">It looks like the page you requested </h1>
-            <span className="text-4xl font-bold text-neutral-900 md:text-5xl">does not exist!</span>
+            <span className="text-primary-900 text-4xl font-bold md:text-5xl">does not exist!</span>
           </div>
 
           {/* Paragraph */}

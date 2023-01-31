@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
 
@@ -13,7 +14,7 @@ const StyledBackground: React.FC<StyledBackgroundProps> = (props) => {
 
   const safariBrowserFallback = (
     <Image
-      className={className}
+      className={clsx('h-full w-full object-cover', className)}
       src="/images/hero-background-fallback.png"
       alt="Hero Background"
       priority

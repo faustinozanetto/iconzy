@@ -1,4 +1,7 @@
+import Image from 'next/image';
 import React from 'react';
+
+import { useBrowserCheck } from '../hooks/use-browser-check';
 
 type StyledBackgroundProps = {
   className?: string;
@@ -6,6 +9,19 @@ type StyledBackgroundProps = {
 
 const StyledBackground: React.FC<StyledBackgroundProps> = (props) => {
   const { className } = props;
+  const isSafariBrowser = useBrowserCheck('Safari');
+
+  const safariBrowserFallback = (
+    <Image
+      className={className}
+      src="/images/hero-background-fallback.png"
+      alt="Hero Background"
+      width={1500}
+      height={1500}
+    />
+  );
+
+  if (isSafariBrowser) return safariBrowserFallback;
 
   return (
     <svg

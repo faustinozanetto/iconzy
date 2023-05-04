@@ -2644,9 +2644,9 @@ html-react-parser@^3.0.8:
     style-to-js "1.1.3"
 
 html-to-image@^1.11.4:
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/html-to-image/-/html-to-image-1.11.4.tgz#a5c7d4b13ed13bf9922661ae20629a971cbc1e86"
-  integrity sha512-I6jeGpjSI/pea+p/8q6HAWPxptZkEYaZ40ZLnpCHuhCJJnUHQ/YzMEQMNY/KMdPZJ4+GJIwo9dnJy76eW9p9cg==
+  version "1.11.11"
+  resolved "https://registry.yarnpkg.com/html-to-image/-/html-to-image-1.11.11.tgz#c0f8a34dc9e4b97b93ff7ea286eb8562642ebbea"
+  integrity sha512-9gux8QhvjRO/erSnDPv28noDZcPZmYE7e1vFsBLKLlRlKDSqNJYebj6Qz1TGd5lsRV+X+xYyjCKjuZdABinWjA==
 
 htmlparser2@8.0.1:
   version "8.0.1"

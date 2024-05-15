@@ -1,7 +1,7 @@
 import type { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
 import Link from 'next/link';
 import React from 'react';
-import { Button } from 'ui';
+import { Button } from '@iconzy/ui';
 
 import IconPackCardAttribute from './icon-pack-card-attribute';
 import IconPackCardFeaturedIcons from './icon-pack-card-featured-icons';
@@ -24,10 +24,10 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
   };
 
   return (
-    <div className="group flex cursor-pointer flex-col space-y-2 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800">
-      <h2 className="mb-2 text-lg font-semibold leading-snug tracking-tight md:text-xl">
+    <div className="group flex cursor-pointer flex-col space-y-2 rounded-lg border p-4 shadow">
+      <h2 className="text-lg font-medium leading-snug tracking-tight md:text-xl">
         <span
-          className="from-primary-300 to-primary-200 dark:from-primary-600 dark:to-primary-800 bg-gradient-to-r
+          className="from-primary to-secondar bg-gradient-to-r
           bg-[length:0px_10px]
           bg-left-bottom
           bg-no-repeat
@@ -43,9 +43,11 @@ const IconPackCard: React.FC<IconPackCardProps> = (props) => {
         <IconPackCardAttribute name="Icon Count">{iconPack.metadata.iconsCount}</IconPackCardAttribute>
         <IconPackCardAttribute name="License Type">{iconPack.metadata.source.license.type}</IconPackCardAttribute>
       </div>
-      <Link className="w-full pt-4" href={`/icons/${iconPack.metadata.name}`}>
-        <Button className="w-full">Explore More</Button>
-      </Link>
+      <Button asChild>
+        <Link className="w-full" href={`/icons/${iconPack.metadata.name}`}>
+          Explore More
+        </Link>
+      </Button>
     </div>
   );
 };

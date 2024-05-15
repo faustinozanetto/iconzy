@@ -1,5 +1,5 @@
 {
-  "extends": "tsconfig/ui-library.json",
+  "extends": "@iconzy/tsconfig/ui-library.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

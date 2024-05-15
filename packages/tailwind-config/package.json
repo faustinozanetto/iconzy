@@ -1,10 +1,14 @@
 {
-  "name": "tailwind-config",
+  "name": "@iconzy/tailwind-config",
   "version": "0.0.1",
   "private": true,
-  "main": "index.js",
+  "author": {
+    "name": "Faustino Zanetto",
+    "email": "zanettofaustino@gmail.com"
+  },
   "license": "MIT",
+  "main": "index.js",
   "devDependencies": {
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.7"
   }
 }

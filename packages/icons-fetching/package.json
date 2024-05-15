@@ -1,5 +1,5 @@
 {
-  "name": "icons-fetching",
+  "name": "@iconzy/icons-fetching",
   "version": "0.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -18,9 +18,8 @@
   },
   "devDependencies": {
     "@types/jsdom": "^20.0.1",
-    "eslint": "^8.32.0",
-    "eslint-config-custom": "*",
-    "tsconfig": "*",
+    "@iconzy/eslint-config": "workspace:*",
+    "@iconzy/tsconfig": "workspace:*",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4"
   },

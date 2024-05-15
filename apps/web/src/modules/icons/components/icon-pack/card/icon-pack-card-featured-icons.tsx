@@ -1,7 +1,7 @@
-import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import { IconPack } from '@iconzy/icons-fetching';
+import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-render';
 import { Icon } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
-import { IconPack } from 'icons-fetching';
 import React, { useMemo } from 'react';
 
 type FeaturedIconProps = {
@@ -30,7 +30,7 @@ const IconPackCardFeaturedIcons: React.FC<IconPackCardFeaturedIconsProps> = (pro
   const { featuredIcons, type } = props;
 
   return (
-    <div className="featued-icons-container grid grid-cols-7 gap-3.5 rounded-md border-[1px] border-neutral-300 bg-neutral-100 p-2 dark:border-neutral-700 dark:bg-neutral-900">
+    <div className="featued-icons-container grid grid-cols-7 gap-3 border-primary border p-2 rounded-lg">
       {featuredIcons.map((icon, iconIndex) => (
         <FeaturedIcon key={`icon-${iconIndex}`} icon={icon} type={type} />
       ))}

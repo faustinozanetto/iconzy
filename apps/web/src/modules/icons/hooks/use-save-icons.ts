@@ -3,13 +3,12 @@ import parse from 'html-react-parser';
 import { toBlob, toPng } from 'html-to-image';
 import { Options } from 'html-to-image/lib/types';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { useToast } from 'ui';
-
-import { useIconsContext } from '../context/icons/icons-context';
+import { useToast } from '@iconzy/ui';
 import { useIconsSelectionContext } from '../context/selection/icons-selection-context';
 import { useIconsSettingsContext } from '../context/settings/icons-settings-context';
-import { applyIconCustomizationStyles } from '../lib/icons-utils';
+import { applyIconCustomizationStyles } from '../lib/icons-render';
 import { Icon, IconExportPlatforms, IconExportTypes } from '../typings/icon.typings';
+import { useIconsStore } from '../state/icons.slice';
 
 type Attribute = {
   attribute: string;
@@ -70,12 +69,11 @@ const REACT_TSX_TEMPLATE = (attributes: Attribute[], props: string, element: str
 
 export const useSaveIcons = () => {
   const { toast } = useToast();
-  const { state: iconsState } = useIconsContext();
+  const { icons, iconPack } = useIconsStore();
   const { state: iconsSelectionState } = useIconsSelectionContext();
   const { state: iconsSettingsState } = useIconsSettingsContext();
 
-  const ICONS_SELECTED =
-    iconsSettingsState.export.selection === 'selected' ? iconsSelectionState.selectedIcons : iconsState.icons;
+  const ICONS_SELECTED = iconsSettingsState.export.selection === 'selected' ? iconsSelectionState.selectedIcons : icons;
 
   const SINGLE_FILE = ICONS_SELECTED.length === 1;
   const EXPORT_TYPE: IconExportTypes = iconsSettingsState.export.type;
@@ -87,7 +85,9 @@ export const useSaveIcons = () => {
    * @returns A tuple containing the icon, compiled JSX and the string source.
    */
   const compileIcon = (icon: Icon): [Icon, JSX.Element, string] => {
-    const stylesApplied = applyIconCustomizationStyles(icon.source, iconsState.iconPack.type);
+    if (!iconPack) throw new Error('Invalid iconpack!');
+
+    const stylesApplied = applyIconCustomizationStyles(icon.source, iconPack.type);
     const parsedToJSX = parse(stylesApplied) as JSX.Element;
 
     return [icon, parsedToJSX, stylesApplied];

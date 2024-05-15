@@ -1,10 +1,12 @@
 {
-  "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "extends": "@iconzy/tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
+    "allowJs": true,
     "jsx": "preserve",
     "baseUrl": "./src",
+    "types": ["node"],
     "paths": {
       "@components/*": ["components/*"],
       "@contexts/*": ["contexts/*"],
@@ -14,12 +16,17 @@
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
       "@typedefs/*": ["typedefs/*"],
+      "@config/*": ["config/*"],
       "@state/*": ["state/*"],
-      "@wrappers/*": ["wrappers/*"],
       "@public/*": ["..public/*"],
       "@typings/*": ["typings/*"],
-      "@modules/*": ["modules/*"],
-      "@data/*": ["data/*"]
-    }
+      "@modules/*": ["modules/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   }
 }

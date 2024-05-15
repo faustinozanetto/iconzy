@@ -1,367 +1,237 @@
-import * as React$1 from 'react';
-import React__default, { PropsWithChildren } from 'react';
+import * as class_variance_authority_dist_types from 'class-variance-authority/dist/types';
+import * as React from 'react';
+import React__default from 'react';
+import * as class_variance_authority from 'class-variance-authority';
+import { VariantProps } from 'class-variance-authority';
+import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import * as react_jsx_runtime from 'react/jsx-runtime';
+import * as _radix_ui_react_slot from '@radix-ui/react-slot';
+import * as react_hook_form from 'react-hook-form';
+import { FieldValues, ControllerProps } from 'react-hook-form';
+import * as LabelPrimitive from '@radix-ui/react-label';
+import * as SelectPrimitive from '@radix-ui/react-select';
+import { ClassValue } from 'clsx';
+import * as SliderPrimitive from '@radix-ui/react-slider';
 
-type FadeAnimatedProps = {
-    children: React__default.ReactNode;
-};
-declare const FadeAnimated: React__default.FC<FadeAnimatedProps>;
-
-declare const defaultColors: {
-    slate: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    gray: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    zinc: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    neutral: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    stone: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    red: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    orange: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    amber: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    yellow: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    lime: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    green: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    emerald: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    teal: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    cyan: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    sky: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    blue: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    indigo: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    violet: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    purple: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    fuchsia: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    pink: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    rose: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-    primary: {
-        50: string;
-        100: string;
-        200: string;
-        300: string;
-        400: string;
-        500: string;
-        600: string;
-        700: string;
-        800: string;
-        900: string;
-    };
-};
-
-type ButtonVariants = 'outline' | 'solid' | 'ghost';
-type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-type ColorSchemes = keyof typeof defaultColors | 'plain';
-
-type BaseButtonProps = Omit<React$1.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> & {
-    children?: React$1.ReactNode;
-    /** Optional: Size of the button, defaults to md. */
-    size?: ButtonSizes;
-    /** Optional: Variant of the button, defaults to solid. */
-    variant?: ButtonVariants;
-    /** Optional: Color scheme of the button, defaults to primary. */
-    colorScheme?: ColorSchemes;
-    isDisabled?: boolean;
-};
-type ButtonProps = BaseButtonProps & {
-    /** Optional: Left icon of the button. */
-    leftIcon?: JSX.Element;
-    /** Optional: Right icon of the button. */
-    rightIcon?: JSX.Element;
-};
-declare const Button: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonHTMLAttributes<HTMLButtonElement>, "disabled"> & {
-    children?: React$1.ReactNode;
-    /** Optional: Size of the button, defaults to md. */
-    size?: ButtonSizes | undefined;
-    /** Optional: Variant of the button, defaults to solid. */
-    variant?: ButtonVariants | undefined;
-    /** Optional: Color scheme of the button, defaults to primary. */
-    colorScheme?: ColorSchemes | undefined;
-    isDisabled?: boolean | undefined;
-} & {
-    /** Optional: Left icon of the button. */
-    leftIcon?: JSX.Element | undefined;
-    /** Optional: Right icon of the button. */
-    rightIcon?: JSX.Element | undefined;
-} & React$1.RefAttributes<HTMLButtonElement>>;
-
-type IconButtonProps = BaseButtonProps & {
-    /** Optional: Left icon of the button. */
-    icon?: JSX.Element;
-};
-declare const IconButton: React$1.ForwardRefExoticComponent<Omit<React$1.ButtonHTMLAttributes<HTMLButtonElement>, "disabled"> & {
-    children?: React$1.ReactNode;
-    size?: ButtonSizes | undefined;
-    variant?: ButtonVariants | undefined;
-    colorScheme?: ColorSchemes | undefined;
-    isDisabled?: boolean | undefined;
-} & {
-    /** Optional: Left icon of the button. */
-    icon?: JSX.Element | undefined;
-} & React$1.RefAttributes<HTMLButtonElement>>;
-
-type SeparatorProps = Omit<React__default.HTMLAttributes<HTMLHRElement>, 'className'>;
-declare const Separator: React__default.FC<SeparatorProps>;
-
-interface Props extends PropsWithChildren {
-    text: string;
-    placement?: 'top' | 'bottom' | 'left' | 'right';
+declare const buttonVariants: (props?: ({
+    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined;
+    size?: "default" | "sm" | "lg" | "icon" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+    asChild?: boolean;
 }
-declare const Tooltip: React__default.FC<Props>;
+declare const Button: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>>;
 
-type ColorInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
-    label: string;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * @returns void.
-     */
-    onValueChanged: (value: string) => void;
+declare const Separator: React.ForwardRefExoticComponent<Omit<SeparatorPrimitive.SeparatorProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+
+declare function Skeleton({ className, ...props }: React__default.HTMLAttributes<HTMLDivElement>): react_jsx_runtime.JSX.Element;
+
+declare const iconVariants: (props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string;
+type BaseIconProps = React__default.HTMLAttributes<SVGSVGElement> & VariantProps<typeof iconVariants>;
+
+type ChevronDownIconProps = BaseIconProps;
+declare const ChevronDownIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type CopyIconProps = BaseIconProps;
+declare const CopyIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type DangerIconProps = BaseIconProps;
+declare const DangerIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type LoadingIconProps = BaseIconProps;
+declare const LoadingIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type QRCodeIconProps = BaseIconProps;
+declare const QRCodeIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type ShareIconProps = BaseIconProps;
+declare const ShareIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type SuccessIconProps = BaseIconProps;
+declare const SuccessIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type SunIconProps = BaseIconProps;
+declare const SunIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type MoonIconProps = BaseIconProps;
+declare const MoonIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type CloseIconProps = BaseIconProps;
+declare const CloseIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type ChevronLeftIconProps = BaseIconProps;
+declare const ChevronLeftIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type ChevronRightIconProps = BaseIconProps;
+declare const ChevronRightIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type CalendarIconProps = BaseIconProps;
+declare const CalendarIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type TrashIconProps = BaseIconProps;
+declare const TrashIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type LogoutIconProps = BaseIconProps;
+declare const LogoutIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type UserIconProps = BaseIconProps;
+declare const UserIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type InfoIconProps = BaseIconProps;
+declare const InfoIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type BookIconProps = BaseIconProps;
+declare const BookIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type EditIconProps = BaseIconProps;
+declare const EditIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type PlusIconProps = BaseIconProps;
+declare const PlusIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type DownloadIconProps = BaseIconProps;
+declare const DownloadIcon: React__default.ForwardRefExoticComponent<React__default.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React__default.RefAttributes<SVGSVGElement>>;
+
+type ExclamationIconProps = BaseIconProps;
+declare const ExclamationIcon: React.ForwardRefExoticComponent<React.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React.RefAttributes<SVGSVGElement>>;
+
+type CheckIconProps = BaseIconProps;
+declare const CheckIcon: React.ForwardRefExoticComponent<React.HTMLAttributes<SVGSVGElement> & class_variance_authority.VariantProps<(props?: ({
+    size?: "sm" | "lg" | "base" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string> & React.RefAttributes<SVGSVGElement>>;
+
+declare const Form: <TFieldValues extends FieldValues, TContext = any, TTransformedValues extends FieldValues | undefined = undefined>(props: react_hook_form.FormProviderProps<TFieldValues, TContext, TTransformedValues>) => React.JSX.Element;
+declare const FormField: <TFieldValues extends FieldValues = FieldValues, TName extends react_hook_form.Path<TFieldValues> = react_hook_form.Path<TFieldValues>>({ ...props }: ControllerProps<TFieldValues, TName>) => react_jsx_runtime.JSX.Element;
+declare const useFormField: () => {
+    invalid: boolean;
+    isDirty: boolean;
+    isTouched: boolean;
+    error?: react_hook_form.FieldError | undefined;
+    id: string;
+    name: string;
+    formItemId: string;
+    formDescriptionId: string;
+    formMessageId: string;
 };
-declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
+declare const FormItem: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
+declare const FormLabel: React.ForwardRefExoticComponent<Omit<LabelPrimitive.LabelProps & React.RefAttributes<HTMLLabelElement>, "ref"> & React.RefAttributes<HTMLLabelElement>>;
+declare const FormControl: React.ForwardRefExoticComponent<Omit<_radix_ui_react_slot.SlotProps & React.RefAttributes<HTMLElement>, "ref"> & React.RefAttributes<HTMLElement>>;
+declare const FormDescription: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLParagraphElement> & React.RefAttributes<HTMLParagraphElement>>;
+declare const FormMessage: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLParagraphElement> & React.RefAttributes<HTMLParagraphElement>>;
+
+declare const Select: React.FC<SelectPrimitive.SelectProps>;
+declare const SelectGroup: React.ForwardRefExoticComponent<SelectPrimitive.SelectGroupProps & React.RefAttributes<HTMLDivElement>>;
+declare const SelectValue: React.ForwardRefExoticComponent<SelectPrimitive.SelectValueProps & React.RefAttributes<HTMLSpanElement>>;
+declare const SelectTrigger: React.ForwardRefExoticComponent<Omit<SelectPrimitive.SelectTriggerProps & React.RefAttributes<HTMLButtonElement>, "ref"> & React.RefAttributes<HTMLButtonElement>>;
+declare const SelectContent: React.ForwardRefExoticComponent<Omit<SelectPrimitive.SelectContentProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+declare const SelectLabel: React.ForwardRefExoticComponent<Omit<SelectPrimitive.SelectLabelProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+declare const SelectItem: React.ForwardRefExoticComponent<Omit<SelectPrimitive.SelectItemProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+declare const SelectSeparator: React.ForwardRefExoticComponent<Omit<SelectPrimitive.SelectSeparatorProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+}
+declare const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>>;
+
+declare const Label: React.ForwardRefExoticComponent<Omit<LabelPrimitive.LabelProps & React.RefAttributes<HTMLLabelElement>, "ref"> & VariantProps<(props?: class_variance_authority_dist_types.ClassProp | undefined) => string> & React.RefAttributes<HTMLLabelElement>>;
+
+declare const toastContainerVariants: (props?: ({
+    position?: "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center" | null | undefined;
+} & class_variance_authority_dist_types.ClassProp) | undefined) => string;
+type ToatsContainerStyleProps = VariantProps<typeof toastContainerVariants>;
+type ToastsContainerProps = ToatsContainerStyleProps;
+declare const ToastsContainer: React__default.FC<ToastsContainerProps>;
+
+declare const cn: (...inputs: ClassValue[]) => string;
+
+interface ToastsProviderProps {
+    children: React__default.ReactNode;
+}
+declare const ToastsProvider: React__default.FC<ToastsProviderProps>;
+
+declare const Slider: React.ForwardRefExoticComponent<Omit<SliderPrimitive.SliderProps & React.RefAttributes<HTMLSpanElement>, "ref"> & React.RefAttributes<HTMLSpanElement>>;
+
+type RangeInputProps = Omit<React__default.ComponentPropsWithoutRef<typeof Slider>, 'classsName' | 'onChange' | 'onValueChange'> & {
     label: string;
     /**
      * Callback function called when the value changes.
      * @param value New value
-     * @returns void.
+     * ;@returns void.
      */
-    onValueChanged: (value: string) => void;
+    onValueChange: (value: number) => void;
+};
+declare const RangeInput: React__default.ForwardRefExoticComponent<Omit<Omit<Omit<SliderPrimitive.SliderProps & React__default.RefAttributes<HTMLSpanElement>, "ref"> & React__default.RefAttributes<HTMLSpanElement>, "ref">, "onChange" | "onValueChange" | "classsName"> & {
+    label: string;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * ;@returns void.
+     */
+    onValueChange: (value: number) => void;
+} & React__default.RefAttributes<HTMLInputElement>>;
+
+type ColorInputProps = Omit<React__default.ComponentPropsWithoutRef<typeof Input>, 'classsName' | 'onChange'> & {
+    label: string;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * ;@returns void.
+     */
+    onValueChange: (value: string) => void;
+};
+declare const ColorInput: React__default.ForwardRefExoticComponent<Omit<Omit<InputProps & React__default.RefAttributes<HTMLInputElement>, "ref">, "onChange" | "classsName"> & {
+    label: string;
+    /**
+     * Callback function called when the value changes.
+     * @param value New value
+     * ;@returns void.
+     */
+    onValueChange: (value: string) => void;
 } & React__default.RefAttributes<HTMLInputElement>>;
 
 type MultiButtonInputOption<TValue extends React__default.ReactNode> = TValue;
@@ -373,13 +243,12 @@ type MultiButtonInputProps<TValue extends React__default.ReactNode> = {
     options: MultiButtonInputOption<TValue>[];
     /** Optional: Default selected option */
     defaultSelected?: MultiButtonInputOption<TValue>;
-    colorScheme?: ColorSchemes;
     /**
      * Callback function called when the value changes.
      * @param value New value
      * @returns void.
      */
-    onValueChanged: (value: MultiButtonInputOption<TValue>) => void;
+    onValueChange: (value: MultiButtonInputOption<TValue>) => void;
     /**
      * Custom function for rendering the option in the input.
      * @param option Input to parse.
@@ -387,148 +256,22 @@ type MultiButtonInputProps<TValue extends React__default.ReactNode> = {
      */
     optionRender: (option: MultiButtonInputOption<TValue>) => string;
 };
-declare const MultiButtonInput: <TValue extends React__default.ReactNode>(props: React__default.PropsWithChildren<MultiButtonInputProps<TValue>>) => JSX.Element;
+declare const MultiButtonInput: <TValue extends React__default.ReactNode>(props: React__default.PropsWithChildren<MultiButtonInputProps<TValue>>) => react_jsx_runtime.JSX.Element;
 
-type RangeInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
-    label: string;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * ;@returns void.
-     */
-    onValueChanged: (value: number) => void;
-};
-declare const RangeInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
-    label: string;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * ;@returns void.
-     */
-    onValueChanged: (value: number) => void;
-} & React__default.RefAttributes<HTMLInputElement>>;
-
-type SelectInputProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName'> & {
-    children: React__default.ReactNode;
-    label?: string;
-};
-declare const SelectInput: React__default.ForwardRefExoticComponent<Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, "classsName"> & {
-    children: React__default.ReactNode;
-    label?: string | undefined;
-} & React__default.RefAttributes<HTMLSelectElement>>;
-
-type SortCriteria = 'asc' | 'des';
-type SelectInputSortProps = Omit<React__default.SelectHTMLAttributes<HTMLSelectElement>, 'classsName' | 'onChange'> & {
-    children: React__default.ReactNode;
-    label?: string;
-    /** Initial value of the crtieria. */
-    initialSortCriteria: SortCriteria;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * @param criteria Criteria of the input, asc or des
-     * @returns void.
-     */
-    onValueChanged: (value: string, criteria: SortCriteria) => void;
-};
-declare const SelectInputSort: React__default.FC<SelectInputSortProps>;
-
-type TextInputInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
-    label?: string;
-    icon?: JSX.Element;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * @returns void.
-     */
-    onValueChanged: (value: string) => void;
-};
-declare const TextInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
-    label?: string | undefined;
-    icon?: JSX.Element | undefined;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * @returns void.
-     */
-    onValueChanged: (value: string) => void;
-} & React__default.RefAttributes<HTMLInputElement>>;
-
-type ToggleInputProps = Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'classsName' | 'onChange'> & {
-    id: string;
-    label: string;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * ;@returns void.
-     */
-    onValueChanged: (value: boolean) => void;
-};
-declare const ToggleInput: React__default.ForwardRefExoticComponent<Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "onChange" | "classsName"> & {
-    id: string;
-    label: string;
-    /**
-     * Callback function called when the value changes.
-     * @param value New value
-     * ;@returns void.
-     */
-    onValueChanged: (value: boolean) => void;
-} & React__default.RefAttributes<HTMLInputElement>>;
-
-declare const ToastsContainer: React__default.FC;
-
-type ActionMap<M extends {
-    [index: string]: unknown;
-}> = {
-    [Key in keyof M]: M[Key] extends undefined ? {
-        type: Key;
-    } : {
-        type: Key;
-        payload: M[Key];
-    };
-};
 type ToastVariants = 'success' | 'error' | 'info';
-type Toast = {
+interface Toast {
     id: string;
     variant: ToastVariants;
     content: string;
-};
-type ToastState = {
-    toasts: Toast[];
-};
-type ToastContextState = {
-    state: ToastState;
-    dispatch: React.Dispatch<ToastActions>;
-};
-declare enum ToastActionType {
-    ADD_TOAST = 0,
-    REMOVE_TOAST = 1
 }
-type ToastPayload = {
-    [ToastActionType.ADD_TOAST]: {
-        toast: Toast;
-    };
-    [ToastActionType.REMOVE_TOAST]: {
-        toast: Toast['id'];
-    };
-};
-type ToastActions = ActionMap<ToastPayload>[keyof ActionMap<ToastPayload>];
 
-type ToastProviderProps = {
-    children: React__default.ReactNode;
-};
-/**
- * Hook that returns the toast context.
- * @returns The context if valid.
- */
-declare const useToastContext: () => ToastContextState;
+interface UseToastReturn {
+    toast: (data: Omit<Toast, 'id'>, duration?: number) => void;
+}
 /**
  * Hook that returns a function to create toasts.
  * @returns The function to create toast.
  */
-declare const useToast: () => {
-    toast: (toast: Omit<Toast, 'id'>, duration?: number) => void;
-};
-declare const ToastProvider: React__default.FC<ToastProviderProps>;
+declare const useToast: () => UseToastReturn;
 
-export { Button, ButtonProps, ButtonSizes, ButtonVariants, ColorInput, ColorInputProps, ColorSchemes, FadeAnimated, IconButton, IconButtonProps, MultiButtonInput, MultiButtonInputOption, MultiButtonInputProps, RangeInput, RangeInputProps, SelectInput, SelectInputProps, SelectInputSort, SelectInputSortProps, Separator, SeparatorProps, TextInput, TextInputInputProps, ToastProvider, ToastsContainer, ToggleInput, ToggleInputProps, Tooltip, defaultColors, useToast, useToastContext };
+export { BookIcon, BookIconProps, Button, ButtonProps, CalendarIcon, CalendarIconProps, CheckIcon, CheckIconProps, ChevronDownIcon, ChevronDownIconProps, ChevronLeftIcon, ChevronLeftIconProps, ChevronRightIcon, ChevronRightIconProps, CloseIcon, CloseIconProps, ColorInput, ColorInputProps, CopyIcon, CopyIconProps, DangerIcon, DangerIconProps, DownloadIcon, DownloadIconProps, EditIcon, EditIconProps, ExclamationIcon, ExclamationIconProps, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, InfoIcon, InfoIconProps, Input, InputProps, Label, LoadingIcon, LoadingIconProps, LogoutIcon, LogoutIconProps, MoonIcon, MoonIconProps, MultiButtonInput, MultiButtonInputOption, MultiButtonInputProps, PlusIcon, PlusIconProps, QRCodeIcon, QRCodeIconProps, RangeInput, RangeInputProps, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue, Separator, ShareIcon, ShareIconProps, Skeleton, Slider, SuccessIcon, SuccessIconProps, SunIcon, SunIconProps, ToastsContainer, ToastsContainerProps, ToastsProvider, ToatsContainerStyleProps, TrashIcon, TrashIconProps, UserIcon, UserIconProps, buttonVariants, cn, toastContainerVariants, useFormField, useToast };

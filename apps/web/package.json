@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@iconzy/web",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "prepare-icons-folder": "rimraf apps/web/public/icons",
-    "build-icons-fetching": "yarn workspace icons-fetching build && yarn workspace icons-fetching build-fetcher",
-    "run-icons-fetching": "yarn workspace icons-fetching fetcher",
-    "prebuild": "yarn prepare-icons-folder && yarn build-icons-fetching && yarn run-icons-fetching"
+    "build-icons-fetching": "pnpm workspace icons-fetching build && pnpm workspace icons-fetching build-fetcher",
+    "run-icons-fetching": "pnpm workspace icons-fetching fetcher",
+    "prebuild": "pnpm prepare-icons-folder && pnpm build-icons-fetching && pnpm run-icons-fetching"
   },
   "browser": {
     "child_process": false
@@ -18,31 +18,34 @@
   "dependencies": {
     "@headlessui/react": "^1.7.7",
     "@next/bundle-analyzer": "^13.1.4",
-    "@next/font": "^13.1.4",
     "adm-zip": "^0.5.10",
     "clsx": "^1.2.1",
     "framer-motion": "^8.5.0",
     "html-react-parser": "^3.0.8",
     "html-to-image": "^1.11.4",
+    "next-theme-kit": "0.2.1",
     "isomorphic-dompurify": "^0.26.0",
-    "next": "13.1.4",
+    "next": "14.2.3",
     "original-fs": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-virtuoso": "^4.0.3",
-    "ui": "*"
+    "zustand": "4.5.2",
+    "@iconzy/ui": "workspace:*"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "14.1.0",
     "@types/adm-zip": "^0.5.0",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "eslint": "8.32.0",
-    "eslint-config-custom": "*",
-    "eslint-define-config": "latest",
-    "icons-fetching": "*",
-    "tailwind-config": "*",
-    "tsconfig": "*",
+    "@iconzy/eslint-config": "workspace:*",
+    "@iconzy/icons-fetching": "workspace:*",
+    "@iconzy/tailwind-config": "workspace:*",
+    "@iconzy/tsconfig": "workspace:*",
+    "tailwindcss": "3.4.1",
+    "autoprefixer": "10.4.17",
+    "postcss": "8.4.38",
     "typescript": "^4.9.4"
   }
 }

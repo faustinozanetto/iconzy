@@ -1,9 +1,9 @@
 import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
-import { Button, FadeAnimated } from 'ui';
 
 import SelectedIconsMenu from './selected-icons-menu';
+import { Button } from '@iconzy/ui';
 
 const SelectedIcons: React.FC = () => {
   const { state } = useIconsSelectionContext();
@@ -12,11 +12,9 @@ const SelectedIcons: React.FC = () => {
   return (
     <AnimatePresence>
       {state.selectedIcons.length ? (
-        <FadeAnimated key="selected-icons">
-          <Button aria-label="Selected Icons" onClick={() => setOpen(true)}>
-            {state.selectedIcons.length} Selected
-          </Button>
-        </FadeAnimated>
+        <Button aria-label="Selected Icons" className="font-medium border" onClick={() => setOpen(true)}>
+          {state.selectedIcons.length} Selected
+        </Button>
       ) : null}
       <SelectedIconsMenu open={open} onClose={() => setOpen(false)} />
     </AnimatePresence>

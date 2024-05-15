@@ -1,21 +1,25 @@
-import { LANDING_ENDPOINT } from '@modules/common/lib/constants';
-import { useThemeContext } from '@modules/theming/context/theme-context';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const Logo: React.FC = (props) => {
-  const {} = props;
-  const { theme } = useThemeContext();
-
+const Logo: React.FC = () => {
   return (
-    <Link href={LANDING_ENDPOINT}>
+    <Link href="/">
       <Image
-        src={theme === 'light' ? '/images/marketing/logo-light.svg' : '/images/marketing/logo-dark.svg'}
+        src="/images/marketing/logo-light.svg"
         priority
         width={175}
         height={100}
         alt="Logo"
+        className="block dark:hidden"
+      />
+      <Image
+        src="/images/marketing/logo-dark.svg"
+        priority
+        width={175}
+        height={100}
+        alt="Logo"
+        className="hidden dark:block"
       />
     </Link>
   );

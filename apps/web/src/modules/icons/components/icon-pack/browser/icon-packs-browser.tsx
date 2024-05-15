@@ -1,7 +1,9 @@
+'use client';
+
 import type { Filter, Sort } from '@modules/common/hooks/use-filter';
 import useFilter from '@modules/common/hooks/use-filter';
 import type { IconPackWithFeatured } from '@modules/icons/typings/icon.typings';
-import type { IconPack } from 'icons-fetching';
+import type { IconPack } from '@iconzy/icons-fetching';
 import React, { useMemo } from 'react';
 
 import IconPackCard from '../card/icon-pack-card';
@@ -59,10 +61,10 @@ const IconPacksBrowser: React.FC<IconPacksBrowserTypes> = (props) => {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b p-4">
         <h2 className="text-lg font-medium md:text-xl">
-          Browsing <span className="text-primary-800 dark:text-primary-400 font-bold">{filteredData.length}</span> packs
-          and <span className="text-primary-600 dark:text-primary-300 font-bold">{totalIconsCount}</span> icons
+          Browsing <span className="text-primary font-bold">{filteredData.length}</span> packs and{' '}
+          <span className="text-primary font-bold">{totalIconsCount}</span> icons
         </h2>
         <IconPacksBrowserFiltering onNameChanged={handleNameFilterChanged} onSortChanged={handleSortChanged} />
       </div>

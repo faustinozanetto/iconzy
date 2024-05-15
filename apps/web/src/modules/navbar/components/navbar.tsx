@@ -4,11 +4,9 @@ import React from 'react';
 
 import NavbarLink from './navbar-link';
 
-const Navbar: React.FC = (props) => {
-  const {} = props;
-
+const Navbar: React.FC = () => {
   return (
-    <header className="relative z-50 flex h-[80px] items-center justify-center border-[1px] border-neutral-300 bg-neutral-50 px-6 dark:border-neutral-700 dark:bg-neutral-800 md:justify-between">
+    <header className="flex items-center relative z-50 h-[80px] border-b px-6 bg-background justify-center md:justify-between">
       {/* Logo */}
       <Logo />
       {/* Buttons */}

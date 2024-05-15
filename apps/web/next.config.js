@@ -15,13 +15,5 @@ module.exports = withBundleAnalyzer({
     }
     return config;
   },
-  async rewrites() {
-    return [
-      {
-        source: '/',
-        destination: '/icons',
-      },
-    ];
-  },
   compress: true,
 });

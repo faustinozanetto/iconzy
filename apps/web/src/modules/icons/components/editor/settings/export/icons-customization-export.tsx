@@ -1,3 +1,5 @@
+import { MultiButtonInput } from '@iconzy/ui';
+import { Button, Separator, MultiButtonInputOption } from '@iconzy/ui';
 import { useIconsSettingsContext } from '@modules/icons/context/settings/icons-settings-context';
 import { IconsSettingsActionType } from '@modules/icons/context/settings/reducer/types';
 import { useSaveIcons } from '@modules/icons/hooks/use-save-icons';
@@ -9,7 +11,6 @@ import {
 } from '@modules/icons/lib/constants';
 import { IconExportPlatforms, IconExportTypes, IconsExportSelection } from '@modules/icons/typings/icon.typings';
 import React from 'react';
-import { Button, MultiButtonInput, MultiButtonInputOption, Separator } from 'ui';
 
 const IconsCustomizationExport: React.FC = () => {
   const { state, dispatch } = useIconsSettingsContext();
@@ -56,7 +57,7 @@ const IconsCustomizationExport: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-3">
-      <h3 className="text-xl font-semibold">Export Settings</h3>
+      <h3 className="text-lg font-semibold">Export Settings</h3>
       <Separator />
       <div className="flex flex-col space-y-2">
         <MultiButtonInput
@@ -64,7 +65,7 @@ const IconsCustomizationExport: React.FC = () => {
           label="Export Platform"
           defaultSelected={state.export.platform}
           options={ICONS_EXPORT_PLATFORMS}
-          onValueChanged={(value) => handlePlatformChange(value)}
+          onValueChange={(value) => handlePlatformChange(value)}
           optionRender={(option: IconExportPlatforms) => option.toUpperCase()}
         />
         <MultiButtonInput
@@ -72,7 +73,7 @@ const IconsCustomizationExport: React.FC = () => {
           label="Export Type"
           defaultSelected={state.export.type}
           options={EXPORT_TYPE_OPTIONS}
-          onValueChanged={(value) => handleTypeChange(value)}
+          onValueChange={(value) => handleTypeChange(value)}
           optionRender={(option: IconExportTypes) => option.toUpperCase()}
         />
         <MultiButtonInput
@@ -80,14 +81,14 @@ const IconsCustomizationExport: React.FC = () => {
           label="Export Selection"
           defaultSelected="selected"
           options={ICONS_EXPORT_SELECTION}
-          onValueChanged={(value) => handleSelectionChange(value)}
+          onValueChange={(value) => handleSelectionChange(value)}
           optionRender={(option: IconsExportSelection) => option.toUpperCase()}
         />
       </div>
       <Separator />
       <div className="flex flex-col space-y-2">
         {isSingleFile ? (
-          <Button className="w-full" variant="ghost" colorScheme="rose" onClick={copyIcon} aria-label="Copy Icon">
+          <Button className="w-full" variant="ghost" onClick={copyIcon} aria-label="Copy Icon">
             Copy
           </Button>
         ) : null}

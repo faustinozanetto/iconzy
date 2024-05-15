@@ -1,5 +1,4 @@
 import path from 'path';
-import { defaultColors, MultiButtonInputOption } from 'ui';
 
 import type {
   IconCustomizationLimits,
@@ -7,6 +6,7 @@ import type {
   IconExportTypes,
   IconsExportSelection,
 } from '../typings/icon.typings';
+import { MultiButtonInputOption } from '@iconzy/ui';
 
 export const ICONS_DIR: string = path.join(process.cwd(), 'public/icons/');
 export const FEATURED_ICONS_COUNT = 14;
@@ -19,7 +19,7 @@ export const ICON_WIDTH_LIMITS: IconCustomizationLimits = {
   max: 3.5,
 };
 
-export const ICONS_DEFAULT_COLOR = defaultColors.primary['700'];
+export const ICONS_DEFAULT_COLOR = '#e11d48';
 
 export const ICONS_EXPORT_SELECTION: MultiButtonInputOption<IconsExportSelection>[] = ['all', 'selected'];
 

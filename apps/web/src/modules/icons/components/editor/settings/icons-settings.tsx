@@ -9,7 +9,7 @@ const IconsCustomization: React.FC = () => {
     <IconsSettingsProvider>
       <section
         className="hidden h-full w-[280px] flex-col
-          justify-between space-y-2 overflow-y-auto border-r-[1px] border-r-neutral-300 bg-neutral-50 p-3.5 dark:border-r-neutral-700 dark:bg-neutral-800 md:flex"
+          justify-between space-y-2 overflow-y-auto border-r p-3.5 md:flex"
       >
         <div className="flex flex-1 flex-col justify-between">
           <IconsCustomizationSettings />

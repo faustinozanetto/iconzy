@@ -12,9 +12,7 @@ const NavbarLink: React.FC<NavbarLinkProps> = (props) => {
 
   return (
     <Link href={href} {...rest}>
-      <span className="hover:text-primary-800 dark:hover:text-primary-500 text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-        {children}
-      </span>
+      <span className="hover:text-primary text-lg font-semibold">{children}</span>
     </Link>
   );
 };

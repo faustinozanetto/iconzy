@@ -1,3 +1,3 @@
-const config = require('tailwind-config/tailwind.config.cjs')
+const config = require('@iconzy/tailwind-config/tailwind.config.js');
 
 module.exports = config;

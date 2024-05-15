@@ -1,0 +1,13 @@
+{
+  "name": "@iconzy/eslint-config",
+  "version": "0.0.1",
+  "author": {
+    "name": "Faustino Zanetto",
+    "email": "zanettofaustino@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/style-guide": "^6.0.0",
+    "eslint-config-turbo": "^1.13.2"
+  }
+}

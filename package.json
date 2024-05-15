@@ -8,37 +8,26 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
-    "autoprefixer": "^10.4.13",
-    "eslint-config-custom": "*",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
-    "postcss": "^8.4.21",
-    "prettier": "latest",
-    "tailwindcss": "^3.2.4",
-    "turbo": "latest",
-    "rimraf": "^4.1.2"
-  },
-  "engines": {
-    "node": ">=16.0.0"
+    "@commitlint/cli": "19.2.1",
+    "@commitlint/types": "19.0.3",
+    "@commitlint/config-conventional": "19.1.0",
+    "@iconzy/tsconfig": "workspace:*",
+    "@types/node": "20.12.7",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
+    "eslint": "9.0.0",
+    "prettier-plugin-tailwindcss": "0.5.13",
+    "prettier": "3.2.5",
+    "turbo": "1.13.2",
+    "tsx": "4.7.2"
   },
   "lint-staged": {
-    "apps/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ],
-    "packages/ui/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ],
-    "*.json": [
-      "prettier --write"
-    ]
-  },
-  "packageManager": "yarn@1.22.18"
+    "extends": "./lint-staged.config.ts"
+  }
 }

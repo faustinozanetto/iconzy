@@ -14,6 +14,10 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
@@ -523,13 +527,16 @@ var executeCustomParsers = async () => {
   await task.run();
 };
 var copyIconsToWebApp = async () => {
-  const destinationFolder = path3.join(process.cwd() + "/../../apps/web/public/icons");
-  await import_fs.default.promises.mkdir(destinationFolder, { recursive: true });
-  await import_fs.default.promises.writeFile(path3.join(destinationFolder, "dummy.txt"), "dummy", { encoding: "utf8" });
-  const iconFolders = await import_fs.default.promises.readdir(PACKED_DIR);
-  for (const folder of iconFolders) {
-    await copyFolder(path3.join(PACKED_DIR, folder), path3.join(destinationFolder, folder));
-  }
+  const task = new task_default("copy-icon-files", async () => {
+    const destinationFolder = path3.join(process.cwd() + "/../../apps/web/public/icons");
+    await import_fs.default.promises.mkdir(destinationFolder, { recursive: true });
+    await import_fs.default.promises.writeFile(path3.join(destinationFolder, "dummy.txt"), "dummy", { encoding: "utf8" });
+    const iconFolders = await import_fs.default.promises.readdir(PACKED_DIR);
+    for (const folder of iconFolders) {
+      await copyFolder(path3.join(PACKED_DIR, folder), path3.join(destinationFolder, folder));
+    }
+  });
+  await task.run();
 };
 var cleanupFiles = async () => {
   const task = new task_default("cleanup-files", async () => {

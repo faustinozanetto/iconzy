@@ -1,7 +1,7 @@
-import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import { IconsSelectionActionType } from '@modules/icons/context/selection/reducer/types';
-import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-utils';
+import { getSVGSourceIntoComponent } from '@modules/icons/lib/icons-render';
+import { useIconsStore } from '@modules/icons/state/icons.slice';
 import type { Icon } from '@modules/icons/typings/icon.typings';
 import clsx from 'clsx';
 import React, { memo, useMemo } from 'react';
@@ -15,11 +15,13 @@ type IconEntryProps = {
 const IconEntry: React.FC<IconEntryProps> = (props) => {
   const { icon, selected } = props;
   const { dispatch } = useIconsSelectionContext();
-  const { state: iconsState } = useIconsContext();
+  const { iconPack } = useIconsStore();
 
   const source = useMemo(() => {
-    return getSVGSourceIntoComponent(icon.source, iconsState.iconPack.type);
-  }, [icon.source]);
+    if (!iconPack) return null;
+
+    return getSVGSourceIntoComponent(icon.source, iconPack.type);
+  }, [icon.source, iconPack]);
 
   /**
    * Function
@@ -48,8 +50,8 @@ const IconEntry: React.FC<IconEntryProps> = (props) => {
   return (
     <div
       className={clsx(
-        'hover:border-primary-400 dark:hover:border-primary-500 group relative flex h-[175px] cursor-pointer justify-center overflow-hidden rounded-md border-[3.5px] border-neutral-300 bg-neutral-50 p-4 transition-colors hover:border-4 dark:border-neutral-700 dark:bg-neutral-800',
-        selected ? 'dark:!border-primary-500 !border-primary-400' : ''
+        'hover:border-primary group relative flex h-[175px] cursor-pointer justify-center overflow-hidden rounded-md border-2 p-4 transition-colors hover:border-4',
+        selected ? '!border-primary' : ''
       )}
       onClick={handleIconSelected}
     >

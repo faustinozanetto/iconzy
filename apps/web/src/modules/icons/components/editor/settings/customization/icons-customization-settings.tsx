@@ -1,4 +1,4 @@
-import { useIconsContext } from '@modules/icons/context/icons/icons-context';
+import { ColorInput, RangeInput, Separator } from '@iconzy/ui';
 import { useIconsSettingsContext } from '@modules/icons/context/settings/icons-settings-context';
 import { IconsSettingsActionType } from '@modules/icons/context/settings/reducer/types';
 import {
@@ -7,11 +7,11 @@ import {
   ICON_WIDTH_LIMITS,
   ICONS_DEFAULT_COLOR,
 } from '@modules/icons/lib/constants';
+import { useIconsStore } from '@modules/icons/state/icons.slice';
 import React from 'react';
-import { ColorInput, RangeInput, Separator } from 'ui';
 
 const IconsSettingsSettings: React.FC = () => {
-  const { state: iconsState } = useIconsContext();
+  const { iconPack } = useIconsStore();
   const { dispatch: IconsSettingsDispatch } = useIconsSettingsContext();
 
   /**
@@ -45,16 +45,16 @@ const IconsSettingsSettings: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-3">
-      <h3 className="text-xl font-semibold">Customization</h3>
+      <h3 className="text-lg font-semibold">Customization</h3>
       <Separator />
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-4">
         <RangeInput
           id="icon-size"
           label="Size"
           min={ICON_SIZE_LIMITS.min}
           max={ICON_SIZE_LIMITS.max}
           placeholder={String(DEFAULT_ICON_SIZE)}
-          onValueChanged={handelSizeChanged}
+          onValueChange={handelSizeChanged}
           aria-label="Icon Size"
         />
         <RangeInput
@@ -63,15 +63,15 @@ const IconsSettingsSettings: React.FC = () => {
           min={ICON_WIDTH_LIMITS.min}
           max={ICON_WIDTH_LIMITS.max}
           placeholder="2"
-          disabled={iconsState.iconPack.type === 'fill'}
-          onValueChanged={handleWidthChanged}
+          onValueChange={handleWidthChanged}
+          disabled={iconPack?.type === 'fill'}
           aria-label="Icon Width"
         />
         <ColorInput
           id="icon-color"
           label="Color"
           placeholder={ICONS_DEFAULT_COLOR}
-          onValueChanged={handleColorChanged}
+          onValueChange={handleColorChanged}
           aria-label="Icon Color"
         />
       </div>

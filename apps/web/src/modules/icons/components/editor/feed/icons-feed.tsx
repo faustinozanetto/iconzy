@@ -1,31 +1,18 @@
 import type { Filter, Sort } from '@modules/common/hooks/use-filter';
 import useFilter from '@modules/common/hooks/use-filter';
-import { useIconsContext } from '@modules/icons/context/icons/icons-context';
 import { useIconsSelectionContext } from '@modules/icons/context/selection/icons-selection-context';
 import type { Icon } from '@modules/icons/typings/icon.typings';
-import dynamic from 'next/dynamic';
 import React, { useRef } from 'react';
 import { VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
 
 import SelectedIcons from '../selection/selected-icons';
 import IconsFeedFiltering from './icons-feed-filtering';
 import IconsFeedScrollTop from './icons-feed-scroll-top';
-
-const LoadingIcon = () => {
-  return (
-    <div className="flex h-[175px] animate-pulse items-center justify-center rounded-md border-[2px] border-neutral-300 bg-neutral-50 text-xl font-bold text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
-      Loading
-    </div>
-  );
-};
-
-const IconEntry = dynamic(() => import('../../icons/icon-entry'), {
-  ssr: false,
-  loading: () => <LoadingIcon />,
-});
+import { useIconsStore } from '@modules/icons/state/icons.slice';
+import IconEntry from '../../icons/icon-entry';
 
 const IconsFeed: React.FC = () => {
-  const { state: iconsState } = useIconsContext();
+  const { icons } = useIconsStore();
   const { state: iconsSelectionState } = useIconsSelectionContext();
   const feedContainer = useRef<VirtuosoGridHandle | null>(null);
 
@@ -34,7 +21,7 @@ const IconsFeed: React.FC = () => {
     property: 'name',
     ascending: true,
   };
-  const { filteredData, updateFilter, updateSort } = useFilter<Icon>(iconsState.icons, initialFilters, initialSort);
+  const { filteredData, updateFilter, updateSort } = useFilter<Icon>(icons, initialFilters, initialSort);
 
   /**
    * Callback function when the name filter changes.
@@ -42,15 +29,6 @@ const IconsFeed: React.FC = () => {
    */
   const handleNameFilterChanged = (value: string) => {
     updateFilter({ property: 'name', value: value.toLowerCase(), enabled: true });
-  };
-
-  /**
-   * Callback function when the sort filter changes.
-   * @param value New sort filter.
-   * @param criteria The sort criteria.
-   */
-  const handleSortChanged = (value: keyof Icon, criteria: 'asc' | 'des') => {
-    updateSort({ property: value, ascending: criteria === 'asc' });
   };
 
   const handleScrollToTop = () => {
@@ -65,11 +43,11 @@ const IconsFeed: React.FC = () => {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="md:grid-cols-filter grid items-center gap-2 border-b-[1px] border-b-neutral-300 p-4 dark:border-b-neutral-700 dark:bg-neutral-800">
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-2 border-b p-4 sm:items-center">
         <h2 className="text-lg font-medium md:text-xl">
-          Browsing <span className="text-primary-800 dark:text-primary-400 font-bold">{filteredData.length}</span> icons
+          Browsing <span className="text-primary font-bold">{filteredData.length}</span> icons
         </h2>
-        <IconsFeedFiltering onNameChanged={handleNameFilterChanged} onSortChanged={handleSortChanged} />
+        <IconsFeedFiltering onNameChanged={handleNameFilterChanged} />
       </div>
       <div className="relative h-full">
         <VirtuosoGrid

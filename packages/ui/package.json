@@ -39,7 +39,7 @@
     "@iconzy/tailwind-config": "workspace:*",
     "@iconzy/tsconfig": "workspace:*",
     "@iconzy/eslint-config": "workspace:*",
-    "autoprefixer": "10.4.17",
+    "autoprefixer": "10.4.19",
     "tailwindcss": "3.4.1",
     "postcss": "8.4.38",
     "tsup": "^6.5.0",

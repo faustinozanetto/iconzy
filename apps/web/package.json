@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare-icons-folder": "rimraf apps/web/public/icons",
-    "build-icons-fetching": "pnpm workspace icons-fetching build && pnpm workspace icons-fetching build-fetcher",
-    "run-icons-fetching": "pnpm workspace icons-fetching fetcher",
+    "build-icons-fetching": "pnpm build --filter=@iconzy/icons-fetching && pnpm build-fetcher --filter=@iconzy/icons-fetching",
+    "run-icons-fetching": "pnpm fetcher --filter=@iconzy/icons-fetching",
     "postinstall": "pnpm prepare-icons-folder && pnpm build-icons-fetching && pnpm run-icons-fetching"
   },
   "browser": {
